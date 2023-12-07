@@ -2257,3 +2257,35 @@ fill-opacity: 1;
 .overlay-part div:hover {
   cursor: pointer;
 }
+
+.overlay-part .profile-img {
+  height: 65px;
+  width: 65px;
+}
+
+.overlay-part .pic-desc {
+  font-size: 12px;
+}
+
+.modal-header {
+  border-bottom: none !important;
+}
+
+.modal-primary .modal-content {
+  background-color: #6577ff !important;
+  border: none !important;
+  border-radius: 23px !important;
+}
+
+.modal-primary .modal-header .btn-close {
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e");
+  --bs-btn-close-opacity: none;
+}
+
+.modal-primary .modal-body button {
+  background-color: #6577ff;
+  border: none;
+  color: white;
+  font-weight: lighter;
+  padding: 2px 10px;
+}
