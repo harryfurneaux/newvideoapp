@@ -1,13 +1,12 @@
 import React from 'react';
 import Icons from './icons';
 import SimpleCheckBox from './simpleCheck';
+import SettingMenuIcon from './SettingMenuIcon';
 
-const RightLayout=()=>{
-    return <div className="rightSideDiv kjdsfkn-ajdnkw">
+const RightLayout = () => {
+  return <div className="rightSideDiv kjdsfkn-ajdnkw">
     <div className="d-flex justify-content-end">
-      <button className="btn no-shadow">
-        <Icons iconNumber={1} />
-      </button>
+      <SettingMenuIcon />
     </div>
     <div className="nakds-ajews">
       <div className="topSectionDiv d-flex">
@@ -32,9 +31,9 @@ const RightLayout=()=>{
         <img src={require("../images/i3.png")} />
       </div>
     </div>
-   <div className='kjladsm-sajdw'>
-   <Icons iconNumber={60}/>
-   </div>
-  </div> 
+    <div className='kjladsm-sajdw'>
+      <Icons iconNumber={60} />
+    </div>
+  </div>
 }
 export default RightLayout;
