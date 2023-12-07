@@ -10,13 +10,18 @@ import creditcard_img from "../images/Credit Card.svg";
 import help_img from "../images/help.svg";
 import privacy_img from "../images/privacy.svg";
 import contact_img from "../images/Contact.svg";
-import Privacy_Terms from './Modals/privacy_terms';
+import PrivacyTermsModal from './Modals/privacy_terms';
+import AccountSecurityModal from "./Modals/account_security";
 
 const SettingMenuIcon = () => {
-  const [show, setShow] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handlePrivacyClose = () => setShowPrivacy(false);
+  const handlePrivacyShow = () => setShowPrivacy(true);
+  
+  const handleAccountClose = () => setShowAccount(false);
+  const handleAccountShow = () => setShowAccount(true);
 
   return (
     <OverlayTrigger trigger="click" placement="left" overlay={
@@ -28,9 +33,10 @@ const SettingMenuIcon = () => {
           <p className="fw-light"><img src={location_img} /> Location</p>
         </div>
         <div className="overlay-part my-3 px-5 py-1">
-          <div className="my-3">
+          <div className="my-3" onClick={handleAccountShow}>
             <img src={security_img} />&emsp;Account & Security
           </div>
+          <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
           <div className="my-3">
             <img src={creditcard_img} />&emsp;Payment Settings
           </div>
@@ -39,12 +45,10 @@ const SettingMenuIcon = () => {
           <div className="my-3">
             <img src={help_img} />&emsp;Help Center
           </div>
-          <div className="my-3" onClick={handleShow}>
+          <div className="my-3" onClick={handlePrivacyShow}>
             <img src={privacy_img} />&emsp;Privacy & Terms
           </div>
-          <Modal show={show} onHide={handleClose} centered>
-            <Privacy_Terms />
-          </Modal>
+          <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
           <div className="my-3">
             <img src={contact_img} />&emsp;Contact Us
           </div>
