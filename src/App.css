@@ -2235,3 +2235,7 @@ fill-opacity: 1;
   background-color: #5468FF;
   border-radius: 12px;
 }
+
+.overlay-part div:hover {
+  cursor: pointer;
+}
