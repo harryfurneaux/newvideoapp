@@ -576,6 +576,9 @@ text-transform: uppercase;
   font-weight: 500;
   line-height: 18px;
 }
+.kjdflkads-mdskf h6 svg {
+  margin-right: 4px;
+}
 .kjdflkads-mdskf h5 svg {
   margin-right: 4px;
 }
@@ -1086,6 +1089,9 @@ align-items: center;
   margin-bottom: 0px;
   margin-right: 6px;
   margin-left: 3px;
+}
+.kjnkodsa-jaddd .location h6{
+  color: #868686;
 }
 .kjnkodsa-jaddd h5{
   color: rgba(0, 0, 0, 0.80);
@@ -2288,4 +2294,25 @@ fill-opacity: 1;
   color: white;
   font-weight: lighter;
   padding: 2px 10px;
+}
+
+.pill-12 {
+  color: #5468FF;
+  background-color: white;
+  border: solid 1px rgba(84, 104, 255, 0.7);
+}
+
+.pill-12:hover {
+  color: white;
+  background-color: #5468FF;
+}
+
+.pill-12:hover path {
+  fill: white;
+}
+
+.timing {
+  margin-bottom: -10px;
+  display: grid;
+  justify-items: start;
 }

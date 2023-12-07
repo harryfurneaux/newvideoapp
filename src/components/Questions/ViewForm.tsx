@@ -4,11 +4,12 @@ import Icons from "../icons";
 //@ts-ignore
 import Flip from 'react-reveal/Flip'
 import CheckFormBox from "../CheckBoxForm";
+
 const ViewForm = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
 
-    return (
-     <Flip right>
+  return (
+    <Flip right>
       <div className="jkljfkld-jdskfe">
         <div className="kjjfds-janwkea1">
           <div className="kafms-kfsamfer">
@@ -27,30 +28,28 @@ const ViewForm = () => {
               </div>
             </div>
             <div className="njfk-amew">
-            <CheckFormBox/>
-            <CheckFormBox/>
-            <CheckFormBox/>
-
+              <CheckFormBox />
+              <CheckFormBox />
+              <CheckFormBox />
             </div>
             <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
               <div className="continueBtnDiv snasdj-sawdne">
                 <button className="btn">
-                  NEXT QUESTION
+                  WATCH ANSWERS
                   <div className="kdksa-ajwmd ">
-                    <Icons iconNumber={7} />
+                    <Icons iconNumber={93} />
                   </div>
                 </button>
               </div>
             </div>
           </div>
           <div className="ldkjfal0-fdsnfe">
-          <Icons iconNumber={62}/>
+            <Icons iconNumber={62} />
+          </div>
         </div>
-        </div>
-      
-      <RightButtons hideMenu={isMobile?true:false}/>
-      
+        <RightButtons hideMenu={isMobile ? true : false} />
       </div></Flip>
-    );
-  };
+  );
+};
+
 export default ViewForm
