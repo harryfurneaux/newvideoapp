@@ -309,6 +309,23 @@ body {
   display: flex;
   padding: 0px 16px;
 }
+
+.jknu-kosaember {
+  width: 50px;
+  max-width: 280px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  height: 51px;
+  align-items: center;
+  display: flex;
+  padding: 0px 8px;
+  margin: 0px 3px;
+}
+
+.jknu-kosaember:focus-within,.jknu-kosaember:focus-visible {
+  background-color: rgba(0, 0, 0, 0.20);
+}
+
 .emailRowDiv input,
 .emailRowDiv input::placeholder {
   background-color: transparent;

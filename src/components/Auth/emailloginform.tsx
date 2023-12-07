@@ -4,10 +4,10 @@ import Icons from "../../components/icons";
 //@ts-ignore
 import Flip from "react-reveal/Flip";
 
-const EmailLoginForm = ({setshowScreen}:{setshowScreen:any}) => {
+const EmailLoginForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
-  
+
   return (
     <Flip bottom>
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
