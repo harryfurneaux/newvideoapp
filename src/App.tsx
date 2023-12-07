@@ -12,8 +12,8 @@ function App() {
   return (
     mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
       : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} />
-        : mainScreen == 2 ? <Start />
-          : mainScreen == 3 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
+        : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          : mainScreen == 3 ? <Start />
             : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
   );
 }
