@@ -2223,3 +2223,15 @@ fill-opacity: 1;
    color: rgba(84, 104, 255, 0.90)!important;
   
   }
+
+/* Added by softmax0112 */
+
+.overlay {
+  background-color: #6577ff;
+  border-radius: 23px;
+}
+
+.overlay-part {
+  background-color: #5468FF;
+  border-radius: 12px;
+}
