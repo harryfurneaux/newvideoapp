@@ -9,6 +9,7 @@ import BackButton from "../components/Auth/backButton";
 import TestiMonials from "../components/Auth/Carousel";
 import VideoForm from "../components/Home/Video";
 import EmailLoginForm from "../components/Auth/emailloginform";
+import ForgotPwdForm from "../components/Auth/forgotpwdform";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setshowScreen] = React.useState(0);
@@ -43,7 +44,9 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           </div>
           <div className="ldkf-kasmdaw"></div>
         </> : showScreen == 4 ? (
-          <EmailLoginForm />
+          <EmailLoginForm setshowScreen={setshowScreen} />
+        ) : showScreen == 5 ? (
+          <ForgotPwdForm />
         ) : (
           <SignupForm setshowScreen={setshowScreen} />
         )}

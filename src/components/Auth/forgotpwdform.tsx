@@ -1,19 +1,21 @@
-import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import Icons from "../../components/icons";
+
 //@ts-ignore
 import Flip from "react-reveal/Flip";
 
-const EmailLoginForm = ({setshowScreen}:{setshowScreen:any}) => {
+import Icons from "../../components/icons";
+import icon from "../../images/reset_password.svg";
+
+const ForgotPwdForm = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
-  const [isAgree, setisAgree] = useState(true);
   
   return (
     <Flip bottom>
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
         <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe1"}`}>
-          <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Enter Login Details</h3>
-          <h4>Enter your email and password for this account.</h4>
+          <img src={icon} className="mb-4" />
+          <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Forgot Password?</h3>
+          <h4 className="px-4">Enter your Email address to retrieve a code to reset your password.</h4>
 
           <div className={`${isTabletOrMobile ? "w-100" : "kdjsa-ajwnkelds"}`}>
             <div className={`${isTabletOrMobile ? "hjk-ajwednw" : ""} emailRowDiv sadhasdn-we`}>
@@ -21,26 +23,11 @@ const EmailLoginForm = ({setshowScreen}:{setshowScreen:any}) => {
                 <Icons iconNumber={90} />
                 <input placeholder="Email" />
               </div>
-              <div className="jksd-kosaeknae">
-                <Icons iconNumber={9} />
-                <input type="password" placeholder="Password" />
-              </div>
-            </div>
-            <div className="jdaskfjnas-ajaied">
-              <div onClick={() => {
-                setisAgree(!isAgree)
-              }} className="sandka-jwe">
-                <button className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>Create Account</button>
-              </div>
-              <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
-                <button className="no-shadow">Forgot Password?</button>
-              </div>
             </div>
             <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
               <button onClick={() => {
-                setshowScreen(5)
               }} className={`btn`}>
-                CONTINUE
+                SEND CODE
                 <div className="kdksa-ajwmd">
                   <Icons iconNumber={7} />
                 </div>
@@ -56,4 +43,4 @@ const EmailLoginForm = ({setshowScreen}:{setshowScreen:any}) => {
   );
 };
 
-export default EmailLoginForm;
+export default ForgotPwdForm;
