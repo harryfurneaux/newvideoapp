@@ -11,6 +11,7 @@ import VideoForm from "../components/Home/Video";
 import EmailLoginForm from "../components/Auth/emailloginform";
 import ForgotPwdForm from "../components/Auth/forgotpwdform";
 import EnterCodeForm from "../components/Auth/entercodeform";
+import NewPwdForm from "../components/Auth/newpwdform";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setshowScreen] = React.useState(0);
@@ -50,6 +51,8 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           <ForgotPwdForm setshowScreen={setshowScreen} />
         ) : showScreen == 6 ? (
           <EnterCodeForm setshowScreen={setshowScreen} />
+        ) : showScreen == 7 ? (
+          <NewPwdForm />
         ) : (
           <SignupForm setshowScreen={setshowScreen} />
         )}

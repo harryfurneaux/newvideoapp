@@ -22,6 +22,8 @@ const BackButton = ({
             setshowScreen(4);
           } else if (showScreen == 6 ) {
             setshowScreen(5);
+          } else if (showScreen == 7 ) {
+            setshowScreen(6);
           }
         }}
         className="skdmsa-dsad"

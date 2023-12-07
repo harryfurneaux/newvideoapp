@@ -48,11 +48,11 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
             <div className="continueBtnDiv snasdj-sawdne">
               <button
                 onClick={() => {
+                  setshowScreen(7)
                 }} className="btn kjlsjadm-kdmsd">
                 COMPLETE SIGNUP
                 <Icons iconNumber={77} />
               </button>
-
             </div>
           </div>
         </div>
@@ -60,8 +60,8 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
           <Icons iconNumber={64} />
         </div>
       </div>
-
-    </Flip>);
+    </Flip>
+  );
 };
 
 export default EnterCodeForm;
