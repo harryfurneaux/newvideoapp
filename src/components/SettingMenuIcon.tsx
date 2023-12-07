@@ -9,7 +9,7 @@ import security_img from "../images/password.svg";
 import creditcard_img from "../images/Credit Card.svg";
 import help_img from "../images/help.svg";
 import privacy_img from "../images/privacy.svg";
-import contact_img from "../images/Contact.svg";
+import contact_img from "../images/contact.svg";
 import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 
