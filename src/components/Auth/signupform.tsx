@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Icons from "../icons";
 //@ts-ignore
 import Flip from 'react-reveal/Flip';
-const SignUpForm = () => {
+const SignUpForm = ({setshowScreen}:{setshowScreen:any}) => {
   const [isAgree,setisAgree] = useState(false);
 
     return (
@@ -46,7 +46,7 @@ const SignUpForm = () => {
           <div className="continueBtnDiv snasdj-sawdne">
           <button    
           onClick={()=>{
-              
+            setshowScreen(4)
             }} className="btn kjlsjadm-kdmsd">
               COMPLETE SIGNUP
               <Icons iconNumber={77}  />

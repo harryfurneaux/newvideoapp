@@ -10,14 +10,14 @@ const BackButton = ({
     return (
       <div
         onClick={() => {
-           if (showScreen == 1) {
+          if (showScreen == 1) {
             setshowScreen(0);
           } else if (showScreen == 2) {
             setshowScreen(1);
-          }
-          else if (showScreen==3 )
-          {
-            setshowScreen(0)
+          } else if (showScreen == 3 ) {
+            setshowScreen(0);
+          } else if (showScreen == 4 ) {
+            setshowScreen(2);
           }
         }}
         className="skdmsa-dsad"

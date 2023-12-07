@@ -32,13 +32,16 @@ const SignInForm = ({setshowScreen}:{setshowScreen:any}) => {
             <h5>or</h5>
             <div className="jkdsfs-dajem"></div>
           </div>
-  
-          <div className="emailRowDiv">
-            <div className="jksd-kosaeknae">
-              <Icons iconNumber={6} />
-              <input type="email" placeholder="Email" />
-            </div>
+
+          <div className="socialButtonsDiv">
+            <button className="btn" onClick={()=>{
+                setshowScreen(3)
+              }}>
+              <Icons iconNumber={90} />
+              Login in with Email
+            </button>
           </div>
+          
           <div className="continueBtnDiv">
             <button    
           onClick={()=>{

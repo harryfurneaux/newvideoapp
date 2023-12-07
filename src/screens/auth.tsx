@@ -8,9 +8,9 @@ import BottomMenu from "../components/bottomMenu";
 import BackButton from "../components/Auth/backButton";
 import TestiMonials from "../components/Auth/Carousel";
 import VideoForm from "../components/Home/Video";
- 
+import EmailLoginForm from "../components/Auth/emailloginform";
 
-function Auth({mainScreen,setMainScreen}:{mainScreen:number,setMainScreen:any}) {
+function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setshowScreen] = React.useState(0);
 
   return (
@@ -27,26 +27,25 @@ function Auth({mainScreen,setMainScreen}:{mainScreen:number,setMainScreen:any}) 
           <SignInForm setshowScreen={setshowScreen} />
         ) : showScreen == 1 ? (
           <AccountForm setshowScreen={setshowScreen} />
-        ) :
-        showScreen==3?<>
-        <TestiMonials/>
-        <div className="lkljdfsl-sifkmd">
-          <Icons iconNumber={66}/>
-          <Icons iconNumber={67}/>
-            
-        </div>
-        <div className="dkfnmsd-awde">
-          <div className="wh-100 l1">
-          <VideoForm/>
+        ) : showScreen == 3 ? <>
+          <TestiMonials />
+          <div className="lkljdfsl-sifkmd">
+            <Icons iconNumber={66} />
+            <Icons iconNumber={67} />
           </div>
-            <div className="wh-100 l2">
-            <VideoForm/>  
+          <div className="dkfnmsd-awde">
+            <div className="wh-100 l1">
+              <VideoForm />
             </div>
-        </div>
-        <div className="ldkf-kasmdaw"></div>
-        </>:
-        (
-          <SignupForm />
+            <div className="wh-100 l2">
+              <VideoForm />
+            </div>
+          </div>
+          <div className="ldkf-kasmdaw"></div>
+        </> : showScreen == 4 ? (
+          <EmailLoginForm />
+        ) : (
+          <SignupForm setshowScreen={setshowScreen} />
         )}
         <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
       </div>
