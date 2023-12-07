@@ -11,42 +11,34 @@ import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 
-
-
-
-
-
-
-function View({mainScreen,setMainScreen}:{mainScreen:number,setMainScreen:any}) {
-  const [showScreen, setShowScreen] = React.useState(0);
+function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
+  const [showScreen, setShowScreen] = useState(0);
+  const [showRightMenu, setShowRightMenu] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-  const isTab= useMediaQuery({ query: '(max-width: 1013px)' });
-  const [showRightMenu,setShowRightMenu] = useState(false);
+  const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
+
   return (
     <div className="pageContainer">
-      
       <div className="jkadshfkjf rightSideDiv rightSideBg1">
-        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu}  showScreen={showScreen} setShowScreen={setShowScreen} />
-        {showScreen <= 3 ? <OptionButtons /> : <></>}
-
-        {showScreen > 3 ? (
+        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
+        {showScreen <= 5 ? <OptionButtons /> : <></>}
+        {showScreen > 5 ? (
           <>
-            <div className={`lnjsadnksa-sda ${isMobile && showScreen==5?"":"kjsadl-asdksm"}`}>
-              {showScreen == 4 ? (
+            <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+              {showScreen == 6 ? (
                 <ShareForm showScreen={showScreen} setShowScreen={setShowScreen} />
               ) : (
                 <>
-                <ViewForm />
-                <RightButtons hideMenu={showRightMenu && isTab?false:true}/>
+                  <ViewForm />
+                  <RightButtons hideMenu={showRightMenu && isTab ? false : true} />
                 </>
               )}
             </div>
           </>
         ) : (
-          
           <QuestionForm />
         )}
-        {showScreen >= 1 && showScreen <= 3 ? (
+        {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} />
         ) : (
           <></>
@@ -56,7 +48,6 @@ function View({mainScreen,setMainScreen}:{mainScreen:number,setMainScreen:any}) 
         </div>
       </div>
       <RightLayout2 />
-    
     </div>
   );
 }

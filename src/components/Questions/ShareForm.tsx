@@ -2,19 +2,19 @@ import Icons from "../icons";
 //@ts-ignore
 import Flip from 'react-reveal/Flip'
 const ShareForm = ({
-    setShowScreen,
-    showScreen,
-  }: {
-    setShowScreen: any;
-    showScreen: number;
-  }) => {
-    return (
-      <Flip right>
+  setShowScreen,
+  showScreen,
+}: {
+  setShowScreen: any;
+  showScreen: number;
+}) => {
+  return (
+    <Flip right>
       <div className="kjjfds-janwkea">
         <div className="jhjij-sanwe kjljdfn-jadmw">
-          <h3>Some final details...</h3>
+          <h3>Share Questions</h3>
           <h4 className="ksajdsd-sjad">
-            If you don’t have a company, just leave it blank
+            Invite people to Answer
           </h4>
           <div className="copyLinkDiv">
             <button className="btn">
@@ -30,36 +30,35 @@ const ShareForm = ({
           <div className="socialButtonsDiv">
             <button className="btn">
               <Icons iconNumber={3} />
-              Log in with Facebook
+              Share via Facebook
             </button>
             <button className="btn">
               <Icons iconNumber={4} />
-              Log in with Google
+              Share via Google
             </button>
             <button className="btn">
               <Icons iconNumber={5} />
-              Log in with LinkedIn
+              Share via LinkedIn
             </button>
           </div>
-  
           <div className="continueBtnDiv">
             <button
               onClick={() => {
-                setShowScreen(5);
+                setShowScreen(7);
               }}
               className="btn jhdfksjan-a0jwe"
             >
-              I’ll do it later
+              CLOSE
               <Icons iconNumber={43} />
             </button>
           </div>
         </div>
         <div className="ldkjfal0-fdsnfe">
-          <Icons iconNumber={64}/>
+          <Icons iconNumber={64} />
         </div>
       </div>
-      </Flip>
-    );
-  };
+    </Flip>
+  );
+};
 
 export default ShareForm

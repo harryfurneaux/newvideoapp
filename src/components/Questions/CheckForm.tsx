@@ -3,16 +3,16 @@ import Icons from "../icons";
 //@ts-ignore
 import Fade from 'react-reveal/Fade';
 import CheckFormBox from "../CheckBoxForm";
- 
+
 const CheckForm = ({
-    setShowScreen,
-    showScreen,
-  }: {
-    setShowScreen: any;
-    showScreen: number;
-  }) => {
-    return (
-      <Fade left>
+  setShowScreen,
+  showScreen,
+}: {
+  setShowScreen: any;
+  showScreen: number;
+}) => {
+  return (
+    <Fade left>
       <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd">
         <div className="kafms-kfsamfer">
           <div className="skfalk-smdsefds">
@@ -25,12 +25,12 @@ const CheckForm = ({
                   />
                 </div>
                 <button className="kajfldsf no-shadow">
-                  <Icons iconNumber={86}/>
+                  <Icons iconNumber={86} />
                 </button>
               </div>
             </div>
             <div className="kjdflkads-mdskf">
-              <h3>Job Title</h3>
+              <h3 className="mb-1">Job Title</h3>
               <h5>
                 <Icons iconNumber={16} /> Company Name
               </h5>
@@ -40,18 +40,16 @@ const CheckForm = ({
             </div>
           </div>
           <div className="njfk-amew">
-          <CheckFormBox/>
-          <CheckFormBox/>
-          <CheckFormBox/>
-             
-          
+            <CheckFormBox />
+            <CheckFormBox />
+            <CheckFormBox />
           </div>
           <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
             <div className="continueBtnDiv snasdj-sawdne-1">
               <button
                 className="btn lkdafhkls0d"
                 onClick={() => {
-                  setShowScreen(4);
+                  setShowScreen(6);
                 }}
               >
                 PUBLISH & SHARE
@@ -63,10 +61,11 @@ const CheckForm = ({
           </div>
         </div>
         <div className="ldkjfal0-fdsnfe">
-          <Icons iconNumber={62}/>
+          <Icons iconNumber={62} />
         </div>
       </div>
-      </Fade>
-    );
-  };
+    </Fade>
+  );
+};
+
 export default CheckForm
