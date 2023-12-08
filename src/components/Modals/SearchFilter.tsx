@@ -10,7 +10,10 @@ const SearchFilter = ({ show, handleClose }: { show: boolean, handleClose: any }
         <div className="col px-0">
           <p className="border-bottom py-3">SUBMITTED</p>
           <p className="fw-light my-3">Last hour</p>
-          <p className="fw-bold my-3">Today X</p>
+          <div className="row align-items-center justify-items-between my-3">
+            <p className="col fw-bold">Today</p>
+            <span className="col d-flex justify-content-end">✕</span>
+          </div>
           <p className="fw-light my-3">This week</p>
           <p className="fw-light my-3">This month</p>
           <p className="fw-light my-3">This year</p>

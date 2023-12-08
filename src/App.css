@@ -2315,3 +2315,28 @@ fill-opacity: 1;
   display: grid;
   justify-items: start;
 }
+
+/* Toast */
+
+.toast.toast-notify {
+  background: none;
+  border: none;
+  border-radius: 12px;
+}
+
+.toast-notify.info .toast-header {
+  background-color: rgba(0, 217, 205, 0.8);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.toast-notify.danger .toast-header {
+  background-color: rgba(255, 55, 55, 0.8);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.toast-notify .btn-close {
+  opacity: 1;
+  filter: invert(1);
+}
