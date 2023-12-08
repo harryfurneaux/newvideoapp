@@ -718,8 +718,6 @@ body {
 }
 
 .kjdflmas-sdmfe::before {
-  background-image: url('./images/i6.png');
-
   z-index: 0;
   content: '';
   position: absolute;
@@ -730,6 +728,9 @@ body {
   top: 3px;
   border-radius: 21px;
 
+  background:
+    radial-gradient(circle, transparent 70%, black 150%),
+    url('./images/i6.png');
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
