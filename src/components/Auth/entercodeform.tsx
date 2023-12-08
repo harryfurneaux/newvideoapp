@@ -19,21 +19,11 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
 
           <div className="njskakd-kawmed">
             <div className="emailRowDiv sadhasdn-we d-inline-flex flex-row">
-              <div className="jknu-kosaember">
-                <input />
-              </div>
-              <div className="jknu-kosaember">
-                <input />
-              </div>
-              <div className="jknu-kosaember">
-                <input />
-              </div>
-              <div className="jknu-kosaember">
-                <input />
-              </div>
-              <div className="jknu-kosaember">
-                <input />
-              </div>
+              <div className="jknu-kosaember"><input /></div>
+              <div className="jknu-kosaember"><input /></div>
+              <div className="jknu-kosaember"><input /></div>
+              <div className="jknu-kosaember"><input /></div>
+              <div className="jknu-kosaember"><input /></div>
             </div>
             <div className="jdaskfjnas-ajaied mt-2 px-4">
               <div onClick={() => {
@@ -49,8 +39,8 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
               <button
                 onClick={() => {
                   setshowScreen(7)
-                }} className="btn kjlsjadm-kdmsd">
-                COMPLETE SIGNUP
+                }} className="btn kjlsjadm-kdmsd-2">
+                RESET PASSWORD
                 <Icons iconNumber={77} />
               </button>
             </div>

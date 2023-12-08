@@ -5,6 +5,7 @@ import Flip from 'react-reveal/Flip';
 
 const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const [isAgree, setisAgree] = useState(false);
+  const [birthClicked, setBirthClicked] = useState(false);
 
   return (
     <Flip right>
@@ -19,7 +20,11 @@ const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
             <div className="emailRowDiv sadhasdn-we">
               <div className="jksd-kosaeknae">
                 <Icons iconNumber={58} />
-                <input placeholder="Birth Date" />
+                <input
+                  placeholder={birthClicked ? " DD   |    MM    |   YYYY" : " Birth Date"}
+                  onClick={() => setBirthClicked(true)}
+                  onBlur={() => setBirthClicked(false)}
+                />
               </div>
               <div className="jksd-kosaeknae active-asdkjd">
                 <Icons iconNumber={12} />
@@ -48,9 +53,9 @@ const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
               <button
                 onClick={() => {
                   setshowScreen(4)
-                }} className="btn kjlsjadm-kdmsd">
+                }} className="btn kjlsjadm-kdmsd-2">
                 COMPLETE SIGNUP
-                <Icons iconNumber={77} />
+                <Icons iconNumber={94} />
               </button>
             </div>
           </div>

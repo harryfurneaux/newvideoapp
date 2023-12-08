@@ -28,13 +28,13 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
             Log in with LinkedIn
           </button>
         </div>
-        <div className="jkdslafj-asdemk mt-2">
+        <div className="jkdslafj-asdemk mt-1">
           <div className="jkdsfs-dajem"></div>
-          <h5>or</h5>
+          <h5 className="fw-light mt-1 mx-2">or</h5>
           <div className="jkdsfs-dajem"></div>
         </div>
 
-        <div className="socialButtonsDiv mt-3">
+        <div className="socialButtonsDiv mt-2">
           <button className="btn" onClick={() => {
             setshowScreen(3)
           }}>
