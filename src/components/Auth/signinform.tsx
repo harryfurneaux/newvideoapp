@@ -28,13 +28,13 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
             Log in with LinkedIn
           </button>
         </div>
-        <div className="jkdslafj-asdemk">
+        <div className="jkdslafj-asdemk mt-2">
           <div className="jkdsfs-dajem"></div>
           <h5>or</h5>
           <div className="jkdsfs-dajem"></div>
         </div>
 
-        <div className="socialButtonsDiv">
+        <div className="socialButtonsDiv mt-3">
           <button className="btn" onClick={() => {
             setshowScreen(3)
           }}>
@@ -42,12 +42,19 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
             Login in with Email
           </button>
         </div>
-
+        <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">
+          <div className="ansks-adn">
+            <button className="no-shadow fw-bold">Create Account</button>
+          </div>
+          <div className="ansks-adn">
+            <button className="no-shadow fw-light">Forgot Password?</button>
+          </div>
+        </div>
         <div className="continueBtnDiv">
           <button
             onClick={() => {
               setshowScreen(1);
-            }} className="btn kjlsjadm-kdmsd">
+            }} className="btn kjlsjadm-kdmsd mt-1">
             CONTINUE
             <Icons iconNumber={77} />
           </button>
