@@ -974,6 +974,7 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .hkjndankad-dnsd {
@@ -985,7 +986,7 @@ body {
 
 .backButtonDiv {
   display: inline-flex;
-  background-color: rgba(84, 104, 255, 0.03);
+  background-color: rgba(84, 104, 255, 0.05);
   border-radius: 18px 18px 18px 18px;
   padding: 2.5px 40px 2.5px 5px;
   margin-right: 5px;
@@ -993,7 +994,7 @@ body {
 }
 
 .backButtonDiv:hover {
-  background-color: rgba(84, 104, 255, 0.06);
+  background-color: rgba(84, 104, 255, 0.3);
 }
 
 .backButtonDiv h5 {
@@ -1005,14 +1006,14 @@ body {
   margin-top: 10px;
   display: inline-flex;
   text-align: center !important;
-  background-color: rgba(84, 104, 255, 0.03);
+  background-color: rgba(84, 104, 255, 0.05);
   border-radius: 18px 18px 18px 18px;
   width: 100px;
   max-height: 34px;
 }
 
 .sortButtonDiv:hover {
-  background-color: rgba(84, 104, 255, 0.06);
+  background-color: rgba(84, 104, 255, 0.3);
 }
 
 .sortButtonDiv h5 {
@@ -1554,14 +1555,11 @@ body {
 
 .headerTitleDiv {
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  background-color: rgba(84, 104, 255, 0.03);
+  background-color: rgba(84, 104, 255, 0.05);
   border-radius: 18px 18px 18px 18px;
   padding: 7.5px 15px 7.5px 15px;
-  padding-right: 17vw;
-  max-width: 525px;
+  width: 100%;
   height: 34px;
 }
 
