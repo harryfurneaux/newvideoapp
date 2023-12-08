@@ -123,26 +123,26 @@ const CreateForm = ({
             </h5>
           </div>
           {showScreen == 3 ? (
-            <Zoom1>
+            <Zoom1 cascade>
               <div className="kjdaflj-adjkwmd">
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
-                <Question setselected={setselected} selected={selected} />
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
                 <div className="pos-rel">
                   {selected >= 3 ? <button onClick={() => {
                     setShowScreen(4)
                   }} className="kjdflj0-jsads">
                     CONTINUE
                     <Icons iconNumber={85} />
-                  </button> : <button className="hkjdsf-dsjfin">
-                    <span>{selected}</span> of <span>3</span> questions selected
+                  </button> : <button className="hkjdsf-dsjfin fw-light">
+                    <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
                   </button>}
                 </div>
               </div>

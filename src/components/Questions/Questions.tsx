@@ -5,7 +5,7 @@ const Question = ({setselected,selected}:{setselected:any,selected:number}) => {
     const [isHoverOrActive, setisHoverOrActive] = React.useState(false);
     
     return (
-      <div className="">
+      <div className="sdfsdfsdf">
         <div
           className={`jsfkms-akmdwa ${isHoverOrActive?"ksajdklsa":"hasdkjashd-d"}`}
           onClick={()=>{
