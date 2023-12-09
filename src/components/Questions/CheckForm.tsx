@@ -3,6 +3,7 @@ import Icons from "../icons";
 //@ts-ignore
 import Fade from 'react-reveal/Fade';
 import CheckFormBox from "../CheckBoxForm";
+import no_pic from "../../images/no-pic.svg";
 
 const CheckForm = ({
   setShowScreen,
@@ -12,23 +13,14 @@ const CheckForm = ({
   showScreen: number;
 }) => {
   return (
-    <Fade left>
+    <Fade>
       <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd">
         <div className="kafms-kfsamfer">
-          <div className="skfalk-smdsefds">
-            <div className="kdjnfakdsfm-jsamre">
-              <div className="kjdsos0jnawd">
-                <div className="ksdnskn-wje">
-                  <img
-                    className="hjksajnk0-ajs"
-                    src={require("../../images/i9.png")}
-                  />
-                </div>
-                <button className="kajfldsf no-shadow">
-                  <Icons iconNumber={86} />
-                </button>
-              </div>
-            </div>
+          <div>
+            <img src={no_pic} />
+            {/* <button className="kajfldsf no-shadow">
+              <Icons iconNumber={86} />
+            </button> */}
             <div className="kjdflkads-mdskf">
               <h3 className="mb-1">Job Title</h3>
               <h5>
