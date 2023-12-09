@@ -1,5 +1,5 @@
 {
-  "name": "video-interview-app",
+  "name": "video-interview-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
