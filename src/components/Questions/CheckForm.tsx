@@ -13,7 +13,7 @@ const CheckForm = ({
   showScreen: number;
 }) => {
   return (
-    <Fade left>
+    <Fade>
       <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd">
         <div className="kafms-kfsamfer">
           <div>
