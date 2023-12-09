@@ -1,6 +1,9 @@
+import { useMediaQuery } from "react-responsive";
+import RightButtons2 from "../RightButtons2";
 import Icons from "../icons";
 //@ts-ignore
 import Flip from 'react-reveal/Flip'
+
 const ShareForm = ({
   setShowScreen,
   showScreen,
@@ -8,6 +11,8 @@ const ShareForm = ({
   setShowScreen: any;
   showScreen: number;
 }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
+
   return (
     <Flip right>
       <div className="kjjfds-janwkea">
@@ -57,6 +62,7 @@ const ShareForm = ({
           <Icons iconNumber={64} />
         </div>
       </div>
+      <RightButtons2 hideMenu={isMobile ? true : false} />
     </Flip>
   );
 };
