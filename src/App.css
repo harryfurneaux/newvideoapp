@@ -1514,8 +1514,7 @@ body {
 .copyLinkDiv button:active {
   background-color: #00d9cd !important;
   color: #fff !important;
-  border: none !important;
-  font-weight: bold;
+  border-color: #00d9cd !important;
   stroke: #fff;
 }
 
@@ -2626,6 +2625,7 @@ body .kdjflkas-sad {
   background: none;
   border: none;
   border-radius: 12px;
+  margin-top: -90%;
 }
 
 .toast-notify.info .toast-header {

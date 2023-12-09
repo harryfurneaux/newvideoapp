@@ -2,7 +2,7 @@ import { Toast, ToastContainer } from "react-bootstrap";
 
 const Notify = ({ type="info", title="notification", show=true, handleClose=null }: { type?: string, title?: string, show?: boolean, handleClose?: any }) => {
   return (
-    <ToastContainer position="top-center">
+    <ToastContainer>
       <Toast className={`toast-notify ${type}`} onClose={handleClose} show={show} delay={2000} autohide>
         <Toast.Header className="text-white">
           <img className="rounded-0" src={require(`../images/Tick-${type}.svg`)} />
