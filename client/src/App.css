@@ -971,16 +971,18 @@ body {
 .leftSideHeader {
   display: flex;
   justify-content: space-between;
-  padding: 8px 8px 0px 19px;
+  padding: 8px 9px 0px 8px;
   cursor: pointer;
+  gap: 6px;
 }
 
 .skdmsa-dsad {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 8px;
 }
 
 .hkjndankad-dnsd {
@@ -995,7 +997,7 @@ body {
   background-color: rgba(84, 104, 255, 0.05);
   border-radius: 18px 18px 18px 18px;
   padding: 2.5px 40px 2.5px 5px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
   height: 34px;
 }
 
@@ -1009,7 +1011,7 @@ body {
 }
 
 .sortButtonDiv {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: inline-flex;
   text-align: center !important;
   background-color: rgba(84, 104, 255, 0.05);
@@ -1127,7 +1129,7 @@ body {
 
 .radiusRight {
   border-radius: 0px 18px 18px 0px;
-  margin-left: 2px;
+  margin-left: 1.43px;
 }
 
 .akhdsank-sjdnwk {
@@ -1253,6 +1255,7 @@ body {
 
 .jkadshfkjf {
   position: relative;
+  margin-top: 10px;
 }
 
 .kjsfdkl-adsj {
