@@ -2624,19 +2624,120 @@ body .kdjflkas-sad {
   border-bottom: solid 2px rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Account & Security modal */
-.modal-part {
-  background-color: #5468FF;
-  border-radius: 12px;
+/* Primary modal */
+
+.modal-primary .modal-content {
+  background-color: #5468FF !important;
+  border: none !important;
+  border-radius: 23px !important;
 }
 
-.modal-part .profile-img {
+.modal-primary .modal-header {
+  border-bottom: none !important;
+}
+
+.modal-primary .modal-header .btn-close {
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e");
+  --bs-btn-close-opacity: none;
+}
+
+.modal-primary .modal-body button {
+  background-color: #6577ff;
+  border: none;
+  color: white;
+  font-weight: lighter;
+  padding: 2px 10px;
+}
+
+/* Account & Security modal */
+.account-modal .modal-content {
+  padding: 15px 18px 28px 41px;
+}
+
+.account-modal .modal-header {
+  padding: 0;
+}
+
+.account-modal .modal-header h1 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.account-modal .modal-body {
+  padding: 0;
+  margin-top: 14px;
+}
+
+.account-modal .modal-part {
+  background-color: #4A60FF;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-right: 22px !important;
+  padding: 10px 17px 10px 21px;
+}
+
+.account-modal .row div {
+  padding: 0 !important;
+}
+
+.account-modal h6 {
+  font-size: 14px;
+  font-weight: 900;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.account-modal p, button {
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.90) !important;
+}
+
+.account-modal button {
+  font-weight: 600 !important;
+}
+
+.account-modal button {
+  padding: 5px 9px !important;
+}
+
+.account-modal .pic-desc {
+  font-weight: 500;
+  font-size: 8px !important;
+  margin-top: 1px;
+  margin-left: 1px;
+  color: rgba(255, 255, 255, 0.80) !important;
+}
+
+.account-modal button {
+  display: flex;
+  justify-content: end;
+  justify-items: end;
+  justify-items: end;
+  background: #6375FF !important;
+}
+
+.account-modal .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.account-modal .modal-part .profile-img {
   height: 65px;
   width: 65px;
 }
 
-.modal-part .pic-desc {
+.account-modal .modal-part .pic-desc {
   font-size: 12px;
+}
+
+.account-modal .delete-part {
+  margin-top: 23px;
+  margin-right: 41px;
+}
+
+.account-modal .delete-part button {
+  border: 0.6px solid #FFF !important;
 }
 
 /* Filter modal */
@@ -2743,29 +2844,6 @@ body .kdjflkas-sad {
   height: calc(100vh - 22px) !important;
   margin: 10px 10px 10px 10px;
   border-radius: 14px; */
-}
-
-.modal-primary .modal-content {
-  background-color: #6577ff !important;
-  border: none !important;
-  border-radius: 23px !important;
-}
-
-.modal-primary .modal-header {
-  border-bottom: none !important;
-}
-
-.modal-primary .modal-header .btn-close {
-  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23fff%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e");
-  --bs-btn-close-opacity: none;
-}
-
-.modal-primary .modal-body button {
-  background-color: #6577ff;
-  border: none;
-  color: white;
-  font-weight: lighter;
-  padding: 2px 10px;
 }
 
 .pill-12 {
