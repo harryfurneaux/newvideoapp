@@ -25,36 +25,36 @@ const SettingMenuIcon = () => {
 
   return (
     <OverlayTrigger trigger="click" placement="left" overlay={
-      <div className="overlay text-white px-5 py-3">
-        <div className="text-center">
-          <img src={profile_img} />
+      <div className="overlay text-white">
+        <div className="header text-center">
+          <img src={profile_img} className="profile" />
           <h5>User Name</h5>
-          <p className="fw-light"><img src={company_img} /> Company</p>
-          <p className="fw-light"><img src={location_img} /> Location</p>
+          <div className="desc"><img src={company_img} /> Company</div>
+          <div className="desc"><img src={location_img} /> Location</div>
         </div>
-        <div className="overlay-part my-3 px-5 py-1">
-          <div className="my-3" onClick={handleAccountShow}>
-            <img src={security_img} />&emsp;Account & Security
+        <div className="overlay-part">
+          <div onClick={handleAccountShow}>
+            <img src={security_img} />Account & Security
           </div>
           <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
-          <div className="my-3">
-            <img src={creditcard_img} />&emsp;Payment Settings
+          <div>
+            <img src={creditcard_img} />Payment Settings
           </div>
         </div>
-        <div className="overlay-part my-3 px-5 py-1">
-          <div className="my-3">
-            <img src={help_img} />&emsp;Help Center
+        <div className="overlay-part">
+          <div>
+            <img src={help_img} />Help Center
           </div>
-          <div className="my-3" onClick={handlePrivacyShow}>
-            <img src={privacy_img} />&emsp;Privacy & Terms
+          <div onClick={handlePrivacyShow}>
+            <img src={privacy_img} />Privacy & Terms
           </div>
           <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
-          <div className="my-3">
-            <img src={contact_img} />&emsp;Contact Us
+          <div>
+            <img src={contact_img} />Contact Us
           </div>
         </div>
-        <div className='text-center'>
-          <span className='border-bottom p-1'>LOG OUT</span>
+        <div className='text-center logout'>
+          <span>LOG OUT</span>
         </div>
       </div>
     } rootClose>
