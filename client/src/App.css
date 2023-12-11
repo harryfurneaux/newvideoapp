@@ -2559,36 +2559,96 @@ body .kdjflkas-sad {
 .overlay {
   background-color: #6577ff;
   border-radius: 23px;
+  top: 15px !important;
+  right: 2vw !important;
+  transform: none !important;
+  width: 297px;
+  height: 503px;
+}
+
+.overlay .header {
+  margin-bottom: 4px;
+}
+
+.overlay img.profile {
+  margin-top: 36px;
+  margin-bottom: 13px;
+}
+
+.overlay h5 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.overlay div.desc {
+  color: rgba(255, 255, 255, 0.80);
+  font-family: "HK Grotesk";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 19.079px;
 }
 
 .overlay-part {
+  display: inline-flex;
+  padding: 14px 28px;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 12px;
+  background: #5468FF;
+  margin: 10px 32px 0px 32px;
+  width: 234px;
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.overlay-part div:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+.overlay-part img {
+  margin-right: 14px;
+}
+
+.overlay .logout {
+  font-size: 12px;
+  margin-top: 16px;
+  margin-bottom: 13px;
+}
+
+.overlay .logout span {
+  padding: 0 4px 12px 4px;
+  line-height: 22.026px;
+  font-weight: 700;
+  border-bottom: solid 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Account & Security modal */
+.modal-part {
   background-color: #5468FF;
   border-radius: 12px;
 }
 
-.overlay-part div:hover {
-  cursor: pointer;
-}
-
-.overlay-part .profile-img {
+.modal-part .profile-img {
   height: 65px;
   width: 65px;
 }
 
-.overlay-part .pic-desc {
+.modal-part .pic-desc {
   font-size: 12px;
 }
 
-body>.modal-backdrop {
+/* Filter modal */
+
+/* body>.modal-backdrop {
   width: 0 !important;
   height: 0 !important;
-}
+} */
 
 .filter-blur-10 {
   filter: blur(10px);
 }
-
-/* Filter modal */
 
 @media only screen and (max-width: 576px) {
   .filter-modal .modal-dialog {
@@ -2610,6 +2670,7 @@ body>.modal-backdrop {
   padding-top: 23px;
   padding-left: 26px;
   padding-right: 22px;
+  height: 310px;
 }
 
 /* Filter modal header */
@@ -2678,17 +2739,16 @@ body>.modal-backdrop {
 }
 
 .modal-backdrop {
-  width: calc(50vw - 20px) !important;
+  /* width: calc(50vw - 20px) !important;
   height: calc(100vh - 22px) !important;
   margin: 10px 10px 10px 10px;
-  border-radius: 14px;
+  border-radius: 14px; */
 }
 
 .modal-primary .modal-content {
   background-color: #6577ff !important;
   border: none !important;
   border-radius: 23px !important;
-  height: 310px;
 }
 
 .modal-primary .modal-header {
