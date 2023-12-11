@@ -50,7 +50,7 @@ const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
               <Icons iconNumber={81} />
 
             </button> */}
-            <button className="pill-12 px-2 rounded-pill d-flex align-items-center gap-1">
+            <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1">
               <Icons iconNumber={92} />12
             </button>
           </div>

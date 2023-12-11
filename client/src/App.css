@@ -1169,6 +1169,8 @@ body {
   width: 50.258px;
   height: 26px;
   color: #5468FF;
+  font-size: 12px;
+  font-weight: 900;
   background-color: white;
   border: solid 1px rgba(84, 104, 255, 0.5);
 }
