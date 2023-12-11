@@ -3,12 +3,7 @@ import SearchFilter from "../Modals/SearchFilter";
 import Icons from "../icons";
 import Back from "./Back";
 
-const TopSec = ({ showScreen, setshowScreen }: { showScreen: number, setshowScreen: any }) => {
-  const [showFilter, setShowFilter] = useState(false);
-
-  const handleFilterClose = () => setShowFilter(false);
-  const handleFilterShow = () => setShowFilter(true);
-
+const TopSec = ({ showScreen, setshowScreen, showFilter, handleFilterShow, handleFilterClose }: { showScreen: number, setshowScreen: any, showFilter: boolean, handleFilterShow: any, handleFilterClose: any }) => {
   return <>
     <div className="leftSideHeader">
       <Back />
