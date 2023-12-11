@@ -6,7 +6,7 @@ const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
   return (
     <div className="jobPositionDiv">
       <div className="kjsldk-jdansd">
-        <img src={require("../../images/i10.png")} />
+        <Icons iconNumber={95} />
         <div className="kjnkodsa-jaddd">
           <div>
             <h5>Job Title</h5>
