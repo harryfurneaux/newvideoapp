@@ -54,7 +54,7 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
           <button
             onClick={() => {
               setshowScreen(1);
-            }} className="btn kjlsjadm-kdmsd mt-1">
+            }} className="btn kjlsjadm-kdmsd">
             CONTINUE
             <Icons iconNumber={77} />
           </button>
