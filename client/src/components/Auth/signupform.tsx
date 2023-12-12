@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Icons from "../icons";
 //@ts-ignore
-import Flip from 'react-reveal/Flip';
+import { Flip } from "react-awesome-reveal";
 
 const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
 
   return (
-    <Flip right>
+    <Flip direction="horizontal">
       <div className="kjjfds-janwkea">
         <div className="jhjij-sanwe jhjij-sanwe21">
           <h3>Some final details...</h3>

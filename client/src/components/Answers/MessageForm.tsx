@@ -1,7 +1,7 @@
 //@ts-ignore
-import Fade from 'react-reveal/Fade'
+import { Fade } from "react-awesome-reveal";
 const FormMessage = ({showScreen,setshowScreen}:{showScreen:number,setshowScreen:any}) => {
-    return <Fade right>
+    return <Fade direction="right">
       <div className="akhdsank-sjdnwk kdjfkjsldp-sameaw jhklajfn-awje">
        <div>
         <div>

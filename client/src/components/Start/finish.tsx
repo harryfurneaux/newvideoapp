@@ -1,6 +1,6 @@
 import Icons from "../icons";
 //@ts-ignore
-import Fade from 'react-reveal/Fade'
+import { Fade } from "react-awesome-reveal";
 const FinishForm = ({setScreen}:{setScreen:any}) => {
     return (
      <Fade >

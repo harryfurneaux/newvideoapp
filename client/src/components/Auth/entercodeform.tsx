@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Icons from "../icons";
 //@ts-ignore
-import Flip from "react-reveal/Flip";
+import { Flip } from "react-awesome-reveal";
 import icon from "../../images/mail_circle.svg";
 
 const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const [isAgree, setisAgree] = useState(false);
 
   return (
-    <Flip right>
+    <Flip direction="horizontal">
       <div className="kjjfds-janwkea">
         <div className="jhjij-sanwe jhjij-sanwe21">
           <img src={icon} className="mb-4" />
