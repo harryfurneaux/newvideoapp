@@ -20,7 +20,9 @@ export class UsersService {
     if (createUserDto.password !== createUserDto.confirm_password) {
       throw new BadRequestException('Passwords do not match');
     }
+
     createUserDto.password = await hashPassword(createUserDto.password)
+
     return await this.UserModel.create(createUserDto);
   }
 
@@ -33,9 +35,11 @@ export class UsersService {
     if (!user) throw new NotFoundException('user not found')
     return user;
   }
+
   async findOne(email: string): Promise<User | null> {
     return await this.UserModel.findOne({ email });
   }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     if (!await this.UserModel.findById(id)) throw new NotFoundException('user not found')
     return await this.UserModel.findByIdAndUpdate(

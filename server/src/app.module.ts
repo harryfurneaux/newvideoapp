@@ -17,6 +17,7 @@ import { InterviewsModule } from './interviews/interviews.module';
 //roles configuration
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/role-base-auth/role.guard';
+import { SocialAuthModule } from './social-auth/social-auth.module';
 
 
 @Module({
@@ -38,7 +39,8 @@ import { RolesGuard } from './auth/role-base-auth/role.guard';
     VideoUploadingModule,
     QuestionsModule,
     JobsModule,
-    InterviewsModule],
+    InterviewsModule,
+    SocialAuthModule],
   controllers: [AppController],
   providers: [
     {
