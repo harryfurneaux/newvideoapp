@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Icons from "../../components/icons";
 //@ts-ignore
-import Flip from "react-reveal/Flip";
+import { Flip } from "react-awesome-reveal";
 
 const EmailLoginForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
 
   return (
-    <Flip bottom>
+    <Flip direction="vertical">
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
         <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe1"}`}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Enter Login Details</h3>
