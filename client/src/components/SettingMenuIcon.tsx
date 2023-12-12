@@ -12,17 +12,21 @@ import privacy_img from "../images/privacy.svg";
 import contact_img from "../images/contact.svg";
 import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
-import TinyModal from "./Modals/tiny_modal";
+import PaymentSettingModal from "./Modals/payment_setting";
 
 const SettingMenuIcon = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
 
   const handlePrivacyClose = () => setShowPrivacy(false);
   const handlePrivacyShow = () => setShowPrivacy(true);
   
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => setShowAccount(true);
+    
+  const handlePaymentClose = () => setShowPayment(false);
+  const handlePaymentShow = () => setShowPayment(true);
 
   return (
     <>
@@ -38,7 +42,7 @@ const SettingMenuIcon = () => {
             <div onClick={handleAccountShow}>
               <img src={security_img} />Account & Security
             </div>
-            <div>
+            <div onClick={handlePaymentShow}>
               <img src={creditcard_img} />Payment Settings
             </div>
           </div>
@@ -64,6 +68,7 @@ const SettingMenuIcon = () => {
         </button>
       </OverlayTrigger>
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
+      <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
     </>
   )
 }
