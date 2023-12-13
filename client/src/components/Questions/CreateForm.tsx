@@ -86,7 +86,7 @@ const CreateForm = ({
             <></>
           )}
         </div>
-        <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd ${showScreen == 3 ? "kdjsf-awejdn" : ""}`} >
+        <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd ${showScreen == 3 ? "kdjsf-awejdn" : showScreen == 5 ? "screen-5" : ""}`} >
           <div className="kjdsfms-awddw2">
             <Icons iconNumber={36} />
             <Icons iconNumber={showScreen >= 2 ? 36 : 37} />
