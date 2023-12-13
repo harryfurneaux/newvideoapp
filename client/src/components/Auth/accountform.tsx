@@ -37,7 +37,7 @@ const SignInForm = ({setshowScreen}:{setshowScreen:any}) => {
                 <h5 className={`${isTabletOrMobile?"jjlkajsd-awje":""}`}>I agree to the terms & conditions</h5>
               </div>
               <div className={`${isTabletOrMobile?"jdsfknla-wnejnw":""}`}>
-                <button className="no-shadow">Log in</button>
+                <button className="no-shadow no-background">Log in</button>
               </div>
             </div>
             <div className={`${isTabletOrMobile?"jjlkajsd-awje-msakm3e":""} continueBtnDiv snasdj-sawdne`}>

@@ -3,7 +3,7 @@ import Icons from "../icons";
 
 const BeginForm = ({setScreen}:{setScreen:any}) => {
     return (
-      <div className="kjjfds-janwkea1 kjjfds-janwkea2">
+      <div className="kjjfds-janwkea1 kjjfds-janwkea2 height-none">
         <div className="kafms-kfsamfer">
           <div className="skfalk-smdsefds">
             <div className="kdjnfakdsfm-jsamre">

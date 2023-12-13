@@ -12,56 +12,64 @@ import privacy_img from "../images/privacy.svg";
 import contact_img from "../images/contact.svg";
 import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
+import PaymentSettingModal from "./Modals/payment_setting";
 
 const SettingMenuIcon = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
 
   const handlePrivacyClose = () => setShowPrivacy(false);
   const handlePrivacyShow = () => setShowPrivacy(true);
   
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => setShowAccount(true);
+    
+  const handlePaymentClose = () => setShowPayment(false);
+  const handlePaymentShow = () => setShowPayment(true);
 
   return (
-    <OverlayTrigger trigger="click" placement="left" overlay={
-      <div className="overlay text-white px-5 py-3">
-        <div className="text-center">
-          <img src={profile_img} />
-          <h5>User Name</h5>
-          <p className="fw-light"><img src={company_img} /> Company</p>
-          <p className="fw-light"><img src={location_img} /> Location</p>
+    <>
+      <OverlayTrigger trigger="click" placement="left" overlay={
+        <div className="overlay text-white">
+          <div className="header text-center">
+            <img src={profile_img} className="profile" />
+            <h5>User Name</h5>
+            <div className="desc"><img src={company_img} /> Company</div>
+            <div className="desc"><img src={location_img} /> Location</div>
+          </div>
+          <div className="overlay-part">
+            <div onClick={handleAccountShow}>
+              <img src={security_img} />Account & Security
+            </div>
+            <div onClick={handlePaymentShow}>
+              <img src={creditcard_img} />Payment Settings
+            </div>
+          </div>
+          <div className="overlay-part">
+            <div>
+              <img src={help_img} />Help Center
+            </div>
+            <div onClick={handlePrivacyShow}>
+              <img src={privacy_img} />Privacy & Terms
+            </div>
+            <div>
+              <img src={contact_img} />Contact Us
+            </div>
+          </div>
+          <div className='text-center logout'>
+            <span>LOG OUT</span>
+          </div>
         </div>
-        <div className="overlay-part my-3 px-5 py-1">
-          <div className="my-3" onClick={handleAccountShow}>
-            <img src={security_img} />&emsp;Account & Security
-          </div>
-          <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
-          <div className="my-3">
-            <img src={creditcard_img} />&emsp;Payment Settings
-          </div>
-        </div>
-        <div className="overlay-part my-3 px-5 py-1">
-          <div className="my-3">
-            <img src={help_img} />&emsp;Help Center
-          </div>
-          <div className="my-3" onClick={handlePrivacyShow}>
-            <img src={privacy_img} />&emsp;Privacy & Terms
-          </div>
-          <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
-          <div className="my-3">
-            <img src={contact_img} />&emsp;Contact Us
-          </div>
-        </div>
-        <div className='text-center'>
-          <span className='border-bottom p-1'>LOG OUT</span>
-        </div>
-      </div>
-    } rootClose>
-      <button className="btn no-shadow">
-        <Icons iconNumber={1} />
-      </button>
-    </OverlayTrigger>
+      } rootClose>
+        <button className="btn no-shadow">
+          <Icons iconNumber={1} />
+        </button>
+      </OverlayTrigger>
+      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
+      <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
+      <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
+    </>
   )
 }
 

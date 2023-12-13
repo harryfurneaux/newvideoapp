@@ -10,7 +10,7 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
   return (
     <Flip direction="horizontal">
       <div className="kjjfds-janwkea">
-        <div className="jhjij-sanwe jhjij-sanwe21">
+        <div className="jhjij-sanwe jhjij-sanwe6">
           <img src={icon} className="mb-4" />
           <h3>Enter Code</h3>
           <h4 className="ksajdsd-sjad mt-2 px-5 lh-base">
