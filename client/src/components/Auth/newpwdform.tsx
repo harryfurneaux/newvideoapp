@@ -10,7 +10,7 @@ const NewPwdForm = () => {
   return (
     <Flip bottom>
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
-        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe1"}`}>
+        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe5"}`}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Create New Password</h3>
           <h4>Password must be at least 8 characters</h4>
 

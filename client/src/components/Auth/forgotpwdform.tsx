@@ -12,7 +12,7 @@ const ForgotPwdForm = ({ setshowScreen }: { setshowScreen: any }) => {
   return (
     <Flip bottom>
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
-        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe1"}`}>
+        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe4"}`}>
           <img src={icon} className="mb-4" />
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Forgot Password?</h3>
           <h4 className="mt-2 px-5 lh-base">Enter your Email address to retrieve a code to reset your password.</h4>
