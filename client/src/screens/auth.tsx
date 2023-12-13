@@ -56,7 +56,9 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         ) : (
           <SignupForm setshowScreen={setshowScreen} />
         )}
-        <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+        <div className="d-flex justify-content-center kdnklms-awendwd-11">
+          <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+        </div>
       </div>
       <RightLayout2 />
     </div>
