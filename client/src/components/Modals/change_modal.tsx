@@ -11,7 +11,7 @@ const ChangeModal = ({ show, handleClose, item }: { show: boolean, handleClose: 
         <p>Enter a new {item} and your existing password.</p>
       </Modal.Header>
       <Modal.Body>
-        <div className="modal-part row align-items-center">
+        <div className="modal-part">
           <h6>{item == "Name" ? "NAME" :
             item == "Location" ? "LOCATION" :
               item == "Email" ? "EMAIL" :
@@ -20,7 +20,7 @@ const ChangeModal = ({ show, handleClose, item }: { show: boolean, handleClose: 
           }</h6>
           <h5>{item=="Name"?"Full Name":item}</h5>
         </div>
-        <div className="modal-part row align-items-center">
+        <div className="modal-part">
           <h6>CURRENT PASSWORD</h6>
           <h5>{""}</h5>
         </div>
