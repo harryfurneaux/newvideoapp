@@ -2692,8 +2692,12 @@ body .kdjflkas-sad {
   cursor: pointer;
 }
 
-.overlay-part img {
+.overlay-part div svg {
   margin-right: 14px;
+}
+
+.overlay-part div:hover path {
+  fill-opacity: 1;
 }
 
 .overlay .logout {
