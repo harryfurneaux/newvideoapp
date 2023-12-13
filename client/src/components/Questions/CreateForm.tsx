@@ -41,7 +41,7 @@ const CreateForm = ({
   }, [showScreen]);
 
   return (
-    <Zoom left big>
+    <Zoom fade>
       <div className="kjkndask-ankdnwd">
         <div
           className={`leftSideHeader kjsfdkl-adsj ${showScreen >= 3 ? "w-100" : ""
@@ -123,7 +123,7 @@ const CreateForm = ({
             </h5>
           </div>
           {showScreen == 3 ? (
-            <Zoom1 cascade>
+            <Zoom1>
               <div className="kjdaflj-adjkwmd">
                 <div><Question setselected={setselected} selected={selected} /></div>
                 <div><Question setselected={setselected} selected={selected} /></div>
