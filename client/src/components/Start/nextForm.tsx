@@ -4,7 +4,7 @@ import Icons from "../icons";
 import Flip from 'react-reveal/Flip'
 const NextForm = ({setScreen}:{setScreen:any}) => {
     return (
-      <Flip right>  <div className="kjjfds-janwkea1 kjjfds-janwkea2">
+      <Flip right>  <div className="kjjfds-janwkea1 kjjfds-janwkea2 height-none">
       <div className="kafms-kfsamfer">
         <div className="skfalk-smdsefds">
           <div className="kdjnfakdsfm-jsamre">
