@@ -2605,18 +2605,22 @@ body .kdjflkas-sad {
   cursor: pointer;
 }
 
-.khjn0-jandw:hover .akjdknsad-wkd,
+.khjn0-jandw:hover .akjdknsad-wkd {
+  fill-opacity: 0.9;
+}
+
 .khjn0-jandw:active .akjdknsad-wkd,
 .khjn0-jandw:focus .akjdknsad-wkd {
   fill-opacity: 1;
-
 }
 
-.khjn0-jandw:hover h5,
+.khjn0-jandw:hover h5 {
+  color: rgba(84, 104, 255, 0.90) !important;
+}
+
 .khjn0-jandw:active h5,
 .khjn0-jandw:focus h5 {
-  color: rgba(84, 104, 255, 0.90) !important;
-
+  color: rgba(84, 104, 255, 1) !important;
 }
 
 /* Added by softmax0112 */
