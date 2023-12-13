@@ -14,10 +14,12 @@ export class GoogleAuthController {
  
   @Get('callback') 
   @UseGuards(AuthGuard('google'))
-  async  googleAuthRedirect(@Req() req) {
-    const user = await this.googleAuthService.googleLogin(req.user.email);
+  async googleAuthRedirect(@Req() req) {
+    const user = await this.googleAuthService.googleLogin(
+      req.user.email,
+      req.user.name, 
+      req.user.location || null 
+    );
     return user;
-
-
   }
-}
+  }

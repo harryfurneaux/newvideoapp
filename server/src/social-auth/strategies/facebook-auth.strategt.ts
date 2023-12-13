@@ -1,55 +1,65 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy,  Profile } from 'passport-facebook';
+import { Strategy, Profile } from 'passport-facebook';
 import { ConfigService } from '@nestjs/config';
-import { FacebookAuthService } from '../services/facebook-auth.service';
-import * as dotenv from "dotenv";
-import { userInfo } from 'os';
-
-dotenv.config();
-
+import axios from 'axios';
 
 @Injectable()
 export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
-    constructor(
-        private readonly facebookAuthService: FacebookAuthService,
-        private readonly configService: ConfigService,
-    ) {
-        super({
-            clientID: configService.get('FACEBOOK_CLIENT_ID'),
-            clientSecret: configService.get('FACEBOOK_CLIENT_SECRET'),
-            callbackURL: configService.get('FACEBOOK_CALLBACK_URL'),
-            passReqToCallback: true,
-            profileFields: ["emails", "name"]
-            
-        });
+  constructor(
+    private readonly configService: ConfigService,
+  ) {
+    super({
+      clientID: configService.get('FACEBOOK_CLIENT_ID'),
+      clientSecret: configService.get('FACEBOOK_CLIENT_SECRET'),
+      callbackURL: configService.get('FACEBOOK_CALLBACK_URL'),
+      passReqToCallback: true,
+      profileFields: ['public_profile'],
+    });
+  }
+
+  async validate(
+    accessToken: string,
+    refreshToken: string,
+    profile: Profile,
+    done: (err: any, user: any, info?: any) => void
+  ): Promise<any> {
+    
+
+
+    // try {
+    //   const userData = await this.fetchUserData(accessToken);
+    //   payload.user = { ...payload.user, ...userData };
+
+    //   // Log the Facebook access token and user data if needed
+    //   console.log('Facebook Access Token:', accessToken);
+    //   console.log('User Data from Facebook:', userData);
+
+      // done(null, payload);
+    // } catch (error) {
+    //   console.error(`Error fetching additional user data: ${error.message}`);
+    //   done(null, payload); // Handle the error gracefully, you might want to improve error handling
+    // }
+  }
+
+
+  async fetchUserData(accessToken: string): Promise<any> {
+    
+    try {
+      console.log("'accces tokn in fetcjusr",accessToken)
+      const response = await axios.get('https://graph.facebook.com/v13.0/userinfo', {
+        params: {
+            access_token: accessToken,
+            authorized:'granted',
+            fields: 'id,name,email,picture'
+        }
+    })
+console.log("user dfb res",response)
+
+      return response.data;
+    } catch (error) {
+      throw new Error(`Error fetching user data: ${error.message}`);
     }
-
-
-    async validate (accessToken: string, refreshToken: string, profile: Profile, 
-        done: (err: any, user: any, info?: any) => void
-        ): Promise<any> {
-            console.log(profile)
-            try {
-                const name = profile?.name?.givenName || '';
-                const emails = profile?.emails || [];
-            
-                if (emails.length === 0 || !emails[0]?.value) {
-                  throw new Error('Invalid or missing email in Facebook profile data');
-                }
-            
-                // const user = await this.facebookAuthService.findOrCreate({
-                //   email: emails[0].value,
-                //   password: '12345',
-                //   // Add other properties based on your requirements
-                // });
-            
-                // done(null);
-              } catch (error) {
-                console.error('Error in Facebook Strategy:', error);
-                // done(error, null);
-              }
-                  }
-
-                }
+  }
+}
 

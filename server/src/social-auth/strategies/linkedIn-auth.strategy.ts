@@ -1,4 +1,3 @@
-// linkedin-auth.strategy.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-linkedin-oauth2';
@@ -23,35 +22,35 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
     });
   }
 
-  async validate(
-    accessToken: string,
-    refreshToken: string,
-    profile: Profile,
-    done: VerifyCallback,
-  ): Promise<any> {
-    try {
-      const { displayName, emails } = profile;
+  // async validate(
+  //   accessToken: string,
+  //   refreshToken: string,
+  //   profile: Profile,
+  //   done: VerifyCallback,
+  // ): Promise<any> {
+  //   try {
+  //     const { displayName, emails } = profile;
 
-      if (!displayName || !emails ) {
-        return done(new UnauthorizedException('Invalid profile data'), null);
-      }
+  //     if (!displayName || !emails ) {
+  //       return done(new UnauthorizedException('Invalid profile data'), null);
+  //     }
 
-      // const user = await this.linkedInAuthService.findOrCreate({
-      //   name: displayName,
-      //   email: emails[0].value,
-      //   password: 12345, 
-      //   birthdate: null,
-      //   location: null, 
-      //   companyName: null, 
-      // });
-      // await user.save(); 
+  //     // const user = await this.linkedInAuthService.findOrCreate({
+  //     //   name: displayName,
+  //     //   email: emails[0].value,
+  //     //   password: 12345, 
+  //     //   birthdate: null,
+  //     //   location: null, 
+  //     //   companyName: null, 
+  //     // });
+  //     // await user.save(); 
 
-      // done(null, user);
-    } catch (error) {
-      console.error('Error in LinkedIn Strategy:', error);
-      done(error, null);
-    }
-  }
+  //     // done(null, user);
+  //   } catch (error) {
+  //     console.error('Error in LinkedIn Strategy:', error);
+  //     done(error, null);
+  //   }
+  // }
 
   async exchangeAuthorizationCodeForToken(authorizationCode): Promise<any> {
     try {
@@ -91,10 +90,8 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
         },
       });
       const {  name, email } = response.data;
-      // const name = `${localizedFirstName} ${localizedLastName}`;
-      // const email = emailAddress;
 
-      const user = await this.linkedInAuthService.findOrCreate({
+      const user = await this.linkedInAuthService.linkedInCreate({
         name,
         email,
         password: '12345', 
@@ -103,7 +100,6 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
         companyName: null,
       });
   
-      console.log('User info saved:', user);
   
     
       return response.data;

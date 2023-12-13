@@ -14,7 +14,9 @@ export class InterviewsService {
     private readonly imageKitService: ImageKitService
   ) { }
 
-  async create(createInterviewDto: CreateInterviewDto, video: Express.Multer.File) {
+  async create(createInterviewDto: CreateInterviewDto, 
+    // video: Express.Multer.File
+    ) {
     // Check if the question exists
     const question = await this.questionsService.findOne(createInterviewDto.question_id);
     if (!question) {
@@ -29,7 +31,7 @@ export class InterviewsService {
     }
 
     //uploading video to imagekit
-    createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
+    // createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
     if (interview) {
 
       // Update the existing interview with the new question and video URL

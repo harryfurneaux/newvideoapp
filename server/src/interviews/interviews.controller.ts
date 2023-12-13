@@ -19,18 +19,21 @@ export class InterviewsController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(ROLE.INTERVIEWEE)
-  @UseInterceptors(FileInterceptor('video'))
+  // @UseInterceptors(FileInterceptor('video'))
   async create(@UploadedFile(
-    new ParseFilePipeBuilder().addFileTypeValidator({
-      fileType: 'video/*',
-    })
-      .addMaxSizeValidator({
-        maxSize: 3 * 1024 * 1024 //// 3 MB in bytes
-      })
-      .build(),
-  ) video: Express.Multer.File, @Body() createInterviewDto: CreateInterviewDto, @Request() req) {
+  //   new ParseFilePipeBuilder().addFileTypeValidator({
+  //     fileType: 'video/*',
+  //   })
+  //     .addMaxSizeValidator({
+  //       maxSize: 3 * 1024 * 1024 //// 3 MB in bytes
+  //     })
+  //     .build(),
+  
+) 
+// video: Express.Multer.File, 
+  @Body() createInterviewDto: CreateInterviewDto, @Request() req) {
     createInterviewDto.interviewee = req.user.id
-    return this.interviewsService.create(createInterviewDto, video);
+    return this.interviewsService.create(createInterviewDto);
   }
 
   @Get()

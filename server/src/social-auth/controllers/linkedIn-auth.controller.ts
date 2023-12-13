@@ -1,4 +1,3 @@
-// linkedin-auth.controller.ts
 import { Controller, Get, Req, Res, UseGuards, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LinkedInAuthService } from '../services/linkedin-auth.service';
@@ -17,14 +16,13 @@ export class LinkedInAuthController {
   }
 
   @Get('callback')
-  // @UseGuards(AuthGuard('linkedin'))
   async linkedInAuthRedirect(@Req() req, @Res() res) {
     try {
 
       const authorizationCode=req.query.code
       const tokenResponse = await this.linkedInStrategy.exchangeAuthorizationCodeForToken(authorizationCode);
       const userData=await this.linkedInStrategy.getUserInfo(tokenResponse.access_token)
-      console.log("user data 123",userData)
+      
       if (userData) {
 
         return res.status(HttpStatus.OK).json({

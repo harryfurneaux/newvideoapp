@@ -72,4 +72,19 @@ export class UsersService {
       )
     };
   }
+  async updatePassword(email: string, newPassword: string): Promise<User | null> {
+  
+    const user = await this.UserModel.findOne({ email });
+  
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+  
+    user.password = await hashPassword(newPassword);
+  
+    const updatedUser = await user.save();
+  
+    return updatedUser;
+  }
+  
 }

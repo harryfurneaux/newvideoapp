@@ -8,7 +8,7 @@ import * as bcrypt from 'bcrypt';
 export class LinkedInAuthService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) {}
 
-  async findOrCreate({
+  async linkedInCreate({
     name,
     email,
     password,
