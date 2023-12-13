@@ -14,42 +14,33 @@ const CheckForm = ({
 }) => {
   return (
     <Fade>
-      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd">
-        <div className="kafms-kfsamfer">
-          <div>
+      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd height-none">
+        <div className="check-form">
+          <div className="d-flex">
             <img src={no_pic} />
-            {/* <button className="kajfldsf no-shadow">
-              <Icons iconNumber={86} />
-            </button> */}
-            <div className="kjdflkads-mdskf">
-              <h3 className="mb-1">Job Title</h3>
-              <h5>
-                <Icons iconNumber={16} /> Company Name
-              </h5>
-              <h6>
-                <Icons iconNumber={17} /> Location
-              </h6>
+            <div className="kjdflkads-mdskf check-form-heading">
+              <h3>Job Title</h3>
+              <h5><Icons iconNumber={16} /> Company Name</h5>
+              <h6><Icons iconNumber={17} /> Location</h6>
             </div>
           </div>
-          <div className="njfk-amew">
+          <div className="check-form-body">
             <CheckFormBox />
             <CheckFormBox />
             <CheckFormBox />
           </div>
-          <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
-            <div className="continueBtnDiv snasdj-sawdne-1">
-              <button
-                className="btn lkdafhkls0d"
-                onClick={() => {
-                  setShowScreen(6);
-                }}
-              >
-                PUBLISH & SHARE
-                <div className="klajdfkls-ds pos-rel">
-                  <Icons iconNumber={42} />
-                </div>
-              </button>
-            </div>
+          <div className="check-form-btn-div snasdj-sawdne-1">
+            <button
+              className="btn lkdafhkls0d"
+              onClick={() => {
+                setShowScreen(6);
+              }}
+            >
+              PUBLISH & SHARE
+              <div className="klajdfkls-ds pos-rel">
+                <Icons iconNumber={42} />
+              </div>
+            </button>
           </div>
         </div>
         <div className="ldkjfal0-fdsnfe">

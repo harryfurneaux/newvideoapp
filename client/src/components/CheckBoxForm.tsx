@@ -19,7 +19,7 @@ const CheckFormBox = () => {
       }
       else { setIsactive(0) }
     }}
-    className="kadfmsod-wem sadamodajm-e dsjskd-kads no-shadow"
+    className="kadfmsod-wem sadamodajm-e dsjskd-kads no-shadow check-item"
   >
     <div>
       <Icons iconNumber={isActive > 0 ? 15 : 24} />
