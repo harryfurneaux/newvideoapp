@@ -58,7 +58,7 @@ const CreateForm = ({
               } else if (showScreen == 4) {
                 setShowScreen(3);
               } else if (showScreen == 5) {
-                setShowScreen(4);
+                setShowScreen(3);
               } else if (showScreen == 6) {
                 setShowScreen(5);
               } else if (showScreen == 7) {
@@ -91,8 +91,7 @@ const CreateForm = ({
             <Icons iconNumber={36} />
             <Icons iconNumber={showScreen >= 2 ? 36 : 37} />
             <Icons iconNumber={showScreen >= 3 ? 36 : 37} />
-            <Icons iconNumber={showScreen >= 4 ? 36 : 37} />
-            <Icons iconNumber={showScreen >= 5 ? 36 : 37} />
+            <Icons iconNumber={showScreen == 5 ? 36 : showScreen == 3 || 4 ? 37 : 36} />
           </div>
           <div className="kjdfsajs0edjawe-232">
             <h4>
@@ -137,7 +136,7 @@ const CreateForm = ({
                 <div><Question setselected={setselected} selected={selected} /></div>
                 <div className="pos-rel">
                   {selected >= 3 ? <button onClick={() => {
-                    setShowScreen(4)
+                    setShowScreen(5)
                   }} className="kjdflj0-jsads">
                     CONTINUE
                     <Icons iconNumber={85} />
