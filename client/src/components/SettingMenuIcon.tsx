@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Modal, OverlayTrigger } from 'react-bootstrap';
+import { OverlayTrigger, CloseButton } from 'react-bootstrap';
+// @ts-ignore
+import $ from "jquery";
 import Icons from './icons';
 
 import profile_img from "../images/Profile Pic.svg";
@@ -14,22 +16,51 @@ import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 
+$(function () {
+  $(".btn-close").hide();
+
+  $(".btn-close").click(function () {
+    // @ts-ignore
+    $(this).hide();
+  });
+
+  $(".btn-show").click(function () {
+    $(".btn-close").show();
+  });
+
+  $(window).click(function () {
+    if ($(".overlay.show").length == 0) {
+      $(".btn-close").hide();
+    }
+  })
+});
+
 const SettingMenuIcon = () => {
-  const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  const handleAccountClose = () => setShowAccount(false);
+  const handleAccountShow = () => {
+    $(".overlay").hide();
+    setShowAccount(true);
+  }
+
+  const handlePaymentClose = () => setShowPayment(false);
+  const handlePaymentShow = () => {
+    $(".overlay").hide();
+    setShowPayment(true);
+  }
 
   const handlePrivacyClose = () => setShowPrivacy(false);
-  const handlePrivacyShow = () => setShowPrivacy(true);
-  
-  const handleAccountClose = () => setShowAccount(false);
-  const handleAccountShow = () => setShowAccount(true);
-    
-  const handlePaymentClose = () => setShowPayment(false);
-  const handlePaymentShow = () => setShowPayment(true);
+  const handlePrivacyShow = () => {
+    $(".overlay").hide();
+    setShowPrivacy(true);
+  }
 
   return (
     <>
+      <CloseButton className="overlay" variant="white" />
       <OverlayTrigger trigger="click" placement="left" overlay={
         <div className="overlay text-white">
           <div className="header text-center">
@@ -62,7 +93,7 @@ const SettingMenuIcon = () => {
           </div>
         </div>
       } rootClose>
-        <button className="btn no-shadow">
+        <button className="btn btn-show no-shadow">
           <Icons iconNumber={1} />
         </button>
       </OverlayTrigger>
