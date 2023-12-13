@@ -2620,6 +2620,12 @@ body .kdjflkas-sad {
 
 /* Added by softmax0112 */
 
+.auth-page .continueBtnDiv .btn {
+  margin-top: 6px;
+}
+
+/* Setting menu overlay */
+
 .overlay {
   background-color: #6577ff;
   border-radius: 23px;
