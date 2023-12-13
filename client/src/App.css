@@ -3257,23 +3257,28 @@ body .kdjflkas-sad {
   border: none;
   border-radius: 12px;
   margin-top: -90%;
+  width: 338px;
+  height: 51px;
+  --bs-toast-border-width: 0;
+  --bs-toast-box-shadow: 0;
+}
+
+.toast-notify .toast-header {
+  padding: 14px 17.5px 14px 14px;
+  border-radius: 12px;
+  font-size: 12px;
 }
 
 .toast-notify.info .toast-header {
   background-color: rgba(0, 217, 205, 0.8);
-  border-radius: 12px;
-  padding: 15px;
 }
 
 .toast-notify.danger .toast-header {
   background-color: rgba(255, 55, 55, 0.8);
-  border-radius: 12px;
-  padding: 15px;
 }
 
 .toast-notify .btn-close {
-  opacity: 1;
-  filter: invert(1);
+  display: none;
 }
 
 /* Message Box */
