@@ -18,7 +18,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
 
   return (
     <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg pos-rel over-hdn">
+      <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
         <div className="leftSideHeader kjsf-ajmwe">
           {showScreen > 0 ? (
             <BackButton showScreen={showScreen} setshowScreen={setshowScreen} />
