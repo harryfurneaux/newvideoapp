@@ -2915,6 +2915,42 @@ body .kdjflkas-sad {
   border: 0.6px solid #FFF !important;
 }
 
+/* Privacy and Terms modal */
+
+.privacy-modal .modal-dialog {
+  max-width: 520px;
+}
+
+.privacy-modal .modal-content {
+  height: 490px;
+  border-radius: 23px;
+}
+
+.privacy-modal .modal-header {
+  border: none;
+  padding-top: 20px;
+  padding-bottom: 26px !important;
+}
+
+.privacy-modal h1 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.privacy-modal .btn-close {
+  width: 14px;
+  height: 14px;
+  padding: 0 !important;
+  margin-right: 0px !important;
+}
+
+.privacy-modal .modal-body {
+  padding: 1;
+  font-size: 12px;
+  padding: 0 49px 83px 49px;
+}
+
 /* Filter modal */
 
 /* body>.modal-backdrop {

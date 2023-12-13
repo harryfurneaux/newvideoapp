@@ -53,7 +53,6 @@ const SettingMenuIcon = () => {
             <div onClick={handlePrivacyShow}>
               <img src={privacy_img} />Privacy & Terms
             </div>
-            <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
             <div>
               <img src={contact_img} />Contact Us
             </div>
@@ -69,6 +68,7 @@ const SettingMenuIcon = () => {
       </OverlayTrigger>
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
       <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
+      <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
     </>
   )
 }
