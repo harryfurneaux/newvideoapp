@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 
 const SearchFilter = ({ show, handleClose }: { show: boolean, handleClose: any }) => {
   return (
-    <Modal className="modal-primary filter-modal" show={show} onHide={handleClose} centered>
+    <Modal className="modal-primary filter-modal" backdrop={false} show={show} onHide={handleClose} centered>
       <Modal.Header>
         <h4 className="text-white">Search Filters</h4>
         <svg onClick={handleClose} xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
