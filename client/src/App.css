@@ -2792,6 +2792,165 @@ body .kdjflkas-sad {
   border: 0.6px solid #FFF !important;
 }
 
+/* Payment settings modal */
+
+.payment-modal .modal-dialog {
+  max-width: 520px;
+}
+
+.payment-modal .modal-content {
+  padding: 15px 40px 64px 41px;
+  color: white;
+  line-height: normal;
+  height: 593px;
+}
+
+.payment-modal .modal-header {
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.payment-modal .modal-header h1 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.payment-modal .modal-header svg {
+  margin-right: -25px;
+}
+
+.payment-modal .modal-body {
+  padding: 0;
+}
+
+.payment-modal h6 {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
+  margin-bottom: 5px;
+}
+
+.payment-modal p {
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.payment-modal button {
+  color: rgba(255, 255, 255, 0.90) !important;
+  font-size: 12px;
+  font-weight: 600 !important;
+  padding: 5px 8px !important;
+}
+
+.payment-modal button.add {
+  width: 146px !important;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.payment-modal button:hover {
+  background: #7484FF !important;
+}
+
+.payment-modal .btn-group {
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.payment-modal .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.payment-modal .modal-part {
+  background-color: #4A60FF;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 14px;
+  padding: 10px 17px 11px 21px;
+  align-items: center;
+}
+
+.payment-modal .modal-part-1 {
+  padding-bottom: 19px;
+}
+
+.payment-modal .modal-part-2 {
+  padding-bottom: 22px;
+}
+
+.payment-modal .modal-part-2 .modal-part-body {
+  justify-content: start;
+  /* gap: 0; */
+}
+
+.payment-modal .modal-part-header {
+  padding-bottom: 12.51px;
+  border-bottom: solid 0.2px;
+}
+
+.payment-modal .modal-part-body {
+  display: flex;
+  margin-top: 20.49px;
+  align-items: self-start;
+  justify-content: space-between;
+}
+
+.payment-modal .modal-part-body img {
+  margin-top: 1px;
+  margin-right: 13px;
+}
+
+.payment-modal .modal-part-main {
+  width: 300px;
+}
+
+.payment-modal .modal-part-body .fw-bold {
+  margin-bottom: 10px;
+}
+
+.payment-modal .delete-part button {
+  border: 0.6px solid #FFF !important;
+}
+
+/* Privacy and Terms modal */
+
+.privacy-modal .modal-dialog {
+  max-width: 520px;
+}
+
+.privacy-modal .modal-content {
+  height: 490px;
+  border-radius: 23px;
+}
+
+.privacy-modal .modal-header {
+  border: none;
+  padding-top: 20px;
+  padding-bottom: 26px !important;
+}
+
+.privacy-modal h1 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.privacy-modal .btn-close {
+  width: 14px;
+  height: 14px;
+  padding: 0 !important;
+  margin-right: 0px !important;
+}
+
+.privacy-modal .modal-body {
+  padding: 1;
+  font-size: 12px;
+  padding: 0 49px 83px 49px;
+}
+
 /* Filter modal */
 
 /* body>.modal-backdrop {
