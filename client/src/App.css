@@ -2629,7 +2629,7 @@ body .kdjflkas-sad {
 .overlay {
   background-color: #6577ff;
   border-radius: 23px;
-  top: 15px !important;
+  top: 10px !important;
   right: 15px !important;
   transform: none !important;
   width: 297px;
@@ -2638,6 +2638,21 @@ body .kdjflkas-sad {
 
 .overlay .header {
   margin-bottom: 4px;
+}
+
+.overlay.btn-close {
+  opacity: 0.8;
+  font-size: 9px;
+  font-weight: 700;
+  position: absolute;
+  top: 15px !important;
+  right: 7px !important;
+  --bs-btn-close-focus-shadow: none;
+  z-index: 10;
+}
+
+.overlay.btn-close:hover {
+  opacity: 1;
 }
 
 .overlay img.profile {
@@ -2677,8 +2692,12 @@ body .kdjflkas-sad {
   cursor: pointer;
 }
 
-.overlay-part img {
+.overlay-part div svg {
   margin-right: 14px;
+}
+
+.overlay-part div:hover path {
+  fill-opacity: 1;
 }
 
 .overlay .logout {
@@ -2688,7 +2707,7 @@ body .kdjflkas-sad {
 }
 
 .overlay .logout span {
-  padding: 0 4px 12px 4px;
+  padding: 0 4px 10px 4px;
   line-height: 22.026px;
   font-weight: 700;
   border-bottom: solid 2px rgba(255, 255, 255, 0.3) !important;

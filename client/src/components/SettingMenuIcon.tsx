@@ -1,35 +1,61 @@
 import { useState } from "react";
-import { Modal, OverlayTrigger } from 'react-bootstrap';
+import { OverlayTrigger, CloseButton } from 'react-bootstrap';
+// @ts-ignore
+import $ from "jquery";
 import Icons from './icons';
 
 import profile_img from "../images/Profile Pic.svg";
 import company_img from "../images/Vector.svg";
 import location_img from "../images/Location.svg";
-import security_img from "../images/password.svg";
-import creditcard_img from "../images/Credit Card.svg";
-import help_img from "../images/help.svg";
-import privacy_img from "../images/privacy.svg";
-import contact_img from "../images/contact.svg";
 import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 
+$(function () {
+  $(".btn-close").hide();
+
+  $(".btn-close").click(function () {
+    // @ts-ignore
+    $(this).hide();
+  });
+
+  $(".btn-show").click(function () {
+    $(".btn-close").show();
+  });
+
+  $(window).click(function () {
+    if ($(".overlay.show").length == 0) {
+      $(".btn-close").hide();
+    }
+  })
+});
+
 const SettingMenuIcon = () => {
-  const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  const handleAccountClose = () => setShowAccount(false);
+  const handleAccountShow = () => {
+    $(".overlay").hide();
+    setShowAccount(true);
+  }
+
+  const handlePaymentClose = () => setShowPayment(false);
+  const handlePaymentShow = () => {
+    $(".overlay").hide();
+    setShowPayment(true);
+  }
 
   const handlePrivacyClose = () => setShowPrivacy(false);
-  const handlePrivacyShow = () => setShowPrivacy(true);
-  
-  const handleAccountClose = () => setShowAccount(false);
-  const handleAccountShow = () => setShowAccount(true);
-    
-  const handlePaymentClose = () => setShowPayment(false);
-  const handlePaymentShow = () => setShowPayment(true);
+  const handlePrivacyShow = () => {
+    $(".overlay").hide();
+    setShowPrivacy(true);
+  }
 
   return (
     <>
+      <CloseButton className="overlay" variant="white" />
       <OverlayTrigger trigger="click" placement="left" overlay={
         <div className="overlay text-white">
           <div className="header text-center">
@@ -40,21 +66,23 @@ const SettingMenuIcon = () => {
           </div>
           <div className="overlay-part">
             <div onClick={handleAccountShow}>
-              <img src={security_img} />Account & Security
+              <Icons iconNumber={96} />
+              Account & Security
             </div>
             <div onClick={handlePaymentShow}>
-              <img src={creditcard_img} />Payment Settings
+              <Icons iconNumber={97} />
+              Payment Settings
             </div>
           </div>
           <div className="overlay-part">
             <div>
-              <img src={help_img} />Help Center
+              <Icons iconNumber={98} />Help Center
             </div>
             <div onClick={handlePrivacyShow}>
-              <img src={privacy_img} />Privacy & Terms
+              <Icons iconNumber={99} />Privacy & Terms
             </div>
             <div>
-              <img src={contact_img} />Contact Us
+              <Icons iconNumber={100} />Contact Us
             </div>
           </div>
           <div className='text-center logout'>
@@ -62,7 +90,7 @@ const SettingMenuIcon = () => {
           </div>
         </div>
       } rootClose>
-        <button className="btn no-shadow">
+        <button className="btn btn-show no-shadow">
           <Icons iconNumber={1} />
         </button>
       </OverlayTrigger>
