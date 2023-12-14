@@ -2,7 +2,7 @@ import Icons from "../icons"
 
 const Back=()=>{
     return <div onClick={() => {}} className="skdmsa-dsad">
-    <div className="backButtonDiv">
+    <div className="backButtonDiv backdrop-filter">
       <button className="hkjndankad-dnsd">
         <Icons iconNumber={29} />
       </button>

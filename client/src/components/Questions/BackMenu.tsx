@@ -34,7 +34,7 @@ const BackMenu = ({
             setShowScreen(6);
           }
         }}
-        className="backButtonDiv"
+        className="backButtonDiv backdrop-filter"
       >
         <button className="hkjndankad-dnsd">
           <Icons iconNumber={29} />
