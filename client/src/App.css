@@ -32,13 +32,13 @@ body {
 
 .pageContainer {
   width: 100vw;
-  height: 98.7vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+  padding: 8px;
   overflow-x: hidden;
-  gap: 5px;
+  gap: 6px;
 }
 
 .rightSideDiv {
@@ -49,7 +49,7 @@ body {
 
 .kjdsfkn-ajdnkw {
   /* margin-left: 7.5px; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .rightSideBg {
@@ -57,7 +57,7 @@ body {
   background: url("./images/bg-1.png"), lightgray 50% / cover no-repeat;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  margin-bottom: -10px;
+  /* margin-bottom: -10px; */
 }
 
 .rightSideBg1 {
@@ -1025,6 +1025,8 @@ body {
   align-items: center;
   border-radius: 35.172px !important;
   background: rgba(84, 104, 255, 0.05);
+  backdrop-filter: blur(23.44827651977539px);
+  z-index: 0;
 }
 
 .backButtonDiv svg {
@@ -1176,9 +1178,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 11.74px 8px 9.47px;
-  margin-bottom: 6px;
-  /* margin-left: 14px;
-  margin-right: 14px; */
   opacity: 0.9;
 }
 
@@ -1303,11 +1302,6 @@ body {
   /* filter: blur(10px); */
   backdrop-filter: blur(10px);
   border-radius: 15px;
-}
-
-.jkadshfkjf {
-  position: relative;
-  margin-top: 10px;
 }
 
 .kjsfdkl-adsj {
@@ -1629,10 +1623,12 @@ body {
   display: flex;
   align-items: center;
   background-color: rgba(84, 104, 255, 0.05);
+  backdrop-filter: blur(23.44827651977539px);
   border-radius: 18px 18px 18px 18px;
   padding: 7.5px 15px 7.5px 15px;
   width: 100%;
   height: 34px;
+  z-index: 0;
 }
 
 .sortButtonIcon svg {
@@ -1724,10 +1720,6 @@ body {
   right: 4px;
 }
 
-.kdnklms-awendwd-11 .kdnklms-awendwd {
-  bottom: -8px;
-}
-
 .sjaklsa-wmjes .headerTitleDiv {
   display: none;
 }
@@ -1742,16 +1734,16 @@ body {
   background-color: rgba(255, 255, 255, 0.00);
   backdrop-filter: blur(15px);
   width: 100%;
-  max-width: 300px;
-  height: 80px;
-  position: absolute;
-  bottom: 0px;
+  max-width: 287px;
+  height: 69px;
+  position: fixed;
+  bottom: 8px;
   background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: space-around;
   z-index: 1100;
-  padding: 20px;
+  padding: 10px 20px 0 20px;
 }
 
 .pos-rel {
@@ -1861,24 +1853,31 @@ body .jjlkajsd-awje-msakm3e .btn {
   overflow-y: scroll;
 }
 
-.kjkdsjnds-aned::-webkit-scrollbar {
-  display: none;
+.leftSideMain {
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  /* z-index: -1; */
+  /* margin: auto; */
+  /* margin-left: 52px; */
+  /* margin-right: 52px; */
 }
 
-.kjkdsjnds-anedsadsa::-webkit-scrollbar {
+.leftSideMain::-webkit-scrollbar {
   display: none;
 }
 
 .kjkdsjnds-anedsadsa {
-  max-height: calc(100vh - 130px);
-  overflow: scroll;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 9.825581550598145px 24.563953399658203px 0px rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12.281976699829102px);
-  margin-top: 22px;
+  margin-top: 133px;
   padding: 14px;
-  scrollbar-width: thin;
+  display: grid;
+  gap: 6px;
 }
 
 @media (max-width: 512px) {
@@ -1892,26 +1891,21 @@ body .jjlkajsd-awje-msakm3e .btn {
   .kjkdsjnds-anedsadsa {
     margin-left: 52px;
     margin-right: 52px;
-  }  
+  }
 }
 
 .kjkdsjnds-aned {
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
-  overflow-x: auto;
-  max-height: calc(100vh - 143px);
-
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 9.825581550598145px 24.563953399658203px 0px rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12.281976699829102px);
-  width: auto;
-  margin: auto;
   justify-content: center;
-  padding: 10px 0px 0px 10px;
+  padding: 15px;
   scrollbar-width: thin;
-  margin: 15px;
+  margin: 20px;
+  margin-top: 144px;
 }
 
 .ksljfsa-asjd {
@@ -2626,8 +2620,7 @@ body .kdjflkas-sad {
 /* Added by softmax0112 */
 
 .hkasjfdlmf-dsfsd.screen-5 {
-  justify-content: start;
-  margin-top: 147px;
+  margin-top: -50px;
 }
 
 .auth-page .continueBtnDiv .btn {
