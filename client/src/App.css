@@ -192,7 +192,8 @@ body {
 }
 
 .kjjfds-janwkea::before {
-  background-color: rgba(84, 104, 255, 0.85);
+  /* background-color: rgba(84, 104, 255, 0.85); */
+  background-color: #5761DF;
   content: '';
   display: block;
   height: 100%;
@@ -205,10 +206,9 @@ body {
 }
 
 .kjjfds-janwkea {
-
-  background-image: url('./images/i14.png');
-  position: relative;
-  background-repeat: no-repeat;
+  /* background-image: url('./images/i14.png'); */
+  /* position: relative; */
+  /* background-repeat: no-repeat; */
   /* background-size: 100% 100%; */
 }
 
@@ -3523,4 +3523,13 @@ body .kdjflkas-sad {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0px 10px 25px 0px rgba(84, 104, 255, 0.30);
+}
+
+/* background video */
+
+video.bg-video {
+  width: 338px;
+  border-radius: 33px;
+  position: absolute;
+  z-index: -1;
 }
