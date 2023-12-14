@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OverlayTrigger, CloseButton } from 'react-bootstrap';
 // @ts-ignore
 import $ from "jquery";
@@ -11,26 +11,25 @@ import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 
-$(function () {
-  $(".overlay.btn-close").hide();
-
-  $(".overlay.btn-close").click(function () {
-    // @ts-ignore
-    $(this).hide();
-  });
-
-  $(".btn-show").click(function () {
-    $(".overlay.btn-close").show();
-  });
-
-  $(window).click(function () {
-    if ($(".overlay.show").length == 0) {
-      $(".overlay.btn-close").hide();
-    }
-  })
-});
-
 const SettingMenuIcon = () => {
+  useEffect(() => {
+    $(".overlay.btn-close").hide();
+    $(".overlay.btn-close").click(function () {
+      // @ts-ignore
+      $(this).hide();
+    });
+  
+    $(".btn-show").click(function () {
+      $(".overlay.btn-close").show();
+    });
+  
+    $(window).click(function () {
+      if ($(".overlay.show").length == 0) {
+        $(".overlay.btn-close").hide();
+      }
+    });
+  }, []);
+
   const [showAccount, setShowAccount] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
