@@ -1,12 +1,9 @@
 import { IsMongoId,  IsOptional } from 'class-validator';
 
 
-export class CreateInterviewDto {
+export class CreateInterviewerDto {
     @IsMongoId()
     question_id: string;
-
-    @IsOptional()
-    video_url: string;
 
     @IsOptional()
     @IsMongoId()
@@ -19,6 +16,5 @@ export class CreateInterviewDto {
     @IsOptional()
     @IsMongoId()
     interviewer: string;
-
 
 }

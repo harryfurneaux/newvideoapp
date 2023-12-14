@@ -17,8 +17,15 @@ import { InterviewsModule } from './interviews/interviews.module';
 //roles configuration
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/role-base-auth/role.guard';
+//social signin module
 import { SocialAuthModule } from './social-auth/social-auth.module';
+//forget-password module
 import { ForgetPasswordModule } from './auth/forget-password/forget-password.module';
+//messaging module
+import { MessagingModule } from './messaging/messaging.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { InterviewerModule } from './interviewer/interviewer.module';
+
 
 
 @Module({
@@ -42,7 +49,10 @@ import { ForgetPasswordModule } from './auth/forget-password/forget-password.mod
     JobsModule,
     InterviewsModule,
     SocialAuthModule,
-    ForgetPasswordModule
+    ForgetPasswordModule,
+    MessagingModule,
+    NotificationsModule,
+    InterviewerModule
   ],
   controllers: [AppController],
   providers: [

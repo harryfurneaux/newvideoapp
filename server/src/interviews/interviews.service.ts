@@ -62,6 +62,7 @@ export class InterviewsService {
       ],
     });
   }
+
   async findAll() {
     let interviews = await this.InterviewModel.find().populate({
       path: 'interviewee',
@@ -162,6 +163,7 @@ export class InterviewsService {
     }
     return interviews
   }
+  
 }
 
 
