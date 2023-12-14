@@ -21,6 +21,7 @@ const ShareForm = ({
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
       <Flip right>
         <div className="kjjfds-janwkea">
+          <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
           <div className="jhjij-sanwe kjljdfn-jadmw">
             <h3>Share Questions</h3>
             <h4 className="ksajdsd-sjad">
