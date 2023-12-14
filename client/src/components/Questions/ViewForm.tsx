@@ -11,7 +11,7 @@ const ViewForm = () => {
   return (
     <Flip right>
       <div className="jkljfkld-jdskfe">
-        <div className="kjjfds-janwkea1">
+        <div className="kjjfds-janwkea1 white-form">
           <div className="kafms-kfsamfer">
             <div className="skfalk-smdsefds">
               <div className="kdjnfakdsfm-jsamre">

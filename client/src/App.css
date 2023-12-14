@@ -175,8 +175,9 @@ body {
   align-items: center;
 }
 
-.kjjfds-janwkea::after,
-.kjjfds-janwkea2::after {
+.kjjfds-janwkea.white-form::after,
+.kjjfds-janwkea1.white-form::after,
+.kjjfds-janwkea2.white-form::after {
   background-image: url('./images/i15.png');
   background-repeat: no-repeat;
   content: '';

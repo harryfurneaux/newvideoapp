@@ -11,7 +11,7 @@ const ForgotPwdForm = ({ setshowScreen }: { setshowScreen: any }) => {
 
   return (
     <Flip bottom>
-      <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"}`}>
+      <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form`}>
         <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe4"}`}>
           <img src={icon} className="mb-4" />
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Forgot Password?</h3>
