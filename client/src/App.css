@@ -1750,32 +1750,6 @@ body {
   position: relative;
 }
 
-.khjn0-jandw .active {
-  color: #5468FF !important;
-
-}
-
-.khjn0-jandw svg {
-  margin-bottom: 5px;
-}
-
-.khjn0-jandw h5 {
-  color: rgba(84, 104, 255, 0.70);
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 114.3%;
-  /* 13.716px */
-}
-
-.khjn0-jandw {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 .hjk-ajwednw svg rect {
   fill: transparent;
 }
@@ -2597,13 +2571,32 @@ body .kdjflkas-sad {
 }
 
 .khjn0-jandw {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   cursor: pointer;
+}
+
+.khjn0-jandw svg {
+  margin-bottom: 5px;
+}
+
+.khjn0-jandw h5 {
+  color: rgba(84, 104, 255, 0.70);
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 114.3%;
+  /* 13.716px */
 }
 
 .khjn0-jandw:hover .akjdknsad-wkd {
   fill-opacity: 0.9;
 }
 
+.khjn0-jandw.active .akjdknsad-wkd,
 .khjn0-jandw:active .akjdknsad-wkd,
 .khjn0-jandw:focus .akjdknsad-wkd {
   fill-opacity: 1;
@@ -2613,6 +2606,7 @@ body .kdjflkas-sad {
   color: rgba(84, 104, 255, 0.90) !important;
 }
 
+.khjn0-jandw.active h5,
 .khjn0-jandw:active h5,
 .khjn0-jandw:focus h5 {
   color: rgba(84, 104, 255, 1) !important;
