@@ -19,24 +19,22 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
 
   return (
     <div className="pageContainer">
-      <div className="jkadshfkjf rightSideDiv rightSideBg1">
+      <div className="rightSideDiv rightSideBg1">
+        {showScreen <= 5 ? <QuestionForm /> : <></>}
         <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
-        {showScreen <= 5 ? <OptionButtons /> : <></>}
         {showScreen > 5 ? (
-          <>
-            <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
-              {showScreen == 6 ? (
-                <ShareForm showScreen={showScreen} setShowScreen={setShowScreen} />
-              ) : (
-                <>
-                  <ViewForm />
-                  <RightButtons hideMenu={showRightMenu && isTab ? false : true} />
-                </>
-              )}
-            </div>
-          </>
+          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+            {showScreen == 6 ? (
+              <ShareForm showScreen={showScreen} setShowScreen={setShowScreen} />
+            ) : (
+              <>
+                <ViewForm />
+                <RightButtons hideMenu={showRightMenu && isTab ? false : true} />
+              </>
+            )}
+          </div>
         ) : (
-          <QuestionForm />
+          <OptionButtons />
         )}
         {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} />

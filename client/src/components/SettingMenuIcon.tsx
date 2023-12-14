@@ -12,20 +12,20 @@ import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 
 $(function () {
-  $(".btn-close").hide();
+  $(".overlay.btn-close").hide();
 
-  $(".btn-close").click(function () {
+  $(".overlay.btn-close").click(function () {
     // @ts-ignore
     $(this).hide();
   });
 
   $(".btn-show").click(function () {
-    $(".btn-close").show();
+    $(".overlay.btn-close").show();
   });
 
   $(window).click(function () {
     if ($(".overlay.show").length == 0) {
-      $(".btn-close").hide();
+      $(".overlay.btn-close").hide();
     }
   })
 });
