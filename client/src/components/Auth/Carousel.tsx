@@ -3,7 +3,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
  //@ts-ignore
-import { Fade } from "react-awesome-reveal";
+ import { Fade } from "react-awesome-reveal";
  import Icons from '../icons';
 import VideoForm from '../Home/Video';
 import { useMediaQuery } from 'react-responsive';

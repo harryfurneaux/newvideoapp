@@ -14,24 +14,15 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   const handleFilterClose = () => setShowFilter(false);
   const handleFilterShow = () => setShowFilter(true);
 
-  useEffect(() => {
-    if (showFilter) {
-      document.getElementsByClassName("leftsidediv")[0].classList.add("filter-blur-10");
-    } else {
-      document.getElementsByClassName("leftsidediv")[0].classList.remove("filter-blur-10");
-    }
-  }, [showFilter]);
-
   return (
     <div className="pageContainer kladsfhjn-ajwe">
       <div className="jkadshfkjf rightSideDiv rightSideBg1 pos-rel sjfdak-ajwe">
         <div className="leftsidediv">
-          {showFilter?<div className="fade modal-backdrop show filter-blur-10"></div>:<></>}
-          {
-            showScreen == 0 ? <TopSec showScreen={showScreen} setshowScreen={setshowScreen} showFilter={showFilter} handleFilterShow={handleFilterShow} handleFilterClose={handleFilterClose} /> : <div className="sjaklsa-wmjes"><Back /></div>
-          }
           {
             showScreen == 0 ? <MainForm showScreen={showScreen} setshowScreen={setshowScreen} /> : <><FormMessage showScreen={showScreen} setshowScreen={setshowScreen} /></>
+          }
+          {
+            showScreen == 0 ? <TopSec showScreen={showScreen} setshowScreen={setshowScreen} showFilter={showFilter} handleFilterShow={handleFilterShow} handleFilterClose={handleFilterClose} /> : <div className="sjaklsa-wmjes"><Back /></div>
           }
         </div>
         <div className="d-flex justify-content-center kdnklms-awendwd-11">
