@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Icons from "../icons";
 //@ts-ignore
-import Fade from 'react-reveal/Fade';
+import { Fade } from "react-awesome-reveal";
 import CheckFormBox from "../CheckBoxForm";
 import no_pic from "../../images/no-pic.svg";
 

@@ -1,11 +1,11 @@
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import Icons from "../icons";
 //@ts-ignore
-import Flip from 'react-reveal/Flip'
+import { Flip } from "react-awesome-reveal"
 
 const ProgressForm = ({ setScreen }: { setScreen: any }) => {
   return (
-    <Flip right>
+    <Flip direction="horizontal">
       <div className="kjjfds-janwkea knlsdj0wjew">
         <div onClick={() => {
           setScreen(4)

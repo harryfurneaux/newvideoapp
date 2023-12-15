@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Icons from "../../components/icons";
 
-const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
+const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
   const [isHoverOrActive, setisHoverOrActive] = React.useState(false);
 
   return (
-    <div className="kjjfds-janwkea">
+    <div className={`kjjfds-janwkea ${className}`}>
       <div className="jhjij-sanwe">
         <h3>Sign in</h3>
         <div className="socialButtonsDiv">
@@ -44,7 +44,10 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
         </div>
         <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">
           <div className="ansks-adn">
-            <button className="no-shadow fw-bold">Create Account</button>
+            <button
+              onClick={() => {
+                setshowScreen(1);
+              }} className="no-shadow fw-bold">Create Account</button>
           </div>
           <div className="ansks-adn">
             <button className="no-shadow fw-light">Forgot Password?</button>
