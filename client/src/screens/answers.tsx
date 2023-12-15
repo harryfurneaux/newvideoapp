@@ -19,10 +19,10 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
       <div className="jkadshfkjf rightSideDiv rightSideBg1 pos-rel sjfdak-ajwe">
         <div className="leftsidediv">
           {
-            showScreen == 0 ? <MainForm showScreen={showScreen} setshowScreen={setshowScreen} /> : <><FormMessage showScreen={showScreen} setshowScreen={setshowScreen} /></>
+            showScreen == 0 ? <TopSec showScreen={showScreen} setshowScreen={setshowScreen} showFilter={showFilter} handleFilterShow={handleFilterShow} handleFilterClose={handleFilterClose} /> : <div className="sjaklsa-wmjes"><Back /></div>
           }
           {
-            showScreen == 0 ? <TopSec showScreen={showScreen} setshowScreen={setshowScreen} showFilter={showFilter} handleFilterShow={handleFilterShow} handleFilterClose={handleFilterClose} /> : <div className="sjaklsa-wmjes"><Back /></div>
+            showScreen == 0 ? <MainForm showScreen={showScreen} setshowScreen={setshowScreen} /> : <><FormMessage showScreen={showScreen} setshowScreen={setshowScreen} /></>
           }
         </div>
         <div className="d-flex justify-content-center kdnklms-awendwd-11">

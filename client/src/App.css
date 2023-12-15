@@ -1004,6 +1004,8 @@ body {
   padding: 8px 9px 0px 8px;
   cursor: pointer;
   gap: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .skdmsa-dsad {
@@ -1125,6 +1127,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .lamdl-anwid svg {
@@ -1660,14 +1664,14 @@ body {
 }
 
 .kdhfkjjdsfo svg {
-  margin-right: 8px;
+  margin-right: 3px;
 }
 
 .kdhfkjjdsfo {
-
   position: relative;
-  top: -8px;
-  left: 36px;
+  z-index: 1;
+  top: 10px;
+  left: 35px;
   display: flex;
   align-items: center;
 }
@@ -1888,17 +1892,13 @@ body .jjlkajsd-awje-msakm3e .btn {
 }
 
 .kjkdsjnds-aned {
-  display: flex;
-  flex-wrap: wrap;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 9.825581550598145px 24.563953399658203px 0px rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12.281976699829102px);
-  justify-content: center;
   padding: 15px;
-  scrollbar-width: thin;
   margin: 20px;
-  margin-top: 144px;
+  margin-top: 142px;
   gap: 5.92px;
 }
 
