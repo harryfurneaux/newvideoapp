@@ -10,6 +10,7 @@ const EnterCodeForm = ({ setshowScreen }: { setshowScreen: any }) => {
   return (
     <Flip right>
       <div className="kjjfds-janwkea">
+        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
         <div className="jhjij-sanwe jhjij-sanwe6">
           <img src={icon} className="mb-4" />
           <h3>Enter Code</h3>

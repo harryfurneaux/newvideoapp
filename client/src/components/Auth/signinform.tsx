@@ -6,6 +6,7 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
 
   return (
     <div className="kjjfds-janwkea">
+      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
       <div className="jhjij-sanwe">
         <h3>Sign in</h3>
         <div className="socialButtonsDiv">

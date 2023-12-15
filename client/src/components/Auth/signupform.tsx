@@ -10,6 +10,7 @@ const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
   return (
     <Flip right>
       <div className="kjjfds-janwkea">
+        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
         <div className="jhjij-sanwe jhjij-sanwe21">
           <h3>Some final details...</h3>
           <h4 className="ksajdsd-sjad">

@@ -175,8 +175,9 @@ body {
   align-items: center;
 }
 
-.kjjfds-janwkea::after,
-.kjjfds-janwkea2::after {
+.kjjfds-janwkea.white-form::after,
+.kjjfds-janwkea1.white-form::after,
+.kjjfds-janwkea2.white-form::after {
   background-image: url('./images/i15.png');
   background-repeat: no-repeat;
   content: '';
@@ -192,7 +193,8 @@ body {
 }
 
 .kjjfds-janwkea::before {
-  background-color: rgba(84, 104, 255, 0.85);
+  /* background-color: rgba(84, 104, 255, 0.85); */
+  background-color: #5761DF;
   content: '';
   display: block;
   height: 100%;
@@ -205,10 +207,9 @@ body {
 }
 
 .kjjfds-janwkea {
-
-  background-image: url('./images/i14.png');
-  position: relative;
-  background-repeat: no-repeat;
+  /* background-image: url('./images/i14.png'); */
+  /* position: relative; */
+  /* background-repeat: no-repeat; */
   /* background-size: 100% 100%; */
 }
 
@@ -1025,16 +1026,19 @@ body {
   align-items: center;
   border-radius: 35.172px !important;
   background: rgba(84, 104, 255, 0.05);
-  backdrop-filter: blur(23.44827651977539px);
   z-index: 0;
-}
-
-.backButtonDiv svg {
-  margin-top: -2.5px;
 }
 
 .backButtonDiv:hover {
   background-color: rgba(84, 104, 255, 0.3);
+}
+
+.backButtonDiv.backdrop-filter {
+  backdrop-filter: blur(23.44827651977539px);
+}
+
+.backButtonDiv svg {
+  margin-top: -2.5px;
 }
 
 .sortButtonDiv {
@@ -1299,13 +1303,11 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.70);
-  /* filter: blur(10px); */
   backdrop-filter: blur(10px);
   border-radius: 15px;
 }
 
 .kjsfdkl-adsj {
-  padding-top: 12px;
   position: absolute;
 }
 
@@ -1444,10 +1446,22 @@ body {
 } */
 
 .ksajdklsa {
-  background-color: white;
-  background: white !important;
-  border: solid 2px rgb(0, 217, 205);
-  filter: drop-shadow(0px 0px 7px #ADB8FA);
+  position: relative;
+  background: #fff !important;
+}
+
+.ksajdklsa::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: 16px;
+  filter: drop-shadow(0px 0px 9px #ADB8FA);
+  background: linear-gradient(45deg, #5468FF, white, #00D9CD);
 }
 
 .jsfkms-akmdwa {
@@ -1704,7 +1718,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px 2.5px 5px 2.5px;
 }
 
 .kdjfkjsldp-sameaw {
@@ -1748,32 +1761,6 @@ body {
 
 .pos-rel {
   position: relative;
-}
-
-.khjn0-jandw .active {
-  color: #5468FF !important;
-
-}
-
-.khjn0-jandw svg {
-  margin-bottom: 5px;
-}
-
-.khjn0-jandw h5 {
-  color: rgba(84, 104, 255, 0.70);
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 114.3%;
-  /* 13.716px */
-}
-
-.khjn0-jandw {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
 
 .hjk-ajwednw svg rect {
@@ -1906,6 +1893,7 @@ body .jjlkajsd-awje-msakm3e .btn {
   scrollbar-width: thin;
   margin: 20px;
   margin-top: 144px;
+  gap: 5.92px;
 }
 
 .ksljfsa-asjd {
@@ -2596,13 +2584,32 @@ body .kdjflkas-sad {
 }
 
 .khjn0-jandw {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   cursor: pointer;
+}
+
+.khjn0-jandw svg {
+  margin-bottom: 5px;
+}
+
+.khjn0-jandw h5 {
+  color: rgba(84, 104, 255, 0.70);
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 114.3%;
+  /* 13.716px */
 }
 
 .khjn0-jandw:hover .akjdknsad-wkd {
   fill-opacity: 0.9;
 }
 
+.khjn0-jandw.active .akjdknsad-wkd,
 .khjn0-jandw:active .akjdknsad-wkd,
 .khjn0-jandw:focus .akjdknsad-wkd {
   fill-opacity: 1;
@@ -2612,6 +2619,7 @@ body .kdjflkas-sad {
   color: rgba(84, 104, 255, 0.90) !important;
 }
 
+.khjn0-jandw.active h5,
 .khjn0-jandw:active h5,
 .khjn0-jandw:focus h5 {
   color: rgba(84, 104, 255, 1) !important;
@@ -3006,9 +3014,11 @@ body .kdjflkas-sad {
 .filter-modal.modal {
   background-color: rgba(0, 0, 0, 0.50);
   backdrop-filter: blur(10px);
-  margin-top: 10px;
+  margin-left: 8px;
+  margin-top: 8px;
   border-radius: 14px;
-  height: 97.8%;
+  width: calc(50% - 11px) !important;
+  height: calc(100% - 16px);
 }
 
 .filter-modal .modal-dialog {
@@ -3523,4 +3533,14 @@ body .kdjflkas-sad {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0px 10px 25px 0px rgba(84, 104, 255, 0.30);
+}
+
+/* background video */
+
+video.bg-video {
+  width: 338px;
+  border-radius: 25px;
+  position: absolute;
+  align-self: start;
+  z-index: -1;
 }

@@ -9,7 +9,7 @@ const SignInForm = ({setshowScreen}:{setshowScreen:any}) => {
     const [isAgree,setisAgree] = useState(true);
     return (
         <Flip bottom>
-          <div className={`${isTabletOrMobile?"kjjfds-janwkea":"kjjfds-janwkea1 kjjfds-janwkea2"}`}>
+          <div className={`${isTabletOrMobile?"kjjfds-janwkea":"kjjfds-janwkea1 kjjfds-janwkea2"} white-form`}>
         <div className={`jhjij-sanwe ${isTabletOrMobile?"klhdlfj-ajee2":"jhjij-sanwe1"}`}>
           <h3 className={`${isTabletOrMobile?"":"hkjsda-jesa"}`}>Create Account</h3>
           <h4>Password must be at least 8 characters</h4>
