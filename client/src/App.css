@@ -1446,10 +1446,22 @@ body {
 } */
 
 .ksajdklsa {
-  background-color: white;
-  background: white !important;
-  border: solid 2px rgb(0, 217, 205);
-  filter: drop-shadow(0px 0px 7px #ADB8FA);
+  position: relative;
+  background: #fff !important;
+}
+
+.ksajdklsa::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  filter: drop-shadow(0px 0px 9px #ADB8FA);
+  background: linear-gradient(45deg, #5468FF, white, #00D9CD);
 }
 
 .jsfkms-akmdwa {
