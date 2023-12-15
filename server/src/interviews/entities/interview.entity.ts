@@ -30,8 +30,8 @@ export class Interview extends Document {
   interviewee: User;
 
   // Link to Interviewer
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Interviewer' })
-  interviewer_id: Interviewer;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  interviewer: Interviewer;
 }
 
 export const InterviewSchema = SchemaFactory.createForClass(Interview);

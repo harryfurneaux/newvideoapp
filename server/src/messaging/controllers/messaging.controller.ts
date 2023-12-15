@@ -1,5 +1,4 @@
-// messaging.controller.ts
-import { Controller, Get, Param ,Post, Body, } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { MessagingService } from '../services/messaging.service';
 import { SendMessageDto } from '../dtos/send-message.dto';
 @Controller('messaging')
@@ -9,7 +8,9 @@ export class MessagingController {
   @Get('/initialize-user/:userId')
   async initializeUser(@Param('userId') userId: string) {
     try {
-      const { user, token } = await this.messagingService.initializeUser(userId);
+      const { user, token } = await this.messagingService.initializeUser(
+        userId,
+      );
       return { user, token };
     } catch (error) {
       return { error: 'Failed to initialize user.' };
@@ -24,18 +25,16 @@ export class MessagingController {
     @Param('createdByUserId') createdByUserId: string,
   ) {
     try {
-        const channel = await this.messagingService.createChannel(channelId, [member1, member2], createdByUserId);
-        console.log(channel)
-        return {
-            channelId: channel.cid,
-            // createdByUserId: channel.created_by_id,
-            // createdAt: channel.created_at,  // Check the actual property name
-            // updatedAt: channel.updated_at,  // Check the actual property name
-          };
-         
-   
+      const channel = await this.messagingService.createChannel(
+        channelId,
+        [member1, member2],
+        createdByUserId,
+      );
+      return {
+        channelId: channel.cid,
+      };
     } catch (error) {
-        console.log(error.message)
+      console.log(error.message);
       return { error: 'Failed to create channel.' };
     }
   }
@@ -47,10 +46,14 @@ export class MessagingController {
     @Body() sendMessageDto: SendMessageDto,
   ) {
     try {
-      await this.messagingService.sendMessage(channelId, userId, sendMessageDto.message);
+      await this.messagingService.sendMessage(
+        channelId,
+        userId,
+        sendMessageDto.message,
+      );
       return { success: true };
     } catch (error) {
-        console.log(error.message)
+      console.log(error.message);
       return { error: 'Failed to send message.' };
     }
   }
@@ -65,6 +68,4 @@ export class MessagingController {
       return { error: 'Failed to get messages.' };
     }
   }
-
-
 }

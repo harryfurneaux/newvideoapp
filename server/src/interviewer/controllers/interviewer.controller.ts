@@ -19,7 +19,7 @@ export class InterviewerController {
   @Roles(ROLE.INTERVIEWER)
   async create(
   @Body() createInterviewerDto: CreateInterviewerDto, @Request() req) {
-        createInterviewerDto.interviewee = req.user.id
+        createInterviewerDto.interviewer = req.user.id
     return this.interviewerService.create(createInterviewerDto);
   }
 

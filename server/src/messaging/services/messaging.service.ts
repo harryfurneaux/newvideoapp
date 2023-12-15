@@ -9,7 +9,10 @@ export class MessagingService {
   private client: StreamChat;
 
   constructor() {
-    this.client = new StreamChat(process.env.STREAM_CHAT_API_KEY, process.env.STREAM_CHAT_SECRET);
+    this.client = new StreamChat(
+      process.env.STREAM_CHAT_API_KEY,
+      process.env.STREAM_CHAT_SECRET,
+    );
   }
 
   async initializeUser(userId: string) {
@@ -19,12 +22,14 @@ export class MessagingService {
     });
 
     const token = this.client.createToken(userId);
-
     return { user, token };
   }
 
-  async createChannel(channelId: string, members: string[], createdByUserId: string) {
-    
+  async createChannel(
+    channelId: string,
+    members: string[],
+    createdByUserId: string,
+  ) {
     const channel = this.client.channel('messaging', channelId, {
       members,
       created_by_id: createdByUserId,
@@ -46,11 +51,10 @@ export class MessagingService {
   async getMessages(channelId: string): Promise<MessageResponse[]> {
     const channel = this.client.channel('messaging', channelId);
 
-    const {messages} = await channel.query({
-      messages: { limit: 100 }, 
+    const { messages } = await channel.query({
+      messages: { limit: 100 },
     });
 
     return messages;
   }
-
 }

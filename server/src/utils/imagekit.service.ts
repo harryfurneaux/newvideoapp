@@ -6,10 +6,13 @@ import * as FormData from 'form-data'
 export class ImageKitService {
     private apiKey: string;
     private endpoint: string;
+    private apiBaseUrl: string;
     constructor() {
         // Replace with your ImageKit API credentials
         this.apiKey = process.env.IMAGE_KIT_API_KEY
         this.endpoint = 'https://upload.imagekit.io/api/v1/files/upload'
+        this.apiBaseUrl = 'https://api.imagekit.io/v1/files/';
+
     }
     async uploadImage(file: Express.Multer.File, name: string): Promise<any> {
         try {
@@ -36,5 +39,37 @@ export class ImageKitService {
             throw new BadRequestException(error)
         }
     }
+
+    async listAllFiles(): Promise<any> {
+        try {
+            const response = await axios.get('https://api.imagekit.io/v1/files', {
+                headers: {
+                    Authorization: `Basic ${Buffer.from(`${this.apiKey}:`).toString('base64')}`,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching video list from ImageKit:', error);
+            throw new BadRequestException('Error fetching video list from ImageKit');
+        }
+    }
+
+    async getVideoMetadata(fileId: string): Promise<any> {
+        try {
+            const response = await axios.get(`${this.apiBaseUrl}${fileId}/details`, {
+                headers: {
+                    Authorization: `Basic ${Buffer.from(`${this.apiKey}:`).toString('base64')}`,
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching video metadata from ImageKit:', error);
+            throw new BadRequestException('Error fetching video metadata from ImageKit');
+        }
+    }
+
+
 }
 
