@@ -946,15 +946,19 @@ body {
 }
 
 .khjn-jnkawed {
-  width: 80px;
-  height: 80px;
   border-radius: 0px;
   position: absolute;
   bottom: 138px;
   z-index: 4;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
+}
+
+.khjn-jnkawed svg {
+  border-radius: 78px;
+  backdrop-filter: blur(12.14266586303711px) !important;
+}
+
+.khjn-jnkawed:hover circle:first-child {
+  fill: #ADB8FA;
 }
 
 .kdjasldk-ajsdmkd {

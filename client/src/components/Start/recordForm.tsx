@@ -10,8 +10,8 @@ const RecordForm = ({setScreen}:{setScreen:any}) => {
           <div className='btn khjn-jnkawed' onClick={()=>{
             setScreen(2)
           }}>
-          <img className='' src={require('../../images/i7.png')}/>
-  
+          {/* <img className='' src={require('../../images/i7.png')}/> */}
+          <Icons iconNumber={101}/>
           </div>
           <div className='kdjasldk-ajsdmkd'>
             <img src={require('../../images/i8.png')}/>
