@@ -1459,7 +1459,7 @@ body {
   left: 0;
   z-index: -1;
   margin: -2px;
-  border-radius: inherit;
+  border-radius: 16px;
   filter: drop-shadow(0px 0px 9px #ADB8FA);
   background: linear-gradient(45deg, #5468FF, white, #00D9CD);
 }
