@@ -290,7 +290,7 @@ body {
 }
 
 .jhjij-sanwe3 {
-  margin-top: 177px !important;
+  margin-top: 174px !important;
 }
 
 .jhjij-sanwe4 {
@@ -3533,6 +3533,21 @@ body .kdjflkas-sad {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0px 10px 25px 0px rgba(84, 104, 255, 0.30);
+}
+
+/* Email login form */
+
+.email-login-form .emailRowDiv {
+  margin-bottom: 6px;
+}
+
+.email-login-form .continueBtnDiv .btn {
+  margin-top: 2px;
+}
+
+.email-login-form .jdaskfjnas-ajaied button {
+  font-weight: 700;
+  background-color: unset !important;
 }
 
 /* background video */
