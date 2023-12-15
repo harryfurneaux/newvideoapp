@@ -3539,16 +3539,17 @@ body .kdjflkas-sad {
 }
 
 .flip-element .front,
-.flip-element .back {
+.flip-element .back,
+.flip-element .flip-child {
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
 }
 
-.flip-element .back {
+/* .flip-element .back {
   transform: rotateY(180deg);
-}
+} */
 
 .d-none {
   display: none;
@@ -3556,4 +3557,15 @@ body .kdjflkas-sad {
 
 .m-0 {
   margin: 0px;
+}
+
+.t-180 {
+  transform: rotateY(180deg);
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }

@@ -27,10 +27,14 @@ const EmailLoginForm = ({ setshowScreen, className = '' }: { setshowScreen: any,
             <div onClick={() => {
               setisAgree(!isAgree)
             }} className="sandka-jwe">
-              <button className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>Create Account</button>
+              <button onClick={() => {
+                setshowScreen(1)
+              }} className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>Create Account</button>
             </div>
             <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
-              <button className="no-shadow">Forgot Password?</button>
+              <button onClick={() => {
+                setshowScreen(5)
+              }} className="no-shadow">Forgot Password?</button>
             </div>
           </div>
           <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>

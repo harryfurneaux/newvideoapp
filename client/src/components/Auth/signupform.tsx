@@ -43,7 +43,9 @@ const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
               <h5>Remember me</h5>
             </div>
             <div className="ansks-adn">
-              <button className="no-shadow">Log in</button>
+              <button onClick={() => {
+                setshowScreen(0)
+              }} className="no-shadow">Log in</button>
             </div>
           </div>
           <div className="continueBtnDiv snasdj-sawdne">

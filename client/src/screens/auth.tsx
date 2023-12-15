@@ -17,81 +17,52 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   const [showScreen, setshowScreen] = useState(0);
 
   useEffect(() => {
-    switch (showScreen) {
-      case 0:
-        //front
+    if (showScreen <= 7 && showScreen !== 3) {
+      const previousNode = document.querySelector('.flip-element .flip-child:is(:not(.d-none))');
+      const previousScreenClass = previousNode?.classList.toString().split(' ').find(c => c.includes('flip-child-'));
+      const previousScreen: any = previousScreenClass?.split('-')[previousScreenClass?.split('-')?.length - 1];
+      
+      if(parseInt(previousScreen) !== showScreen) {
+        Array.from(document.querySelectorAll('.flip-element .flip-child')).map(item => {
+          const nodeScreenClass = item?.classList.toString().split(' ').find(c => c.includes('flip-child-'));
+          const nodeScreen: any = nodeScreenClass?.split('-')[nodeScreenClass?.split('-')?.length - 1];
+          if(parseInt(nodeScreen) !== parseInt(previousScreen)) {
+            item.classList.add('d-none');
+          }
+        });
+        document.querySelector(`.flip-element`)?.classList.add('notransition');
+        document.querySelector(`.flip-element`)?.classList.remove('flipped');
+        document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.add('notransition');
+        document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.remove('t-180');
+        document.querySelector(`.flip-child-${showScreen}`)?.classList.add('notransition');
+        document.querySelector(`.flip-child-${showScreen}`)?.classList.add('t-180');
         setTimeout(() => {
-          document.querySelector('.flip-child-0')?.classList.remove('d-none');
-          document.querySelector('.flip-child-2')?.classList.add('d-none');
-          document.querySelector('.flip-child-5')?.classList.add('d-none');
-          document.querySelector('.flip-child-7')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 1:
-        //back
-        setTimeout(() => {
-          document.querySelector('.flip-child-1')?.classList.remove('d-none');
-          document.querySelector('.flip-child-4')?.classList.add('d-none');
-          document.querySelector('.flip-child-6')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 2:
-        //front
-        setTimeout(() => {
-          document.querySelector('.flip-child-2')?.classList.remove('d-none');
-          document.querySelector('.flip-child-0')?.classList.add('d-none');
-          document.querySelector('.flip-child-5')?.classList.add('d-none');
-          document.querySelector('.flip-child-7')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 4:
-        //back
-        setTimeout(() => {
-          document.querySelector('.flip-child-4')?.classList.remove('d-none');
-          document.querySelector('.flip-child-1')?.classList.add('d-none');
-          document.querySelector('.flip-child-6')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 5:
-        //front
-        setTimeout(() => {
-          document.querySelector('.flip-child-5')?.classList.remove('d-none');
-          document.querySelector('.flip-child-7')?.classList.add('d-none');
-          document.querySelector('.flip-child-0')?.classList.add('d-none');
-          document.querySelector('.flip-child-2')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 6:
-        //back
-        setTimeout(() => {
-          document.querySelector('.flip-child-6')?.classList.remove('d-none');
-          document.querySelector('.flip-child-4')?.classList.add('d-none');
-          document.querySelector('.flip-child-1')?.classList.add('d-none');
-        }, 500);
-        break;
-      case 7:
-        //front
-        setTimeout(() => {
-          document.querySelector('.flip-child-7')?.classList.remove('d-none');
-          document.querySelector('.flip-child-5')?.classList.add('d-none');
-          document.querySelector('.flip-child-0')?.classList.add('d-none');
-          document.querySelector('.flip-child-2')?.classList.add('d-none');
-        }, 500);
-        break;
+          document.querySelector(`.flip-element`)?.classList.remove('notransition');
+          document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.remove('notransition');
+          document.querySelector(`.flip-child-${showScreen}`)?.classList.remove('notransition');
+          setTimeout(() => {
+            document.querySelector(`.flip-element`)?.classList.add('flipped');
+            document.querySelector(`.flip-child-${showScreen}`)?.classList.remove('d-none');
+            setTimeout(() => {
+              document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.add('d-none');
+            }, 500);
+          }, 100);
+        }, 100);
+      }
     }
   }, [showScreen]);
 
   const renderScreen = () => {
     if (showScreen <= 7 && showScreen !== 3) {
       return (
-        <div className={`flip-element ${showScreen === 1 || showScreen === 4 || showScreen === 6 ? 'flipped' : ''}`} style={{ height: 472 }}>
-          <SignInForm className={`front m-0 flip-child-0`} setshowScreen={setshowScreen} />
-          <AccountForm className={`back m-0 flip-child-1`} setshowScreen={setshowScreen} />
-          <SignupForm className={`front m-0 flip-child-2`} setshowScreen={setshowScreen} />
-          <EmailLoginForm className={`back m-0 flip-child-4`} setshowScreen={setshowScreen} />
-          <ForgotPwdForm className={`front m-0 flip-child-5`} setshowScreen={setshowScreen} />
-          <EnterCodeForm className={`back m-0 flip-child-6`} setshowScreen={setshowScreen} />
-          <NewPwdForm className={`front m-0 flip-child-7`} />
+        <div className={`flip-element`} style={{ height: 472 }}>
+          <SignInForm className={` m-0 flip-child flip-child-0`} setshowScreen={setshowScreen} />
+          <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} />
+          <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} />
+          <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} />
+          <ForgotPwdForm className={`d-none m-0 flip-child flip-child-5`} setshowScreen={setshowScreen} />
+          <EnterCodeForm className={`d-none m-0 flip-child flip-child-6`} setshowScreen={setshowScreen} />
+          <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} />
         </div>
       );
     } else {

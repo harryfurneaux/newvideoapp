@@ -50,7 +50,10 @@ const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
               }} className="no-shadow fw-bold">Create Account</button>
           </div>
           <div className="ansks-adn">
-            <button className="no-shadow fw-light">Forgot Password?</button>
+            <button
+              onClick={() => {
+                setshowScreen(5);
+              }} className="no-shadow fw-light">Forgot Password?</button>
           </div>
         </div>
         <div className="continueBtnDiv">
