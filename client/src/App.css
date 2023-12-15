@@ -2722,6 +2722,7 @@ body .kdjflkas-sad {
 }
 
 .overlay .logout span {
+  cursor: pointer;
   padding: 0 4px 10px 4px;
   line-height: 22.026px;
   font-weight: 700;

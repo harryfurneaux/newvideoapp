@@ -10,6 +10,7 @@ import location_img from "../images/Location.svg";
 import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
+import TinyModal from "./Modals/tiny_modal";
 
 const SettingMenuIcon = () => {
   useEffect(() => {
@@ -33,6 +34,7 @@ const SettingMenuIcon = () => {
   const [showAccount, setShowAccount] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
@@ -50,6 +52,12 @@ const SettingMenuIcon = () => {
   const handlePrivacyShow = () => {
     $(".overlay").hide();
     setShowPrivacy(true);
+  }
+
+  const handleLogoutClose = () => setShowLogout(false);
+  const handleLogoutShow = () => {
+    $(".overlay").hide();
+    setShowLogout(true);
   }
 
   return (
@@ -84,7 +92,7 @@ const SettingMenuIcon = () => {
               <Icons iconNumber={100} />Contact Us
             </div>
           </div>
-          <div className='text-center logout'>
+          <div onClick={handleLogoutShow} className='text-center logout'>
             <span>LOG OUT</span>
           </div>
         </div>
@@ -96,6 +104,7 @@ const SettingMenuIcon = () => {
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
       <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
+      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" />
     </>
   )
 }
