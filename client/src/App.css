@@ -1004,8 +1004,8 @@ body {
   padding: 8px 9px 0px 8px;
   cursor: pointer;
   gap: 6px;
-  position: relative;
-  z-index: 1;
+  /* position: relative;
+  z-index: 1; */
 }
 
 .skdmsa-dsad {
@@ -1127,8 +1127,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  /* position: relative; */
+  /* z-index: 1; */
 }
 
 .lamdl-anwid svg {
