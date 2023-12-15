@@ -1706,22 +1706,23 @@ body {
 .candidateCard img {
   width: 100%;
   position: relative;
-  top: -5px;
+  /* top: -5px; */
 }
 
 .candidateCard {
   padding: 3px;
+  padding-bottom: 12px;
   background-image: url('./images/i13.png');
-
   position: relative;
   border-radius: 6.58px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: 122.96px;
-  height: 225.8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 123px;
+  max-height: 225px;
+  margin-bottom: 5.92px;
 }
 
 .kdjfkjsldp-sameaw {
@@ -2084,11 +2085,6 @@ body .jjlkajsd-awje-msakm3e .btn {
 
   .kdjsf-awejdn {
     justify-content: flex-start;
-  }
-
-  .candidateCard {
-    width: 110.96px;
-    height: 204.8px;
   }
 
   .jhjij-sanwe {
