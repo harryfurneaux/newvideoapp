@@ -9,10 +9,12 @@ import Notify from "../Notify";
 const ShareForm = ({
   setMainScreen,
   setShowScreen,
+  setPastScreen,
   showScreen,
 }: {
   setMainScreen: any;
   setShowScreen: any;
+  setPastScreen: any;
   showScreen: number;
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
@@ -70,7 +72,7 @@ const ShareForm = ({
             <Icons iconNumber={64} />
           </div>
         </div>
-        <RightButtons2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} hideMenu={isMobile ? true : false} />
+        <RightButtons2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={isMobile ? true : false} />
       </Flip>
     </>
   );

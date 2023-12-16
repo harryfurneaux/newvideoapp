@@ -1124,13 +1124,11 @@ body {
   opacity: 1;
 }
 
-.nklmad-wkdm {
-  margin-top: 22px;
+.option-btn {
+  margin-top: 82px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: relative; */
-  /* z-index: 1; */
 }
 
 .lamdl-anwid svg {
@@ -1326,12 +1324,16 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 95%;
   flex-direction: column;
 }
 
 .kjdsfms-awddw2 svg {
   margin: 0px 6.15px;
+}
+
+.kjdfsajs0edjawe-232 {
+  margin-bottom: 10px;
 }
 
 .kjdfsajs0edjawe-232 h5 {
@@ -1477,7 +1479,6 @@ body {
   padding: 18px 12px 18px 17px;
   border-radius: 14px;
   background: var(--q-1, linear-gradient(180deg, rgba(173, 184, 250, 0.20) 0%, rgba(173, 184, 250, 0.10) 100%));
-  margin: 8px 0px;
   cursor: pointer;
 }
 
@@ -1500,10 +1501,6 @@ body {
   border-radius: 0px 14px 14px 0px;
 }
 
-.kjdaflj-adjkwmd .jsfkms-akmdwa {
-  margin: 8px 5px;
-}
-
 .kjdaflj-adjkwmd::-webkit-scrollbar {
   display: none !important;
 }
@@ -1515,9 +1512,13 @@ body {
   flex-wrap: wrap;
   width: 100%;
   overflow: scroll;
-  max-height: calc(100vh - 257px);
-  height: 100%;
-  max-width: 650px;
+  /* max-height: calc(100vh - 257px); */
+  height: 510px;
+  max-width: 706px;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.10);
+  padding: 8px 0 10px;
+  margin-bottom: 35px;
 }
 
 .hkjdsf-dsjfin span {
@@ -1538,6 +1539,7 @@ body {
   font-weight: 500;
   line-height: 119.8%;
   letter-spacing: 1px;
+  height: 58px;
 }
 
 .jkksjdf-awe {
@@ -1670,6 +1672,8 @@ body {
   left: 35px;
   display: flex;
   align-items: center;
+  margin-bottom: -10px;
+  width: 50%;
 }
 
 .cardInfoDiv h5 svg {
@@ -1760,7 +1764,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  z-index: 1100;
+  z-index: 1000;
   padding: 10px 20px 0 20px;
   box-shadow: 0px 0px 20px 0px rgba(84, 104, 255, 0.05);
 }
@@ -1862,26 +1866,26 @@ body .jjlkajsd-awje-msakm3e .btn {
   display: none;
 }
 
-.kjkdsjnds-anedsadsa {
+.leftSideContent {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 9.825581550598145px 24.563953399658203px 0px rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12.281976699829102px);
-  margin-top: 133px;
+  margin-top: 40px;
   padding: 14px;
   display: grid;
   gap: 6px;
 }
 
 @media (max-width: 512px) {
-  .kjkdsjnds-anedsadsa {
+  .leftSideContent {
     width: 98%;
     margin: auto;
   }
 }
 
 @media (min-width: 512px) {
-  .kjkdsjnds-anedsadsa {
+  .leftSideContent {
     margin-left: 52px;
     margin-right: 52px;
   }
@@ -1896,6 +1900,10 @@ body .jjlkajsd-awje-msakm3e .btn {
   margin: 20px;
   margin-top: 142px;
   gap: 5.92px;
+}
+
+.kjkdsjnds-aned .col {
+  padding: 0;
 }
 
 .ksljfsa-asjd {
@@ -1935,10 +1943,6 @@ body .jjlkajsd-awje-msakm3e .btn {
   .njkljmdasp-dawm,
   .kdjafljs-ajdsm {
     display: none;
-  }
-
-  .afjdkl-apwdm {
-    margin-top: 22px !important;
   }
 
   .pageContainer {
@@ -2079,10 +2083,6 @@ body .jjlkajsd-awje-msakm3e .btn {
     /* padding: 0px; */
   }
 
-  .kdjsf-awejdn {
-    justify-content: flex-start;
-  }
-
   .jhjij-sanwe {
     width: 100%;
   }
@@ -2118,7 +2118,7 @@ body .jjlkajsd-awje-msakm3e .btn {
     margin-left: 2px;
   }
 
-  .kladsfhjn-ajwe .nklmad-wkdm {
+  .kladsfhjn-ajwe .option-btn {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -2999,6 +2999,12 @@ body .kdjflkas-sad {
   }
 }
 
+@media only screen and (max-width: 769px) {
+  .filter-modal {
+    width: 100% !important;
+  }
+}
+
 @media only screen and (min-width: 769px) {
   .filter-modal {
     width: 50% !important;
@@ -3011,7 +3017,7 @@ body .kdjflkas-sad {
   margin-left: 8px;
   margin-top: 8px;
   border-radius: 14px;
-  width: calc(50% - 11px) !important;
+  width: calc(50% - 11px);
   height: calc(100% - 16px);
 }
 
@@ -3099,6 +3105,30 @@ body .kdjflkas-sad {
   background-color: rgba(0, 0, 0, 0.70);
   backdrop-filter: blur(10px);
   border-radius: 15px;
+}
+
+/* Delete interview modal */
+
+@media only screen and (max-width: 576px) {
+  .del-interview-modal .modal-dialog {
+    margin-left: calc(50% - 155px) !important;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .del-interview-modal {
+    width: 100% !important;
+  }
+}
+
+.del-interview-modal.modal {
+  background-color: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(10px);
+  margin-left: 8px;
+  margin-top: 8px;
+  border-radius: 14px;
+  width: calc(50% - 11px);
+  height: calc(100% - 16px);
 }
 
 /* Change modal */

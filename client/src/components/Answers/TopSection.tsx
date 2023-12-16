@@ -15,20 +15,6 @@ const TopSec = ({ setMainScreen, showScreen, setshowScreen, showFilter, handleFi
       </div>
       <SearchFilter show={showFilter} handleClose={handleFilterClose} />
     </div>
-    <div className="nklmad-wkdm kjnasna-dkw">
-      <button className="lamdl-anwid radiusLeft">
-        <Icons iconNumber={50} />
-        Your Answers
-      </button>
-      <button className="lamdl-anwid radiusRight">
-        <Icons iconNumber={32} />
-        Nearby
-      </button>
-    </div>
-    <div className="kdhfkjjdsfo">
-      <Icons iconNumber={32} />
-      <h5 className="mksaldkamaw-jdwa">London, UK</h5>
-    </div>
   </>
 }
 export default TopSec

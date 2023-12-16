@@ -6,6 +6,8 @@ import Question from "./Questions";
 import Zoom from 'react-reveal/Fade';
 //@ts-ignore
 import Zoom1 from 'react-reveal/Zoom';
+// @ts-ignore
+import $ from "jquery";
 
 const CreateForm = ({
   setShowScreen,
@@ -18,6 +20,12 @@ const CreateForm = ({
   const [selected, setselected] = useState(0);
 
   useEffect(() => {
+    if (showScreen == 3) {
+      $(".kdnklms-awendwd").css("z-index", -1);
+    } else {
+      $(".kdnklms-awendwd").css("z-index", 1000);
+    }
+
     try {
       // Check if the input field is in focus and set the arrowBtn fill-opacity to 1 if it is
       document.getElementById("questionInput")!.addEventListener("focus", () => {
@@ -124,26 +132,32 @@ const CreateForm = ({
           {showScreen == 3 ? (
             <Zoom1>
               <div className="kjdaflj-adjkwmd">
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div className="pos-rel">
-                  {selected >= 3 ? <button onClick={() => {
-                    setShowScreen(5)
-                  }} className="kjdflj0-jsads">
-                    CONTINUE
-                    <Icons iconNumber={85} />
-                  </button> : <button className="hkjdsf-dsjfin fw-light">
-                    <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
-                  </button>}
-                </div>
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+              </div>
+              <div className="pos-rel">
+                {selected >= 3 ? <button onClick={() => {
+                  setShowScreen(5)
+                }} className="kjdflj0-jsads">
+                  CONTINUE
+                  <Icons iconNumber={85} />
+                </button> : <button className="hkjdsf-dsjfin fw-light">
+                  <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
+                </button>}
               </div>
             </Zoom1>
           ) : showScreen == 5 ? (
