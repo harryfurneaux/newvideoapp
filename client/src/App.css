@@ -1673,6 +1673,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: -10px;
+  width: 50%;
 }
 
 .cardInfoDiv h5 svg {

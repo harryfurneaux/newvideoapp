@@ -5,7 +5,7 @@ import Icons from "../icons";
 import Flip from 'react-reveal/Flip'
 import CheckFormBox from "../CheckBoxForm";
 
-const ViewForm = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setShowScreen: any }) => {
+const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen }: { setMainScreen: any, setShowScreen: any, setPastScreen: any }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
 
   return (
@@ -47,7 +47,7 @@ const ViewForm = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setSho
             <Icons iconNumber={62} />
           </div>
         </div>
-        <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} hideMenu={isMobile ? true : false} />
+        <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={isMobile ? true : false} />
       </div></Flip>
   );
 };
