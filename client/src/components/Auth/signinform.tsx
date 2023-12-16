@@ -10,21 +10,15 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
       <div className="jhjij-sanwe">
         <h3>Sign in</h3>
         <div className="socialButtonsDiv">
-          <button className="btn" onClick={() => {
-            setshowScreen(3)
-          }}>
+          <button className="btn">
             <Icons iconNumber={3} />
             Log in with Facebook
           </button>
-          <button className="btn" onClick={() => {
-            setshowScreen(3)
-          }}>
+          <button className="btn">
             <Icons iconNumber={4} />
             Log in with Google
           </button>
-          <button className="btn" onClick={() => {
-            setshowScreen(3)
-          }}>
+          <button className="btn">
             <Icons iconNumber={5} />
             Log in with LinkedIn
           </button>
@@ -37,7 +31,7 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
 
         <div className="socialButtonsDiv mt-2">
           <button className="btn" onClick={() => {
-            setshowScreen(3)
+            setshowScreen(4)
           }}>
             <Icons iconNumber={90} />
             Login in with Email
@@ -45,10 +39,10 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
         </div>
         <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">
           <div className="ansks-adn">
-            <button className="no-shadow fw-bold">Create Account</button>
+            <button className="no-shadow fw-bold" onClick={() => setshowScreen(1)}>Create Account</button>
           </div>
           <div className="ansks-adn">
-            <button className="no-shadow fw-light">Forgot Password?</button>
+            <button className="no-shadow fw-light" onClick={() => setshowScreen(5)}>Forgot Password?</button>
           </div>
         </div>
         <div className="continueBtnDiv">
@@ -64,7 +58,7 @@ const SignInForm = ({ setshowScreen }: { setshowScreen: any }) => {
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={64} />
       </div>
-    </div>
+    </div >
   );
 };
 

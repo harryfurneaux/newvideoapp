@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 //@ts-ignore
 import Flip from 'react-reveal/Flip';
 
-const NewPwdForm = () => {
+const NewPwdForm = ({ setshowScreen }: { setshowScreen: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
@@ -27,6 +27,7 @@ const NewPwdForm = () => {
             </div>
             <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
               <button onClick={() => {
+                setshowScreen(2);
               }} className={`btn`}>
                 CONFIRM CHANGES
                 <div className="kdksa-ajwmd">

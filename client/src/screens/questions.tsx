@@ -25,11 +25,11 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         {showScreen > 5 ? (
           <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
             {showScreen == 6 ? (
-              <ShareForm showScreen={showScreen} setShowScreen={setShowScreen} />
+              <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} />
             ) : (
               <>
-                <ViewForm />
-                <RightButtons hideMenu={showRightMenu && isTab ? false : true} />
+                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
+                <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} hideMenu={showRightMenu && isTab ? false : true} />
               </>
             )}
           </div>
@@ -45,7 +45,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
     </div>
   );
 }

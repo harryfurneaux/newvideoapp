@@ -52,15 +52,15 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         ) : showScreen == 6 ? (
           <EnterCodeForm setshowScreen={setshowScreen} />
         ) : showScreen == 7 ? (
-          <NewPwdForm />
+          <NewPwdForm setshowScreen={setshowScreen} />
         ) : (
-          <SignupForm setshowScreen={setshowScreen} />
+          <SignupForm setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
         )}
         <div className="d-flex justify-content-center kdnklms-awendwd-11">
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
     </div>
   );
 }
