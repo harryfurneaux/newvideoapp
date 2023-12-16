@@ -55,7 +55,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   const renderScreen = () => {
     if (showScreen <= 7 && showScreen !== 3) {
       return (
-        <div style={{ perspective: 600 }}>
+        <div style={{ perspective: 1000 }}>
           <div className={`flip-element`} style={{ height: 472 }}>
             <SignInForm className={` m-0 flip-child flip-child-0`} setshowScreen={setshowScreen} />
             <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} />
