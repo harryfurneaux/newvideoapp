@@ -1,5 +1,4 @@
-import { IsArray, IsString, IsNumber, IsMongoId, ValidateNested, IsOptional } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsMongoId,  IsOptional } from 'class-validator';
 
 
 export class CreateInterviewDto {
@@ -16,4 +15,10 @@ export class CreateInterviewDto {
     @IsOptional()
     @IsMongoId()
     job_id: string
+
+    @IsOptional()
+    @IsMongoId()
+    interviewer: string;
+
+
 }

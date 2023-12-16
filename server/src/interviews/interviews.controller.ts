@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, UseInterceptors, UploadedFile, Param, Delete, UseGuards, Request, ParseFilePipeBuilder } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, UseInterceptors, UploadedFile, Param, Delete, UseGuards, Request, ParseFilePipeBuilder ,Query} from '@nestjs/common';
 import { InterviewsService } from './interviews.service';
 import { CreateInterviewDto } from './dto/create-interview.dto';
 import { UpdateInterviewDto } from './dto/update-interview.dto';
@@ -19,24 +19,45 @@ export class InterviewsController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(ROLE.INTERVIEWEE)
-  @UseInterceptors(FileInterceptor('video'))
+  // @UseInterceptors(FileInterceptor('video'))
   async create(@UploadedFile(
-    new ParseFilePipeBuilder().addFileTypeValidator({
-      fileType: 'video/*',
-    })
-      .addMaxSizeValidator({
-        maxSize: 3 * 1024 * 1024 //// 3 MB in bytes
-      })
-      .build(),
-  ) video: Express.Multer.File, @Body() createInterviewDto: CreateInterviewDto, @Request() req) {
+  //   new ParseFilePipeBuilder().addFileTypeValidator({
+  //     fileType: 'video/*',
+  //   })
+  //     .addMaxSizeValidator({
+  //       maxSize: 3 * 1024 * 1024 //// 3 MB in bytes
+  //     })
+  //     .build(),
+  
+) 
+// video: Express.Multer.File, 
+  @Body() createInterviewDto: CreateInterviewDto, @Request() req) {
     createInterviewDto.interviewee = req.user.id
-    return this.interviewsService.create(createInterviewDto, video);
+    return this.interviewsService.create(createInterviewDto);
   }
 
+
   @Get()
-  findAll() {
-    return this.interviewsService.findAll();
+  async findAll(@Query('filter') filters?: string | string[], 
+  @Query('intervieweeName') intervieweeName?: string) {
+
+    let interviews;
+
+    if (filters) {
+      const filterArray = Array.isArray(filters) ? filters : [filters];
+
+      if (filterArray.length > 0) {
+        interviews = await Promise.all(filterArray.map(filter => this.interviewsService.findInterviewsByTimeRange(filter)));
+        interviews = interviews.flat();
+      }
+    } 
+    else {
+      interviews = await this.interviewsService.findAll();
+    }
+
+    return interviews;
   }
+    
 
   @Get(':id')
   findOne(@Param('id') id: string) {
