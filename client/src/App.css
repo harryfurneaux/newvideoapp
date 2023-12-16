@@ -1449,12 +1449,6 @@ body {
   border-radius: 5px;
 }
 
-/* .sdfsdfsdf {
-  background-image: linear-gradient(45deg, rgb(84, 104, 255), white, rgb(0, 217, 205));
-  border-radius: 14px;
-  padding: 1;
-} */
-
 .ksajdklsa {
   position: relative;
   background: #fff !important;
@@ -1883,7 +1877,7 @@ body .jjlkajsd-awje-msakm3e .btn {
   .kjkdsjnds-anedsadsa {
     width: 98%;
     margin: auto;
-  }  
+  }
 }
 
 @media (min-width: 512px) {
@@ -2521,7 +2515,7 @@ body .kdjflkas-sad {
 
 .hasdkjashd-d:hover {
   background: linear-gradient(180deg, rgba(173, 184, 250, 0.35) 0%, rgba(173, 184, 250, 0.17) 100%) !important;
-  backdrop-filter: blur(30px) !important;
+  /* backdrop-filter: blur(30px) !important; */
 }
 
 .kjdflj0-jsads svg {
@@ -2791,7 +2785,8 @@ body .kdjflkas-sad {
   margin-bottom: 6px;
 }
 
-.account-modal p, .account-modal button {
+.account-modal p,
+.account-modal button {
   font-size: 12px !important;
   color: rgba(255, 255, 255, 0.90) !important;
 }
@@ -3455,14 +3450,14 @@ body .kdjflkas-sad {
   .message-content {
     width: 98%;
     margin: auto;
-  }  
+  }
 }
 
 @media (min-width: 512px) {
   .message-content {
     margin-left: 52px;
     margin-right: 52px;
-  }  
+  }
 }
 
 /* Check Form */
