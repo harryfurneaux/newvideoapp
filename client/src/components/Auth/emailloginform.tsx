@@ -11,7 +11,7 @@ const EmailLoginForm = ({ setshowScreen }: { setshowScreen: any }) => {
   return (
     <Flip bottom>
       <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form`}>
-        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe3"}`}>
+        <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : "jhjij-sanwe3"} email-login-form`}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Enter Login Details</h3>
           <h4>Enter your email and password for this account.</h4>
 

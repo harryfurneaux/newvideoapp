@@ -290,7 +290,7 @@ body {
 }
 
 .jhjij-sanwe3 {
-  margin-top: 177px !important;
+  margin-top: 174px !important;
 }
 
 .jhjij-sanwe4 {
@@ -946,20 +946,27 @@ body {
 }
 
 .khjn-jnkawed {
-  width: 80px;
-  height: 80px;
   border-radius: 0px;
   position: absolute;
-  bottom: 138px;
+  bottom: 143.04px;
   z-index: 4;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.khjn-jnkawed:hover svg {
+  border-radius: 78px;
+  backdrop-filter: blur(12.14266586303711px) !important;
+  fill: #ADB8FA !important;
+}
+
+.ssss:hover {
+  fill: #ADB8FA !important;
 }
 
 .kdjasldk-ajsdmkd {
   position: absolute;
-  bottom: 110px;
+  bottom: 96px;
 }
 
 .kjjsad-wjwdwe span {
@@ -1000,6 +1007,8 @@ body {
   padding: 8px 9px 0px 8px;
   cursor: pointer;
   gap: 6px;
+  /* position: relative;
+  z-index: 1; */
 }
 
 .skdmsa-dsad {
@@ -1121,6 +1130,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* position: relative; */
+  /* z-index: 1; */
 }
 
 .lamdl-anwid svg {
@@ -1656,14 +1667,14 @@ body {
 }
 
 .kdhfkjjdsfo svg {
-  margin-right: 8px;
+  margin-right: 3px;
 }
 
 .kdhfkjjdsfo {
-
   position: relative;
-  top: -8px;
-  left: 36px;
+  z-index: 1;
+  top: 10px;
+  left: 35px;
   display: flex;
   align-items: center;
 }
@@ -1702,22 +1713,23 @@ body {
 .candidateCard img {
   width: 100%;
   position: relative;
-  top: -5px;
+  /* top: -5px; */
 }
 
 .candidateCard {
   padding: 3px;
+  padding-bottom: 12px;
   background-image: url('./images/i13.png');
-
   position: relative;
   border-radius: 6.58px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: 122.96px;
-  height: 225.8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 123px;
+  max-height: 225px;
+  margin-bottom: 5.92px;
 }
 
 .kdjfkjsldp-sameaw {
@@ -1757,6 +1769,7 @@ body {
   justify-content: space-around;
   z-index: 1100;
   padding: 10px 20px 0 20px;
+  box-shadow: 0px 0px 20px 0px rgba(84, 104, 255, 0.05);
 }
 
 .pos-rel {
@@ -1882,17 +1895,13 @@ body .jjlkajsd-awje-msakm3e .btn {
 }
 
 .kjkdsjnds-aned {
-  display: flex;
-  flex-wrap: wrap;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 9.825581550598145px 24.563953399658203px 0px rgba(0, 0, 0, 0.03);
   backdrop-filter: blur(12.281976699829102px);
-  justify-content: center;
   padding: 15px;
-  scrollbar-width: thin;
   margin: 20px;
-  margin-top: 144px;
+  margin-top: 142px;
   gap: 5.92px;
 }
 
@@ -2081,11 +2090,6 @@ body .jjlkajsd-awje-msakm3e .btn {
     justify-content: flex-start;
   }
 
-  .candidateCard {
-    width: 110.96px;
-    height: 204.8px;
-  }
-
   .jhjij-sanwe {
     width: 100%;
   }
@@ -2170,11 +2174,6 @@ body .jjlkajsd-awje-msakm3e .btn {
 }
 
 @media only screen and (max-width: 786px) and (max-height:756px) {
-  .kjkdsjnds-aned {
-
-    max-height: calc(100vh - 0px);
-  }
-
   .ldkjfal0-fdsnfe1 {
     display: none;
   }
@@ -2632,7 +2631,7 @@ body .kdjflkas-sad {
 }
 
 .auth-page .continueBtnDiv .btn {
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 /* Setting menu overlay */
@@ -2718,6 +2717,7 @@ body .kdjflkas-sad {
 }
 
 .overlay .logout span {
+  cursor: pointer;
   padding: 0 4px 10px 4px;
   line-height: 22.026px;
   font-weight: 700;
@@ -3533,6 +3533,21 @@ body .kdjflkas-sad {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0px 10px 25px 0px rgba(84, 104, 255, 0.30);
+}
+
+/* Email login form */
+
+.email-login-form .emailRowDiv {
+  margin-bottom: 6px;
+}
+
+.email-login-form .continueBtnDiv .btn {
+  margin-top: 2px;
+}
+
+.email-login-form .jdaskfjnas-ajaied button {
+  font-weight: 700;
+  background-color: unset !important;
 }
 
 /* background video */
