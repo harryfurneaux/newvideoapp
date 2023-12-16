@@ -134,6 +134,8 @@ const CreateForm = ({
                 <div><Question setselected={setselected} selected={selected} /></div>
                 <div><Question setselected={setselected} selected={selected} /></div>
                 <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
+                <div><Question setselected={setselected} selected={selected} /></div>
                 <div className="pos-rel">
                   {selected >= 3 ? <button onClick={() => {
                     setShowScreen(5)

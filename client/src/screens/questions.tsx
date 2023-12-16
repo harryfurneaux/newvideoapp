@@ -20,7 +20,14 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   return (
     <div className="pageContainer">
       <div className="rightSideDiv rightSideBg1">
-        {showScreen <= 5 ? <QuestionForm /> : <></>}
+        {
+          showScreen <= 5 ?
+            <div className="leftSideMain">
+              <OptionButtons />
+              <QuestionForm />
+            </div> :
+            <></>
+        }
         <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen > 5 ? (
           <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
@@ -33,9 +40,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
               </>
             )}
           </div>
-        ) : (
-          <OptionButtons />
-        )}
+        ) : <></>}
         {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} />
         ) : (
