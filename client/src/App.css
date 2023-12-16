@@ -2999,6 +2999,12 @@ body .kdjflkas-sad {
   }
 }
 
+@media only screen and (max-width: 769px) {
+  .filter-modal {
+    width: 100% !important;
+  }
+}
+
 @media only screen and (min-width: 769px) {
   .filter-modal {
     width: 50% !important;
@@ -3011,7 +3017,7 @@ body .kdjflkas-sad {
   margin-left: 8px;
   margin-top: 8px;
   border-radius: 14px;
-  width: calc(50% - 11px) !important;
+  width: calc(50% - 11px);
   height: calc(100% - 16px);
 }
 
@@ -3099,6 +3105,30 @@ body .kdjflkas-sad {
   background-color: rgba(0, 0, 0, 0.70);
   backdrop-filter: blur(10px);
   border-radius: 15px;
+}
+
+/* Delete interview modal */
+
+@media only screen and (max-width: 576px) {
+  .del-interview-modal .modal-dialog {
+    margin-left: calc(50% - 155px) !important;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .del-interview-modal {
+    width: 100% !important;
+  }
+}
+
+.del-interview-modal.modal {
+  background-color: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(10px);
+  margin-left: 8px;
+  margin-top: 8px;
+  border-radius: 14px;
+  width: calc(50% - 11px);
+  height: calc(100% - 16px);
 }
 
 /* Change modal */
