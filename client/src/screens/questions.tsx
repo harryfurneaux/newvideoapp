@@ -24,7 +24,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           showScreen <= 5 ?
             <div className="leftSideMain">
               <OptionButtons />
-              <QuestionForm />
+              <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
             </div> :
             <></>
         }
