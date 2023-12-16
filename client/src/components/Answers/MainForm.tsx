@@ -6,7 +6,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen }: { setMainScreen:
     <div className="leftSideMain">
       <div className="kjkdsjnds-aned">
         <Container>
-          <Row className="row-cols-3 row-cols-sm-4 row-cols-md-4 row-cols-lg-5 row-cols-xl-5">
+          <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
             <Col><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
             <Col><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
             <Col><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
