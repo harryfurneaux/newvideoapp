@@ -2087,6 +2087,24 @@ const Icons = ({ iconNumber }: { iconNumber: number }) => {
         <circle cx="39.9665" cy="40.947" r="18.5403" stroke="white" stroke-opacity="0.9" stroke-width="2.85236" />
       </svg>
     }
+    // Stop button
+    case 102: {
+      return <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_b_427_7127)">
+          <circle cx="40" cy="40" r="39" fill="#ADB8FA" fill-opacity="0.2" />
+        </g>
+        <path d="M40 1C61.5391 1 79 18.4609 79 40C79 54.0187 71.6034 66.3099 60.5 73.1839" stroke="#06FBED" stroke-width="2" />
+        <rect opacity="0.95" x="25" y="26" width="30" height="29" rx="1.77778" fill="white" />
+        <defs>
+          <filter id="filter0_b_427_7127" x="-23.2853" y="-23.2853" width="126.571" height="126.571" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="12.1427" />
+            <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_427_7127" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_427_7127" result="shape" />
+          </filter>
+        </defs>
+      </svg>
+    }
     default:
       return <></>;
   }

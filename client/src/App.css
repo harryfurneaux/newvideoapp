@@ -957,10 +957,9 @@ body {
 .khjn-jnkawed:hover svg {
   border-radius: 78px;
   backdrop-filter: blur(12.14266586303711px) !important;
-  fill: #ADB8FA !important;
 }
 
-.ssss:hover {
+.khjn-jnkawed:hover circle:first-child {
   fill: #ADB8FA !important;
 }
 
