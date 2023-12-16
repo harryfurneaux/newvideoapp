@@ -948,22 +948,25 @@ body {
 .khjn-jnkawed {
   border-radius: 0px;
   position: absolute;
-  bottom: 138px;
+  bottom: 143.04px;
   z-index: 4;
+  padding: 0 !important;
+  border: none !important;
 }
 
-.khjn-jnkawed svg {
+.khjn-jnkawed:hover svg {
   border-radius: 78px;
   backdrop-filter: blur(12.14266586303711px) !important;
+  fill: #ADB8FA !important;
 }
 
-.khjn-jnkawed:hover circle:first-child {
-  fill: #ADB8FA;
+.ssss:hover {
+  fill: #ADB8FA !important;
 }
 
 .kdjasldk-ajsdmkd {
   position: absolute;
-  bottom: 110px;
+  bottom: 96px;
 }
 
 .kjjsad-wjwdwe span {
@@ -2628,7 +2631,7 @@ body .kdjflkas-sad {
 }
 
 .auth-page .continueBtnDiv .btn {
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 /* Setting menu overlay */
