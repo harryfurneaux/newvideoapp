@@ -1669,6 +1669,7 @@ body {
   left: 35px;
   display: flex;
   align-items: center;
+  margin-bottom: -10px;
 }
 
 .cardInfoDiv h5 svg {
