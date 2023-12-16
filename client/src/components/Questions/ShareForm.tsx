@@ -7,9 +7,11 @@ import Flip from 'react-reveal/Flip'
 import Notify from "../Notify";
 
 const ShareForm = ({
+  setMainScreen,
   setShowScreen,
   showScreen,
 }: {
+  setMainScreen: any;
   setShowScreen: any;
   showScreen: number;
 }) => {
@@ -68,7 +70,7 @@ const ShareForm = ({
             <Icons iconNumber={64} />
           </div>
         </div>
-        <RightButtons2 hideMenu={isMobile ? true : false} />
+        <RightButtons2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} hideMenu={isMobile ? true : false} />
       </Flip>
     </>
   );

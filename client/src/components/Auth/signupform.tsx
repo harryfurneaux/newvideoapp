@@ -3,7 +3,7 @@ import Icons from "../icons";
 //@ts-ignore
 import Flip from 'react-reveal/Flip';
 
-const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
+const SignUpForm = ({ setshowScreen, setMainScreen }: { setshowScreen: any, setMainScreen: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
 
@@ -47,13 +47,13 @@ const SignUpForm = ({ setshowScreen }: { setshowScreen: any }) => {
                 <h5>Remember me</h5>
               </div>
               <div className="ansks-adn">
-                <button className="no-shadow">Log in</button>
+                <button className="no-shadow" onClick={() => setshowScreen(0)}>Log in</button>
               </div>
             </div>
             <div className="continueBtnDiv snasdj-sawdne">
               <button
                 onClick={() => {
-                  setshowScreen(4)
+                  setshowScreen(3);
                 }} className="btn kjlsjadm-kdmsd-2">
                 COMPLETE SIGNUP
                 <Icons iconNumber={94} />

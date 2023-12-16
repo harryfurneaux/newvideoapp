@@ -10,7 +10,8 @@ const TinyModal = ({ show, handleClose, type }: { show: boolean, handleClose: an
         <h1>{
           type == "delete_account" ? "Delete Account" :
             type == "remove_method" ? "Remove Billing Method?" :
-              type == "logout" ? "Log out" : ""
+              type == "logout" ? "Log out" :
+                type == "delete_interview" ? "Delete Interview" : ""
         }</h1>
       </Modal.Header>
       <Modal.Body>
@@ -18,7 +19,8 @@ const TinyModal = ({ show, handleClose, type }: { show: boolean, handleClose: an
           <p className="text-left">{
             type == "delete_account" ? "We’ll remove your Account and details from our system." :
               type == "remove_method" ? "We’ll remove your MasterCard ending in 6976." :
-                type == "logout" ? "This will log you out of your account." : ""
+                type == "logout" ? "This will log you out of your account." :
+                  type == "delete_interview" ? "Are you sure want to delete this interview?" : ""
           }</p>
         </div>
       </Modal.Body>
@@ -28,7 +30,8 @@ const TinyModal = ({ show, handleClose, type }: { show: boolean, handleClose: an
           {
             type == "delete_account" ? "Delete Account" :
               type == "remove_method" ? "Remove method" :
-                type == "logout" ? "Confirm" : ""
+                type == "logout" ? "Confirm" :
+                  type == "delete_interview" ? "Delete" : ""
           }
         </Button>
       </Modal.Footer>

@@ -43,7 +43,9 @@ const BackMenu = ({
       </div>
       <div className="d-flex">
         {showScreen <= 5 ? (
-          <button className="njkljmdasp-dawm">
+          <button className="njkljmdasp-dawm" onClick={() => {
+            setShowScreen(1);
+          }}>
             <Icons iconNumber={30} />
             Full Screen
           </button>

@@ -30,15 +30,15 @@ const EmailLoginForm = ({ setshowScreen }: { setshowScreen: any }) => {
               <div onClick={() => {
                 setisAgree(!isAgree)
               }} className="sandka-jwe">
-                <button className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>Create Account</button>
+                <button className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`} onClick={() => setshowScreen(0)}>Create Account</button>
               </div>
               <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
-                <button className="no-shadow">Forgot Password?</button>
+                <button className="no-shadow" onClick={() => setshowScreen(0)}>Forgot Password?</button>
               </div>
             </div>
             <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
               <button onClick={() => {
-                setshowScreen(5)
+                setshowScreen(2)
               }} className={`btn`}>
                 CONTINUE
                 <div className="kdksa-ajwmd">
