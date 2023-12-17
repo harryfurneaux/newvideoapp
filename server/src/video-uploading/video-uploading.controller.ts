@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Query, InternalServerErrorException } from '@nestjs/common';
 import { VideoUploadingService } from './video-uploading.service';
 import { CreateVideoUploadingDto } from './dto/create-video-uploading.dto';
 import { UpdateVideoUploadingDto } from './dto/update-video-uploading.dto';
@@ -16,6 +16,29 @@ export class VideoUploadingController {
     return await this.imageKitService.uploadImage(file, file.originalname)
     // this.videoUploadingService.create(createVideoUploadingDto);
   }
+  // @Post()
+  // @UseInterceptors(FileInterceptor('file'))
+  // async create(@UploadedFile() file?: Express.Multer.File) {
+  //   try {
+  //     const uploadedUrl = await this.imageKitService.uploadImage(file, file.originalname);
+  //     const fileId = this.getFileIdFromUrl(uploadedUrl);
+
+  //     return {
+  //       uploadedUrl,
+  //       fileId,
+  //     };
+  //   } catch (error) {
+  //     console.error('Error creating video:', error);
+  //     throw new InternalServerErrorException('Error creating video');
+  //   }
+  // }
+
+
+  // getFileIdFromUrl(url: string): string {
+  //   const parts = url.split('/');
+  //   return parts[parts.length - 1];
+  // }
+
 
   @Get()
   findAll() {
@@ -36,4 +59,29 @@ export class VideoUploadingController {
   remove(@Param('id') id: string) {
     return this.videoUploadingService.remove(+id);
   }
+
+  async findMetadata(fileId: string): Promise<any> {
+    try {
+      const metadata = await this.imageKitService.getVideoMetadata(fileId);
+
+      return metadata;
+    } catch (error) {
+      console.error('Error fetching video metadata:', error);
+      throw error;
+    }
+  }
+
+  @Get(':id/metadata')
+  async getMetadata(@Param('id') id: string) {
+    try {
+      const metadata = await this.imageKitService.getVideoMetadata(id);
+
+      return metadata;
+    } catch (error) {
+      console.error('Error fetching video metadata:', error);
+      throw new InternalServerErrorException('Error fetching video metadata');
+    }
+  }
+
+
 }

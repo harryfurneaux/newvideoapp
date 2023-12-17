@@ -1,10 +1,10 @@
 import Icons from "../icons";
 //@ts-ignore
-import Fade from 'react-reveal/Fade'
-const FinishForm = ({ setScreen }: { setScreen: any }) => {
-  return (
-    <Fade >
-      <div className="kjjfds-janwkea4 ">
+import { Fade } from "react-awesome-reveal";
+const FinishForm = ({setScreen}:{setScreen:any}) => {
+    return (
+     <Fade >
+       <div className="kjjfds-janwkea4 ">
         {/* <img src={require("../../images/i6.png")} /> */}
         <div className="kjdflmas-sdmfe">
           <div className="d-flex justify-content-between skdjand-wkemd ksljfsa-asjd">
