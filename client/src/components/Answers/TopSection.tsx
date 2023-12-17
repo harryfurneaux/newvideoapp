@@ -3,10 +3,10 @@ import SearchFilter from "../Modals/SearchFilter";
 import Icons from "../icons";
 import Back from "./Back";
 
-const TopSec = ({ showScreen, setshowScreen, showFilter, handleFilterShow, handleFilterClose }: { showScreen: number, setshowScreen: any, showFilter: boolean, handleFilterShow: any, handleFilterClose: any }) => {
+const TopSec = ({ setMainScreen, showScreen, setshowScreen, showFilter, handleFilterShow, handleFilterClose }: { setMainScreen: any, showScreen: number, setshowScreen: any, showFilter: boolean, handleFilterShow: any, handleFilterClose: any }) => {
   return <>
     <div className="leftSideHeader">
-      <Back />
+      <Back setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
       <div className="sortButtonDiv" onClick={handleFilterShow}>
         <h5 className="mksaldkamaw-jdwa">Filter</h5>
         <h5 className="mksaldkamaw-jdwa sortButtonIcon">
@@ -14,20 +14,6 @@ const TopSec = ({ showScreen, setshowScreen, showFilter, handleFilterShow, handl
         </h5>
       </div>
       <SearchFilter show={showFilter} handleClose={handleFilterClose} />
-    </div>
-    <div className="nklmad-wkdm kjnasna-dkw">
-      <button className="lamdl-anwid radiusLeft">
-        <Icons iconNumber={50} />
-        Your Answers
-      </button>
-      <button className="lamdl-anwid radiusRight">
-        <Icons iconNumber={32} />
-        Nearby
-      </button>
-    </div>
-    <div className="kdhfkjjdsfo">
-      <Icons iconNumber={32} />
-      <h5 className="mksaldkamaw-jdwa">London, UK</h5>
     </div>
   </>
 }

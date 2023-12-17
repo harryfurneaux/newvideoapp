@@ -1,28 +1,26 @@
 import JobTitle from "./JobTitle";
 
-const QuestionForm = () => {
-    return (
-      <div className="leftSideMain">
-        <div className="kjkdsjnds-anedsadsa">
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={true} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-          <JobTitle showMessage={false} />
-        </div>
-      </div>
-    );
-  };
+const QuestionForm = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setShowScreen: any }) => {
+  return (
+    <div className="leftSideContent">
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={true} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
+    </div>
+  );
+};
 export default QuestionForm

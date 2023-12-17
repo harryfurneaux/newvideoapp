@@ -5,13 +5,13 @@ import Icons from "../icons";
 import { Flip } from "react-awesome-reveal"
 import CheckFormBox from "../CheckBoxForm";
 
-const ViewForm = () => {
+const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen }: { setMainScreen: any, setShowScreen: any, setPastScreen: any }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
 
   return (
     <Flip direction="horizontal">
       <div className="jkljfkld-jdskfe">
-        <div className="kjjfds-janwkea1">
+        <div className="kjjfds-janwkea1 white-form">
           <div className="kafms-kfsamfer">
             <div className="skfalk-smdsefds">
               <div className="kdjnfakdsfm-jsamre">
@@ -34,7 +34,7 @@ const ViewForm = () => {
             </div>
             <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
               <div className="continueBtnDiv snasdj-sawdne">
-                <button className="btn">
+                <button className="btn" onClick={() => setMainScreen(2)}>
                   WATCH ANSWERS
                   <div className="kdksa-ajwmd ">
                     <Icons iconNumber={93} />
@@ -47,7 +47,7 @@ const ViewForm = () => {
             <Icons iconNumber={62} />
           </div>
         </div>
-        <RightButtons hideMenu={isMobile ? true : false} />
+        <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={isMobile ? true : false} />
       </div></Flip>
   );
 };

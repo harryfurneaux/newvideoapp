@@ -2,11 +2,11 @@ import { useState } from "react";
 import Icons from "../../components/icons";
 import { useMediaQuery } from 'react-responsive'
 
-const NewPwdForm = ({ className = '' }: { className?: string }) => {
+const NewPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
-    <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} ${className}`}>
+    <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`}>
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Create New Password</h3>
         <h4>Password must be at least 8 characters</h4>
@@ -24,6 +24,7 @@ const NewPwdForm = ({ className = '' }: { className?: string }) => {
           </div>
           <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
             <button onClick={() => {
+              setshowScreen(2);
             }} className={`btn`}>
               CONFIRM CHANGES
               <div className="kdksa-ajwmd">

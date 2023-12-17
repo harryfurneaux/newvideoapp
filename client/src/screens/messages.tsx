@@ -87,7 +87,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
     </div>
   );
 }

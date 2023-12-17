@@ -16,6 +16,12 @@ const CreateForm = ({
   const [selected, setselected] = useState(0);
 
   useEffect(() => {
+    if (showScreen == 3) {
+      $(".kdnklms-awendwd").css("z-index", -1);
+    } else {
+      $(".kdnklms-awendwd").css("z-index", 1000);
+    }
+
     try {
       // Check if the input field is in focus and set the arrowBtn fill-opacity to 1 if it is
       document.getElementById("questionInput")!.addEventListener("focus", () => {
@@ -122,26 +128,32 @@ const CreateForm = ({
           {showScreen == 3 ? (
             <Zoom>
               <div className="kjdaflj-adjkwmd">
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div><Question setselected={setselected} selected={selected} /></div>
-                <div className="pos-rel">
-                  {selected >= 3 ? <button onClick={() => {
-                    setShowScreen(5)
-                  }} className="kjdflj0-jsads">
-                    CONTINUE
-                    <Icons iconNumber={85} />
-                  </button> : <button className="hkjdsf-dsjfin fw-light">
-                    <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
-                  </button>}
-                </div>
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+                <Question setselected={setselected} selected={selected} />
+              </div>
+              <div className="pos-rel">
+                {selected >= 3 ? <button onClick={() => {
+                  setShowScreen(5)
+                }} className="kjdflj0-jsads">
+                  CONTINUE
+                  <Icons iconNumber={85} />
+                </button> : <button className="hkjdsf-dsjfin fw-light">
+                  <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
+                </button>}
               </div>
             </Zoom>
           ) : showScreen == 5 ? (
@@ -169,7 +181,7 @@ const CreateForm = ({
                 <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
                   if (showScreen == 1) setShowScreen(2);
                   if (showScreen == 2) setShowScreen(3);
-                  if (showScreen == 4) setShowScreen(5);
+                  if (showScreen == 4) setShowScreen(3);
                 }}>
                   <Icons iconNumber={38} />
                 </button>
