@@ -3,11 +3,7 @@ import Icons from "../icons";
 import CheckForm from "./CheckForm";
 import Question from "./Questions";
 //@ts-ignore
-import Zoom from 'react-reveal/Fade';
-//@ts-ignore
-import Zoom1 from 'react-reveal/Zoom';
-// @ts-ignore
-import $ from "jquery";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 const CreateForm = ({
   setShowScreen,
@@ -49,7 +45,7 @@ const CreateForm = ({
   }, [showScreen]);
 
   return (
-    <Zoom fade>
+    <Fade direction="left" big>
       <div className="kjkndask-ankdnwd">
         <div
           className={`leftSideHeader kjsfdkl-adsj ${showScreen >= 3 ? "w-100" : ""
@@ -130,7 +126,7 @@ const CreateForm = ({
             </h5>
           </div>
           {showScreen == 3 ? (
-            <Zoom1>
+            <Zoom>
               <div className="kjdaflj-adjkwmd">
                 <Question setselected={setselected} selected={selected} />
                 <Question setselected={setselected} selected={selected} />
@@ -159,7 +155,7 @@ const CreateForm = ({
                   <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
                 </button>}
               </div>
-            </Zoom1>
+            </Zoom>
           ) : showScreen == 5 ? (
             <>
               <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} />
@@ -194,7 +190,7 @@ const CreateForm = ({
           )}
         </div>
       </div>
-    </Zoom>
+    </Fade>
   );
 };
 

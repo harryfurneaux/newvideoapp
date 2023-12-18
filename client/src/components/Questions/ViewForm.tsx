@@ -2,14 +2,14 @@ import { useMediaQuery } from "react-responsive";
 import RightButtons from "../RightButtons";
 import Icons from "../icons";
 //@ts-ignore
-import Flip from 'react-reveal/Flip'
+import { Flip } from "react-awesome-reveal"
 import CheckFormBox from "../CheckBoxForm";
 
 const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen }: { setMainScreen: any, setShowScreen: any, setPastScreen: any }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
 
   return (
-    <Flip right>
+    <Flip direction="horizontal">
       <div className="jkljfkld-jdskfe">
         <div className="kjjfds-janwkea1 white-form">
           <div className="kafms-kfsamfer">

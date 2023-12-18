@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import RightButtons2 from "../RightButtons2";
 import Icons from "../icons";
 //@ts-ignore
-import Flip from 'react-reveal/Flip'
+import { Flip } from "react-awesome-reveal"
 import Notify from "../Notify";
 
 const ShareForm = ({
@@ -23,7 +23,7 @@ const ShareForm = ({
   return (
     <>
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
-      <Flip right>
+      <Flip direction="horizontal">
         <div className="kjjfds-janwkea">
           <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
           <div className="jhjij-sanwe kjljdfn-jadmw">
