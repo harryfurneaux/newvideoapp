@@ -21,13 +21,13 @@ const NextForm = ({setScreen}:{setScreen:any}) => {
           </div>
         </div>
         <div className="njfk-amew">
-           <CheckFormBox/>
-           <CheckFormBox/>
-           <CheckFormBox/>
+          <CheckFormBox />
+          <CheckFormBox />
+          <CheckFormBox />
         </div>
         <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
           <div className="continueBtnDiv snasdj-sawdne">
-            <button className="btn">
+            <button className="btn" onClick={() => setScreen(1)}>
               NEXT QUESTION
               <div className="kdksa-ajwmd ">
                 <Icons iconNumber={7} />
@@ -37,11 +37,11 @@ const NextForm = ({setScreen}:{setScreen:any}) => {
         </div>
       </div>
       <div className="ldkjfal0-fdsnfe">
-          <Icons iconNumber={62}/>
-        </div>
+        <Icons iconNumber={62} />
+      </div>
     </div></Flip>
-    
-    );
-  };
 
-  export default NextForm;
+  );
+};
+
+export default NextForm;

@@ -63,7 +63,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
             <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} />
             <ForgotPwdForm className={`d-none m-0 flip-child flip-child-5`} setshowScreen={setshowScreen} />
             <EnterCodeForm className={`d-none m-0 flip-child flip-child-6`} setshowScreen={setshowScreen} />
-            <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} />
+            <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} setshowScreen={setshowScreen} />
           </div>
         </div>
       );
@@ -109,7 +109,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
     </div>
   );
 }

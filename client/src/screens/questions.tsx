@@ -13,6 +13,7 @@ import RightButtons from "../components/RightButtons";
 
 function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setShowScreen] = useState(0);
+  const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
@@ -20,22 +21,38 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   return (
     <div className="pageContainer">
       <div className="rightSideDiv rightSideBg1">
-        {showScreen <= 5 ? <QuestionForm /> : <></>}
+        {
+          showScreen <= 5 ?
+            <div className="leftSideMain">
+              {pastScreen > 5 ? (
+                <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+                  {pastScreen == 6 ? (
+                    <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                  ) : pastScreen == 7 ? <>
+                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                    <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={showRightMenu && isTab ? false : true} />
+                  </> : <></>}
+                </div>
+              ) : <>
+                <OptionButtons />
+                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
+              </>}
+            </div> :
+            <></>
+        }
         <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen > 5 ? (
           <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
             {showScreen == 6 ? (
-              <ShareForm showScreen={showScreen} setShowScreen={setShowScreen} />
+              <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
             ) : (
               <>
-                <ViewForm />
-                <RightButtons hideMenu={showRightMenu && isTab ? false : true} />
+                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={showRightMenu && isTab ? false : true} />
               </>
             )}
           </div>
-        ) : (
-          <OptionButtons />
-        )}
+        ) : <></>}
         {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} />
         ) : (
@@ -45,7 +62,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
     </div>
   );
 }

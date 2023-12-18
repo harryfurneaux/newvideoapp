@@ -7,6 +7,7 @@ const ProgressForm = ({ setScreen }: { setScreen: any }) => {
   return (
     <Flip direction="horizontal">
       <div className="kjjfds-janwkea knlsdj0wjew">
+        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
         <div onClick={() => {
           setScreen(4)
         }} className="kjdslfk-sjadnkwe">

@@ -14,7 +14,7 @@ const CheckForm = ({
 }) => {
   return (
     <Fade>
-      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd height-none">
+      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd white-form height-none">
         <div className="check-form">
           <div className="d-flex">
             <img src={no_pic} />

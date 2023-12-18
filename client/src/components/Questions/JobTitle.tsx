@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Icons from "../icons";
 
-const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
+const JobTitle = ({ setMainScreen, setShowScreen, showMessage }: { setMainScreen: any, setShowScreen: any, showMessage: boolean }) => {
   const [selected, setselected] = useState(0);
   return (
-    <div className="jobPositionDiv">
+    <div className="jobPositionDiv" onClick={() => setShowScreen(7)}>
       <div className="kjsldk-jdansd">
         <Icons iconNumber={95} />
         <div className="kjnkodsa-jaddd">
@@ -50,7 +50,9 @@ const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
               <Icons iconNumber={81} />
 
             </button> */}
-            <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1">
+            <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => {
+              setMainScreen(2);
+            }}>
               <Icons iconNumber={92} />12
             </button>
           </div>
