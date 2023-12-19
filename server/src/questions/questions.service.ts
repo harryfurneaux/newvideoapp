@@ -10,15 +10,17 @@ export class QuestionsService {
   constructor(@InjectModel('Question') private QuestionModel: Model<Question>) { }
 
   async create(createQuestionDto: CreateQuestionDto) {
-    return ((await this.QuestionModel.create(createQuestionDto))).populate({
-      path: 'job_id'
-    });
+    return ((await this.QuestionModel.create(createQuestionDto)))
+    // .populate({
+    //   path: 'job_id'
+    // });
   }
 
   async findAll() {
-    let questions = await this.QuestionModel.find().populate({
-      path: 'job_id'
-    })
+    let questions = await this.QuestionModel.find()
+    // .populate({
+    //   path: 'job_id'
+    // })
     if (questions.length == 0) {
       throw new NotFoundException('questions not found')
     }
@@ -27,9 +29,9 @@ export class QuestionsService {
 
   async findOne(id: string) {
     let question = await this.QuestionModel.findById(id)
-      .populate({
-        path: 'job_id'
-      })
+      // .populate({
+      //   path: 'job_id'
+      // })
     if (!question) {
       throw new NotFoundException('question not found');
     }
@@ -45,9 +47,10 @@ export class QuestionsService {
       id,
       updateQuestionDto,
       { new: true }
-    ).populate({
-      path: 'job_id',
-    })
+    )
+    // .populate({
+    //   path: 'job_id',
+    // })
   }
 
   async remove(id: string) {
@@ -55,22 +58,23 @@ export class QuestionsService {
     if (!question) {
       throw new NotFoundException('question not found');
     }
-    return await this.QuestionModel.findByIdAndRemove(id).populate({
-      path: 'job_id',
-    })
+    return await this.QuestionModel.findByIdAndRemove(id)
+    // .populate({
+    //   path: 'job_id',
+    // })
   }
 
-  async jobQuestions(id: string) {
-    let questions = await this.QuestionModel.find({
-      job_id: id
-    }).populate({
-      path: 'job_id',
-    })
-    if (!questions) {
-      throw new NotFoundException('questions not found');
-    }
-    return questions
-  }
+  // async jobQuestions(id: string) {
+  //   let questions = await this.QuestionModel.find({
+  //     job_id: id
+  //   }).populate({
+  //     path: 'job_id',
+  //   })
+  //   if (!questions) {
+  //     throw new NotFoundException('questions not found');
+  //   }
+  //   return questions
+  // }
 }
 
 

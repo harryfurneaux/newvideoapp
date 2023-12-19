@@ -41,8 +41,8 @@ export class QuestionsController {
     return this.questionsService.remove(id);
   }
 
-  @Get('job/:id')
-  jobQuestions(@Param('id') id: string) {
-    return this.questionsService.jobQuestions(id);
-  }
+  // @Get('job/:id')
+  // jobQuestions(@Param('id') id: string) {
+  //   return this.questionsService.jobQuestions(id);
+  // }
 }
