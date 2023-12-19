@@ -14,8 +14,8 @@ export class JobsController {
   constructor(private readonly jobsService: JobsService) { }
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(ROLE.INTERVIEWER)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(ROLE.INTERVIEWER)
   create(@Body() createJobDto: CreateJobDto, @Request() req) {
     createJobDto.created_by = req.user.id
     return this.jobsService.create(createJobDto);

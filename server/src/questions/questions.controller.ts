@@ -15,8 +15,8 @@ export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) { }
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(ROLE.INTERVIEWER)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(ROLE.INTERVIEWER)
   create(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionsService.create(createQuestionDto);
   }

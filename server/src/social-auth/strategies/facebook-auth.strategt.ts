@@ -46,8 +46,8 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
   async fetchUserData(accessToken: string): Promise<any> {
     
     try {
-      console.log("'accces tokn in fetcjusr",accessToken)
-      const response = await axios.get('https://graph.facebook.com/v13.0/userinfo', {
+      console.log("'accces tokn in fetch user",accessToken)
+      const response = await axios.get('https://graph.facebook.com/v13.0/me', {
         params: {
             access_token: accessToken,
             authorized:'granted',

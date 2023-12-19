@@ -24,8 +24,8 @@ export class CreateUserDto {
     @IsDateString()
     birth_date: Date;
 
-    @IsEnum(ROLE, { message: 'Invalid user role' })
-    role: ROLE;
+    // @IsEnum(ROLE, { message: 'Invalid user role' })
+    // role: ROLE;
 }
 
 

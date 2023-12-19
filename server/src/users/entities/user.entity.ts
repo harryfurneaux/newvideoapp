@@ -22,8 +22,8 @@ export class User extends Document {
   @Prop()
   company_name: String;
 
-  @Prop({ enum: ROLE })
-  role: ROLE;
+  // @Prop({ enum: ROLE })
+  // role: ROLE;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -29,9 +29,15 @@ export class UsersService {
 
     createUserDto.password = await hashPassword(createUserDto.password);
 
-    return await this.UserModel.create(createUserDto);
-  }
+    const createdUser = await this.UserModel.create(createUserDto);
 
+    // Exclude the password field from the returned user object
+    return createdUser.toObject({ virtuals: true, versionKey: false, transform: (_doc, ret) => {
+      delete ret.password;
+      return ret;
+    } }) as User;
+  }
+  
   async findAll(): Promise<User[] | []> {
     return await this.UserModel.find().select('-password');
   }
@@ -71,7 +77,7 @@ export class UsersService {
 
     const jwtToken = await this.authService.generateToken({
       id: user.id,
-      role: user.role,
+      // role: user.role,
     });
  
     await this.messagingService.initializeUser(user.id);
@@ -79,7 +85,7 @@ export class UsersService {
     return {
       name: user.name,
       email: user.email,
-      role: user.role,
+      // role: user.role,
       token: jwtToken, 
 
     };

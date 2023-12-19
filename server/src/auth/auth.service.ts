@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -10,8 +10,26 @@ export class AuthService {
         return this.jwtService.sign(payload);
     }
 
-    // Example method to verify a JWT token
-    async verifyToken(token: string): Promise<any> {
-        return this.jwtService.verify(token);
+        
+
+  async verifyToken(token: string): Promise<any> {
+    try {
+        const decoded = this.jwtService.verify(token);
+            return decoded;
+    } catch (error) {
+        throw new UnauthorizedException('Invalid token');
     }
+}
+
+// Method to check if a token has expired
+isTokenExpired(decodedToken: any): boolean {
+  const currentTimestampInSeconds = Math.floor(Date.now() / 1000);
+  const expirationTimestamp = decodedToken.exp;
+
+  // console.log(`Current time: ${new Date(currentTimestampInSeconds * 1000)}`);
+  // console.log(`Token expiration time: ${new Date(expirationTimestamp * 1000)}`);
+
+  return currentTimestampInSeconds > expirationTimestamp;
+}
+  
 }
