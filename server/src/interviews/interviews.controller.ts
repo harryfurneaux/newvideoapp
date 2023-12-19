@@ -17,8 +17,8 @@ export class InterviewsController {
   ) { }
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(ROLE.INTERVIEWEE)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(ROLE.INTERVIEWEE)
   // @UseInterceptors(FileInterceptor('video'))
   async create(@UploadedFile(
   //   new ParseFilePipeBuilder().addFileTypeValidator({

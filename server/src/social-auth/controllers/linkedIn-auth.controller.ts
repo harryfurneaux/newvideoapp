@@ -1,13 +1,16 @@
 import { Controller, Get, Req, Res, UseGuards, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LinkedInAuthService } from '../services/linkedin-auth.service';
-import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy';  // Import LinkedInStrategy
+import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy'; 
+import { UsersService } from 'src/users/users.service';
 
 @Controller('auth/linkedin')
 export class LinkedInAuthController {
   constructor(
     private readonly linkedInAuthService: LinkedInAuthService,
     private readonly linkedInStrategy: LinkedInStrategy,
+    private readonly userService: UsersService,
+
   ) {}
 
   @Get()
@@ -25,9 +28,16 @@ export class LinkedInAuthController {
       
       if (userData) {
 
+        const loggedInUser = await this.userService.login({
+          email: userData.email,
+          password: '12345', 
+        });
+
         return res.status(HttpStatus.OK).json({
           statusCode: HttpStatus.OK,
-          data: userData,
+          // data: userData,
+          data: loggedInUser,
+
         });
       } else {
         return res.status(HttpStatus.UNAUTHORIZED).json({

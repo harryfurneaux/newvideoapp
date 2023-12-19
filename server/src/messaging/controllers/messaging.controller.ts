@@ -46,12 +46,12 @@ export class MessagingController {
     @Body() sendMessageDto: SendMessageDto,
   ) {
     try {
-      await this.messagingService.sendMessage(
+      const response = await this.messagingService.sendMessageWithWebSocket(
         channelId,
         userId,
         sendMessageDto.message,
       );
-      return { success: true };
+      return { success: true, message: response.message };
     } catch (error) {
       console.log(error.message);
       return { error: 'Failed to send message.' };
@@ -68,4 +68,16 @@ export class MessagingController {
       return { error: 'Failed to get messages.' };
     }
   }
+
+  @Get('/get-all-channels')
+  async getAllChannels() {
+    try {
+      const channels = await this.messagingService.getAllChannels();
+      return  channels ;
+    } catch (error) {
+      console.error(`Error getting all channels: ${error.message}`);
+      return { error: 'Failed to get all channels.' };
+    }
+  }
+
 }

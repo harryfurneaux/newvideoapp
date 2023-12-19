@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { StreamChat, MessageResponse } from 'stream-chat';
+import { StreamChat, MessageResponse, ChannelData } from 'stream-chat';
 import { config } from 'dotenv';
+import { MessagesGateway } from '../gateways/messaging.gateway';
+
+
 
 config();
 
@@ -8,7 +11,7 @@ config();
 export class MessagingService {
   private client: StreamChat;
 
-  constructor() {
+  constructor(private readonly messagesGateway: MessagesGateway) {
     this.client = new StreamChat(
       process.env.STREAM_CHAT_API_KEY,
       process.env.STREAM_CHAT_SECRET,
@@ -40,13 +43,38 @@ export class MessagingService {
     return channel;
   }
 
-  async sendMessage(channelId: string, userId: string, message: string) {
-    const channel = this.client.channel('messaging', channelId);
-    await channel.sendMessage({
-      text: message,
-      user_id: userId,
-    });
+
+  async sendMessageWithWebSocket(
+    channelId: string,
+    userId: string,
+    messageText: string,
+    attachments: any[] = [], 
+    reactions: any[] = [] 
+  ) {
+      try {
+  
+      const channel = this.client.channel('messaging', channelId);
+      const response = await channel.sendMessage({
+        text: messageText,
+        user_id: userId,
+        attachments,
+        reactions,
+        });
+  
+      console.log('Message sent successfully:', response.message);
+  
+      this.messagesGateway.server.emit('message', response.message);
+      
+      console.log('Message emitted to WebSocket clients');
+  
+      return response;
+    } catch (error) {
+      console.error('Error sending message:', error.message);
+      throw error; 
+    }
   }
+  
+
 
   async getMessages(channelId: string): Promise<MessageResponse[]> {
     const channel = this.client.channel('messaging', channelId);
@@ -57,4 +85,41 @@ export class MessagingService {
 
     return messages;
   }
+
+  async getAllChannels(): Promise<ChannelData[]> {
+    try {
+      const queryResult = await this.client.queryChannels({}, { limit: -1 }) as unknown;
+      const channels = this.breakCircularReferences(queryResult) as ChannelData[];
+      
+      // console.log('Query Result:', channels);
+  
+      return channels;
+      } catch (error) {
+      console.error(`Error getting channels: ${error.message}`);
+      throw error;
+    }
+  }
+
+  private breakCircularReferences(obj: any, seen: Set<any> = new Set()): any {
+    if (obj && typeof obj === 'object') {
+      if (seen.has(obj)) {
+        return '[Circular Reference]';
+      }
+      seen.add(obj);
+  
+      if (Array.isArray(obj)) {
+        return obj.map(item => this.breakCircularReferences(item, seen));
+      }
+  
+      const result: { [key: string]: any } = {};
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          result[key] = this.breakCircularReferences(obj[key], seen);
+        }
+      }
+      return result;
+    }
+    return obj;
+  }
+    
 }

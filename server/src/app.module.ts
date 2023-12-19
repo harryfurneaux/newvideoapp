@@ -23,6 +23,7 @@ import { SocialAuthModule } from './social-auth/social-auth.module';
 import { ForgetPasswordModule } from './auth/forget-password/forget-password.module';
 //messaging module
 import { MessagingModule } from './messaging/messaging.module';
+import { AuthModule } from './auth/auth.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { InterviewerModule } from './interviewer/interviewer.module';
 
@@ -43,6 +44,7 @@ import { InterviewerModule } from './interviewer/interviewer.module';
     JwtModule.register({
       secret: process.env.JWT_SECRET, // Replace with your actual JWT secret key
       signOptions: { expiresIn: '1d' }, // Replace with your desired token expiration time
+
     }),
     VideoUploadingModule,
     QuestionsModule,
@@ -52,7 +54,8 @@ import { InterviewerModule } from './interviewer/interviewer.module';
     ForgetPasswordModule,
     MessagingModule,
     NotificationsModule,
-    InterviewerModule
+    InterviewerModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [

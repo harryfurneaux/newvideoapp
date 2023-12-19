@@ -2,6 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { GoogleAuthService } from '../services/google-auth.service';
 
 config();
@@ -20,12 +21,27 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
     const { name, emails, photos } = profile;
+
+
     const user = await this.googleAuthService.googleLogin(emails[0].value, name, profile._json.location || null);
 
     done(null, user);
   }
-
   
+  async getUserData(accessToken: string): Promise<any> {
+    const url = 'https://www.googleapis.com/oauth2/v3/userinfo';
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+
+    try {
+      const response = await axios.get(url, { headers });
+
+      return response
+    } catch (error) {
+      // Handle errors, maybe token expired or invalid
+      throw new Error('Failed to fetch user data from Google.');
+    }
   }
 
-
+}

@@ -12,12 +12,13 @@ import { FacebookStrategy } from './strategies/facebook-auth.strategt'
 import { LinkedInAuthService } from './services/linkedin-auth.service';
 import { LinkedInAuthController } from './controllers/linkedin-auth.controller';  
 import { LinkedInStrategy } from './strategies/linkedin-auth.strategy';
+import { UsersModule } from '../users/users.module';
 
 @Module({
     imports: [
         PassportModule,
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-        ConfigModule, 
+        ConfigModule, UsersModule
     ],
     controllers: [GoogleAuthController, FacebookAuthController, LinkedInAuthController],
     providers: [GoogleAuthService, GoogleStrategy, FacebookAuthService, FacebookStrategy, LinkedInAuthService, LinkedInStrategy],

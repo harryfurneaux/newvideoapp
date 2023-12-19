@@ -15,8 +15,8 @@ export class InterviewerController {
   ) { }
 
   @Post("create")
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(ROLE.INTERVIEWER)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(ROLE.INTERVIEWER)
   async create(
   @Body() createInterviewerDto: CreateInterviewerDto, @Request() req) {
         createInterviewerDto.interviewer = req.user.id
