@@ -13,8 +13,8 @@ export class Question extends Document {
 
     //making link with job
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
-    job_id: Job;
+    // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
+    // job_id: Job;
 }
 
 

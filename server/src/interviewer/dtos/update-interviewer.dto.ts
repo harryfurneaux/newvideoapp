@@ -9,13 +9,13 @@
         question_id: string;
 
 
-        @IsOptional()
-        @IsMongoId()
-        interviewee: string;
+        // @IsOptional()
+        // @IsMongoId()
+        // interviewee: string;
 
         @IsOptional()
-        @IsMongoId()
-        job_id: string
+        // @IsMongoId()
+        job_title: string
 
 
         @IsOptional()

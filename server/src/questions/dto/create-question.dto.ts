@@ -8,6 +8,6 @@ export class CreateQuestionDto {
     @IsNumber()
     time_duration: number;
 
-    @IsMongoId({ message: 'Invalid created_by ID format' })
-    job_id: string;
+    // @IsMongoId({ message: 'Invalid created_by ID format' })
+    // job_id: string;
 }

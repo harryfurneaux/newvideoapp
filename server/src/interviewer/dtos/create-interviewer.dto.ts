@@ -1,17 +1,18 @@
-import { IsMongoId,  IsOptional } from 'class-validator';
+import { IsMongoId,  IsOptional, IsArray } from 'class-validator';
 
 
 export class CreateInterviewerDto {
-    @IsMongoId()
-    question_id: string;
+    @IsArray()
+    // @IsMongoId({ each: true })
+    questions: string[];
+  
+    // @IsOptional()
+    // @IsMongoId()
+    // interviewee: string;
 
     @IsOptional()
-    @IsMongoId()
-    interviewee: string;
-
-    @IsOptional()
-    @IsMongoId()
-    job_id: string
+    // @IsMongoId()
+    job_title: string
 
     @IsOptional()
     @IsMongoId()
