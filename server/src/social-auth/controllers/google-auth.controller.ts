@@ -3,10 +3,13 @@ import { GoogleAuthService } from '../services/google-auth.service';
 import { GoogleStrategy } from '../strategies/google-auth.stategy';
 
 import { AuthGuard } from '@nestjs/passport';
+import { UsersService } from 'src/users/users.service';
+
 
 @Controller('auth/google')
 export class GoogleAuthController {
   constructor(private readonly googleAuthService: GoogleAuthService,
+    private readonly userService: UsersService,
     private readonly googleStrategy: GoogleStrategy) { }
 
   @Get('')
@@ -15,19 +18,20 @@ export class GoogleAuthController {
 
 
   @Get('callback')
-  // @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@Req() req) {
 
     const accessToken = req.query.code
 
     const { data } = await this.googleStrategy.getUserData(accessToken)
 
-    const user = await this.googleAuthService.googleLogin(
-      data.email,
-      data.name,
-      data.location ?? null
-    );
-    return user;
+    const loggedInUser = await this.userService.login({
+      email: data.email,
+      password: '12345', 
+    });
+
+    return loggedInUser;
+
+
   }
 
 
