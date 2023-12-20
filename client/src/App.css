@@ -760,9 +760,9 @@ body {
   top: 3px;
   border-radius: 21px;
 
-  background:
+  /* background:
     radial-gradient(circle, transparent 70%, black 150%),
-    url('./images/i6.png');
+    url('./images/i6.png'); */
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;

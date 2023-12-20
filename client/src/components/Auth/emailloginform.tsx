@@ -1,10 +1,27 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Icons from "../../components/icons";
+import { useAuth } from "../../hooks/useAuth";
 
-const EmailLoginForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
+const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen }: { setshowScreen: any, className?: string, setMainScreen: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
+  const [siginInForm, setSignInForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { login } = useAuth()
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setSignInForm({
+      ...siginInForm,
+      [name]: value,
+    });
+  };
+
 
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
@@ -16,11 +33,11 @@ const EmailLoginForm = ({ setshowScreen, className = '' }: { setshowScreen: any,
           <div className={`${isTabletOrMobile ? "hjk-ajwednw" : ""} emailRowDiv sadhasdn-we`}>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={90} />
-              <input placeholder="Email" />
+              <input placeholder="Email" name='email' onChange={handleChange} />
             </div>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={9} />
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password" onChange={handleChange} />
             </div>
           </div>
           <div className="jdaskfjnas-ajaied">
@@ -39,7 +56,12 @@ const EmailLoginForm = ({ setshowScreen, className = '' }: { setshowScreen: any,
           </div>
           <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
             <button onClick={() => {
-              setshowScreen(5)
+              login(siginInForm).then((res) => {
+
+                localStorage.setItem('loggedin', 'true');
+                setMainScreen(1)
+              }).catch((err) => err)
+              // setshowScreen(5)
             }} className={`btn`}>
               CONTINUE
               <div className="kdksa-ajwmd">

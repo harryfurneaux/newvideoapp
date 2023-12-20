@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import Icons from "./icons"
 import TinyModal from "./Modals/tiny_modal";
 
-const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, hideMenu: boolean }) => {
+const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, hideMenu: boolean, }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [showDelInterview, setShowDelInterview] = useState(false);
 
@@ -31,7 +31,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu }:
       <Icons iconNumber={49} />
       Delete
     </button>
-    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" />
+    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} />
   </div>
 }
 

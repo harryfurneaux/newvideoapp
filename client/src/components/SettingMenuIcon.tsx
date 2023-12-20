@@ -12,18 +12,18 @@ import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 import TinyModal from "./Modals/tiny_modal";
 
-const SettingMenuIcon = () => {
+const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
     $(".overlay.btn-close").hide();
     $(".overlay.btn-close").click(function () {
       // @ts-ignore
       $(this).hide();
     });
-  
+
     $(".btn-show").click(function () {
       $(".overlay.btn-close").show();
     });
-  
+
     $(window).click(function () {
       if ($(".overlay.show").length == 0) {
         $(".overlay.btn-close").hide();
@@ -104,7 +104,7 @@ const SettingMenuIcon = () => {
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
       <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
-      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" />
+      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icons from "../components/icons";
 import RightLayout2 from "../components/rightLayout2";
 import BottomMenu from "../components/bottomMenu";
@@ -10,13 +10,24 @@ import ShareForm from "../components/Questions/ShareForm";
 import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
-
-function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
+import axios from "axios";
+import authConfig from '../configs/auth'
+function View({ mainScreen, setMainScreen, setJobViewContext }: { mainScreen: number, setMainScreen: any, setJobViewContext: any }) {
   const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
+  const [jobView, setJobView] = useState(null)
+  useEffect(() => {
+
+
+    if (jobView) {
+
+      setJobViewContext(jobView)
+    }
+
+  }, [jobView])
 
   return (
     <div className="pageContainer">
@@ -29,13 +40,13 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
                   {pastScreen == 6 ? (
                     <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
                   ) : pastScreen == 7 ? <>
-                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} />
                     <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={showRightMenu && isTab ? false : true} />
                   </> : <></>}
                 </div>
               ) : <>
                 <OptionButtons />
-                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
+                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
               </>}
             </div> :
             <></>
@@ -47,7 +58,7 @@ function View({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
               <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
             ) : (
               <>
-                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} />
                 <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={showRightMenu && isTab ? false : true} />
               </>
             )}

@@ -1,9 +1,30 @@
 import React, { useState } from "react";
 import Icons from "../../components/icons";
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from "axios";
+import { useLinkedIn } from 'react-linkedin-login-oauth2';
 
-const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
+
+const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowScreen: any, className?: string, setMainScreen: any }) => {
   const [isHoverOrActive, setisHoverOrActive] = React.useState(false);
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => {
 
+      axios.get('http://localhost:4000/auth/google/callback', { params: { code: tokenResponse.access_token } }).then((res) => setMainScreen(1))
+    }
+  });
+  const { linkedInLogin } = useLinkedIn({
+    clientId: '77ezxuyzh6xmh6',
+    redirectUri: 'http://localhost:4000/auth/linkedin/callback',
+    scope: 'openid,profile,email',
+    onSuccess: (code) => {
+      setMainScreen(1)
+
+    },
+    onError: (error) =>
+      error
+    ,
+  });
   return (
     <div className={`kjjfds-janwkea ${className}`}>
       <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
@@ -14,11 +35,11 @@ const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
             <Icons iconNumber={3} />
             Log in with Facebook
           </button>
-          <button className="btn">
+          <button className="btn" onClick={() => login()}>
             <Icons iconNumber={4} />
             Log in with Google
           </button>
-          <button className="btn">
+          <button className="btn" onClick={() => linkedInLogin()}>
             <Icons iconNumber={5} />
             Log in with LinkedIn
           </button>

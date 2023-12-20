@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Icons from "../../components/icons";
 import { useMediaQuery } from 'react-responsive'
 
-const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
+const SignInForm = ({ setshowScreen, className = '', handleFormChange }: { setshowScreen: any, className?: string, handleFormChange: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
   return (
@@ -15,15 +15,19 @@ const SignInForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
           <div className={`${isTabletOrMobile ? "hjk-ajwednw" : ""} emailRowDiv sadhasdn-we`}>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={10} />
-              <input placeholder="Full Name" />
+              <input placeholder="Full Name" name="name" onChange={handleFormChange} />
+            </div>
+            <div className="jksd-kosaeknae">
+              <Icons iconNumber={10} />
+              <input placeholder="Email" name="email" onChange={handleFormChange} />
             </div>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={9} />
-              <input type="password" placeholder="Password" />
+              <input type="password" name="password" placeholder="Password" onChange={handleFormChange} />
             </div>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={9} />
-              <input type="password" placeholder="Confirm Password" />
+              <input type="password" name="confirm_password" placeholder="Confirm Password" onChange={handleFormChange} />
             </div>
           </div>
           <div className="jdaskfjnas-ajaied">

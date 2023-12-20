@@ -5,7 +5,7 @@ import SettingMenuIcon from './SettingMenuIcon';
 const RightLayout = ({ screen }: { screen: number }) => {
   return <div className="rightSideDiv rightSideDivsadsa kjdsfkn-ajdnkw">
     <div className="d-flex justify-content-end">
-      <SettingMenuIcon />
+      <SettingMenuIcon setMainScreen={''} />
     </div>
     <div className="mklfasd-dmsaew nakds-ajews p-0">
       <div className={`djfkaspk-nasrm ${screen == 1 ? "" : "border-0 bg-transparent"}`}>

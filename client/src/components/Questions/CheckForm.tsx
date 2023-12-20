@@ -25,9 +25,9 @@ const CheckForm = ({
             </div>
           </div>
           <div className="check-form-body">
-            <CheckFormBox />
-            <CheckFormBox />
-            <CheckFormBox />
+            <CheckFormBox questions={''} />
+            <CheckFormBox questions={''} />
+            <CheckFormBox questions={''} />
           </div>
           <div className="check-form-btn-div snasdj-sawdne-1">
             <button
