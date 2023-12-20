@@ -7,9 +7,9 @@ import NextForm from '../components/Start/nextForm';
 import ProgressForm from '../components/Start/progress';
 import FinishForm from '../components/Start/finish';
 
-function GetScreen(screen: number, setScreen: any) {
+function GetScreen(screen: number, setScreen: any, jobViewContext: any) {
   switch (screen) {
-    case 0: return <BeginForm setScreen={setScreen} />
+    case 0: return <BeginForm setScreen={setScreen} jobViewContext={jobViewContext} />
     case 1: return <RecordForm setScreen={setScreen} />
     case 2: return <FinishForm setScreen={setScreen} />
     case 3: return <ProgressForm setScreen={setScreen} />
@@ -17,12 +17,12 @@ function GetScreen(screen: number, setScreen: any) {
   }
 }
 
-function Next() {
+function Next({ jobViewContext }: { jobViewContext: any }) {
   const [screen, setScreen] = useState(0);
   return (
     <div className="pageContainer">
       <div className="rightSideDiv rightSideBg pos-rel">
-        {GetScreen(screen, setScreen)}
+        {GetScreen(screen, setScreen, jobViewContext)}
       </div>
       <RightLayout screen={screen} />
     </div>

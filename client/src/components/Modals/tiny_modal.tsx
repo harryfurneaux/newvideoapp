@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 // @ts-ignore
 import $ from "jquery";
 
-const TinyModal = ({ show, handleClose, type }: { show: boolean, handleClose: any, type: string }) => {
+const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, handleClose: any, type: string, setMainScreen: any }) => {
   useEffect(() => {
     if (show && type == "delete_interview") {
       $(".modal-backdrop").css("opacity", 0);
@@ -35,7 +35,14 @@ const TinyModal = ({ show, handleClose, type }: { show: boolean, handleClose: an
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleClose}>Close</Button>
-        <Button className="bordered">
+        <Button className="bordered" onClick={() => {
+          if (type == 'logout') {
+
+            handleClose()
+            setMainScreen(4)
+          }
+
+        }}>
           {
             type == "delete_account" ? "Delete Account" :
               type == "remove_method" ? "Remove method" :

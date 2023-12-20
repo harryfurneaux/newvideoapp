@@ -2,9 +2,9 @@ import CheckFormBox from "../CheckBoxForm";
 import Icons from "../icons";
 //@ts-ignore
 import { Flip } from "react-awesome-reveal"
-const NextForm = ({setScreen}:{setScreen:any}) => {
-    return (
-      <Flip direction="horizontal">  <div className="kjjfds-janwkea1 kjjfds-janwkea2 height-none">
+const NextForm = ({ setScreen }: { setScreen: any }) => {
+  return (
+    <Flip direction="horizontal">  <div className="kjjfds-janwkea1 kjjfds-janwkea2 height-none">
       <div className="kafms-kfsamfer">
         <div className="skfalk-smdsefds">
           <div className="kdjnfakdsfm-jsamre">
@@ -21,9 +21,9 @@ const NextForm = ({setScreen}:{setScreen:any}) => {
           </div>
         </div>
         <div className="njfk-amew">
-          <CheckFormBox />
-          <CheckFormBox />
-          <CheckFormBox />
+          <CheckFormBox questions={''} />
+          <CheckFormBox questions={''} />
+          <CheckFormBox questions={''} />
         </div>
         <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
           <div className="continueBtnDiv snasdj-sawdne">

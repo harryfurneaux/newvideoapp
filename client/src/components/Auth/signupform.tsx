@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Icons from "../icons";
+import { useAuth } from "../../hooks/useAuth";
 
-const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
+const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormChange }: { setshowScreen: any, className?: string, signUpFormData: any, handleFormChange: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
+  const { signup } = useAuth()
 
   return (
     <div className={`kjjfds-janwkea ${className}`}>
@@ -20,20 +22,22 @@ const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
               <Icons iconNumber={58} />
               <input
                 placeholder={birthClicked ? " DD   |    MM    |   YYYY" : " Birth Date"}
+                name='birth_date'
                 onClick={() => setBirthClicked(true)}
                 onBlur={() => setBirthClicked(false)}
+                onChange={handleFormChange}
               />
             </div>
             <div className="jksd-kosaeknae active-asdkjd">
               <Icons iconNumber={12} />
-              <input placeholder="Location" />
+              <input placeholder="Location" name='location' onChange={handleFormChange} />
               <div className="asjdssads">
                 <Icons iconNumber={78} />
               </div>
             </div>
             <div className="jksd-kosaeknae">
               <Icons iconNumber={13} />
-              <input placeholder="Company" />
+              <input placeholder="Company" name='company_name' onChange={handleFormChange} />
             </div>
           </div>
           <div className="jdaskfjnas-ajaied">
@@ -52,7 +56,9 @@ const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
           <div className="continueBtnDiv snasdj-sawdne">
             <button
               onClick={() => {
+                signup(signUpFormData)
                 setshowScreen(4)
+
               }} className="btn kjlsjadm-kdmsd-2">
               COMPLETE SIGNUP
               <Icons iconNumber={94} />
