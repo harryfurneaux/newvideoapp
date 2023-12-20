@@ -196,7 +196,7 @@ http://localhost:4000${authConfig.addJobEndPoint}`, params)
         {showScreen == 3 ? (
           <Zoom>
             <div className="kjdaflj-adjkwmd">
-              {questions.map((data: any, index: number,) => <Question setselected={setselected} selected={selected} questions={data} questionIds={questionIds} setQuestionIds={setQuestionsIds} />)}
+              {questions?.map((data: any, index: number,) => <Question setselected={setselected} selected={selected} questions={data} questionIds={questionIds} setQuestionIds={setQuestionsIds} />)}
 
               {/* <Question setselected={setselected} selected={selected} />
               <Question setselected={setselected} selected={selected} />

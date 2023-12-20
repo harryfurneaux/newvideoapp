@@ -24,7 +24,7 @@ http://localhost:4000${authConfig.getJobsEndpPoint}`)
   }
   return (
     <div className="leftSideContent">
-      {jobs.map((data, index) =>
+      {jobs?.map((data, index) =>
 
         <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
       )}
