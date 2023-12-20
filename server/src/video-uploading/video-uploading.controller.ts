@@ -13,31 +13,11 @@ export class VideoUploadingController {
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async create(@UploadedFile() file?: Express.Multer.File) {
+
     return await this.imageKitService.uploadImage(file, file.originalname)
     // this.videoUploadingService.create(createVideoUploadingDto);
   }
-  // @Post()
-  // @UseInterceptors(FileInterceptor('file'))
-  // async create(@UploadedFile() file?: Express.Multer.File) {
-  //   try {
-  //     const uploadedUrl = await this.imageKitService.uploadImage(file, file.originalname);
-  //     const fileId = this.getFileIdFromUrl(uploadedUrl);
 
-  //     return {
-  //       uploadedUrl,
-  //       fileId,
-  //     };
-  //   } catch (error) {
-  //     console.error('Error creating video:', error);
-  //     throw new InternalServerErrorException('Error creating video');
-  //   }
-  // }
-
-
-  // getFileIdFromUrl(url: string): string {
-  //   const parts = url.split('/');
-  //   return parts[parts.length - 1];
-  // }
 
 
   @Get()
