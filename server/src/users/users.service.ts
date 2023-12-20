@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, BadRequestException, NotFoundException} from '@nestjs/common';
+import { Injectable, ConflictException, BadRequestException, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserLoginDto } from './dto/login-user.dto';
@@ -17,7 +17,7 @@ export class UsersService {
     private readonly authService: AuthService,
     private readonly messagingService: MessagingService,
 
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<User | null> {
     if (await this.findOne(createUserDto.email)) {
@@ -32,12 +32,14 @@ export class UsersService {
     const createdUser = await this.UserModel.create(createUserDto);
 
     // Exclude the password field from the returned user object
-    return createdUser.toObject({ virtuals: true, versionKey: false, transform: (_doc, ret) => {
-      delete ret.password;
-      return ret;
-    } }) as User;
+    return createdUser.toObject({
+      virtuals: true, versionKey: false, transform: (_doc, ret) => {
+        delete ret.password;
+        return ret;
+      }
+    }) as User;
   }
-  
+
   async findAll(): Promise<User[] | []> {
     return await this.UserModel.find().select('-password');
   }
@@ -79,14 +81,15 @@ export class UsersService {
       id: user.id,
       // role: user.role,
     });
- 
+
     await this.messagingService.initializeUser(user.id);
 
     return {
+      id: user.id,
       name: user.name,
       email: user.email,
       // role: user.role,
-      token: jwtToken, 
+      token: jwtToken,
 
     };
   }
