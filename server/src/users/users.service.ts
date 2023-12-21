@@ -16,7 +16,6 @@ export class UsersService {
     @InjectModel('User') private UserModel: Model<User>,
     private readonly authService: AuthService,
     private readonly messagingService: MessagingService,
-
   ) { }
 
   async create(createUserDto: CreateUserDto): Promise<User | null> {
@@ -26,11 +25,8 @@ export class UsersService {
     if (createUserDto.password !== createUserDto.confirm_password) {
       throw new BadRequestException('Passwords do not match');
     }
-
     createUserDto.password = await hashPassword(createUserDto.password);
-
     const createdUser = await this.UserModel.create(createUserDto);
-
     // Exclude the password field from the returned user object
     return createdUser.toObject({
       virtuals: true, versionKey: false, transform: (_doc, ret) => {
@@ -59,6 +55,10 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     if (!(await this.UserModel.findById(id)))
       throw new NotFoundException('user not found');
+    if (updateUserDto.password) {
+      const hashedPassword = await hashPassword(updateUserDto.password);
+      updateUserDto.password = hashedPassword;
+    }
     return await this.UserModel.findByIdAndUpdate(id, updateUserDto, {
       new: true,
     }).select('-password');
@@ -76,21 +76,17 @@ export class UsersService {
     if (!(await comparePassword(userLoginDto.password, user.password))) {
       throw new BadRequestException('Invalid credentials');
     }
-
     const jwtToken = await this.authService.generateToken({
       id: user.id,
       // role: user.role,
     });
-
     await this.messagingService.initializeUser(user.id);
-
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       // role: user.role,
       token: jwtToken,
-
     };
   }
 
@@ -99,15 +95,32 @@ export class UsersService {
     newPassword: string,
   ): Promise<User | null> {
     const user = await this.UserModel.findOne({ email });
-
     if (!user) {
       throw new NotFoundException('User not found');
     }
-
     user.password = await hashPassword(newPassword);
-
     const updatedUser = await user.save();
-
     return updatedUser;
+  }
+
+  async socialLogin(socialUserData: any): Promise<any> {
+    console.log("get in social fuc", socialUserData)
+    const { name, email } = socialUserData;
+    let user = await this.UserModel.findOne({ email });
+    if (!user) {
+      user = await this.UserModel.create({
+        name,
+        email,
+      });
+    }
+    const jwtToken = await this.authService.generateToken({
+      id: user.id,
+    });
+    await this.messagingService.initializeUser(user.id);
+    return {
+      name: user.name,
+      email: user.email,
+      token: jwtToken,
+    };
   }
 }

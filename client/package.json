@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
+    "@greatsumini/react-facebook-login": "^3.3.3",
     "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -24,6 +25,7 @@
     "react-linkedin-login-oauth2": "^2.0.1",
     "react-owl-carousel": "^2.3.3",
     "react-responsive": "^9.0.2",
+    "react-router-dom": "^6.21.0",
     "react-scripts": "5.0.1",
     "react-webcam": "^7.2.0",
     "recharts": "^2.7.2",

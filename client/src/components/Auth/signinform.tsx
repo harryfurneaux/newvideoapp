@@ -3,10 +3,11 @@ import Icons from "../../components/icons";
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
-
+import FacebookLogin from '@greatsumini/react-facebook-login';
 
 const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowScreen: any, className?: string, setMainScreen: any }) => {
   const [isHoverOrActive, setisHoverOrActive] = React.useState(false);
+
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
 
@@ -15,14 +16,24 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
   });
   const { linkedInLogin } = useLinkedIn({
     clientId: '77ezxuyzh6xmh6',
-    redirectUri: 'http://localhost:4000/auth/linkedin/callback',
+    redirectUri: 'http://localhost:3000/linkedIn-Auth',
     scope: 'openid,profile,email',
     onSuccess: (code) => {
-      setMainScreen(1)
 
+      console.log('code here', code);
+      axios.get('http://localhost:4000/auth/linkedin/callback', {
+        params: {
+          code,
+        }
+      }).then(console.log)
+      // setMainScreen(1)
+      // window.close()
     },
-    onError: (error) =>
-      error
+    onError: (error) => {
+      console.log(error)
+      setMainScreen(0)
+
+    }
     ,
   });
   return (
@@ -31,10 +42,27 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
       <div className="jhjij-sanwe">
         <h3>Sign in</h3>
         <div className="socialButtonsDiv">
-          <button className="btn">
-            <Icons iconNumber={3} />
-            Log in with Facebook
-          </button>
+          <FacebookLogin
+            appId="873599547503766"
+            onSuccess={(response) => {
+              console.log('Login Success!', response);
+            }}
+
+            onFail={(error) => {
+              console.log('Login Failed!', error);
+            }}
+            onProfileSuccess={(response) => {
+              console.log('Get Profile Success!', response);
+            }}
+            render={({ onClick, logout }) => (
+              <button className="btn" onClick={onClick}>
+                <Icons iconNumber={3} />
+                Log in with Facebook
+              </button>
+
+            )}
+          />
+
           <button className="btn" onClick={() => login()}>
             <Icons iconNumber={4} />
             Log in with Google

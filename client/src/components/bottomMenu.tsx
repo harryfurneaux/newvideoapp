@@ -16,7 +16,7 @@ const BottomMenu = ({ mainScreen, setMainScreen }: { mainScreen: number, setMain
         </div>
         <div
             onClick={() => {
-                // setMainScreen(3)
+                setMainScreen(4)
             }} className={`khjn0-jandw ${mainScreen == 3 ? 'active' : ''}`}>
             <Icons iconNumber={55} />
             <h5>Messages</h5>

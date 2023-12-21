@@ -54,25 +54,25 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
 
   async exchangeAuthorizationCodeForToken(authorizationCode): Promise<any> {
     try {
-      
+
       const response = await axios.post(
-        'https://www.linkedin.com/oauth/v2/accessToken',     
-     
+        'https://www.linkedin.com/oauth/v2/accessToken',
+
         {
-          
-            grant_type: 'authorization_code',
-            code: authorizationCode,
-            redirect_uri: process.env.LINKEDIN_CALLBACK_URL,
-            client_id: process.env.LINKEDIN_CLIENT_ID,
-            client_secret: process.env.LINKEDIN_CLIENT_SECRET,
+
+          grant_type: 'authorization_code',
+          code: authorizationCode,
+          redirect_uri: process.env.LINKEDIN_CALLBACK_URL,
+          client_id: process.env.LINKEDIN_CLIENT_ID,
+          client_secret: process.env.LINKEDIN_CLIENT_SECRET,
         },
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         }
-   
-        
+
+
       );
 
       return response.data;
@@ -89,19 +89,19 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      const {  name, email } = response.data;
+      const { name, email } = response.data;
 
       const user = await this.linkedInAuthService.linkedInCreate({
         name,
         email,
-        password: '12345', 
+        password: '12345',
         birthdate: null,
         location: null,
         companyName: null,
       });
-  
-  
-    
+
+
+
       return response.data;
     } catch (error) {
       console.error('Error fetching user information from LinkedIn API:', error.message);

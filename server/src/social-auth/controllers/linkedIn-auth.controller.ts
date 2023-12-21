@@ -1,44 +1,32 @@
 import { Controller, Get, Req, Res, UseGuards, HttpStatus } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LinkedInAuthService } from '../services/linkedin-auth.service';
-import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy'; 
+import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy';
 import { UsersService } from 'src/users/users.service';
-
 @Controller('auth/linkedin')
 export class LinkedInAuthController {
   constructor(
     private readonly linkedInAuthService: LinkedInAuthService,
     private readonly linkedInStrategy: LinkedInStrategy,
     private readonly userService: UsersService,
-
-  ) {}
-
+  ) { }
   @Get()
-  @UseGuards(AuthGuard('linkedin'))
+  // @UseGuards(AuthGuard('linkedin'))
   async linkedInAuth() {
   }
-
   @Get('callback')
   async linkedInAuthRedirect(@Req() req, @Res() res) {
     try {
-
-      const authorizationCode=req.query.code
+      const authorizationCode = req.query.code
+      console.log("authoriza code", authorizationCode)
       const tokenResponse = await this.linkedInStrategy.exchangeAuthorizationCodeForToken(authorizationCode);
-      const userData=await this.linkedInStrategy.getUserInfo(tokenResponse.access_token)
-      
+      const userData = await this.linkedInStrategy.getUserInfo(tokenResponse.access_token)
       if (userData) {
+        const jwtToken = await this.userService.socialLogin(userData);
+        // return jwtToken;
+        console.log("jwttokken linkedinn", jwtToken)
+        return res.status(HttpStatus.OK).json({ ...jwtToken });
 
-        const loggedInUser = await this.userService.login({
-          email: userData.email,
-          password: '12345', 
-        });
-
-        return res.status(HttpStatus.OK).json({
-          statusCode: HttpStatus.OK,
-          // data: userData,
-          data: loggedInUser,
-
-        });
       } else {
         return res.status(HttpStatus.UNAUTHORIZED).json({
           statusCode: HttpStatus.UNAUTHORIZED,
@@ -47,12 +35,10 @@ export class LinkedInAuthController {
       }
     } catch (error) {
       console.error('Error in linkedInAuthRedirect:', error);
-
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         message: 'Internal Server Error',
       });
     }
   }
-
 }
