@@ -1,5 +1,4 @@
-import { Controller, Get, Req, Res, UseGuards, HttpStatus } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Get, Req, Res, HttpStatus } from '@nestjs/common';
 import { LinkedInAuthService } from '../services/linkedin-auth.service';
 import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy';
 import { UsersService } from 'src/users/users.service';
@@ -10,15 +9,16 @@ export class LinkedInAuthController {
     private readonly linkedInStrategy: LinkedInStrategy,
     private readonly userService: UsersService,
   ) { }
+
   @Get()
   // @UseGuards(AuthGuard('linkedin'))
   async linkedInAuth() {
   }
+
   @Get('callback')
   async linkedInAuthRedirect(@Req() req, @Res() res) {
     try {
       const authorizationCode = req.query.code
-      console.log("authoriza code", authorizationCode)
       const tokenResponse = await this.linkedInStrategy.exchangeAuthorizationCodeForToken(authorizationCode);
       const userData = await this.linkedInStrategy.getUserInfo(tokenResponse.access_token)
       if (userData) {

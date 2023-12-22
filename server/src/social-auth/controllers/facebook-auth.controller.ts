@@ -38,10 +38,7 @@ export class FacebookAuthController {
         },
       });
       const socialLoginResult = await this.userService.socialLogin(userInfo.data);
-      return res.status(HttpStatus.OK).json({
-        statusCode: HttpStatus.OK,
-        data: socialLoginResult,
-      });
+      return res.status(HttpStatus.OK).json({ ...socialLoginResult });
     } catch (error) {
       console.error(error);
       console.error('Error in facebookAuthRedirect:', error.message);

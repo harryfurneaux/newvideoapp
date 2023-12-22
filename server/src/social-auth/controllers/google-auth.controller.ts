@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, Res, UseGuards, HttpStatus } from '@nestjs/common';
 import { GoogleAuthService } from '../services/google-auth.service';
 import { GoogleStrategy } from '../strategies/google-auth.stategy';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,10 +14,10 @@ export class GoogleAuthController {
   async googleAuth(@Req() req) { }
 
   @Get('callback')
-  async googleAuthRedirect(@Req() req) {
+  async googleAuthRedirect(@Req() req, @Res() res) {
     const accessToken = req.query.code
     const { data } = await this.googleStrategy.getUserData(accessToken);
     const jwtToken = await this.userService.socialLogin(data);
-    return { token: jwtToken };
+    return res.status(HttpStatus.OK).json({ ...jwtToken });
   }
 }
