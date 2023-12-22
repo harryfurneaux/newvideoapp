@@ -108,7 +108,6 @@ export class UsersService {
   }
 
   async socialLogin(socialUserData: any): Promise<any> {
-    console.log("get in social fuc", socialUserData)
     const { name, email } = socialUserData;
     let user = await this.UserModel.findOne({ email });
     if (!user) {
@@ -122,6 +121,7 @@ export class UsersService {
     });
     await this.messagingService.initializeUser(user.id);
     return {
+      id:user.id,
       name: user.name,
       email: user.email,
       token: jwtToken,
