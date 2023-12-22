@@ -38,8 +38,7 @@ const CreateForm = ({
   }, [])
   const getQuestions = () => {
     axios
-      .get(`
-http://localhost:4000${authConfig.addQuestion}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`)
       .then(async response => {
 
         setQuestions(response.data)
@@ -55,8 +54,7 @@ http://localhost:4000${authConfig.addQuestion}`)
   const addJob = (params: any) => {
 
     axios
-      .post(`
-http://localhost:4000${authConfig.addJobEndPoint}`, params)
+      .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
       .then(async response => {
 
 

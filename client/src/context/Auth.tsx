@@ -79,7 +79,7 @@ const AuthProvider = ({ children }: Props) => {
     const handleRegister = (params: SignUpParams, errorCallback?: ErrCallbackType) => {
         axios
             .post(`
-            http://localhost:4000${authConfig.registerEndpoint}`, params)
+            ${process.env.REACT_APP_BACKEND_URL}${authConfig.registerEndpoint}`, params)
             .then(async response => {
                 return response
 
@@ -105,7 +105,7 @@ const AuthProvider = ({ children }: Props) => {
         return new Promise((resolve, rejects) => {
             axios
                 .post(`
-        http://localhost:4000${authConfig.loginEndpoint}`, params)
+        ${process.env.REACT_APP_BACKEND_URL}${authConfig.loginEndpoint}`, params)
                 .then(async response => {
                     resolve(response)
                     setUser(response.data)
@@ -144,7 +144,7 @@ const AuthProvider = ({ children }: Props) => {
         return new Promise((resolve, rejects) => {
             axios
                 .post(`
-        http://localhost:4000${authConfig.addQuestion}`, params)
+        ${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`, params)
                 .then(async response => {
                     resolve(response)
 

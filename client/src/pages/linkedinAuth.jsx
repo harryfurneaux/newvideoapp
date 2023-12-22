@@ -12,7 +12,7 @@ const LinkedInAuth = () => {
     const query = useQuery()
 
     useEffect(() => {
-        axios.get('http://localhost:4000/auth/linkedin/callback', {
+        axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
             params: {
                 code: query.get('code'),
                 state: query.get('state')

@@ -16,7 +16,7 @@ function App() {
 
 
   return (
-    <GoogleOAuthProvider clientId='832998365590-mc16ctfeo9kti9bg2puo7coq2kfb16en.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
       <AuthProvider>
         {
           mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />

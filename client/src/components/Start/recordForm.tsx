@@ -70,7 +70,7 @@ const RecordForm = ({ setScreen }: { setScreen: any }) => {
       formData.append('file', myFile);
 
 
-      axios.post('http://localhost:4000/video-uploading', formData, {
+      axios.post(process.env.REACT_APP_BACKEND_URL + '/video-uploading', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

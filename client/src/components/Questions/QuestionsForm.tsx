@@ -7,8 +7,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView }: { setMainScr
   useEffect(() => { getJobs() }, [])
   const getJobs = () => {
     axios
-      .get(`
-http://localhost:4000${authConfig.getJobsEndpPoint}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getJobsEndpPoint}`)
       .then(async response => {
 
         setJobs(response.data)

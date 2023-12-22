@@ -11,17 +11,17 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
 
-      axios.get('http://localhost:4000/auth/google/callback', { params: { code: tokenResponse.access_token } }).then((res) => setMainScreen(1))
+      axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/google/callback', { params: { code: tokenResponse.access_token } }).then((res) => setMainScreen(1))
     }
   });
   const { linkedInLogin } = useLinkedIn({
     clientId: '77ezxuyzh6xmh6',
-    redirectUri: 'http://localhost:3000/linkedIn-Auth',
+    redirectUri: process.env.REACT_APP_FRONTEND_URL+'/linkedIn-Auth',
     scope: 'openid,profile,email',
     onSuccess: (code) => {
 
       console.log('code here', code);
-      axios.get('http://localhost:4000/auth/linkedin/callback', {
+      axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
         params: {
           code,
         }
