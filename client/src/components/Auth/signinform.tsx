@@ -20,12 +20,11 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
     scope: 'openid,profile,email',
     onSuccess: (code) => {
 
-      console.log('code here', code);
       axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
         params: {
           code,
         }
-      }).then(console.log)
+      }).then((res) => setMainScreen(1))
       // setMainScreen(1)
       // window.close()
     },
