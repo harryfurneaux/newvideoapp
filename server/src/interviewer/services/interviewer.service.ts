@@ -144,7 +144,7 @@ export class InterviewerService {
       .populate({
         path: 'job_id',
       })
-      .populate('questions.question_id');
+      .populate('questions');
 
     return interview;
   }
@@ -159,7 +159,7 @@ export class InterviewerService {
       .populate({
         path: 'job_title',
       })
-      .populate('questions.question_id')
+      .populate('questions')
       .populate('interviewer', '-password');
 
     if (!interviewer) {
@@ -182,7 +182,7 @@ export class InterviewerService {
       .populate({
         path: 'job_title',
       })
-      .populate('questions.question_id')
+      .populate('questions')
       .populate('interviewer', '-password');
   }
 
@@ -200,7 +200,7 @@ export class InterviewerService {
       .populate({
         path: 'job_title',
       })
-      .populate('questions.question_id');
+      .populate('questions');
   }
 
   //   async interviwee(id: string) {

@@ -11,7 +11,7 @@ import * as mongoose from 'mongoose';
 export class FavouriteInterview extends Document {
 
   @Prop({ type: [{ type: 'ObjectId', ref: 'Interview' }] })
-  favoriteInterviews: Interview[]; 
+  favoriteInterview: Interview; 
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   interviewer: User;
