@@ -12,6 +12,7 @@ import EmailLoginForm from "../components/Auth/emailloginform";
 import ForgotPwdForm from "../components/Auth/forgotpwdform";
 import EnterCodeForm from "../components/Auth/entercodeform";
 import NewPwdForm from "../components/Auth/newpwdform";
+import Notify from "../components/Notify";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setshowScreen] = useState(0);
@@ -24,8 +25,9 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
     company_name: '',
     birth_date: '',
     role: 'INTERVIEWEE'
-
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signUpFormErrors, setSignUpFormErrors] = useState([]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -80,9 +82,9 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         <div style={{ perspective: 1000 }}>
           <div className={`flip-element`} style={{ height: 472 }}>
             <SignInForm className={` m-0 flip-child flip-child-0`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
-            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} />
-            <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} signUpFormData={signUpFormData} handleFormChange={handleChange} />
-            <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
+            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} />
+            <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} signUpFormData={signUpFormData} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} setSignUpFormErrors={setSignUpFormErrors} setErrorMessage={setErrorMessage} />
+            <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} setErrorMessage={setErrorMessage} />
             <ForgotPwdForm className={`d-none m-0 flip-child flip-child-5`} setshowScreen={setshowScreen} />
             <EnterCodeForm className={`d-none m-0 flip-child flip-child-6`} setshowScreen={setshowScreen} />
             <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} setshowScreen={setshowScreen} />
@@ -118,6 +120,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
 
   return (
     <div className="pageContainer">
+      <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
 
       <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
         <div className="leftSideHeader kjsf-ajmwe">

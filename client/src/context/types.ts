@@ -49,7 +49,7 @@ export type AuthValuesType = {
     setLoading: (value: boolean) => void
     setUser: (value: UserDataType | null) => void
     login: (params: LoginParams, errorCallback?: ErrCallbackType) => Promise<any>
-    signup: (params: SignUpParams, errorCallback?: ErrCallbackType) => void
+    signup: (params: SignUpParams, errorCallback?: ErrCallbackType) => Promise<any>
     addQuestion: (params: questionDataType, errorCallback?: ErrCallbackType) => Promise<any>
     // getQuestions: (errorCallback?: ErrCallbackType) => Promise<any>
 }

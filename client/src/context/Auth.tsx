@@ -77,11 +77,12 @@ const AuthProvider = ({ children }: Props) => {
 
     }, [])
     const handleRegister = (params: SignUpParams, errorCallback?: ErrCallbackType) => {
+      return new Promise((resolve, rejects) => {
         axios
             .post(`
             ${process.env.REACT_APP_BACKEND_URL}${authConfig.registerEndpoint}`, params)
             .then(async response => {
-                return response
+                resolve(response)
 
                 // params.rememberMe
                 //     ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
@@ -97,8 +98,10 @@ const AuthProvider = ({ children }: Props) => {
             })
 
             .catch(err => {
+                rejects(err)
                 if (errorCallback) errorCallback(err)
             })
+      });
     }
 
     const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {

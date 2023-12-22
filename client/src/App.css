@@ -3634,3 +3634,12 @@ video.bg-video {
 .error-border {
   border: 1px solid #ff364b !important;
 }
+
+.error-message {
+  color: #ff364b !important;
+  font-size: x-small !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  margin-top: -5px !important;
+  margin-bottom: 5px !important;
+}

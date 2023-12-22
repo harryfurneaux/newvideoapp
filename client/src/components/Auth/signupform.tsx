@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Icons from "../icons";
 import { useAuth } from "../../hooks/useAuth";
+import { errorByKey } from "../../helper";
 
-const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormChange }: { setshowScreen: any, className?: string, signUpFormData: any, handleFormChange: any }) => {
+const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormChange, signUpFormErrors, setSignUpFormErrors, setErrorMessage }: { setshowScreen: any, className?: string, signUpFormData: any, handleFormChange: any, signUpFormErrors: any, setSignUpFormErrors: any, setErrorMessage: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
   const { signup } = useAuth()
@@ -18,7 +19,7 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
 
         <div className="njskakd-kawmed">
           <div className="emailRowDiv sadhasdn-we">
-            <div className="jksd-kosaeknae">
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'birth_date') ? 'error-border' : ''}`}>
               <Icons iconNumber={58} />
               <input
                 placeholder={birthClicked ? " DD   |    MM    |   YYYY" : " Birth Date"}
@@ -28,17 +29,23 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
                 onChange={handleFormChange}
               />
             </div>
-            <div className="jksd-kosaeknae active-asdkjd">
+            {errorByKey(signUpFormErrors, 'birth_date') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'birth_date')}</p>
+            ) : ''}
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'location') ? 'error-border' : ''}`}>
               <Icons iconNumber={12} />
               <input placeholder="Location" name='location' onChange={handleFormChange} />
-              <div className="asjdssads">
-                <Icons iconNumber={78} />
-              </div>
             </div>
-            <div className="jksd-kosaeknae">
+            {errorByKey(signUpFormErrors, 'location') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'location')}</p>
+            ) : ''}
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'company_name') ? 'error-border' : ''}`}>
               <Icons iconNumber={13} />
               <input placeholder="Company" name='company_name' onChange={handleFormChange} />
             </div>
+            {errorByKey(signUpFormErrors, 'company_name') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'company_name')}</p>
+            ) : ''}
           </div>
           <div className="jdaskfjnas-ajaied">
             <div onClick={() => {
@@ -57,7 +64,19 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
             <button
               onClick={() => {
                 signup(signUpFormData)
-                setshowScreen(4)
+                .then((res) => {
+                  setshowScreen(4)
+                })
+                .catch((err) => {
+                  if(err?.response?.data?.message?.length) {
+                    if(Array.isArray(err.response.data.message)) {
+                      setSignUpFormErrors(err.response.data.message);
+                    } else {
+                      setErrorMessage(err.response.data.message);
+                    }
+                    setshowScreen(1)
+                  }
+                })
 
               }} className="btn kjlsjadm-kdmsd-2">
               COMPLETE SIGNUP
