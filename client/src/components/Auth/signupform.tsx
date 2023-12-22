@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Icons from "../icons";
+import { useAuth } from "../../hooks/useAuth";
+import { errorByKey } from "../../helper";
 
-const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, className?: string }) => {
+const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormChange, signUpFormErrors, setSignUpFormErrors, setErrorMessage }: { setshowScreen: any, className?: string, signUpFormData: any, handleFormChange: any, signUpFormErrors: any, setSignUpFormErrors: any, setErrorMessage: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
+  const { signup } = useAuth()
 
   return (
     <div className={`kjjfds-janwkea ${className}`}>
+      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
       <div className="jhjij-sanwe">
         <h3>Some final details...</h3>
         <h4 className="ksajdsd-sjad">
@@ -15,25 +19,33 @@ const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
 
         <div className="njskakd-kawmed">
           <div className="emailRowDiv sadhasdn-we">
-            <div className="jksd-kosaeknae">
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'birth_date') ? 'error-border' : ''}`}>
               <Icons iconNumber={58} />
               <input
                 placeholder={birthClicked ? " DD   |    MM    |   YYYY" : " Birth Date"}
+                name='birth_date'
                 onClick={() => setBirthClicked(true)}
                 onBlur={() => setBirthClicked(false)}
+                onChange={handleFormChange}
               />
             </div>
-            <div className="jksd-kosaeknae active-asdkjd">
+            {errorByKey(signUpFormErrors, 'birth_date') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'birth_date')}</p>
+            ) : ''}
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'location') ? 'error-border' : ''}`}>
               <Icons iconNumber={12} />
-              <input placeholder="Location" />
-              <div className="asjdssads">
-                <Icons iconNumber={78} />
-              </div>
+              <input placeholder="Location" name='location' onChange={handleFormChange} />
             </div>
-            <div className="jksd-kosaeknae">
+            {errorByKey(signUpFormErrors, 'location') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'location')}</p>
+            ) : ''}
+            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'company_name') ? 'error-border' : ''}`}>
               <Icons iconNumber={13} />
-              <input placeholder="Company" />
+              <input placeholder="Company" name='company_name' onChange={handleFormChange} />
             </div>
+            {errorByKey(signUpFormErrors, 'company_name') ? (
+              <p className="error-message">{errorByKey(signUpFormErrors, 'company_name')}</p>
+            ) : ''}
           </div>
           <div className="jdaskfjnas-ajaied">
             <div onClick={() => {
@@ -51,7 +63,23 @@ const SignUpForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
           <div className="continueBtnDiv snasdj-sawdne">
             <button
               onClick={() => {
-                setshowScreen(4)
+                setSignUpFormErrors([]);
+                setErrorMessage('');
+                signup(signUpFormData)
+                .then((res) => {
+                  setshowScreen(4)
+                })
+                .catch((err) => {
+                  if(err?.response?.data?.message?.length) {
+                    if(Array.isArray(err.response.data.message)) {
+                      setSignUpFormErrors(err.response.data.message);
+                    } else {
+                      setErrorMessage(err.response.data.message);
+                    }
+                    setshowScreen(1)
+                  }
+                })
+
               }} className="btn kjlsjadm-kdmsd-2">
               COMPLETE SIGNUP
               <Icons iconNumber={94} />

@@ -7,7 +7,7 @@ const ForgotPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
-    <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} ${className}`}>
+    <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`}>
         <img src={icon} className="mb-4" />
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Forgot Password?</h3>

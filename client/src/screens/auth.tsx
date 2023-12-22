@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import Icons from "../components/icons";
 import RightLayout2 from "../components/rightLayout2";
 import SignInForm from "../components/Auth/signinform";
@@ -12,9 +12,33 @@ import EmailLoginForm from "../components/Auth/emailloginform";
 import ForgotPwdForm from "../components/Auth/forgotpwdform";
 import EnterCodeForm from "../components/Auth/entercodeform";
 import NewPwdForm from "../components/Auth/newpwdform";
+import Notify from "../components/Notify";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const [showScreen, setshowScreen] = useState(0);
+  const [signUpFormData, setSignUpFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+    location: '',
+    company_name: '',
+    birth_date: '',
+    role: 'INTERVIEWEE'
+  });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signUpFormErrors, setSignUpFormErrors] = useState([]);
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setSignUpFormData({
+      ...signUpFormData,
+      [name]: value,
+    });
+  };
+
+
 
   useEffect(() => {
     if (showScreen <= 7 && showScreen !== 3) {
@@ -55,15 +79,15 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   const renderScreen = () => {
     if (showScreen <= 7 && showScreen !== 3) {
       return (
-        <div style={{ perspective: 600 }}>
+        <div style={{ perspective: 1000 }}>
           <div className={`flip-element`} style={{ height: 472 }}>
-            <SignInForm className={` m-0 flip-child flip-child-0`} setshowScreen={setshowScreen} />
-            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} />
-            <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} />
-            <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} />
+            <SignInForm className={` m-0 flip-child flip-child-0`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
+            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} />
+            <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} signUpFormData={signUpFormData} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} setSignUpFormErrors={setSignUpFormErrors} setErrorMessage={setErrorMessage} />
+            <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} setErrorMessage={setErrorMessage} />
             <ForgotPwdForm className={`d-none m-0 flip-child flip-child-5`} setshowScreen={setshowScreen} />
             <EnterCodeForm className={`d-none m-0 flip-child flip-child-6`} setshowScreen={setshowScreen} />
-            <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} />
+            <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} setshowScreen={setshowScreen} />
           </div>
         </div>
       );
@@ -96,6 +120,8 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
 
   return (
     <div className="pageContainer">
+      <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
+
       <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
         <div className="leftSideHeader kjsf-ajmwe">
           {showScreen > 0 ? (
@@ -106,10 +132,11 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         </div>
         {renderScreen()}
         <div className="d-flex justify-content-center kdnklms-awendwd-11">
+
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
     </div>
   );
 }

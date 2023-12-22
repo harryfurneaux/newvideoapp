@@ -6,15 +6,27 @@ import React, { useState } from "react";
 import Question from "./screens/questions";
 import Answers from "./screens/answers";
 import Start from './screens/start';
+import Messages from './screens/messages'
+import { AuthProvider } from "./context/Auth";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   const [mainScreen, setMainScreen] = useState(0);
+  const [jobViewContext, setJobViewContext] = useState()
+
+
   return (
-    mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-      : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} />
-        : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
-          : mainScreen == 3 ? <Start />
-            : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
+      <AuthProvider>
+        {
+          mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} />
+              : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
+                : mainScreen == 3 ? <Start jobViewContext={jobViewContext} /> : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} />
+                  : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+        }
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 

@@ -14,7 +14,7 @@ export class ImageKitService {
         this.apiBaseUrl = 'https://api.imagekit.io/v1/files/';
 
     }
-    async uploadImage(file: Express.Multer.File, name: string): Promise<any> {
+    async uploadImage(file: any, name: string): Promise<any> {
         try {
             const formData = new FormData();
             formData.append('file', file.buffer, name); // Append the file with the appropriate field name and filename

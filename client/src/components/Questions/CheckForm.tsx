@@ -14,7 +14,7 @@ const CheckForm = ({
 }) => {
   return (
     <Fade>
-      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd height-none">
+      <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd white-form height-none">
         <div className="check-form">
           <div className="d-flex">
             <img src={no_pic} />
@@ -25,9 +25,9 @@ const CheckForm = ({
             </div>
           </div>
           <div className="check-form-body">
-            <CheckFormBox />
-            <CheckFormBox />
-            <CheckFormBox />
+            <CheckFormBox questions={''} />
+            <CheckFormBox questions={''} />
+            <CheckFormBox questions={''} />
           </div>
           <div className="check-form-btn-div snasdj-sawdne-1">
             <button

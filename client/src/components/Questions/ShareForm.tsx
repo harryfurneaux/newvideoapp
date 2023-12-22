@@ -7,10 +7,14 @@ import { Flip } from "react-awesome-reveal"
 import Notify from "../Notify";
 
 const ShareForm = ({
+  setMainScreen,
   setShowScreen,
+  setPastScreen,
   showScreen,
 }: {
+  setMainScreen: any;
   setShowScreen: any;
+  setPastScreen: any;
   showScreen: number;
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
@@ -21,6 +25,7 @@ const ShareForm = ({
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
       <Flip direction="horizontal">
         <div className="kjjfds-janwkea">
+          <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
           <div className="jhjij-sanwe kjljdfn-jadmw">
             <h3>Share Questions</h3>
             <h4 className="ksajdsd-sjad">
@@ -67,7 +72,7 @@ const ShareForm = ({
             <Icons iconNumber={64} />
           </div>
         </div>
-        <RightButtons2 hideMenu={isMobile ? true : false} />
+        <RightButtons2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} hideMenu={isMobile ? true : false} />
       </Flip>
     </>
   );

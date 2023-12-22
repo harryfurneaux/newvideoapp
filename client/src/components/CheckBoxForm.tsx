@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Icons from "./icons";
 
-const CheckFormBox = () => {
+const CheckFormBox = ({ questions }: { questions: any }) => {
+
   const [isActive, setIsactive] = useState(0);
   return <button
     onMouseEnter={() => {
@@ -24,11 +25,11 @@ const CheckFormBox = () => {
     <div>
       <Icons iconNumber={isActive > 0 ? 15 : 24} />
     </div>
-    <h5>Tell me about your relevant experience</h5>
+    <h5>{questions.question}</h5>
     <div className="timing">
       {" "}
       <Icons iconNumber={18} />
-      <h6>30s</h6>
+      <h6>{questions.time_duration}</h6>
     </div>
   </button>
 }

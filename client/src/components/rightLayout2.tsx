@@ -3,10 +3,10 @@ import Icons from './icons';
 import SimpleCheckBox from './simpleCheck';
 import SettingMenuIcon from './SettingMenuIcon';
 
-const RightLayout = () => {
+const RightLayout = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setShowScreen: any }) => {
   return <div className="rightSideDiv kjdsfkn-ajdnkw">
     <div className="d-flex justify-content-end">
-      <SettingMenuIcon />
+      <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>
     <div className="nakds-ajews">
       <div className="topSectionDiv d-flex">
@@ -19,7 +19,10 @@ const RightLayout = () => {
         <SimpleCheckBox span="Watch" title=" the video responses roll in" />
       </div>
       <div className="createVideoInterviewBtnDiv">
-        <button className="btn no-shadow asjdsajde">Create Video Interview</button>
+        <button className="btn no-shadow asjdsajde" onClick={() => {
+          setMainScreen(0);
+          setShowScreen(0);
+        }}>Create Video Interview</button>
       </div>
       <div className="homescreenFloater">
         <img src={require("../images/i1.png")} />

@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import Icons from "../icons";
+import { useAuth } from "../../hooks/useAuth";
 
-const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
+const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobView }: { setMainScreen: any, setShowScreen: any, showMessage: boolean, jobData: any, setJobView: any }) => {
   const [selected, setselected] = useState(0);
+  const { setJobViewContext } = useAuth()
+
   return (
-    <div className="jobPositionDiv">
+    <div className="jobPositionDiv" onClick={() => {
+      setJobViewContext(jobData)
+      setJobView(jobData)
+      setShowScreen(7)
+    }}>
       <div className="kjsldk-jdansd">
         <Icons iconNumber={95} />
         <div className="kjnkodsa-jaddd">
           <div>
-            <h5>Job Title</h5>
+            <h5>{jobData.job_title}</h5>
           </div>
           <div className="kjdlfksd-sdmks">
             <div className="kjdlfksd-sdmks">
               <Icons iconNumber={33} />
-              <h6>Company Name </h6>
+              <h6>{jobData.interviewer.company_name}</h6>
             </div>
             <div className="kjdlfksd-sdmks location">
               <Icons iconNumber={34} />
-              <h6>Location</h6>
+              <h6>{jobData.interviewer.location}</h6>
               <h4>Posted 12 days ago</h4>
             </div>
           </div>
@@ -50,7 +57,9 @@ const JobTitle = ({ showMessage }: { showMessage: boolean }) => {
               <Icons iconNumber={81} />
 
             </button> */}
-            <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1">
+            <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => {
+              setMainScreen(2);
+            }}>
               <Icons iconNumber={92} />12
             </button>
           </div>

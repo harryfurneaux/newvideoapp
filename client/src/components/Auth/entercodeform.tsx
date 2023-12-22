@@ -7,7 +7,8 @@ const EnterCodeForm = ({ setshowScreen, className = '' }: { setshowScreen: any, 
 
   return (
     <div className={`kjjfds-janwkea ${className}`}>
-      <div className="jhjij-sanwe">
+      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
+      <div className="jhjij-sanwe jhjij-sanwe6">
         <img src={icon} className="mb-4" />
         <h3>Enter Code</h3>
         <h4 className="ksajdsd-sjad mt-2 px-5 lh-base">

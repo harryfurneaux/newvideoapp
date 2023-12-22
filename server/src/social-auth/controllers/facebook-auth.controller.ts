@@ -4,23 +4,18 @@ import { FacebookStrategy } from '../strategies/facebook-auth.strategt';
 import axios from 'axios';
 import { config } from 'dotenv';
 import { UsersService } from 'src/users/users.service';
-
 config();
-
-
 @Controller('auth/facebook')
 export class FacebookAuthController {
   constructor(
     private readonly facebookStrategy: FacebookStrategy,
-    private readonly userService: UsersService, 
+    private readonly userService: UsersService,
   ) {}
-  
   @Get()
   @UseGuards(AuthGuard('facebook'))
   async facebookAuth(): Promise<any> {
     return HttpStatus.OK;
   }
-
   @Get('callback')
   async facebookAuthRedirect(@Req() req, @Res() res) {
     try {
@@ -36,17 +31,13 @@ export class FacebookAuthController {
           },
         },
       );
-
       const userInfo = await axios.get('https://graph.facebook.com/v18.0/me', {
         params: {
           access_token: response.data.access_token,
           fields: 'id,name,email',
         },
       });
-
       const socialLoginResult = await this.userService.socialLogin(userInfo.data);
-
-
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: socialLoginResult,
@@ -54,7 +45,6 @@ export class FacebookAuthController {
     } catch (error) {
       console.error(error);
       console.error('Error in facebookAuthRedirect:', error.message);
-
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         message: 'Internal Server Error',
