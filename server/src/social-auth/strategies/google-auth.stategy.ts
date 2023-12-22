@@ -39,7 +39,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 
       return response
     } catch (error) {
-      // Handle errors, maybe token expired or invalid
       throw new Error('Failed to fetch user data from Google.');
     }
   }

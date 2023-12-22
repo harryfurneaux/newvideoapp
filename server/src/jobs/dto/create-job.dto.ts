@@ -10,7 +10,7 @@ export class CreateJobDto {
     @IsString()
     location: string;
 
-    @IsOptional()
-    @IsMongoId({ message: 'Invalid created_by ID format' })
-    created_by: string;
+    // @IsOptional()
+    // @IsMongoId({ message: 'Invalid created_by ID format' })
+    // created_by: string;
 }

@@ -10,6 +10,7 @@ import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { AuthService } from '../auth/auth.service';
 import { MessagingService } from 'src/messaging/services/messaging.service';
 
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -52,7 +53,10 @@ export class UsersService {
     return await this.UserModel.findOne({ email });
   }
 
+  
+  
   async update(id: string, updateUserDto: UpdateUserDto) {
+    
     if (!(await this.UserModel.findById(id)))
       throw new NotFoundException('user not found');
     if (updateUserDto.password) {

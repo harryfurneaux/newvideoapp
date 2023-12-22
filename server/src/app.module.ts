@@ -13,7 +13,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { VideoUploadingModule } from './video-uploading/video-uploading.module';
 import { QuestionsModule } from './questions/questions.module';
 import { JobsModule } from './jobs/jobs.module';
-// import { InterviewsModule } from './interviews/interviews.module';
+import { InterviewsModule } from './interviews/interviews.module';
 //roles configuration
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/role-base-auth/role.guard';
@@ -26,6 +26,7 @@ import { MessagingModule } from './messaging/messaging.module';
 import { AuthModule } from './auth/auth.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { InterviewerModule } from './interviewer/interviewer.module';
+import { FavouriteInterviewsModule } from './favourite-interviews/favourite-interviews.module';
 
 
 
@@ -49,13 +50,15 @@ import { InterviewerModule } from './interviewer/interviewer.module';
     VideoUploadingModule,
     QuestionsModule,
     JobsModule,
-    // InterviewsModule,
+    InterviewsModule,
     SocialAuthModule,
     ForgetPasswordModule,
     MessagingModule,
     NotificationsModule,
     InterviewerModule,
-    AuthModule
+    AuthModule,
+    FavouriteInterviewsModule,
+    
   ],
   controllers: [AppController],
   providers: [

@@ -14,7 +14,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
       clientSecret: configService.get('FACEBOOK_CLIENT_SECRET'),
       callbackURL: configService.get('FACEBOOK_CALLBACK_URL'),
       passReqToCallback: true,
-      profileFields: ['public_profile'],
+      profileFields: ['email'],
     });
   }
 
@@ -46,7 +46,6 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
   async fetchUserData(accessToken: string): Promise<any> {
     
     try {
-      console.log("'accces tokn in fetch user",accessToken)
       const response = await axios.get('https://graph.facebook.com/v13.0/me', {
         params: {
             access_token: accessToken,
@@ -54,7 +53,6 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
             fields: 'id,name,email,picture'
         }
     })
-console.log("user dfb res",response)
 
       return response.data;
     } catch (error) {

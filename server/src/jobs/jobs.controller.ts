@@ -17,7 +17,7 @@ export class JobsController {
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Roles(ROLE.INTERVIEWER)
   create(@Body() createJobDto: CreateJobDto, @Request() req) {
-    createJobDto.created_by = createJobDto.created_by
+    // createJobDto.created_by = createJobDto.created_by
     return this.jobsService.create(createJobDto);
   }
 

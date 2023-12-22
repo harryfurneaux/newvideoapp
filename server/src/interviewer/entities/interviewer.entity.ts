@@ -35,6 +35,10 @@ export class Interviewer extends Document {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     interviewer: User;
 
+    @Prop()
+    share_link: string;
+
+
 }
 
 
