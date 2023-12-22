@@ -2,6 +2,7 @@
   "name": "video-interview-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://staging.videointerviews.io",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@greatsumini/react-facebook-login": "^3.3.3",
