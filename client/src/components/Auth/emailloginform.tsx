@@ -60,6 +60,8 @@ const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen, setError
           </div>
           <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
             <button onClick={() => {
+              setErrors([]);
+              setErrorMessage('');
               login(siginInForm).then((res) => {
                 localStorage.setItem('loggedin', 'true');
                 setMainScreen(1)

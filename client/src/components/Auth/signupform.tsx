@@ -63,6 +63,8 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
           <div className="continueBtnDiv snasdj-sawdne">
             <button
               onClick={() => {
+                setSignUpFormErrors([]);
+                setErrorMessage('');
                 signup(signUpFormData)
                 .then((res) => {
                   setshowScreen(4)
