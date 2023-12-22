@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Icons from "../components/icons";
+import { useEffect, useState } from "react";
 import RightLayout2 from "../components/rightLayout2";
 import BottomMenu from "../components/bottomMenu";
 import BackMenu from "../components/Questions/BackMenu";
@@ -10,8 +9,7 @@ import ShareForm from "../components/Questions/ShareForm";
 import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
-import axios from "axios";
-import authConfig from '../configs/auth'
+
 function View({ mainScreen, setMainScreen, setJobViewContext }: { mainScreen: number, setMainScreen: any, setJobViewContext: any }) {
   const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
@@ -19,14 +17,11 @@ function View({ mainScreen, setMainScreen, setJobViewContext }: { mainScreen: nu
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [jobView, setJobView] = useState(null)
+  
   useEffect(() => {
-
-
     if (jobView) {
-
       setJobViewContext(jobView)
     }
-
   }, [jobView])
 
   return (

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Icons from "../icons";
 import CheckForm from "./CheckForm";
 import Question from "./Questions";
 //@ts-ignore
-import { Fade, Zoom } from "react-awesome-reveal";
+import { Zoom } from "react-awesome-reveal";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import authConfig from '../../configs/auth'
@@ -18,7 +18,6 @@ const CreateForm = ({
   const { addQuestion, user } = useAuth()
   const [valuec, setValuechange] = useState('');
   const [selected, setselected] = useState(0);
-
   const [questionIds, setQuestionsIds] = useState<any>([])
   const [newQuestion, setNewQuestion] = useState({
     "question": '',
@@ -30,39 +29,34 @@ const CreateForm = ({
     job_title: "",
     interviewer: user?.id
   })
+  const [newJob, setNewJob] = useState<any>();
 
   useEffect(() => {
-
     getQuestions()
-
   }, [])
+
+  useEffect(() => {
+    if(newJob?._id) {
+      setShowScreen(5)
+    }
+  }, [newJob])
+
   const getQuestions = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`)
       .then(async response => {
-
         setQuestions(response.data)
-
       })
-
-      .catch(err => {
-
-      })
-
+      .catch(console.error)
   }
 
   const addJob = (params: any) => {
-
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
       .then(async response => {
-
-
-
+        setNewJob(response.data);
       })
-
       .catch(err => {
-
       })
   }
 
@@ -194,31 +188,15 @@ const CreateForm = ({
         {showScreen == 3 ? (
           <Zoom>
             <div className="kjdaflj-adjkwmd">
-              {questions?.map((data: any, index: number,) => <Question setselected={setselected} selected={selected} questions={data} questionIds={questionIds} setQuestionIds={setQuestionsIds} />)}
-
-              {/* <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} />
-              <Question setselected={setselected} selected={selected} /> */}
+              {questions?.map((data: any, index: number,) => (
+                <Question key={index} setselected={setselected} selected={selected} questions={data} questionIds={questionIds} setQuestionIds={setQuestionsIds} />
+              ))}
             </div>
             <div className="pos-rel">
               {selected >= 3 ? <button onClick={() => {
                 const jobFinalData = { ...job }
-                jobFinalData.questions = questionIds
-
+                jobFinalData.questions = questionIds;
                 addJob(jobFinalData)
-                setShowScreen(5)
               }} className="kjdflj0-jsads">
                 CONTINUE
                 <Icons iconNumber={85} />
@@ -229,7 +207,7 @@ const CreateForm = ({
           </Zoom>
         ) : showScreen == 5 ? (
           <>
-            <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} />
+            <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} questionIds={questionIds} questions={questions} newJob={newJob} />
           </>
         ) : (
           <div className="sfjkdfjsd-dsnaf">
