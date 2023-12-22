@@ -14,7 +14,7 @@ export class User extends Document {
   password: string;
 
   @Prop()
-  birth_date: Date;
+  birth_date: String;
 
   @Prop()
   location: String;

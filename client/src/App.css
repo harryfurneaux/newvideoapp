@@ -3630,3 +3630,7 @@ video.bg-video {
   -o-transition: none !important;
   transition: none !important;
 }
+
+.error-border {
+  border: 1px solid #ff364b !important;
+}
