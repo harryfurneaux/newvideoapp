@@ -27,6 +27,7 @@ import { JwtStrategy } from '../auth/strategies/jwt.strategy'
     QuestionsModule
   ],
   controllers: [InterviewsController],
-  providers: [InterviewsService, ImageKitService, AuthService, JwtStrategy]
+  providers: [InterviewsService, ImageKitService, AuthService, JwtStrategy],
+  exports: [InterviewsService]
 })
 export class InterviewsModule { }

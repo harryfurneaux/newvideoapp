@@ -3,7 +3,7 @@ import { IsArray, IsOptional, IsString } from 'class-validator';
 
 export class UpdateFavoriteInterviewDto {
   @IsOptional()
-  favoriteInterviews?: string[]; 
+  favoriteInterview?: string; 
 
   @IsOptional()
   interviewer?: string;
