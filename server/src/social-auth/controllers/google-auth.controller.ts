@@ -22,15 +22,11 @@ export class GoogleAuthController {
 
     const accessToken = req.query.code
 
-    const { data } = await this.googleStrategy.getUserData(accessToken)
+    const { data } = await this.googleStrategy.getUserData(accessToken);
 
-    const loggedInUser = await this.userService.login({
-      email: data.email,
-      password: '12345', 
-    });
+    const jwtToken = await this.userService.socialLogin(data);
 
-    return loggedInUser;
-
+    return { token: jwtToken };
 
   }
 

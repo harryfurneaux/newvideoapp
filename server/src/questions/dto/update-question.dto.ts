@@ -14,9 +14,9 @@ export class UpdateQuestionDto {
     @IsNumber()
     time_duration: number;
 
-    // @IsOptional()
-    // @IsMongoId({ message: 'Invalid created_by ID format' })
-    // job_id: string;
+    @IsOptional()
+    @IsMongoId({ message: 'Invalid created_by ID format' })
+    job_id: string;
 }
 
 // export class UpdateQuestionDto extends PartialType(CreateQuestionDto) {}

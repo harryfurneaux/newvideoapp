@@ -10,6 +10,7 @@ import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { AuthService } from '../auth/auth.service';
 import { MessagingService } from 'src/messaging/services/messaging.service';
 
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -54,9 +55,19 @@ export class UsersService {
     return await this.UserModel.findOne({ email });
   }
 
+  
+  
   async update(id: string, updateUserDto: UpdateUserDto) {
+    
     if (!(await this.UserModel.findById(id)))
       throw new NotFoundException('user not found');
+
+      if (updateUserDto.password) {
+
+        const hashedPassword = await hashPassword(updateUserDto.password); 
+        updateUserDto.password = hashedPassword;
+      }
+    
     return await this.UserModel.findByIdAndUpdate(id, updateUserDto, {
       new: true,
     }).select('-password');
@@ -66,30 +77,33 @@ export class UsersService {
     return await this.UserModel.findByIdAndRemove(id);
   }
 
-  async login(userLoginDto: UserLoginDto) {
-    let user: User | null = await this.findOne(userLoginDto.email);
-    if (!user) {
-      throw new NotFoundException('user not found');
-    }
-    if (!(await comparePassword(userLoginDto.password, user.password))) {
-      throw new BadRequestException('Invalid credentials');
-    }
 
-    const jwtToken = await this.authService.generateToken({
-      id: user.id,
-      // role: user.role,
-    });
- 
-    await this.messagingService.initializeUser(user.id);
-
-    return {
-      name: user.name,
-      email: user.email,
-      // role: user.role,
-      token: jwtToken, 
-
-    };
+async login(userLoginDto: UserLoginDto) {
+  let user: User | null = await this.findOne(userLoginDto.email);
+  if (!user) {
+    throw new NotFoundException('user not found');
   }
+  
+  if (!(await comparePassword(userLoginDto.password, user.password))) {
+    throw new BadRequestException('Invalid credentials');
+  }
+
+  const jwtToken = await this.authService.generateToken({
+    id: user.id,
+    // role: user.role,
+  });
+
+  await this.messagingService.initializeUser(user.id);
+
+  return {
+    id: user.id,  
+    name: user.name,
+    email: user.email,
+    // role: user.role,
+    token: jwtToken, 
+
+  };
+}
 
   async updatePassword(
     email: string,
@@ -107,4 +121,29 @@ export class UsersService {
 
     return updatedUser;
   }
-}
+
+  async socialLogin(socialUserData: any): Promise<any> {
+    const { name, email } = socialUserData;
+  
+    let user = await this.UserModel.findOne({ email });
+  
+    if (!user) {
+      user = await this.UserModel.create({
+        name,
+        email,
+      });
+    }
+  
+    const jwtToken = await this.authService.generateToken({
+      id: user.id,
+    });
+  
+    await this.messagingService.initializeUser(user.id);
+  
+    return {
+      name: user.name,
+      email: user.email,
+      token: jwtToken,
+    };
+  }
+  }

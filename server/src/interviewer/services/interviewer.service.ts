@@ -7,6 +7,8 @@ import { Model } from 'mongoose';
 import { QuestionsService } from '../../questions/questions.service';
 import { NotificationGateway } from 'src/notifications/gateways/notification.gateway';
 import { UsersService } from 'src/users/users.service';
+import * as crypto from 'crypto';
+
 
 @Injectable()
 export class InterviewerService {
@@ -74,6 +76,7 @@ export class InterviewerService {
   //   return createdInterviewer;
   // }
 
+
   async create(createInterviewerDto: CreateInterviewerDto) {
     try {
       const interviewer = await this.userService.findById(
@@ -84,9 +87,24 @@ export class InterviewerService {
         throw new NotFoundException('Interviewer not found');
       }
 
+      function generateUniqueLink(): string {
+        const uniqueId = crypto.randomBytes(8).toString('hex');
+        return `https://staging.videointerviews.io/${uniqueId}`;
+        // return `http://localhost:3000/video-interviews/${uniqueId}`;
+
+      }
+    
+
+      const uniqueLink = generateUniqueLink();
+      
+      const interviewerWithLink = {
+        ...createInterviewerDto,
+        share_link: uniqueLink,
+      };
+  
 
       const createdInterviewer = await this.interviewerModel.create(
-        createInterviewerDto,
+        interviewerWithLink,
       );
       return createdInterviewer;
     } catch (error) {

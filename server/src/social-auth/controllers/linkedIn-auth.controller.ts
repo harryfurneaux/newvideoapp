@@ -28,15 +28,15 @@ export class LinkedInAuthController {
       
       if (userData) {
 
-        const loggedInUser = await this.userService.login({
-          email: userData.email,
-          password: '12345', 
-        });
+        const jwtToken = await this.userService.socialLogin(userData);
 
         return res.status(HttpStatus.OK).json({
           statusCode: HttpStatus.OK,
-          // data: userData,
-          data: loggedInUser,
+          data: {
+            name: userData.name,
+            email: userData.email,
+            token: jwtToken,
+          },  
 
         });
       } else {

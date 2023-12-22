@@ -10,17 +10,19 @@ export class JobsService {
   constructor(@InjectModel('Job') private JobModel: Model<Job>) { }
 
   async create(createJobDto: CreateJobDto) {
-    return ((await this.JobModel.create(createJobDto))).populate({
-      path: 'created_by',
-      select: '-password',
-    });
+    return ((await this.JobModel.create(createJobDto)))
+    // .populate({
+    //   path: 'created_by',
+    //   select: '-password',
+    // });
   }
 
   async findAll() {
-    let jobs = await this.JobModel.find().populate({
-      path: 'created_by',
-      select: '-password',
-    })
+    let jobs = await this.JobModel.find()
+    // .populate({
+    //   path: 'created_by',
+    //   select: '-password',
+    // })
     if (jobs.length == 0) {
       throw new NotFoundException('jobs not found')
     }
@@ -29,10 +31,10 @@ export class JobsService {
 
   async findOne(id: string) {
     let job = await this.JobModel.findById(id)
-      .populate({
-        path: 'created_by',
-        select: '-password',
-      })
+      // .populate({
+      //   path: 'created_by',
+      //   select: '-password',
+      // })
     if (!job) {
       throw new NotFoundException('job not found');
     }
@@ -48,10 +50,11 @@ export class JobsService {
       id,
       updateJobDto,
       { new: true }
-    ).populate({
-      path: 'created_by',
-      select: '-password',
-    })
+    )
+    // .populate({
+    //   path: 'created_by',
+    //   select: '-password',
+    // })
   }
 
   async remove(id: string) {
@@ -59,10 +62,11 @@ export class JobsService {
     if (!job) {
       throw new NotFoundException('job not found');
     }
-    return await this.JobModel.findByIdAndRemove(id).populate({
-      path: 'created_by',
-      select: '-password',
-    })
+    return await this.JobModel.findByIdAndRemove(id)
+    // .populate({
+    //   path: 'created_by',
+    //   select: '-password',
+    // })
   }
   async myJobs(id: string) {
     let jobs = await this.JobModel.find({

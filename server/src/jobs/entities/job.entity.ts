@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Job extends Document {
+    
     @Prop()
     job_title: string;
 
@@ -14,8 +15,6 @@ export class Job extends Document {
     @Prop()
     location: string;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-    created_by: User;
 
 }
 
