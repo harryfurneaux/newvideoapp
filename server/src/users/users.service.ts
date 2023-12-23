@@ -53,10 +53,10 @@ export class UsersService {
     return await this.UserModel.findOne({ email });
   }
 
-  
-  
+
+
   async update(id: string, updateUserDto: UpdateUserDto) {
-    
+
     if (!(await this.UserModel.findById(id)))
       throw new NotFoundException('user not found');
     if (updateUserDto.password) {
@@ -84,13 +84,17 @@ export class UsersService {
       id: user.id,
       // role: user.role,
     });
-    await this.messagingService.initializeUser(user.id);
+    const chatUser = await this.messagingService.initializeUser(user.id);
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       // role: user.role,
       token: jwtToken,
+      chat: {
+        user: chatUser.user,
+        token: chatUser.token
+      }
     };
   }
 
@@ -121,7 +125,7 @@ export class UsersService {
     });
     await this.messagingService.initializeUser(user.id);
     return {
-      id:user.id,
+      id: user.id,
       name: user.name,
       email: user.email,
       token: jwtToken,

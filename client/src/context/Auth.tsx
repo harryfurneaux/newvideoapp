@@ -77,31 +77,31 @@ const AuthProvider = ({ children }: Props) => {
 
     }, [])
     const handleRegister = (params: SignUpParams, errorCallback?: ErrCallbackType) => {
-      return new Promise((resolve, rejects) => {
-        axios
-            .post(`
+        return new Promise((resolve, rejects) => {
+            axios
+                .post(`
             ${process.env.REACT_APP_BACKEND_URL}${authConfig.registerEndpoint}`, params)
-            .then(async response => {
-                resolve(response)
+                .then(async response => {
+                    resolve(response)
 
-                // params.rememberMe
-                //     ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
-                //     : null
-                // const returnUrl = router.query.returnUrl
+                    // params.rememberMe
+                    //     ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
+                    //     : null
+                    // const returnUrl = router.query.returnUrl
 
-                // setUser({ ...response.data.userData })
-                // params.rememberMe ? window.localStorage.setItem('userData', JSON.stringify(response.data.userData)) : null
+                    // setUser({ ...response.data.userData })
+                    // params.rememberMe ? window.localStorage.setItem('userData', JSON.stringify(response.data.userData)) : null
 
-                // const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+                    // const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
 
-                // router.replace(redirectURL as string)
-            })
+                    // router.replace(redirectURL as string)
+                })
 
-            .catch(err => {
-                rejects(err)
-                if (errorCallback) errorCallback(err)
-            })
-      });
+                .catch(err => {
+                    rejects(err)
+                    if (errorCallback) errorCallback(err)
+                })
+        });
     }
 
     const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {

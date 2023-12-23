@@ -9,10 +9,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView }: { setMainScr
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getJobsEndpPoint}`)
       .then(async response => {
-
         setJobs(response.data)
-
-
       })
 
       .catch(err => {
