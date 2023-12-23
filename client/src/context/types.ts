@@ -17,12 +17,15 @@ export type SignUpParams = {
 
 }
 export type UserDataType = {
-    id: number
+    id: string
     role: string
     email: string
-    fullName: string
+    name: string
     username: string
     password: string
+    chat: {
+        token: string
+    }
 
 }
 export type questionDataType = {

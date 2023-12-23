@@ -13,6 +13,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 function App() {
   const [mainScreen, setMainScreen] = useState(0);
   const [jobViewContext, setJobViewContext] = useState()
+  const [chatUser, setChatUser] = useState()
 
 
   return (
@@ -20,9 +21,9 @@ function App() {
       <AuthProvider>
         {
           mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} />
+            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} setChatUser={setChatUser} />
               : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
-                : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} /> : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} />
+                : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} /> : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
                   : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
         }
       </AuthProvider>

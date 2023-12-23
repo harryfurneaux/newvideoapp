@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import Icons from "./icons"
 import TinyModal from "./Modals/tiny_modal";
 
-const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, hideMenu: boolean, }) => {
+const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, jobView, setChatUser }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, hideMenu: boolean, jobView: any, setChatUser: any }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [showDelInterview, setShowDelInterview] = useState(false);
 
@@ -23,8 +23,14 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, }
       <Icons iconNumber={47} />
       Share
     </button>
-    <button className="no-shadow circleButtons">
-      <Icons iconNumber={48} />
+    <button className="no-shadow circleButtons" onClick={() => {
+      setMainScreen(4)
+      setChatUser(jobView)
+    }}>
+      <Icons iconNumber={48}
+
+
+      />
       Messages
     </button>
     <button className="no-shadow circleButtons" onClick={() => setShowDelInterview(true)}>

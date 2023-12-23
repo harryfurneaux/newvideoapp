@@ -17,6 +17,12 @@ export class MessagingService {
       process.env.STREAM_CHAT_SECRET,
     );
   }
+  async getChatTokken(userId: string) {
+
+    const token = this.client.createToken(userId);
+    return (token)
+
+  }
 
   async initializeUser(userId: string) {
     const user = await this.client.upsertUser({
@@ -48,32 +54,32 @@ export class MessagingService {
     channelId: string,
     userId: string,
     messageText: string,
-    attachments: any[] = [], 
-    reactions: any[] = [] 
+    attachments: any[] = [],
+    reactions: any[] = []
   ) {
-      try {
-  
+    try {
+
       const channel = this.client.channel('messaging', channelId);
       const response = await channel.sendMessage({
         text: messageText,
         user_id: userId,
         attachments,
         reactions,
-        });
-  
+      });
+
       console.log('Message sent successfully:', response.message);
-  
+
       this.messagesGateway.server.emit('message', response.message);
-      
+
       console.log('Message emitted to WebSocket clients');
-  
+
       return response;
     } catch (error) {
       console.error('Error sending message:', error.message);
-      throw error; 
+      throw error;
     }
   }
-  
+
 
 
   async getMessages(channelId: string): Promise<MessageResponse[]> {
@@ -90,11 +96,11 @@ export class MessagingService {
     try {
       const queryResult = await this.client.queryChannels({}, { limit: -1 }) as unknown;
       const channels = this.breakCircularReferences(queryResult) as ChannelData[];
-      
+
       // console.log('Query Result:', channels);
-  
+
       return channels;
-      } catch (error) {
+    } catch (error) {
       console.error(`Error getting channels: ${error.message}`);
       throw error;
     }
@@ -106,11 +112,11 @@ export class MessagingService {
         return '[Circular Reference]';
       }
       seen.add(obj);
-  
+
       if (Array.isArray(obj)) {
         return obj.map(item => this.breakCircularReferences(item, seen));
       }
-  
+
       const result: { [key: string]: any } = {};
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -121,5 +127,5 @@ export class MessagingService {
     }
     return obj;
   }
-    
+
 }
