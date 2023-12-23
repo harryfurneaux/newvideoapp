@@ -1,21 +1,25 @@
 import { useState } from "react";
 import Icons from "./icons";
 
-const CheckFormBox = ({ questions, forcedActive = false }: { questions: any, forcedActive?: boolean }) => {
-  const [isActive, setIsactive] = useState(forcedActive ? 1 : 0);
-
+const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction = false }: { questions: any, forcedActive?: boolean, recorded?: any, noAction?: boolean }) => {
+  const _isActive = (id: string) => {
+    return recorded?.length && !!recorded.find((aid: any) => aid._id === id && aid?.recording);
+  };
+  
+  const [isActive, setIsactive] = useState(forcedActive || _isActive(questions._id) ? 1 : 0);
+  
   return (
     <button
-      onMouseEnter={forcedActive ? () => { } : () => {
+      onMouseEnter={noAction || forcedActive || _isActive(questions._id) ? () => { } : () => {
         if (isActive == 0) {
           setIsactive(1)
         }
       }}
-      onMouseLeave={forcedActive ? () => { } : () => {
+      onMouseLeave={noAction || forcedActive || _isActive(questions._id) ? () => { } : () => {
         if (isActive != 2)
           setIsactive(0)
       }}
-      onClick={forcedActive ? () => { } : () => {
+      onClick={noAction || forcedActive || _isActive(questions._id) ? () => { } : () => {
         if (isActive != 2) {
           setIsactive(2)
         } else {
@@ -25,7 +29,7 @@ const CheckFormBox = ({ questions, forcedActive = false }: { questions: any, for
       className="kadfmsod-wem sadamodajm-e dsjskd-kads no-shadow check-item"
     >
       <div>
-        <Icons iconNumber={isActive > 0 ? 15 : 24} />
+        <Icons iconNumber={isActive > 0 || _isActive(questions._id) ? 15 : 24} />
       </div>
       <h5>{questions.question}</h5>
       <div className="timing" style={{ marginLeft: 10 }}>

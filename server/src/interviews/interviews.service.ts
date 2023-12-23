@@ -17,11 +17,11 @@ export class InterviewsService {
     @InjectModel('Interview') private InterviewModel: Model<Interview>,
     private questionsService: QuestionsService,
     private readonly imageKitService: ImageKitService,
-  ) {}
+  ) { }
 
   async create(
     createInterviewDto: CreateInterviewDto,
-    // video: Express.Multer.File
+    video?: Express.Multer.File
   ) {
     // Check if the question exists
 
@@ -48,8 +48,11 @@ export class InterviewsService {
       );
     }
 
-    //uploading video to imagekit
-    // createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
+    if(video) {
+      //uploading video to imagekit
+      createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
+    }
+    
     if (interview) {
       // Update the existing interview with the new question and video URL
       return await this.InterviewModel.findByIdAndUpdate(
@@ -72,7 +75,7 @@ export class InterviewsService {
       interviewee: createInterviewDto.interviewee,
       interviewer: createInterviewDto.interviewer,
       job_id: createInterviewDto.job_id,
-      
+
 
       questions: [
         {
@@ -81,6 +84,73 @@ export class InterviewsService {
         },
       ],
     });
+  }
+
+  async createMany(body, recordings) {
+    const _body = Object.keys(body).map(b => JSON.parse(body[b]));
+    
+    if(_body?.length) {
+      return await _body.map(async (createInterviewDto: CreateInterviewDto, index: any) => {
+        console.log(createInterviewDto);
+        // Check if the question exists
+        const question = await this.questionsService.findOne(
+          createInterviewDto.question_id,
+        );
+        if (!question) {
+          // throw new NotFoundException('Question not found');
+          return null;
+        }
+
+        // Check if the interview exists
+        const interview = await this.findQuestionAndJob(
+          createInterviewDto.interviewee,
+          question?.job_id?._id,
+        );
+        // Check if the question is already submitted for this interview
+        if (
+          interview?.questions?.some(
+            (q) => q.question_id._id == createInterviewDto.question_id,
+          )
+        ) {
+          // throw new ConflictException(
+          //   'You have already submitted a video for this question.',
+          // );
+          return null;
+        }
+
+        //uploading video to imagekit
+        createInterviewDto.video_url = await this.imageKitService.uploadImage(recordings[index], recordings[index].originalname)
+        if (interview) {
+          // Update the existing interview with the new question and video URL
+          return await this.InterviewModel.findByIdAndUpdate(
+            interview._id,
+            {
+              $push: {
+                questions: {
+                  question_id: createInterviewDto.question_id,
+                  video_url: createInterviewDto.video_url,
+                },
+              },
+            },
+            {
+              new: true,
+            },
+          );
+        }
+
+        return await this.InterviewModel.create({
+          interviewee: createInterviewDto.interviewee,
+          interviewer: createInterviewDto.interviewer,
+          job_id: createInterviewDto.job_id,
+          questions: [
+            {
+              question_id: createInterviewDto.question_id,
+              video_url: createInterviewDto.video_url,
+            },
+          ],
+        });
+      });
+    }
   }
 
   async findAll() {
@@ -212,7 +282,7 @@ export class InterviewsService {
 
   async findInterviewsByTimeRange(timeRange: string): Promise<Interview[]> {
     const currentDate = new Date();
-  
+
     switch (timeRange) {
       case 'lastHour':
         currentDate.setHours(currentDate.getHours() - 1);
@@ -248,31 +318,9 @@ export class InterviewsService {
           })
           .populate('questions.question_id');
 
-          case 'byIntervieweeName':
-            return await this.InterviewModel.find({})
-              .sort({ 'interviewee.name': 1 }) 
-              .populate({
-                path: 'interviewee',
-                select: '-password',
-              })
-              .populate({
-                path: 'job_id',
-              })
-              .populate({
-                path: 'interviewer',
-                select: '-password',
-              })
-              .populate('questions.question_id');
-      
-  
-      
-          default:
-            throw new NotFoundException('Invalid filter');
-        }
-      
-        const interviews = await this.InterviewModel.find({
-          createdAt: { $gte: currentDate },
-        })
+      case 'byIntervieweeName':
+        return await this.InterviewModel.find({})
+          .sort({ 'interviewee.name': 1 })
           .populate({
             path: 'interviewee',
             select: '-password',
@@ -285,14 +333,36 @@ export class InterviewsService {
             select: '-password',
           })
           .populate('questions.question_id');
-      
-        if (interviews.length === 0) {
-          throw new NotFoundException('Interviews not found');
-        }
-      
-        return interviews;
-      }
 
-            
-        
+
+
+      default:
+        throw new NotFoundException('Invalid filter');
+    }
+
+    const interviews = await this.InterviewModel.find({
+      createdAt: { $gte: currentDate },
+    })
+      .populate({
+        path: 'interviewee',
+        select: '-password',
+      })
+      .populate({
+        path: 'job_id',
+      })
+      .populate({
+        path: 'interviewer',
+        select: '-password',
+      })
+      .populate('questions.question_id');
+
+    if (interviews.length === 0) {
+      throw new NotFoundException('Interviews not found');
+    }
+
+    return interviews;
+  }
+
+
+
 }

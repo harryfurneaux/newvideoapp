@@ -433,6 +433,21 @@ const Icons = ({ iconNumber }: { iconNumber: number }) => {
       />
     </svg>
     </>
+    case 20.1: return <svg
+      width={41}
+      height={40}
+      viewBox="0 0 41 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0.0910568 20.0001C0.0910568 31.0455 9.0453 40.0002 20.0908 40.0002C31.1368 40.0002 40.0908 31.0455 40.0908 20.0001C40.0908 8.9544 31.1368 0.00012 20.0908 0.00012C9.0453 0.00012 0.0910568 8.9544 0.0910568 20.0001Z"
+        fill="#8b91b9"
+      />
+      <rect x="13.93555" y="13.4053" width="12.3935" height="12.3935" fill="white" />
+    </svg>   
     case 21: return <><svg
       width={41}
       height={40}

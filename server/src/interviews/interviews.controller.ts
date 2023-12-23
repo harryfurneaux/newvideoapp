@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, UseInterceptors, UploadedFile, Param, Delete, UseGuards, Request, ParseFilePipeBuilder ,Query} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, UseInterceptors, UploadedFile, Param, Delete, UseGuards, Request, ParseFilePipeBuilder, Query, UploadedFiles } from '@nestjs/common';
 import { InterviewsService } from './interviews.service';
 import { CreateInterviewDto } from './dto/create-interview.dto';
 import { UpdateInterviewDto } from './dto/update-interview.dto';
 
-import { FileInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
 // JWT auth guard
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 //Role Guard
@@ -19,27 +19,21 @@ export class InterviewsController {
   @Post()
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Roles(ROLE.INTERVIEWEE)
-  // @UseInterceptors(FileInterceptor('video'))
-  async create(@UploadedFile(
-  //   new ParseFilePipeBuilder().addFileTypeValidator({
-  //     fileType: 'video/*',
-  //   })
-  //     .addMaxSizeValidator({
-  //       maxSize: 3 * 1024 * 1024 //// 3 MB in bytes
-  //     })
-  //     .build(),
-  
-) 
-// video: Express.Multer.File, 
-  @Body() createInterviewDto: CreateInterviewDto, @Request() req) {
+  @UseInterceptors(FileInterceptor('video'))
+  async create(@Body() createInterviewDto: CreateInterviewDto, @UploadedFile() video?: Express.Multer.File) {
     // createInterviewDto.interviewee = req.user.id
-    return this.interviewsService.create(createInterviewDto);
+    return this.interviewsService.create(createInterviewDto, video);
   }
 
+  @Post('/submit-questions')
+  @UseInterceptors(AnyFilesInterceptor())
+  async createMany(@UploadedFiles() recordings: Array<Express.Multer.File>, @Body() body) {
+    return this.interviewsService.createMany(body, recordings);
+  }
 
   @Get()
-  async findAll(@Query('filter') filters?: string | string[], 
-  @Query('intervieweeName') intervieweeName?: string) {
+  async findAll(@Query('filter') filters?: string | string[],
+    @Query('intervieweeName') intervieweeName?: string) {
 
     let interviews;
 
@@ -50,14 +44,14 @@ export class InterviewsController {
         interviews = await Promise.all(filterArray.map(filter => this.interviewsService.findInterviewsByTimeRange(filter)));
         interviews = interviews.flat();
       }
-    } 
+    }
     else {
       interviews = await this.interviewsService.findAll();
     }
 
     return interviews;
   }
-    
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {
