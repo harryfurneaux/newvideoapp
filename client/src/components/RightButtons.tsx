@@ -24,7 +24,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, j
       Share
     </button>
     <button className="no-shadow circleButtons" onClick={() => {
-
+      setMainScreen(4)
       setChatUser(jobView)
     }}>
       <Icons iconNumber={48}
