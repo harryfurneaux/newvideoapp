@@ -18,7 +18,7 @@ const RightLayout = ({ setMainScreen, setShowScreen }: { setMainScreen: any, set
         <SimpleCheckBox span="Share" title=" link with candidates" />
         <SimpleCheckBox span="Watch" title=" the video responses roll in" />
       </div>
-      <div className="createVideoInterviewBtnDiv">
+      <div className="createVideoInterviewBtnDiv d-none">
         <button className="btn no-shadow asjdsajde" onClick={() => {
           setMainScreen(0);
           setShowScreen(0);

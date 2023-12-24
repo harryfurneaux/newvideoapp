@@ -15,6 +15,7 @@ const defaultProvider: AuthValuesType = {
   signup: () => Promise.resolve(),
   addQuestion: () => Promise.resolve(),
   initAuth: () => null,
+  isLoggedIn: () => false
 }
 
 const AuthContext = createContext(defaultProvider)
@@ -60,6 +61,14 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
   useEffect(() => {
     initAuth()
   }, [])
+  
+  const isLoggedIn = () => {
+    const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
+    if(storedToken) {
+      return true;
+    }
+    return false;
+  };
 
   const handleRegister = (params: SignUpParams, errorCallback?: ErrCallbackType) => {
     return new Promise((resolve, rejects) => {
@@ -122,7 +131,8 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
     logout: handleLogout,
     signup: handleRegister,
     addQuestion: createQuestion,
-    initAuth
+    initAuth,
+    isLoggedIn
   }
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

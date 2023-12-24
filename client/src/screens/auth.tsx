@@ -13,8 +13,10 @@ import ForgotPwdForm from "../components/Auth/forgotpwdform";
 import EnterCodeForm from "../components/Auth/entercodeform";
 import NewPwdForm from "../components/Auth/newpwdform";
 import Notify from "../components/Notify";
+import { useAuth } from "../hooks/useAuth";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
+  const { isLoggedIn } = useAuth();
   const [showScreen, setshowScreen] = useState(0);
   const [signUpFormData, setSignUpFormData] = useState({
     name: '',
@@ -132,8 +134,9 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
         </div>
         {renderScreen()}
         <div className="d-flex justify-content-center kdnklms-awendwd-11">
-
-          <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          {isLoggedIn() ? (
+            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          ) : null}
         </div>
       </div>
       <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} />

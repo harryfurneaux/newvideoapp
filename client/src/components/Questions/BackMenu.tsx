@@ -31,7 +31,7 @@ const BackMenu = ({
           } else if (showScreen == 6) {
             setShowScreen(5);
           } else if (showScreen == 7) {
-            setShowScreen(6);
+            setShowScreen(0);
           }
         }}
         className="backButtonDiv backdrop-filter"
