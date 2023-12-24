@@ -18,20 +18,28 @@ interface Interview {
     updatedAt?: string;
     __v?: number;
   };
+  favourite?: any,
+  id?: any
 }
 
 const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter }) => {
   const [allInterviews, setAllInterviews] = useState<Array<Interview>>([]);
   const [filteredInterviews, setFilteredInterviews] = useState<Array<Interview>>([])
 
+  const handleFilteration = (array: any) => {
+    const questionsArray: Array<Interview> = array?.map((obj: any) => ({
+      videoLink: obj.questions[0].video_url,
+      interviewee: obj.interviewee,
+      favourite: obj.favourite,
+      id: obj._id
+    }));
+    setAllInterviews(questionsArray)
+  }
+
   useEffect(() => {
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
-      const questionsArray: Array<Interview> = response.data.map((obj: any) => ({
-        videoLink: obj.questions[0].video_url,
-        interviewee: obj.interviewee
-      }));
-      setAllInterviews(questionsArray);
+      handleFilteration(response.data)
     })
   }, []);
 
@@ -123,7 +131,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
         <Container>
           <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
             {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
-              <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} /></Col>
+              <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} /></Col>
             )) : (
               <Col className="p-0 w-100 text-center text-white small">
                 No Interviews. Try to change Filter.

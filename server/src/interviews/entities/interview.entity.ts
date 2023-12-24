@@ -32,6 +32,9 @@ export class Interview extends Document {
   // Link to Interviewer
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   interviewer: Interviewer;
+  @Prop({ type: Boolean, default: false })
+  favourite: boolean;
+
 }
 
 export const InterviewSchema = SchemaFactory.createForClass(Interview);

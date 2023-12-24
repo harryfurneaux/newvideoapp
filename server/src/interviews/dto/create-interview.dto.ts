@@ -1,4 +1,4 @@
-import { IsMongoId,  IsOptional } from 'class-validator';
+import { IsBoolean, IsDefined, IsMongoId, IsOptional } from 'class-validator';
 
 
 export class CreateInterviewDto {
@@ -19,6 +19,12 @@ export class CreateInterviewDto {
     @IsOptional()
     @IsMongoId()
     interviewer: string;
+
+    @IsDefined()
+    @IsBoolean()
+    favourite: boolean;
+
+
 
 
 }
