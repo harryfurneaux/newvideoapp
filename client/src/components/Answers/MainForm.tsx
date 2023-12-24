@@ -5,18 +5,26 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const MainForm = ({ setMainScreen, showScreen, setshowScreen }: { setMainScreen: any, showScreen: number, setshowScreen: any }) => {
-  const [allInterviews, setAllInterviews] = useState([])
+  const [allInterviews, setAllInterviews] = useState<any>([])
+
+
+  const handleFilteration = (array: any) => {
+    const questionsArray = array?.map((obj: any) => ({
+      videoLink: obj.questions[0].video_url,
+      interviewee: obj.interviewee,
+      favourite: obj.favourite,
+      id: obj._id
+    }));
+    setAllInterviews(questionsArray)
+
+    console.log(allInterviews)
+  }
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
-      const questionsArray = response.data.map((obj: any) => ({
-        videoLink: obj.questions[0].video_url,
-        interviewee: obj.interviewee
-      }));
-      setAllInterviews(questionsArray)
 
-      console.log(allInterviews)
+      handleFilteration(response.data)
     })
   }, [])
 
@@ -40,9 +48,9 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen }: { setMainScreen:
       <div className="leftSideContent">
         <Container>
           <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            {allInterviews.map((interview, index) => (
+            {allInterviews.map((interview: any, index: any) => (
               // <Col key={index} interview={interview} />
-              <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} /></Col>
+              <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showFav={interview?.favourite} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} /></Col>
             ))}
 
             {/* <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>

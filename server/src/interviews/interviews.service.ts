@@ -48,11 +48,11 @@ export class InterviewsService {
       );
     }
 
-    if(video) {
+    if (video) {
       //uploading video to imagekit
       createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
     }
-    
+
     if (interview) {
       // Update the existing interview with the new question and video URL
       return await this.InterviewModel.findByIdAndUpdate(
@@ -88,8 +88,8 @@ export class InterviewsService {
 
   async createMany(body, recordings) {
     const _body = Object.keys(body).map(b => JSON.parse(body[b]));
-    
-    if(_body?.length) {
+
+    if (_body?.length) {
       return await _body.map(async (createInterviewDto: CreateInterviewDto, index: any) => {
         console.log(createInterviewDto);
         // Check if the question exists
@@ -214,11 +214,12 @@ export class InterviewsService {
   }
 
   async update(id: string, updateInterviewDto: UpdateInterviewDto) {
+
     let interview = await this.InterviewModel.findById(id);
     if (!interview) {
       throw new NotFoundException('interview not found');
     }
-    return await this.InterviewModel.findByIdAndUpdate(id, updateInterviewDto, {
+    await this.InterviewModel.findByIdAndUpdate(id, updateInterviewDto, {
       new: true,
     })
       .populate({
@@ -229,6 +230,20 @@ export class InterviewsService {
         path: 'job_id',
       })
 
+      .populate({
+        path: 'interviewer',
+        select: '-password',
+      })
+
+      .populate('questions.question_id');
+    return await this.InterviewModel.find()
+      .populate({
+        path: 'interviewee',
+        select: '-password',
+      })
+      .populate({
+        path: 'job_id',
+      })
       .populate({
         path: 'interviewer',
         select: '-password',

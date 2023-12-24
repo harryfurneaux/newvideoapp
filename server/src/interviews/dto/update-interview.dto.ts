@@ -1,7 +1,7 @@
 // import { PartialType } from '@nestjs/mapped-types';
 // import { CreateInterviewDto } from './create-interview.dto';
 
-import {  IsMongoId, IsOptional } from 'class-validator';
+import { IsBoolean, IsDefined, IsMongoId, IsOptional } from 'class-validator';
 
 
 export class UpdateInterviewDto {
@@ -24,6 +24,13 @@ export class UpdateInterviewDto {
     @IsOptional()
     @IsMongoId()
     interviewer: string;
+
+    @IsDefined()
+    @IsBoolean()
+    favourite: boolean;
+
+
+
 
 }
 
