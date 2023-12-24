@@ -40,7 +40,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
       handleFilteration(response.data)
-    })
+    }).catch(console.error)
   }, []);
 
   useEffect(() => {

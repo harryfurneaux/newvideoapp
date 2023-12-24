@@ -2,26 +2,18 @@ import React, { useEffect, useState } from "react";
 import Icons from "../components/icons";
 import RightLayout2 from "../components/rightLayout2";
 import BottomMenu from "../components/bottomMenu";
-import BackMenu from "../components/Questions/BackMenu";
-import OptionButtons from "../components/Questions/OptionButton";
-import QuestionForm from "../components/Questions/QuestionsForm";
-import CreateForm from "../components/Questions/CreateForm";
-import ShareForm from "../components/Questions/ShareForm";
-import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
-import RightButtons from "../components/RightButtons";
 import BackButton from "../components/Auth/backButton";
 import { InputGroup, Form, Button, Card } from "react-bootstrap";
-import { PiPencilSimpleLine } from "react-icons/pi";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { MdAddCircleOutline } from "react-icons/md";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaRegSmile } from "react-icons/fa";
 import { useAuth } from "../hooks/useAuth";
 import { StreamChat } from 'stream-chat'
+
 function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, setMainScreen: any, chatUser: any }) {
   const [showScreen, setShowScreen] = useState(1);
-  const [showRightMenu, setShowRightMenu] = useState(false);
   const [chatClient, setChatClient] = useState<any>();
   const [channel, setChannel] = useState<any>();
   const [messages, setMessages] = useState<any>([]);
@@ -34,62 +26,56 @@ function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, set
   const secretKey = process.env.STREAM_CHAT_SECRET
   const userID = user?.id
 
-  console.log('chat usre', chatUser)
   useEffect(() => {
-    const client = StreamChat.getInstance('hz7uw3t9nzga')
-    if (user) {
-      console.log("user datga", user)
+    if (chatUser?.interviewer?._id && user?.id) {
+      try {
+        const client = StreamChat.getInstance('hz7uw3t9nzga')
+        if (user) {
+          client.devToken(user?.id)
+          client.connectUser(
+            { id: user?.id }, user?.chat.token
+          );
+          setChatClient(client)
+          const channel = client.channel('messaging', {
+            members: [chatUser?.interviewer?._id, user.id].filter(v => v),
+            created_by_id: user.id,
+          });
+          channel.watch();
+          setChannel(channel);
+          setMessages(channel.state.messageSets);
+        }
+      } catch (error) {
 
-      client.devToken(user?.id)
-      client.connectUser(
-        { id: user?.id }, user?.chat.token
-      );
-      setChatClient(client)
-      const channel = client.channel('messaging', {
-        members: [chatUser?.interviewer._id, user.id],
-        created_by_id: user.id,
-      });
-      channel.watch();
-      console.log("chanle", channel)
-      setChannel(channel);
-      console.log("chanle", channel.state.messages)
-
-      setMessages(channel.state.messageSets);
+      }
     }
-
-    //  return {
-    //     if (channel) {
-    //       // Stop watching the channel
-    //       channel.stopWatching();
-
-    //       // Delete the channel upon component unmounting
-    //       channel.delete().then(() => {
-    //         console.log('Channel deleted successfully');
-    //       }).catch((error: any) => {
-    //         console.error('Error deleting channel:', error);
-    //       });
-    //     }
-    //   };
-  }, [])
+  }, [chatUser, user])
 
 
   const sendMessage = async () => {
     if (text.trim() !== '') {
       const sentMessage = await channel.sendMessage({ text });
-      // console.log("messa retunr", message)
-      // setMessages([...messages, sentMessage.message]);
       setText('');
     }
   };
 
-
-
-
   return (
     <div className="pageContainer">
       <div className="rightSideDiv rightSideBg1">
-        <div className="leftSideHeader">
-          <BackButton showScreen={showScreen} setshowScreen={setShowScreen} />
+        <div className="leftSideHeader" style={{ justifyContent: 'flex-start', marginBottom: 10 }}>
+          <div
+            onClick={() => {
+              setMainScreen(1);
+              setShowScreen(0);
+            }}
+            className="skdmsa-dsad w-auto"
+          >
+            <div className="backButtonDiv">
+              <button className="hkjndankad-dnsd">
+                <Icons iconNumber={29} />
+              </button>
+              <h5 className="mksaldkamaw-jdwa">Back</h5>
+            </div>
+          </div>
         </div>
         <div className="message message-content row m-0">
           <div className="col-5 message-left bg-body-tertiary">

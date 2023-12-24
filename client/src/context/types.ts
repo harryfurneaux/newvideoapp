@@ -53,5 +53,6 @@ export type AuthValuesType = {
   login: (params: LoginParams, errorCallback?: ErrCallbackType) => Promise<any>
   signup: (params: SignUpParams, errorCallback?: ErrCallbackType) => Promise<any>
   addQuestion: (params: questionDataType, errorCallback?: ErrCallbackType) => Promise<any>
-  initAuth: () => void
+  initAuth: () => void,
+  isLoggedIn: () => Boolean
 }

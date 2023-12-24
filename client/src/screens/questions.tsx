@@ -47,7 +47,9 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { m
             </div> :
             <></>
         }
-        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
+        {showScreen == 0 ? null : (
+          <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
+        )}
         {showScreen > 5 ? (
           <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
             {showScreen == 6 ? (
