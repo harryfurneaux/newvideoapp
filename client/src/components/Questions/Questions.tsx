@@ -18,20 +18,26 @@ const Question = ({ setselected, selected, questions, questionIds, setQuestionId
           questionData.splice(index, 1)
           setQuestionIds(questionData)
           setselected(--selected)
+          setisHoverOrActive(!isHoverOrActive)
         }
         else {
+          if (questionIds?.length < 3) {
 
-          const questionData: any = [...questionIds]
-          questionData.push(questions._id)
-          setQuestionIds(questionData)
+            const questionData: any = [...questionIds]
+            questionData.push(questions._id)
+
+            setQuestionIds(questionData)
 
 
-          setselected(++selected)
+            setselected(++selected)
+            setisHoverOrActive(!isHoverOrActive)
+          }
+
         }
 
 
 
-        setisHoverOrActive(!isHoverOrActive)
+
 
       }}
     >
@@ -42,7 +48,7 @@ const Question = ({ setselected, selected, questions, questionIds, setQuestionId
       <div>
         <div className=" ">
           <Icons iconNumber={26} />
-          <h6>{questions.time_duration}</h6>
+          <h6>{`${questions.time_duration}s`}</h6>
         </div>
       </div>
     </div>
