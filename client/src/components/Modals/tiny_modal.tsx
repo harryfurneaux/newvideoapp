@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 // @ts-ignore
 import $ from "jquery";
+import axios from "axios";
+import { useAuth } from "../../hooks/useAuth";
 
 const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, handleClose: any, type: string, setMainScreen: any }) => {
+  const { user } = useAuth()
   useEffect(() => {
     if (show && type == "delete_interview") {
       $(".modal-backdrop").css("opacity", 0);
@@ -39,7 +42,17 @@ const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, 
           if (type == 'logout') {
 
             handleClose()
-            setMainScreen(4)
+            setMainScreen(5)
+          }
+          if (type == 'delete_account') {
+            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`).then((res) => {
+
+              setMainScreen(0)
+
+
+
+            })
+            console.log("delet account cndfm")
           }
 
         }}>
@@ -51,7 +64,7 @@ const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, 
           }
         </Button>
       </Modal.Footer>
-    </Modal>
+    </Modal >
   )
 }
 

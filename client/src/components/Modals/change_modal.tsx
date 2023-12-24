@@ -1,6 +1,102 @@
+import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useAuth } from "../../hooks/useAuth";
+import axios from "axios";
+import Notify from "../Notify";
 
-const ChangeModal = ({ show, handleClose, item }: { show: boolean, handleClose: any, item: string }) => {
+const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean, handleClose: any, item: string, setNotifyShow: any }) => {
+  const [password, setPassword] = useState('')
+  const [data, setData] = useState('')
+
+  const { user } = useAuth()
+  console.log("user", user)
+  const handleSave = () => {
+
+
+    if (item == 'Name') {
+      axios
+        .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
+          name: data
+          ,
+          password: password
+
+        }).then((res) => {
+          setData('')
+          setPassword('')
+          setNotifyShow(true)
+          handleClose()
+        })
+
+    }
+    if (item == "Location") {
+      axios
+        .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
+          location: data
+          ,
+          password: password
+
+        }).then((res) => {
+          setData('')
+          setPassword('')
+          setNotifyShow(true)
+          handleClose()
+        })
+
+
+    }
+    if (item == "Email") {
+      axios
+        .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
+          email: data
+          ,
+          password: password
+
+        }).then((res) => {
+          setData('')
+          setPassword('')
+          setNotifyShow(true)
+          handleClose()
+        })
+
+
+    }
+    // if (item == "Password") {
+    //   axios
+    //     .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
+    //       password: data
+    //       ,
+    //       password: password
+
+    //     }).then((res) => setNotifyShow(true))
+
+
+    // }
+    else {
+      axios
+        .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
+          company_name: data
+          ,
+          password: password
+
+        }).then((res) => {
+          setData('')
+          setPassword('')
+          setNotifyShow(true)
+          handleClose()
+        })
+
+
+    }
+
+
+
+
+
+
+
+
+
+  }
   return (
     <Modal className="modal-primary change-modal" show={show} onHide={handleClose} centered>
       <Modal.Header className="flex-column">
@@ -18,17 +114,20 @@ const ChangeModal = ({ show, handleClose, item }: { show: boolean, handleClose: 
                 item == "Password" ? "NEW PASSWORD" :
                   "COMPANY NAME"
           }</h6>
-          <h5>{item=="Name"?"Full Name":item}</h5>
+          <input className="settingsInput" style={{ backgroundColor: '#4A60FF', border: "none" }} placeholder={item == "Name" ? "Full Name" : item} value={data} onChange={(e) => setData(e.target.value)} />
+          {/* <h5>{item=="Name"?"Full Name":item}</h5> */}
         </div>
         <div className="modal-part">
           <h6>CURRENT PASSWORD</h6>
-          <h5>{""}</h5>
+          {/* <h5>{""}</h5> */}
+          <input value={password} onChange={(e) => setPassword(e.target.value)} className="settingsInput" type='password' style={{ backgroundColor: '#4A60FF', border: "none" }} />
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleClose}>Close</Button>
-        <Button className="bordered">Save changes</Button>
+        <Button className="bordered" onClick={handleSave}>Save changes</Button>
       </Modal.Footer>
+
     </Modal>
   )
 }
