@@ -11,7 +11,7 @@ import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 
 function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any }) {
-  const [showScreen, setShowScreen] = useState(6);
+  const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
