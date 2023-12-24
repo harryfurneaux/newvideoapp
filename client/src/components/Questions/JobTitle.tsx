@@ -16,16 +16,16 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
         <Icons iconNumber={95} />
         <div className="kjnkodsa-jaddd">
           <div>
-            <h5>{jobData.job_title}</h5>
+            <h5>{jobData?.job_title || ''}</h5>
           </div>
           <div className="kjdlfksd-sdmks">
             <div className="kjdlfksd-sdmks">
               <Icons iconNumber={33} />
-              <h6>{jobData.interviewer.company_name}</h6>
+              <h6>{jobData?.interviewer?.company_name || ''}</h6>
             </div>
             <div className="kjdlfksd-sdmks location">
               <Icons iconNumber={34} />
-              <h6>{jobData.interviewer.location}</h6>
+              <h6>{jobData?.interviewer?.location || ''}</h6>
               <h4>Posted 12 days ago</h4>
             </div>
           </div>

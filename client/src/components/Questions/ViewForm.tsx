@@ -18,12 +18,12 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
                 <img src={require("../../images/i5.png")} />
               </div>
               <div className="kjdflkads-mdskf">
-                <h3>{jobView?.job_title}</h3>
+                <h3>{jobView?.job_title || ''}</h3>
                 <h5>
-                  <Icons iconNumber={16} /> {jobView?.interviewer.company_name}
+                  <Icons iconNumber={16} /> {jobView?.interviewer?.company_name || ''}
                 </h5>
                 <h6>
-                  <Icons iconNumber={17} />{jobView?.interviewer.location}
+                  <Icons iconNumber={17} />{jobView?.interviewer?.location || ''}
                 </h6>
               </div>
             </div>

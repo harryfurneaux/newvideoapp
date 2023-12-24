@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Auth from "./screens/auth";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Question from "./screens/questions";
 import Answers from "./screens/answers";
 import Start from './screens/start';
@@ -15,6 +15,9 @@ function App() {
   const [jobViewContext, setJobViewContext] = useState()
   const [chatUser, setChatUser] = useState()
 
+  useEffect(() => {
+    window.history.pushState(null, '', '/');
+  }, []);
 
   return (
     <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
@@ -32,7 +35,3 @@ function App() {
 }
 
 export default App;
-
-/*
-
-    */

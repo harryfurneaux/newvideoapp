@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Icons from "../../components/icons";
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
 import FacebookLogin from '@greatsumini/react-facebook-login';
 import { useAuth } from "../../hooks/useAuth";
+import authConfig from '../../configs/auth';
 
 const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowScreen: any, className?: string, setMainScreen: any }) => {
   const { setUser } = useAuth();
@@ -13,16 +14,19 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
       axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/google/callback', { params: { code: tokenResponse.access_token } })
-      .then((res) => {
-        setUser(res.data);
-        setMainScreen(1)
-      })
+        .then((res) => {
+          setUser(res.data);
+          setMainScreen(1)
+          if (res?.data?.token) {
+            window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
+          }
+        })
     }
   });
-  
+
   const { linkedInLogin } = useLinkedIn({
     clientId: '77ezxuyzh6xmh6',
-    redirectUri: process.env.REACT_APP_FRONTEND_URL+'/linkedIn-Auth',
+    redirectUri: process.env.REACT_APP_FRONTEND_URL + '/linkedIn-Auth',
     scope: 'openid,profile,email',
     onSuccess: (code) => {
       axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
@@ -32,6 +36,9 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
       }).then((res) => {
         setUser(res.data);
         setMainScreen(1)
+        if (res?.data?.token) {
+          window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
+        }
       })
     },
     onError: (error) => {
