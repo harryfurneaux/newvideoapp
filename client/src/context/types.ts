@@ -21,6 +21,8 @@ export type UserDataType = {
   role: string
   email: string
   name: string
+  company_name: string
+  location: string
   username: string
   password: string
   chat: {

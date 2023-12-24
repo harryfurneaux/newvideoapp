@@ -17,6 +17,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { m
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [jobView, setJobView] = useState(null)
+  const [myQuestions, setMyQuestions] = useState(true)
 
   useEffect(() => {
     if (jobView) {
@@ -40,8 +41,8 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { m
                   </> : <></>}
                 </div>
               ) : <>
-                <OptionButtons />
-                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
+                <OptionButtons setMyQuestions={setMyQuestions} />
+                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
               </>}
             </div> :
             <></>

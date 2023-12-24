@@ -89,6 +89,8 @@ export class UsersService {
       id: user.id,
       name: user.name,
       email: user.email,
+      location: user.location,
+      company_name: user.company_name,
       // role: user.role,
       token: jwtToken,
       chat: {

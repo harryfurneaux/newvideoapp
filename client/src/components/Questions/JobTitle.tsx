@@ -5,7 +5,30 @@ import { useAuth } from "../../hooks/useAuth";
 const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobView }: { setMainScreen: any, setShowScreen: any, showMessage: boolean, jobData: any, setJobView: any }) => {
   const [selected, setselected] = useState(0);
   const { setJobViewContext } = useAuth()
+  console.log("job data", jobData)
+  const getTimeDifference = (created_at: any) => {
 
+    const currentDate: any = new Date();
+    const postedDate: any = new Date(created_at);
+    const timeDifference = currentDate - postedDate
+
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    console.log("days", created_at, timeDifference, hours, days)
+
+    if (months > 0) {
+      return `posted ${months} ${months === 1 ? 'month' : 'months'} ago`;
+    } else if (days < 1) {
+      return "posted today"
+    }
+
+    else {
+      return `posted ${days} ${days === 1 ? 'day' : 'days'} ago`;
+    }
+  };
   return (
     <div className="jobPositionDiv" onClick={() => {
       setJobViewContext(jobData)
@@ -26,7 +49,7 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
             <div className="kjdlfksd-sdmks location">
               <Icons iconNumber={34} />
               <h6>{jobData?.interviewer?.location || ''}</h6>
-              <h4>Posted 12 days ago</h4>
+              <h4>{getTimeDifference(jobData.createdAt)}</h4>
             </div>
           </div>
         </div>

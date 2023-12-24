@@ -3,13 +3,14 @@ import { Modal } from "react-bootstrap";
 import profile_pic from "../../images/Profile Pic 2.png";
 import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
-
+import { useAuth } from "../../hooks/useAuth";
 const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any }) => {
   const [show_change, setChangeModal] = useState(false);
   const [change_item, setChangeItem] = useState("");
 
   const [show_tiny, setTinyModal] = useState(false);
   const [tiny_type, setTinyType] = useState("");
+  const { user } = useAuth()
 
   const handleChangeClose = () => setChangeModal(false);
   const handleChangeShow = (item: string) => {
@@ -42,7 +43,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         <div className="modal-part row align-items-center">
           <div className="col">
             <h6>NAME</h6>
-            <p>Full Name</p>
+            <p>{user?.name}</p>
           </div>
           <div className="col-2 d-flex justify-content-end">
             <button onClick={() => handleChangeShow("Name")}>Edit</button>
@@ -51,7 +52,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         <div className="modal-part row align-items-center">
           <div className="col">
             <h6>ORGANISATION</h6>
-            <p>Company name ltd.</p>
+            <p>{user?.company_name}</p>
           </div>
           <div className="col-2 d-flex justify-content-end">
             <button onClick={() => handleChangeShow("Company")}>Edit</button>
@@ -60,7 +61,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         <div className="modal-part row align-items-center">
           <div className="col">
             <h6>LOCATION</h6>
-            <p>Full location</p>
+            <p>{user?.location}</p>
           </div>
           <div className="col-2 d-flex justify-content-end">
             <button onClick={() => handleChangeShow("Location")}>Edit</button>
@@ -69,7 +70,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         <div className="modal-part row align-items-center">
           <div className="col">
             <h6>EMAIL</h6>
-            <p>**********@emailaddress.com</p>
+            <p>{user?.email}</p>
           </div>
           <div className="col-2 d-flex justify-content-end">
             <button onClick={() => handleChangeShow("Email")}>Edit</button>
