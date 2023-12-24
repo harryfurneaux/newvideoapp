@@ -18,7 +18,7 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
-      <AuthProvider>
+      <AuthProvider setMainScreen={setMainScreen}>
         {
           mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
             : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} setChatUser={setChatUser} />

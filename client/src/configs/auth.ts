@@ -1,5 +1,5 @@
 export default {
-  meEndpoint: '/auth/me',
+  meEndpoint: '/users/me',
   loginEndpoint: '/users/log-in',
   registerEndpoint: '/users/sign-up',
   addJobEndPoint: '/interviewer/create',

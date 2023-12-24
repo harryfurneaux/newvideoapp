@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, ConflictException, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserLoginDto } from './dto/login-user.dto';
@@ -42,7 +42,7 @@ export class UsersService {
   }
 
   async findById(id: string): Promise<User | null> {
-    let user: User | null = await await this.UserModel.findById(id).select(
+    let user: User | null = await this.UserModel.findById(id).select(
       '-v -password',
     );
     if (!user) throw new NotFoundException('user not found');
@@ -123,12 +123,52 @@ export class UsersService {
     const jwtToken = await this.authService.generateToken({
       id: user.id,
     });
-    await this.messagingService.initializeUser(user.id);
+    const chatUser = await this.messagingService.initializeUser(user.id);
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       token: jwtToken,
+      chat: {
+        user: chatUser.user,
+        token: chatUser.token
+      }
     };
+  }
+
+  async me(authorization: string): Promise<any> {
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+      throw new UnauthorizedException('Invalid token format');
+    }
+    const token = authorization.split(' ')[1];
+    try {
+      const decodedToken = await this.authService.verifyToken(token);
+      if (this.authService.isTokenExpired(decodedToken)) {
+        throw new UnauthorizedException('Token has expired');
+      }
+
+      let user = await this.UserModel.findById(decodedToken.id).select(
+        '-v -password',
+      );
+      if (!user) throw new NotFoundException('user not found');
+      const jwtToken = await this.authService.generateToken({
+        id: user.id,
+      });
+
+      const chatUser = await this.messagingService.initializeUser(user.id);
+
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        token: jwtToken,
+        chat: {
+          user: chatUser.user,
+          token: chatUser.token
+        }
+      };
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }
