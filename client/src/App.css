@@ -3643,3 +3643,16 @@ video.bg-video {
   margin-top: -5px !important;
   margin-bottom: 5px !important;
 }
+
+.filter-item {
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.filter-item:hover {
+  font-weight: 900;
+}
+
+.filter-item.filter-item-active {
+  font-weight: 900;
+}

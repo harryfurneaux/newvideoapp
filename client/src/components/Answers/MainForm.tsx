@@ -3,24 +3,106 @@ import Card from "./Card";
 import Icons from "../icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { AnswerFilter } from "../../screens/answers";
 
-const MainForm = ({ setMainScreen, showScreen, setshowScreen }: { setMainScreen: any, showScreen: number, setshowScreen: any }) => {
-  const [allInterviews, setAllInterviews] = useState([])
+interface Interview {
+  videoLink: string;
+  interviewee?: {
+    _id?: string;
+    name?: string;
+    email?: string;
+    birth_date?: string;
+    location?: string;
+    company_name?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    __v?: number;
+  };
+}
+
+const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter }) => {
+  const [allInterviews, setAllInterviews] = useState<Array<Interview>>([]);
+  const [filteredInterviews, setFilteredInterviews] = useState<Array<Interview>>([])
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
-      const questionsArray = response.data.map((obj: any) => ({
+      const questionsArray: Array<Interview> = response.data.map((obj: any) => ({
         videoLink: obj.questions[0].video_url,
         interviewee: obj.interviewee
       }));
-      setAllInterviews(questionsArray)
-
-      console.log(allInterviews)
+      setAllInterviews(questionsArray);
     })
-  }, [])
+  }, []);
 
-  console.log(allInterviews)
+  useEffect(() => {
+    if (selectedFilter && allInterviews?.length) {
+      const now = new Date();
+      let filteredInterviews: Array<Interview> = [];
+
+      switch (selectedFilter) {
+        case AnswerFilter.LastHour:
+          filteredInterviews = allInterviews.filter((interview: Interview) => {
+            if (interview?.interviewee?.createdAt) {
+              const interviewDate = new Date(interview.interviewee.createdAt);
+              const timeDifference = now.getTime() - interviewDate.getTime();
+              const hoursDifference = timeDifference / (1000 * 3600);
+              return hoursDifference <= 1;
+            }
+          }).filter(i => i);
+          break;
+        case AnswerFilter.Today:
+          filteredInterviews = allInterviews.filter((interview) => {
+            if (interview?.interviewee?.createdAt) {
+              const interviewDate = new Date(interview.interviewee.createdAt);
+              return (
+                interviewDate.getDate() === now.getDate() &&
+                interviewDate.getMonth() === now.getMonth() &&
+                interviewDate.getFullYear() === now.getFullYear()
+              );
+            }
+          }).filter(i => i);
+          break;
+        case AnswerFilter.ThisWeek:
+          filteredInterviews = allInterviews.filter((interview) => {
+            if (interview?.interviewee?.createdAt) {
+              const interviewDate = new Date(interview.interviewee.createdAt);
+              const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+              const endOfWeek = new Date(startOfWeek);
+              endOfWeek.setDate(endOfWeek.getDate() + 6);
+
+              return interviewDate >= startOfWeek && interviewDate <= endOfWeek;
+            }
+          }).filter(i => i);
+          break;
+        case AnswerFilter.ThisMonth:
+          filteredInterviews = allInterviews.filter((interview) => {
+            if (interview?.interviewee?.createdAt) {
+              const interviewDate = new Date(interview.interviewee.createdAt);
+              return (
+                interviewDate.getMonth() === now.getMonth() &&
+                interviewDate.getFullYear() === now.getFullYear()
+              );
+            }
+          }).filter(i => i);
+          break;
+        case AnswerFilter.ThisYear:
+          filteredInterviews = allInterviews.filter((interview) => {
+            if (interview?.interviewee?.createdAt) {
+              const interviewDate = new Date(interview.interviewee.createdAt);
+              return interviewDate.getFullYear() === now.getFullYear();
+            }
+          }).filter(i => i);
+          break;
+        default:
+          filteredInterviews = [...allInterviews];
+          break;
+      }
+
+      setFilteredInterviews(filteredInterviews);
+    }
+  }, [selectedFilter, allInterviews]);
+
   return (
     <div className="leftSideMain">
       <div className="option-btn">
@@ -40,32 +122,13 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen }: { setMainScreen:
       <div className="leftSideContent">
         <Container>
           <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            {allInterviews.map((interview, index) => (
-              // <Col key={index} interview={interview} />
+            {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
               <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} /></Col>
-            ))}
-
-            {/* <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showFav showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col>
-            <Col className="p-0"><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} /></Col> */}
+            )) : (
+              <Col className="p-0 w-100 text-center text-white small">
+                No Interviews. Try to change Filter.
+              </Col>
+            )}
           </Row>
         </Container>
       </div>
