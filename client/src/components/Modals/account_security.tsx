@@ -4,7 +4,7 @@ import profile_pic from "../../images/Profile Pic 2.png";
 import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
 
-const AccountSecurity = ({ show, handleClose }: { show: boolean, handleClose: any }) => {
+const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any }) => {
   const [show_change, setChangeModal] = useState(false);
   const [change_item, setChangeItem] = useState("");
 
@@ -85,11 +85,14 @@ const AccountSecurity = ({ show, handleClose }: { show: boolean, handleClose: an
           </div>
         </div>
         <div className="delete-part d-flex justify-content-end">
-          <button className="border" onClick={() => handleTinyShow("delete_account")}>Delete Account</button>
+          <button className="border" onClick={() => {
+            setTinyType("delete_account")
+            handleTinyShow("delete_account")
+          }}>Delete Account</button>
         </div>
       </Modal.Body>
-      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} />
-      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={''} />
+      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} />
+      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={setMainScreen} />
     </Modal>
   )
 }

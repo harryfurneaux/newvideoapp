@@ -11,6 +11,7 @@ import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 import TinyModal from "./Modals/tiny_modal";
+import Notify from "./Notify";
 
 const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
@@ -35,7 +36,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-
+  const [notifyShow, setNotifyShow] = useState(false)
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
     $(".overlay").hide();
@@ -54,7 +55,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
     setShowPrivacy(true);
   }
 
-  const handleLogoutClose = () => setShowLogout(false);
+  const handleLogoutClose = () => (false);
   const handleLogoutShow = () => {
     $(".overlay").hide();
     setShowLogout(true);
@@ -101,10 +102,11 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
           <Icons iconNumber={1} />
         </button>
       </OverlayTrigger>
-      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
+      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} />
       <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
       <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} />
+      <Notify show={notifyShow} title="Settings Changed" handleClose={() => setNotifyShow(false)} />
     </>
   )
 }
