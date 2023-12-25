@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class MediaService {
   private readonly assetsFolder = 'assets';
   private readonly interviewsVideosFolder = 'interviews_videos';
-  private readonly baseURL = 'https://staging.videointerviews.io/';
+  private readonly baseURL = 'https://api.videointerviews.io/';
 
 
   constructor() {
@@ -36,10 +36,8 @@ export class MediaService {
       const videoFileName = `${uniqueID}_${file.originalname}`;
       const videoPath = path.join(this.assetsFolder, this.interviewsVideosFolder, videoFileName);
       fs.writeFileSync(videoPath, file.buffer);
-  
-      const videoUrl = `${this.baseURL}${this.interviewsVideosFolder}/${videoFileName}`;
-  
-  
+      
+      const videoUrl = `${this.baseURL}${this.assetsFolder}/${this.interviewsVideosFolder}/${videoFileName}`;
       return videoUrl;
     } catch (error) {
       console.error('Error saving video:', error);
