@@ -46,7 +46,7 @@ const CreateForm = ({
 
   const getQuestions = () => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}${user?.id ? `?user_Id=${user?.id}` : ''}`)
       .then(async response => {
         setQuestions(response.data)
       })
