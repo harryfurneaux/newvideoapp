@@ -11,9 +11,11 @@ import authConfig from '../../configs/auth'
 const CreateForm = ({
   setShowScreen,
   showScreen,
+  setJobView
 }: {
   setShowScreen: any;
   showScreen: number;
+  setJobView: any;
 }) => {
   const { addQuestion, user } = useAuth()
   const [valuec, setValuechange] = useState('');
@@ -21,7 +23,8 @@ const CreateForm = ({
   const [questionIds, setQuestionsIds] = useState<any>([])
   const [newQuestion, setNewQuestion] = useState({
     "question": '',
-    "time_duration": 30
+    "time_duration": 30,
+    "user_id": user?.id
   })
   const [questions, setQuestions] = useState<any>()
   const [job, setjob] = useState({
@@ -54,6 +57,7 @@ const CreateForm = ({
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
       .then(async response => {
+        setJobView(response.data);
         setNewJob(response.data);
       })
       .catch(err => {
@@ -88,6 +92,7 @@ const CreateForm = ({
 
     }
   }, [showScreen]);
+  
   const handleQuestionChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -96,6 +101,7 @@ const CreateForm = ({
       [name]: value,
     });
   };
+  
   const handleJobData = (e: any) => {
     const { name, value } = e.target;
 
@@ -104,6 +110,7 @@ const CreateForm = ({
       [name]: value,
     });
   }
+  
   return (
     // <Fade direction="left" big>
     <div className="kjkndask-ankdnwd">

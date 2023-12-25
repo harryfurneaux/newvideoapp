@@ -24,7 +24,7 @@ function App() {
       <AuthProvider setMainScreen={setMainScreen}>
         {
           mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} setChatUser={setChatUser} />
+            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} setJobViewContext={setJobViewContext} setChatUser={setChatUser} />
               : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} />
                 : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} /> 
                   : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />

@@ -10,7 +10,7 @@ import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 
-function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any }) {
+function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any }) {
   const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
@@ -34,9 +34,12 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { m
               {pastScreen > 5 ? (
                 <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
                   {pastScreen == 6 ? (
-                    <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+                    <>
+                    <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                    <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                    </>
                   ) : pastScreen == 7 ? <>
-                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} />
                     <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
                   </> : <></>}
                 </div>
@@ -51,17 +54,20 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser }: { m
         {showScreen > 5 ? (
           <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
             {showScreen == 6 ? (
-              <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} />
+              <>
+              <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+              <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+              </>
             ) : (
               <>
-                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} />
                 <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
               </>
             )}
           </div>
         ) : <></>}
         {showScreen >= 1 && showScreen <= 5 ? (
-          <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} />
+          <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
         ) : (
           <></>
         )}
