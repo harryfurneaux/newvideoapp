@@ -8,17 +8,22 @@ import {
   FacebookShareButton,
   LinkedinShareButton,
 } from "react-share";
+import RightButtons from "../RightButtons";
 
 const ShareForm = ({
   setMainScreen,
   setShowScreen,
   setPastScreen,
   showScreen,
+  jobView,
+  setChatUser
 }: {
   setMainScreen: any;
   setShowScreen: any;
   setPastScreen: any;
   showScreen: number;
+  jobView: any;
+  setChatUser: any;
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
   const [notify_show, setNotifyShow] = useState(false);
@@ -44,59 +49,62 @@ const ShareForm = ({
     <>
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
       <Flip direction="horizontal">
-        <div className="kjjfds-janwkea">
-          {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
-          <div className="jhjij-sanwe kjljdfn-jadmw" style={{
-            paddingLeft: '33px',
-            paddingRight: '33px',
-            paddingTop: '32px'
-          }}>
-            <h3>Share Questions</h3>
-            <h4 className="ksajdsd-sjad">
-              Invite people to Answer
-            </h4>
-            <div className="copyLinkDiv">
-              <button className="btn" style={{
-                paddingLeft: 40,
-                paddingRight: 30
-              }} onClick={() => {
-                navigator.clipboard.writeText(linkToCopy).then(() => setNotifyShow(true))
-              }}>
-                <Icons iconNumber={44} />
-                Copy Direct Link to Questions
-              </button>
-            </div>
-            <div className="jkdslafj-asdemk">
-              <div className="jkdsfs-dajem"></div>
-              <h5>or</h5>
-              <div className="jkdsfs-dajem"></div>
-            </div>
-            <div className="socialButtonsDiv">
-              <FacebookShareButton className="btn" url={linkToCopy} children={
-                <button className="btn">
-                  <Icons iconNumber={3} />
-                  Share via Facebook
+        <div className="jkljfkld-jdskfe">
+          <div className="kjjfds-janwkea">
+            {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
+            <div className="jhjij-sanwe kjljdfn-jadmw" style={{
+              paddingLeft: '33px',
+              paddingRight: '33px',
+              paddingTop: '32px'
+            }}>
+              <h3>Share Questions</h3>
+              <h4 className="ksajdsd-sjad">
+                Invite people to Answer
+              </h4>
+              <div className="copyLinkDiv">
+                <button className="btn" style={{
+                  paddingLeft: 40,
+                  paddingRight: 30
+                }} onClick={() => {
+                  navigator.clipboard.writeText(linkToCopy).then(() => setNotifyShow(true))
+                }}>
+                  <Icons iconNumber={44} />
+                  Copy Direct Link to Questions
                 </button>
-              } />
-              <LinkedinShareButton className="btn" url={linkToCopy} children={
-                <button className="btn">
-                  <Icons iconNumber={5}></Icons>
-                  Share via LinkedIn
+              </div>
+              <div className="jkdslafj-asdemk">
+                <div className="jkdsfs-dajem"></div>
+                <h5>or</h5>
+                <div className="jkdsfs-dajem"></div>
+              </div>
+              <div className="socialButtonsDiv">
+                <FacebookShareButton className="btn" url={linkToCopy} children={
+                  <button className="btn">
+                    <Icons iconNumber={3} />
+                    Share via Facebook
+                  </button>
+                } />
+                <LinkedinShareButton className="btn" url={linkToCopy} children={
+                  <button className="btn">
+                    <Icons iconNumber={5}></Icons>
+                    Share via LinkedIn
+                  </button>
+                } />
+              </div>
+              <div className="continueBtnDiv">
+                <button onClick={() => {
+                  setShowScreen(7);
+                }} className="btn jhdfksjan-a0jwe">
+                  CLOSE
+                  <Icons iconNumber={43} />
                 </button>
-              } />
+              </div>
             </div>
-            <div className="continueBtnDiv">
-              <button onClick={() => {
-                setShowScreen(7);
-              }} className="btn jhdfksjan-a0jwe">
-                CLOSE
-                <Icons iconNumber={43} />
-              </button>
+            <div className="ldkjfal0-fdsnfe">
+              <Icons iconNumber={64} />
             </div>
           </div>
-          <div className="ldkjfal0-fdsnfe">
-            <Icons iconNumber={64} />
-          </div>
+          <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={isMobile ? true : false} style={{ right: '-80px' }} />
         </div>
       </Flip>
     </>

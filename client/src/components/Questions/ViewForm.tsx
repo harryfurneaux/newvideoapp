@@ -4,10 +4,12 @@ import Icons from "../icons";
 //@ts-ignore
 import { Flip } from "react-awesome-reveal"
 import CheckFormBox from "../CheckBoxForm";
+import { useState } from "react";
 
-const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setChatUser }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, jobView: any, setChatUser: any }) => {
+const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setChatUser, jobViewContext }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, jobView: any, setChatUser: any, jobViewContext: any }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
-
+  const [_jobView, setJobView] = useState(jobView || jobViewContext);
+  
   return (
     <Flip direction="horizontal">
       <div className="jkljfkld-jdskfe">
@@ -28,9 +30,9 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
               </div>
             </div>
             <div className="njfk-amew">
-              {jobView?.questions?.map((data: any, index: any) => (
+              {_jobView?.questions?.length ? _jobView?.questions?.map((data: any, index: any) => (
                 <CheckFormBox questions={data} />
-              ))}
+              )) : null}
               {/* <CheckFormBox /> */}
               {/* <CheckFormBox />
               <CheckFormBox /> */}
