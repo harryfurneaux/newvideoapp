@@ -25,6 +25,7 @@ export class UpdateInterviewDto {
     @IsMongoId()
     interviewer: string;
 
+    @IsOptional()
     @IsDefined()
     @IsBoolean()
     favourite: boolean;
