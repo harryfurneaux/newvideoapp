@@ -27,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { InterviewerModule } from './interviewer/interviewer.module';
 import { FavouriteInterviewsModule } from './favourite-interviews/favourite-interviews.module';
+import { MediaModule } from 'media/media.module';
 
 
 
@@ -58,6 +59,7 @@ import { FavouriteInterviewsModule } from './favourite-interviews/favourite-inte
     InterviewerModule,
     AuthModule,
     FavouriteInterviewsModule,
+    MediaModule
     
   ],
   controllers: [AppController],
