@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Job } from '../../jobs/entities/job.entity'
+import { User } from 'src/users/entities/user.entity';
 import * as mongoose from 'mongoose';
 
 @Schema({ timestamps: true })
@@ -15,6 +16,10 @@ export class Question extends Document {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
     job_id: Job;
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false })
+    user_id: User;
+  
 }
 
 

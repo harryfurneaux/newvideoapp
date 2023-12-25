@@ -1,67 +1,107 @@
-import { Injectable, ConflictException, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Question } from './entities/question.entity'
+import { Question } from './entities/question.entity';
 import { Model } from 'mongoose';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 
 @Injectable()
 export class QuestionsService {
-  constructor(@InjectModel('Question') private QuestionModel: Model<Question>) { }
+  constructor(
+    @InjectModel('Question') private QuestionModel: Model<Question>,
+  ) {}
 
   async create(createQuestionDto: CreateQuestionDto) {
-    return ((await this.QuestionModel.create(createQuestionDto)))
-    // .populate({
-    //   path: 'job_id'
-    // });
+    const user_Id = createQuestionDto.user_Id || null;
+
+    const createdQuestion = await this.QuestionModel.create({
+      ...createQuestionDto,
+      user_Id,
+    });
+
+    return createdQuestion;
   }
 
-  async findAll() {
-    let questions = await this.QuestionModel.find()
-    // .populate({
-    //   path: 'job_id'
-    // })
-    if (questions.length == 0) {
-      throw new NotFoundException('questions not found')
+  async findAll(userId?: string) {
+    let query: any = {};
+
+    if (userId) {
+      query = { $or: [{ user_id: userId }, { user_id: { $exists: false } }] };
+    } else {
+      query = { user_id: { $exists: false } };
     }
-    return questions
+
+    let questions = await this.QuestionModel.find(query);
+
+    if (questions.length === 0) {
+      throw new NotFoundException('Questions not found');
+    }
+
+    if (userId) {
+      questions = await this.QuestionModel.populate(questions, {
+        path: 'user_id',
+        select: '-password',
+      });
+    }
+
+    return questions;
   }
 
   async findOne(id: string) {
-    let question = await this.QuestionModel.findById(id)
-      // .populate({
-      //   path: 'job_id'
-      // })
+    let question = await this.QuestionModel.findById(id);
+
     if (!question) {
       throw new NotFoundException('question not found');
     }
-    return question
+    question = await this.QuestionModel.populate(question, {
+      path: 'user_id',
+      select: '-password',
+    });
+
+    return question;
   }
 
   async update(id: string, updateQuestionDto: UpdateQuestionDto) {
-    let question = await this.QuestionModel.findById(id)
+    let question = await this.QuestionModel.findById(id);
+
     if (!question) {
-      throw new NotFoundException('question not found');
+      throw new NotFoundException('Question not found');
     }
-    return await this.QuestionModel.findByIdAndUpdate(
+
+    question = await this.QuestionModel.findByIdAndUpdate(
       id,
       updateQuestionDto,
-      { new: true }
-    )
-    // .populate({
-    //   path: 'job_id',
-    // })
+      {
+        new: true,
+      },
+    );
+
+    question = await this.QuestionModel.populate(question, {
+      path: 'user_id',
+      select: '-password',
+    });
+
+    return question;
   }
 
   async remove(id: string) {
-    let question = await this.QuestionModel.findById(id)
+    let question = await this.QuestionModel.findById(id);
+
     if (!question) {
-      throw new NotFoundException('question not found');
+      throw new NotFoundException('Question not found');
     }
-    return await this.QuestionModel.findByIdAndRemove(id)
-    // .populate({
-    //   path: 'job_id',
-    // })
+
+    question = await this.QuestionModel.populate(question, {
+      path: 'user_id',
+      select: '-password',
+    });
+
+    return await this.QuestionModel.findByIdAndRemove(id);
   }
 
   // async jobQuestions(id: string) {
@@ -76,9 +116,3 @@ export class QuestionsService {
   //   return questions
   // }
 }
-
-
-
-
-
-
