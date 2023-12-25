@@ -1,7 +1,9 @@
-import { Controller, Get, Post, UseGuards, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards, Body, Patch, Param, Delete , Query, NotFoundException } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 // JWT auth guard
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -9,10 +11,16 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/role-base-auth/role.guard';
 import { Roles } from '../auth/role-base-auth/roles.decorator'
 import { ROLE } from '../users/enums/users.enums'
+import { Question } from './entities/question.entity'
 
 @Controller('questions')
 export class QuestionsController {
-  constructor(private readonly questionsService: QuestionsService) { }
+  constructor(
+    @InjectModel('Question') private QuestionModel: Model<Question>,
+    private readonly questionsService: QuestionsService,
+  ) {}
+
+
 
   @Post()
   // @UseGuards(JwtAuthGuard, RolesGuard)
@@ -22,10 +30,10 @@ export class QuestionsController {
   }
 
   @Get()
-  findAll() {
-    return this.questionsService.findAll();
+  findAll(@Query('user_Id') userId?: string) {
+    return this.questionsService.findAll(userId);
   }
-
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.questionsService.findOne(id);
