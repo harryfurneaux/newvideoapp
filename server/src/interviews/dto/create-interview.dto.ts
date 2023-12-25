@@ -21,7 +21,6 @@ export class CreateInterviewDto {
     interviewer: string;
 
     @IsOptional()
-    @IsDefined()
     @IsBoolean()
     favourite: boolean;
 

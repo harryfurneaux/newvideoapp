@@ -26,7 +26,6 @@ export class UpdateInterviewDto {
     interviewer: string;
 
     @IsOptional()
-    @IsDefined()
     @IsBoolean()
     favourite: boolean;
 
