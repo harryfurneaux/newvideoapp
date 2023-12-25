@@ -14,6 +14,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
 
   const handleChangeClose = () => setChangeModal(false);
   const handleChangeShow = (item: string) => {
+
     setChangeModal(true);
     setChangeItem(item);
   };
@@ -93,7 +94,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         </div>
       </Modal.Body>
       <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} />
-      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={setMainScreen} />
+      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={setMainScreen} jobView={''} />
     </Modal>
   )
 }

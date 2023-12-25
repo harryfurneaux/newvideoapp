@@ -63,9 +63,11 @@ export class UsersService {
       const hashedPassword = await hashPassword(updateUserDto.password);
       updateUserDto.password = hashedPassword;
     }
-    return await this.UserModel.findByIdAndUpdate(id, updateUserDto, {
+    const updatedData = await this.UserModel.findByIdAndUpdate(id, updateUserDto, {
       new: true,
     }).select('-password');
+    updatedData['id'] = updatedData._id
+    return updatedData
   }
 
   async remove(id: string): Promise<User | null> {
@@ -163,6 +165,8 @@ export class UsersService {
         id: user.id,
         name: user.name,
         email: user.email,
+        location: user.location,
+        company_name: user.company_name,
         token: jwtToken,
         chat: {
           user: chatUser.user,

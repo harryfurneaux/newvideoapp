@@ -77,7 +77,7 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
         </div>
       </Modal.Body>
       <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={''} />
-      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={''} />
+      <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={''} jobView={''} />
     </Modal>
   )
 }

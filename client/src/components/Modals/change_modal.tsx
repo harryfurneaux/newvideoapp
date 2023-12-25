@@ -4,12 +4,13 @@ import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import Notify from "../Notify";
 
+
 const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean, handleClose: any, item: string, setNotifyShow: any }) => {
   const [password, setPassword] = useState('')
   const [data, setData] = useState('')
 
-  const { user } = useAuth()
-  console.log("user", user)
+  const { user, setUser } = useAuth()
+
   const handleSave = () => {
 
 
@@ -21,10 +22,12 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean
           password: password
 
         }).then((res) => {
+          res.data['id'] = res.data._id
+          setUser(res.data)
           setData('')
           setPassword('')
           setNotifyShow(true)
-          handleClose()
+          handleClose('')
         })
 
     }
@@ -36,10 +39,12 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean
           password: password
 
         }).then((res) => {
+          res.data['id'] = res.data._id
+          setUser(res.data)
           setData('')
           setPassword('')
           setNotifyShow(true)
-          handleClose()
+          handleClose('')
         })
 
 
@@ -52,10 +57,12 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean
           password: password
 
         }).then((res) => {
+          res.data['id'] = res.data._id
+          setUser(res.data)
           setData('')
           setPassword('')
           setNotifyShow(true)
-          handleClose()
+          handleClose('')
         })
 
 
@@ -71,7 +78,8 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean
 
 
     // }
-    else {
+    if (item == "Company") {
+
       axios
         .patch(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`, {
           company_name: data
@@ -79,10 +87,12 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow }: { show: boolean
           password: password
 
         }).then((res) => {
+          res.data['id'] = res.data._id
+          setUser(res.data)
           setData('')
           setPassword('')
           setNotifyShow(true)
-          handleClose()
+          handleClose('')
         })
 
 

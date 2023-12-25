@@ -12,6 +12,8 @@ import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 import TinyModal from "./Modals/tiny_modal";
 import Notify from "./Notify";
+import { useAuth } from "../hooks/useAuth";
+
 
 const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
@@ -37,6 +39,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [notifyShow, setNotifyShow] = useState(false)
+  const { user } = useAuth()
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
     $(".overlay").hide();
@@ -68,9 +71,9 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
         <div className="overlay text-white">
           <div className="header text-center">
             <img src={profile_img} className="profile" />
-            <h5>User Name</h5>
-            <div className="desc"><img src={company_img} /> Company</div>
-            <div className="desc"><img src={location_img} /> Location</div>
+            <h5>{user?.name}</h5>
+            <div className="desc"><img src={company_img} /> {user?.company_name}</div>
+            <div className="desc"><img src={location_img} /> {user?.location}</div>
           </div>
           <div className="overlay-part">
             <div onClick={handleAccountShow}>
@@ -105,7 +108,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} />
       <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
-      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} />
+      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} jobView={''} />
       <Notify show={notifyShow} title="Settings Changed" handleClose={() => setNotifyShow(false)} />
     </>
   )

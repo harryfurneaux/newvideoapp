@@ -124,8 +124,14 @@ function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, set
             </Card.Body>
             <Card.Footer className="message-footer d-flex">
               <Button variant="light"><MdAddCircleOutline color="gray" /></Button>
-              <InputGroup onChange={(e: any) => setText(e.target.value)}  >
-                <Form.Control placeholder="Type your message" />
+              <InputGroup onChange={(e: any) => setText(e.target.value)} onKeyDown={(e) => {
+
+                if (e.key == 'Enter') {
+
+                  sendMessage()
+                }
+              }} >
+                <Form.Control value={text} placeholder="Type your message" />
                 <Button variant="outline-secondary" id="button-addon2"><FaRegSmile /></Button>
               </InputGroup>
               <Button variant="light"><FaCircleArrowRight color="gray" onClick={sendMessage} /></Button>

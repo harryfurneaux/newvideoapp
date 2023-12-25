@@ -5,7 +5,7 @@ import $ from "jquery";
 import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
 
-const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, handleClose: any, type: string, setMainScreen: any }) => {
+const TinyModal = ({ show, handleClose, type, setMainScreen, jobView }: { show: boolean, handleClose: any, type: string, setMainScreen: any, jobView: any }) => {
   const { user } = useAuth()
   useEffect(() => {
     if (show && type == "delete_interview") {
@@ -52,7 +52,17 @@ const TinyModal = ({ show, handleClose, type, setMainScreen }: { show: boolean, 
 
 
             })
-            console.log("delet account cndfm")
+
+          }
+          if (type == "delete_interview") {
+
+            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${jobView?._id}`).then((res) => {
+
+              setMainScreen(1)
+
+
+
+            })
           }
 
         }}>

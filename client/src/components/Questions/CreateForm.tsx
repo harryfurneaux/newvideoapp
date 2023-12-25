@@ -39,7 +39,7 @@ const CreateForm = ({
   }, [])
 
   useEffect(() => {
-    if(newJob?._id) {
+    if (newJob?._id) {
       setShowScreen(5)
     }
   }, [newJob])
@@ -92,7 +92,7 @@ const CreateForm = ({
 
     }
   }, [showScreen]);
-  
+
   const handleQuestionChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -101,7 +101,7 @@ const CreateForm = ({
       [name]: value,
     });
   };
-  
+
   const handleJobData = (e: any) => {
     const { name, value } = e.target;
 
@@ -110,7 +110,7 @@ const CreateForm = ({
       [name]: value,
     });
   }
-  
+
   return (
     // <Fade direction="left" big>
     <div className="kjkndask-ankdnwd">
@@ -239,7 +239,7 @@ const CreateForm = ({
                 </>
                   : showScreen == 2 ?
                     <>
-                      <input id="questionInput" placeholder="e.g Recruitment Agency" className="ojdfkak-ksmd" type="text" onChange={(e) => {
+                      <input id="questionInput" value={valuec} placeholder="e.g Recruitment Agency" className="ojdfkak-ksmd" type="text" onChange={(e) => {
                         setValuechange(e.target.value)
                       }} />
                       <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {

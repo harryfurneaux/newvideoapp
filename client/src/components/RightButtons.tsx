@@ -6,7 +6,7 @@ import TinyModal from "./Modals/tiny_modal";
 const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, jobView, setChatUser, style = {} }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, hideMenu: boolean, jobView: any, setChatUser: any, style?: any }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [showDelInterview, setShowDelInterview] = useState(false);
-
+  console.log("job to dele", jobView)
   return <div className={`kljadjfkl-jaem ${hideMenu ? "jkdslfsae" : isTab ? "lkhdfjksj-ajenw" : ""}`} style={style}>
     <button className="no-shadow circleButtons" onClick={() => setMainScreen(3)}>
       <Icons iconNumber={45} />
@@ -37,7 +37,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, j
       <Icons iconNumber={49} />
       Delete
     </button>
-    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} />
+    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} jobView={jobView} />
   </div>
 }
 
