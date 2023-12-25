@@ -9,14 +9,16 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Interview } from './entities/interview.entity';
 import { Model } from 'mongoose';
 import { QuestionsService } from '../questions/questions.service';
+import { MediaService } from 'media/services/media.service';
 //imagekit service
-import { ImageKitService } from '../utils/imagekit.service';
+// import { ImageKitService } from '../utils/imagekit.service';
 @Injectable()
 export class InterviewsService {
   constructor(
     @InjectModel('Interview') private InterviewModel: Model<Interview>,
     private questionsService: QuestionsService,
-    private readonly imageKitService: ImageKitService,
+    // private readonly imageKitService: ImageKitService,
+    private readonly mediaService: MediaService,
   ) { }
 
   async create(
@@ -50,7 +52,7 @@ export class InterviewsService {
 
     if (video) {
       //uploading video to imagekit
-      createInterviewDto.video_url = await this.imageKitService.uploadImage(video, video.originalname)
+      createInterviewDto.video_url = await this.mediaService.saveVideo(video)
     }
 
     if (interview) {
@@ -119,7 +121,7 @@ export class InterviewsService {
         }
 
         //uploading video to imagekit
-        createInterviewDto.video_url = await this.imageKitService.uploadImage(recordings[index], recordings[index].originalname)
+        createInterviewDto.video_url = await this.mediaService.saveVideo(recordings[index], )
         if (interview) {
           // Update the existing interview with the new question and video URL
           return await this.InterviewModel.findByIdAndUpdate(

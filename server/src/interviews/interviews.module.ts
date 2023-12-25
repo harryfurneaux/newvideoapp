@@ -14,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from '../auth/auth.service'
 import { JwtStrategy } from '../auth/strategies/jwt.strategy'
+import { MediaService } from 'media/services/media.service';
 
 
 @Module({
@@ -27,7 +28,7 @@ import { JwtStrategy } from '../auth/strategies/jwt.strategy'
     QuestionsModule
   ],
   controllers: [InterviewsController],
-  providers: [InterviewsService, ImageKitService, AuthService, JwtStrategy],
+  providers: [InterviewsService, ImageKitService, AuthService, JwtStrategy,MediaService],
   exports: [InterviewsService]
 })
 export class InterviewsModule { }
