@@ -29,20 +29,10 @@ const ShareForm = ({
   const [notify_show, setNotifyShow] = useState(false);
   const [linkToCopy, setLinkToCopy] = useState<any>(process.env.REACT_APP_FRONTEND_URL);
 
-  function makeid(length: number) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
-  }
-
   useEffect(() => {
-    setLinkToCopy(`${process.env.REACT_APP_FRONTEND_URL}/${makeid(10)}`);
+    if(jobView?._id) {
+      setLinkToCopy(`${process.env.REACT_APP_FRONTEND_URL}/${jobView._id}`);
+    }
   }, []);
 
   return (

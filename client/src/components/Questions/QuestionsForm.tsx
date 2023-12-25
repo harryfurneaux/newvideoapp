@@ -6,53 +6,47 @@ import { useAuth } from "../../hooks/useAuth";
 
 const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }: { setMainScreen: any, setShowScreen: any, setJobView: any, myQuestions: any }) => {
   const [jobs, setJobs] = useState([])
-  const { user } = useAuth()
-  useEffect(() => { getJobs() }, [myQuestions])
+  const { user, setJobViewContext } = useAuth()
+
+  useEffect(() => {
+    getJobs()
+  }, [myQuestions]);
+
+  const redirectToSharedJob = (_jobs: any) => {
+    if (_jobs?.length && window?.location?.pathname?.length > 1) {
+      const jobId = window.location.pathname.split('/')[1];
+      const job = _jobs.find((j: any) => j._id === jobId);
+      if (job) {
+        setJobViewContext(job);
+        setJobView(job);
+        setShowScreen(7);
+      }
+    }
+    window.history.pushState(null, '', '/');
+  };
+
   const getJobs = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getJobsEndpPoint}`)
       .then(async response => {
-
         if (myQuestions) {
-
           const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
-          console.log("filter jobs", filtered)
-          setJobs(filtered)
-
+          setJobs(filtered);
+          redirectToSharedJob(filtered);
         } else {
           setJobs(response.data)
+          redirectToSharedJob(response.data);
         }
       })
-
       .catch(err => {
-
       })
-
-
   }
+
   return (
     <div className="leftSideContent">
       {jobs?.map((data, index) =>
-
-        <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
+        <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
       )}
-
-      {/* <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={true} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} />
-      <JobTitle setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} /> */}
     </div>
   );
 };
