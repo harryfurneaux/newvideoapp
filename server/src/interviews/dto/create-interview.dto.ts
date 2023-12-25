@@ -20,6 +20,7 @@ export class CreateInterviewDto {
     @IsMongoId()
     interviewer: string;
 
+    @IsOptional()
     @IsDefined()
     @IsBoolean()
     favourite: boolean;
