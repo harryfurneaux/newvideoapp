@@ -46,7 +46,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
       if (watchAns) {
-        const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?.id)
+        const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?._id)
         handleFilteration(filtered)
 
       }
