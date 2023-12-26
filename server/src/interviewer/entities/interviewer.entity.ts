@@ -19,9 +19,10 @@ export class Interviewer extends Document {
     // }];
     @Prop({ type: [{ type: 'ObjectId', ref: 'Question' }] })
     questions: string[]; // Array of post IDs
+    
     //making link with job
-    // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
-    // job_id: Job;
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
+    job_id: Job;
 
     @Prop()
     job_title: string;

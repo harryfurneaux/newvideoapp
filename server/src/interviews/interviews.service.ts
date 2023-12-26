@@ -10,6 +10,7 @@ import { Interview } from './entities/interview.entity';
 import { Model } from 'mongoose';
 import { QuestionsService } from '../questions/questions.service';
 import { MediaService } from 'media/services/media.service';
+import * as mongoose from 'mongoose';
 //imagekit service
 // import { ImageKitService } from '../utils/imagekit.service';
 @Injectable()
@@ -121,7 +122,7 @@ export class InterviewsService {
         }
 
         //uploading video to imagekit
-        createInterviewDto.video_url = await this.mediaService.saveVideo(recordings[index], )
+        createInterviewDto.video_url = await this.mediaService.saveVideo(recordings[index],)
         if (interview) {
           // Update the existing interview with the new question and video URL
           return await this.InterviewModel.findByIdAndUpdate(
@@ -380,6 +381,26 @@ export class InterviewsService {
     return interviews;
   }
 
-
+  async allInterviwee(id: string) {
+    let interviews = await this.InterviewModel.find({
+      interviewer: new mongoose.Types.ObjectId(id)
+    })
+      .populate({
+        path: 'interviewee',
+        select: '-password',
+      })
+      .populate({
+        path: 'job_id',
+      })
+      .populate({
+        path: 'interviewer',
+        select: '-password',
+      })
+      .populate('questions.question_id');
+    if (interviews.length == 0) {
+      throw new NotFoundException('interviews not found');
+    }
+    return interviews;
+  }
 
 }

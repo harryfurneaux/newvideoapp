@@ -74,4 +74,9 @@ export class InterviewsController {
   allInterviewsfor(@Request() req, @Param('id') id: string) {
     return this.interviewsService.interviwee(id);
   }
+
+  @Get('all-interviews-by-interviewer/:id')
+  allInterviewsByInterviewer(@Request() req, @Param('id') id: string) {
+    return this.interviewsService.allInterviwee(id);
+  }
 }

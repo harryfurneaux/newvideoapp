@@ -3671,3 +3671,27 @@ video.bg-video {
 .filter-item.filter-item-active {
   font-weight: 900;
 }
+
+.divider {
+  display: flex;
+  color: rgba(33, 37, 41, 0.5);
+  font-size: 70%;
+  font-weight: 900;
+}
+.divider:before, .divider:after {
+  content: "";
+  flex: 1;
+}
+
+.line {
+  align-items: center;
+  margin: 0.5em -0.5em;
+}
+.line:before, .line:after {
+  height: 1px;
+  margin: 0 1em;
+}
+
+.one-line:before, .one-line:after {
+  background: rgba(33, 37, 41, 0.5);
+}
