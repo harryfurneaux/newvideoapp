@@ -22,8 +22,8 @@ export class Interview extends Document {
   ];
 
   //making link with job
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Job' })
-  job_id: Job;
+  @Prop({ type: String })
+  job_id: string;
 
   //who is interviewee
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })

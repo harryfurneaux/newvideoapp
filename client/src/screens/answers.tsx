@@ -17,13 +17,14 @@ export enum AnswerFilter {
   ThisYear = 'This year',
 }
 
-function View({ mainScreen, setMainScreen, setChatUser }: { mainScreen: number, setMainScreen: any, setChatUser?: any }) {
+function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns }: { mainScreen: number, setMainScreen: any, setChatUser?: any, jobViewContext: any, watchAns: any }) {
   const [showScreen, setshowScreen] = useState(0);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<AnswerFilter>(AnswerFilter.ThisMonth);
   const [mainAllInterviews, setMainAllInterviews] = useState<Array<any>>([]);
   const [selectedInterview, setSelectedInterview] = useState<any>(null);
 
+  console.log("sleect job to watch answ", jobViewContext)
   const handleFilterClose = () => setShowFilter(false);
   const handleFilterShow = () => setShowFilter(true);
 
@@ -70,7 +71,7 @@ function View({ mainScreen, setMainScreen, setChatUser }: { mainScreen: number, 
         {showScreen != 1 ? (
           <div className="leftsidediv">
             {
-              showScreen == 0 ? <MainForm setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} selectedFilter={selectedFilter} setSelectedInterview={setSelectedInterview} allInterviews={mainAllInterviews} setAllInterviews={setMainAllInterviews} />
+              showScreen == 0 ? <MainForm setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} selectedFilter={selectedFilter} setSelectedInterview={setSelectedInterview} allInterviews={mainAllInterviews} setAllInterviews={setMainAllInterviews} jobViewContext={jobViewContext} watchAns={watchAns} />
                 : <><FormMessage showScreen={showScreen} setshowScreen={setshowScreen} /></>
             }
             {

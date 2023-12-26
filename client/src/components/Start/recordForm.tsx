@@ -16,14 +16,14 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
   const [hasCaptured, setHasCaptured] = useState(false);
   const [timeDuration, setTimeDuration] = useState(30);
   const [timeDurationBGWidth, setTimeDurationBGWidth] = useState(0);
-  
+
   const webcamRef = useRef<any>(null);
   const mediaRecorderRef = useRef<any>(null);
-  
+
   useEffect(() => {
-    if(jobViewContext?.questions?.length) {
+    if (jobViewContext?.questions?.length) {
       const _question = jobViewContext.questions.find((q: any) => !recorded.find((r: any) => r._id === q._id));
-      if(_question) {
+      if (_question) {
         setQuestion(_question);
         setTimeDuration(_question.time_duration);
       }
@@ -79,10 +79,10 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
 
       const _recorded = [...recorded];
       const idx = _recorded.findIndex((_r: any) => _r._id === question._id);
-      if(idx > -1) {
+      if (idx > -1) {
         _recorded[idx].recording = myFile;
       } else {
-        _recorded.push({...question, recording: myFile});
+        _recorded.push({ ...question, recording: myFile });
       }
       setRecorded(_recorded);
       setRecordedChunks([]);
@@ -102,7 +102,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
       }, 1000);
     }
   }, [status, count]);
-  
+
   const calculateWidth = () => {
     const duration = Math.max(0, Math.min(timeDuration, 30));
     const maxWidth = 304;
@@ -110,10 +110,10 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
     const width = maxWidth - (maxWidth / 30) * duration;
     setTimeDurationBGWidth(Math.max(minWidth, width));
   }
-  
+
   useEffect(() => {
     if (status === 'recording') {
-      if(timeDuration <= 0) {
+      if (timeDuration <= 0) {
         setStatus('waiting');
         handleStopCaptureClick();
       }
@@ -129,7 +129,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
     height: 520,
     facingMode: "user",
   };
-  
+
   return (
     <Fade>
       <div className="kjjfds-janwkea4">

@@ -13,6 +13,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 function App() {
   const [mainScreen, setMainScreen] = useState(0);
   const [jobViewContext, setJobViewContext] = useState()
+  const [watchAns, setWatchAns] = useState(false)
   const [chatUser, setChatUser] = useState()
 
   return (
@@ -20,9 +21,9 @@ function App() {
       <AuthProvider setMainScreen={setMainScreen}>
         {
           mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} setJobViewContext={setJobViewContext} setChatUser={setChatUser} />
-              : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} />
-                : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} /> 
+            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} setJobViewContext={setJobViewContext} setChatUser={setChatUser} setWatchAns={setWatchAns} />
+              : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} jobViewContext={jobViewContext} watchAns={watchAns} />
+                : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} />
                   : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
                     : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
         }

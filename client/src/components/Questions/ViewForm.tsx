@@ -7,7 +7,7 @@ import CheckFormBox from "../CheckBoxForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setChatUser, jobViewContext }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, jobView: any, setChatUser: any, jobViewContext: any }) => {
+const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setChatUser, jobViewContext, setWatchAns }: { setMainScreen: any, setShowScreen: any, setPastScreen: any, jobView: any, setChatUser: any, jobViewContext: any, setWatchAns: any }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 1013px)' });
   const [_jobView, setJobView] = useState(jobView || jobViewContext);
 
@@ -54,7 +54,10 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
             </div>
             <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
               <div className="continueBtnDiv snasdj-sawdne">
-                <button className="btn" onClick={() => setMainScreen(2)}>
+                <button className="btn" onClick={() => {
+                  setWatchAns(true)
+                  setMainScreen(2)
+                }}>
                   WATCH ANSWERS
                   <div className="kdksa-ajwmd ">
                     <Icons iconNumber={93} />

@@ -4,6 +4,7 @@ import Icons from "../icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AnswerFilter } from "../../screens/answers";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Interview {
   videoLink: string;
@@ -22,25 +23,45 @@ interface Interview {
   id?: any
 }
 
-const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, setSelectedInterview, allInterviews, setAllInterviews }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter, setSelectedInterview: any, allInterviews: any, setAllInterviews: any }) => {
+const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, setSelectedInterview, allInterviews, setAllInterviews, jobViewContext, watchAns }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter, setSelectedInterview: any, allInterviews: any, setAllInterviews: any, jobViewContext: any, watchAns: any }) => {
   const [filteredInterviews, setFilteredInterviews] = useState<Array<Interview>>([])
+  const [myAnswers, setMyAnswers] = useState<any>(true)
+  const { user } = useAuth()
 
   const handleFilteration = (array: any) => {
+    console.log("array filte", array)
+
     const questionsArray: Array<Interview> = array?.map((obj: any) => ({
       videoLink: obj.questions[0].video_url,
       interviewee: obj.interviewee,
       favourite: obj.favourite,
       id: obj._id
     }));
+    console.log("question Arry", questionsArray)
     setAllInterviews(questionsArray)
   }
 
   useEffect(() => {
+    console.log("my answer effect")
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
-      handleFilteration(response.data)
+      if (watchAns) {
+        const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?.id)
+        handleFilteration(filtered)
+
+      }
+      else if (myAnswers) {
+
+        const filtered = response?.data?.filter((obj: any) => obj.interviewee._id == user?.id)
+        console.log('my answers', filtered)
+        handleFilteration(filtered)
+      }
+      else {
+        console.log("else case answ")
+        handleFilteration(response.data)
+      }
     }).catch(console.error)
-  }, []);
+  }, [myAnswers]);
 
   useEffect(() => {
     if (selectedFilter && allInterviews?.length) {
@@ -105,19 +126,23 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           filteredInterviews = [...allInterviews];
           break;
       }
-
+      console.log("fileterintevow", filteredInterviews)
       setFilteredInterviews(filteredInterviews);
     }
   }, [selectedFilter, allInterviews]);
-
+  { console.log("retunr filterd", filteredInterviews) }
   return (
     <div className="leftSideMain">
       <div className="option-btn">
-        <button className="lamdl-anwid radiusLeft">
+        <button className="lamdl-anwid radiusLeft" onClick={() => {
+
+          setFilteredInterviews([])
+          setMyAnswers(true)
+        }}>
           <Icons iconNumber={50} />
           Your Answers
         </button>
-        <button className="lamdl-anwid radiusRight">
+        <button className="lamdl-anwid radiusRight" onClick={() => setMyAnswers(false)}>
           <Icons iconNumber={32} />
           Nearby
         </button>
@@ -128,9 +153,11 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
       </div>
       <div className="leftSideContent">
         <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+
           {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
             <Col className="p-0 mb-2 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer' }} key={index}>
               <Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} setSelectedInterview={setSelectedInterview} />
+
             </Col>
           )) : (
             <Col className="p-0 w-100 text-center text-white small">
