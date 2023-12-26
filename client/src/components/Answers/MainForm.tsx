@@ -22,8 +22,7 @@ interface Interview {
   id?: any
 }
 
-const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter }) => {
-  const [allInterviews, setAllInterviews] = useState<Array<Interview>>([]);
+const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, setSelectedInterview, allInterviews, setAllInterviews }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter, setSelectedInterview: any, allInterviews: any, setAllInterviews: any }) => {
   const [filteredInterviews, setFilteredInterviews] = useState<Array<Interview>>([])
 
   const handleFilteration = (array: any) => {
@@ -57,10 +56,10 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
               const hoursDifference = timeDifference / (1000 * 3600);
               return hoursDifference <= 1;
             }
-          }).filter(i => i);
+          }).filter((i: any) => i);
           break;
         case AnswerFilter.Today:
-          filteredInterviews = allInterviews.filter((interview) => {
+          filteredInterviews = allInterviews.filter((interview: any) => {
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
               return (
@@ -69,10 +68,10 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
                 interviewDate.getFullYear() === now.getFullYear()
               );
             }
-          }).filter(i => i);
+          }).filter((i: any) => i);
           break;
         case AnswerFilter.ThisWeek:
-          filteredInterviews = allInterviews.filter((interview) => {
+          filteredInterviews = allInterviews.filter((interview: any) => {
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
               const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
@@ -81,10 +80,10 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
 
               return interviewDate >= startOfWeek && interviewDate <= endOfWeek;
             }
-          }).filter(i => i);
+          }).filter((i: any) => i);
           break;
         case AnswerFilter.ThisMonth:
-          filteredInterviews = allInterviews.filter((interview) => {
+          filteredInterviews = allInterviews.filter((interview: any) => {
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
               return (
@@ -92,15 +91,15 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
                 interviewDate.getFullYear() === now.getFullYear()
               );
             }
-          }).filter(i => i);
+          }).filter((i: any) => i);
           break;
         case AnswerFilter.ThisYear:
-          filteredInterviews = allInterviews.filter((interview) => {
+          filteredInterviews = allInterviews.filter((interview: any) => {
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
               return interviewDate.getFullYear() === now.getFullYear();
             }
-          }).filter(i => i);
+          }).filter((i: any) => i);
           break;
         default:
           filteredInterviews = [...allInterviews];
@@ -128,17 +127,17 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter }: 
         <h5 className="mksaldkamaw-jdwa">London, UK</h5>
       </div>
       <div className="leftSideContent">
-        <Container>
-          <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
-              <Col className="p-0" key={index}><Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} /></Col>
-            )) : (
-              <Col className="p-0 w-100 text-center text-white small">
-                No Interviews. Try to change Filter.
-              </Col>
-            )}
-          </Row>
-        </Container>
+        <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+          {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
+            <Col className="p-0 mb-2 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer' }} key={index}>
+              <Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} setSelectedInterview={setSelectedInterview} />
+            </Col>
+          )) : (
+            <Col className="p-0 w-100 text-center text-white small">
+              No Interviews. Try to change Filter.
+            </Col>
+          )}
+        </Row>
       </div>
     </div>
   );

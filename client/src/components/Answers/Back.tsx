@@ -3,7 +3,7 @@ import Icons from "../icons"
 const Back = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setShowScreen: any }) => {
   return <div onClick={() => { }} className="skdmsa-dsad">
     <div onClick={() => {
-        setMainScreen(1);
+        setMainScreen(2);
         setShowScreen(0);
       }} className="backButtonDiv backdrop-filter">
       <button className="hkjndankad-dnsd">

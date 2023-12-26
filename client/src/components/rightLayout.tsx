@@ -1,10 +1,13 @@
 import React from 'react';
 import Icons from './icons';
 import SettingMenuIcon from './SettingMenuIcon';
+import { useAuth } from '../hooks/useAuth';
 
 const RightLayout = ({ screen }: { screen: number }) => {
+  const { isLoggedIn } = useAuth();
+  
   return <div className="rightSideDiv rightSideDivsadsa kjdsfkn-ajdnkw">
-    <div className="d-flex justify-content-end">
+    <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={''} />
     </div>
     <div className="mklfasd-dmsaew nakds-ajews p-0">

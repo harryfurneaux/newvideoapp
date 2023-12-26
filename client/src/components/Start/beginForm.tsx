@@ -68,13 +68,12 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { set
                     headers: {
                       'Content-Type': 'multipart/form-data',
                     },
-                  }).then((res) => console.log(res)).finally(() => { submitted = submitted + 1 })
+                  }).then((res) => {}).finally(() => { submitted = submitted + 1 })
                 });
 
                 const _timer = setInterval(() => {
                   if (submitted === recorded.length) {
                     clearInterval(_timer);
-                    console.log('Submitted');
                     setMainScreen(1);
                   }
                 }, 100);

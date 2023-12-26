@@ -17,7 +17,7 @@ const LinkedInAuth = () => {
                 code: query.get('code'),
                 state: query.get('state')
             }
-        }).then(console.log)
+        }).then((res) => {})
 
     }, [])
 

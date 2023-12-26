@@ -58,7 +58,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
     setShowPrivacy(true);
   }
 
-  const handleLogoutClose = () => (false);
+  const handleLogoutClose = () => setShowLogout(false);
   const handleLogoutShow = () => {
     $(".overlay").hide();
     setShowLogout(true);
