@@ -20,6 +20,9 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
         setJobViewContext(job);
         setJobView(job);
         setShowScreen(7);
+        setTimeout(() => {
+          setMainScreen(3);
+        }, 1000);
       }
     }
     window.history.pushState(null, '', '/');
