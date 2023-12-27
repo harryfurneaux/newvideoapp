@@ -37,7 +37,7 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
               <div className="kjdflkads-mdskf">
                 <h3>{_jobView?.job_title || ''}</h3>
                 <h5>
-                  <Icons iconNumber={16} /> {_jobView?.interviewer?.company_name || ''}
+                  <Icons iconNumber={16} /> {_jobView?.job_recruiter || _jobView?.interviewer?.company_name || ''}
                 </h5>
                 <h6>
                   <Icons iconNumber={17} />{_jobView?.interviewer?.location || ''}

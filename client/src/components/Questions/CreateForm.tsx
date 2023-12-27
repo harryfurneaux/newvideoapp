@@ -30,7 +30,8 @@ const CreateForm = ({
   const [job, setjob] = useState({
     questions: questionIds,
     job_title: "",
-    interviewer: user?.id
+    interviewer: user?.id,
+    job_recruiter: "",
   })
   const [newJob, setNewJob] = useState<any>();
 
@@ -239,8 +240,8 @@ const CreateForm = ({
                 </>
                   : showScreen == 2 ?
                     <>
-                      <input id="questionInput" value={valuec} placeholder="e.g Recruitment Agency" className="ojdfkak-ksmd" type="text" onChange={(e) => {
-                        setValuechange(e.target.value)
+                      <input id="questionInput" placeholder="e.g Recruitment Agency" name="job_recruiter" className="ojdfkak-ksmd" type="text" onChange={(e) => {
+                        handleJobData(e)
                       }} />
                       <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
                         // if (showScreen == 1) 

@@ -41,7 +41,7 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
           <div className="kjdlfksd-sdmks">
             <div className="kjdlfksd-sdmks">
               <Icons iconNumber={33} />
-              <h6>{jobData?.interviewer?.company_name || ''}</h6>
+              <h6>{jobData?.job_recruiter || jobData?.interviewer?.company_name || ''}</h6>
             </div>
             <div className="kjdlfksd-sdmks location">
               <Icons iconNumber={34} />

@@ -45,7 +45,7 @@ const CheckForm = ({
             <img src={no_pic} />
             <div className="kjdflkads-mdskf check-form-heading">
               <h3>{newJob?.job_title || 'Job Title'}</h3>
-              <h5><Icons iconNumber={16} /> {interviewer?.interviewer?.company_name || 'Company Name'}</h5>
+              <h5><Icons iconNumber={16} /> {interviewer?.job_recruiter || interviewer?.interviewer?.company_name || 'Company Name'}</h5>
               <h6><Icons iconNumber={17} /> {interviewer?.interviewer?.location || 'Location'}</h6>
             </div>
           </div>

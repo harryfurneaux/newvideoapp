@@ -36,7 +36,7 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { set
           <div className="kjdflkads-mdskf">
             <h3>{jobViewContext?.job_title}</h3>
             <h5>
-              <Icons iconNumber={16} /> {jobViewContext?.interviewer.company_name}
+              <Icons iconNumber={16} /> {jobViewContext?.job_recruiter || jobViewContext?.interviewer.company_name}
             </h5>
             <h6>
               <Icons iconNumber={17} /> {jobViewContext?.interviewer.location}

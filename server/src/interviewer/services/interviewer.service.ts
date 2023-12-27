@@ -123,6 +123,9 @@ export class InterviewerService {
       .populate({
         path: 'job_title',
       })
+      .populate({
+        path: 'job_recruiter'
+      })
       .populate('questions')
       .populate('interviewer', '-password');
 
@@ -144,6 +147,9 @@ export class InterviewerService {
       .populate({
         path: 'job_id',
       })
+      .populate({
+        path: 'job_recruiter'
+      })
       .populate('questions');
 
     return interview;
@@ -158,6 +164,9 @@ export class InterviewerService {
       // })
       .populate({
         path: 'job_title',
+      })
+      .populate({
+        path: 'job_recruiter'
       })
       .populate('questions')
       .populate('interviewer', '-password');
@@ -182,6 +191,9 @@ export class InterviewerService {
       .populate({
         path: 'job_title',
       })
+      .populate({
+        path: 'job_recruiter'
+      })
       .populate('questions')
       .populate('interviewer', '-password');
   }
@@ -199,6 +211,9 @@ export class InterviewerService {
       // })
       .populate({
         path: 'job_title',
+      })
+      .populate({
+        path: 'job_recruiter'
       })
       .populate('questions');
   }
