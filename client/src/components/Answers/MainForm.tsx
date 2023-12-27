@@ -25,39 +25,32 @@ interface Interview {
 
 const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, setSelectedInterview, allInterviews, setAllInterviews, jobViewContext, watchAns }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter, setSelectedInterview: any, allInterviews: any, setAllInterviews: any, jobViewContext: any, watchAns: any }) => {
   const [filteredInterviews, setFilteredInterviews] = useState<Array<Interview>>([])
-  const [myAnswers, setMyAnswers] = useState<any>(true)
+  const [myAnswers, setMyAnswers] = useState<any>(false)
   const { user } = useAuth()
 
   const handleFilteration = (array: any) => {
-    console.log("array filte", array)
-
     const questionsArray: Array<Interview> = array?.map((obj: any) => ({
       videoLink: obj.questions[0].video_url,
       interviewee: obj.interviewee,
       favourite: obj.favourite,
       id: obj._id
     }));
-    console.log("question Arry", questionsArray)
     setAllInterviews(questionsArray)
   }
 
   useEffect(() => {
-    console.log("my answer effect")
     axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
     ).then(response => {
-      if (watchAns) {
-        const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?._id)
-        handleFilteration(filtered)
+      // if (watchAns) {
+      //   const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?._id)
+      //   handleFilteration(filtered)
 
-      }
-      else if (myAnswers) {
-
+      // }
+      // else 
+      if (myAnswers) {
         const filtered = response?.data?.filter((obj: any) => obj.interviewee._id == user?.id)
-        console.log('my answers', filtered)
         handleFilteration(filtered)
-      }
-      else {
-        console.log("else case answ")
+      } else {
         handleFilteration(response.data)
       }
     }).catch(console.error)

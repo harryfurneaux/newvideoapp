@@ -24,7 +24,6 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
   const [mainAllInterviews, setMainAllInterviews] = useState<Array<any>>([]);
   const [selectedInterview, setSelectedInterview] = useState<any>(null);
 
-  console.log("sleect job to watch answ", jobViewContext)
   const handleFilterClose = () => setShowFilter(false);
   const handleFilterShow = () => setShowFilter(true);
 
