@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import * as express from 'express';
 import { AutoPropertyValidationPipe } from './utils/auto-property-validation.pipe';
 
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
@@ -12,7 +13,6 @@ async function bootstrap() {
     new AutoPropertyValidationPipe(),
     new ValidationPipe()
   );
-  
   app.use('/assets', express.static('src/assets'));
 
   await app.listen(4000);
