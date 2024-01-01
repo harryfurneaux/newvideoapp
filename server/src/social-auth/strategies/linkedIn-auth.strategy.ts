@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-linkedin-oauth2';
 import { ConfigService } from '@nestjs/config';
-import { LinkedInAuthService } from '../services/linkedin-auth.service';
+import { LinkedInAuthService } from 'src/social-auth/services/linkedin-auth.service';
 import axios from 'axios';
 
 type VerifyCallback = (error: any, user?: any, info?: any) => void;

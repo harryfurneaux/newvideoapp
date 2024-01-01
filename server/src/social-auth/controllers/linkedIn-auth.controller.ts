@@ -1,7 +1,8 @@
 import { Controller, Get, Req, Res, HttpStatus } from '@nestjs/common';
-import { LinkedInAuthService } from '../services/linkedin-auth.service';
-import { LinkedInStrategy } from '../strategies/linkedin-auth.strategy';
+import { LinkedInAuthService } from 'src/social-auth/services/linkedin-auth.service';
+import { LinkedInStrategy } from 'src/social-auth/strategies/linkedin-auth.strategy';
 import { UsersService } from 'src/users/users.service';
+
 @Controller('auth/linkedin')
 export class LinkedInAuthController {
   constructor(

@@ -9,9 +9,9 @@ import { GoogleStrategy } from './strategies/google-auth.stategy';
 import { FacebookAuthController } from './controllers/facebook-auth.controller';
 import { FacebookAuthService } from './services/facebook-auth.service';
 import { FacebookStrategy } from './strategies/facebook-auth.strategt'
-import { LinkedInAuthService } from './services/linkedin-auth.service';
-import { LinkedInAuthController } from './controllers/linkedin-auth.controller';  
-import { LinkedInStrategy } from './strategies/linkedin-auth.strategy';
+import { LinkedInAuthService } from 'src/social-auth/services/linkedin-auth.service';
+import { LinkedInAuthController } from 'src/social-auth/controllers/linkedin-auth.controller';  
+import { LinkedInStrategy } from 'src/social-auth/strategies/linkedin-auth.strategy';
 import { UsersModule } from '../users/users.module';
 
 @Module({
