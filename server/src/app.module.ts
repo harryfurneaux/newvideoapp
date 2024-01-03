@@ -28,6 +28,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { InterviewerModule } from './interviewer/interviewer.module';
 import { FavouriteInterviewsModule } from './favourite-interviews/favourite-interviews.module';
 import { MediaModule } from 'media/media.module';
+import { PaymentsModule } from './payments/payments.module';
 
 
 
@@ -59,7 +60,8 @@ import { MediaModule } from 'media/media.module';
     InterviewerModule,
     AuthModule,
     FavouriteInterviewsModule,
-    MediaModule
+    MediaModule,
+    PaymentsModule
     
   ],
   controllers: [AppController],
