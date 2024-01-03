@@ -29,6 +29,16 @@ export class PaymentService {
         },
       });
 
+      const payment = new this.paymentModel({
+        email,
+        name,
+        user_id: userId,
+        customer_id: customer.id, 
+
+      });
+
+      await payment.save();
+
       console.log('Customer created:', customer.id);
       return customer.id;
     } catch (error) {

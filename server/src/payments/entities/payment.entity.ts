@@ -6,20 +6,20 @@ import * as mongoose from 'mongoose';
 @Schema({ timestamps: true })
 export class Payment extends Document {
 
-  @Prop()
-  amount: number;
 
   @Prop()
-  currency: string;
+  email: string;
 
   @Prop()
-  payment_method: string;
+  name: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  user: User;
+  user_id: User;
 
-  // @Prop({ default: 'incomplete' }) 
-  // payment_status: string;
+  @Prop()
+  customer_id: string;
+
+
 
 }
 
