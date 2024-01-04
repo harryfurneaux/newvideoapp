@@ -3819,7 +3819,7 @@ video.bg-video {
 }
 
 .wave-box .wave {
-  opacity: 0.05;
+  opacity: 0.08;
   position: absolute;
   top: -65%;
   left: 95%;
@@ -3830,7 +3830,7 @@ video.bg-video {
   margin-top: -250px;
   transform-origin: 49% 50%;
   border-radius: 45%;
-  animation: drift 50000ms infinite linear;
+  animation: drift 40000ms infinite linear;
 }
 
 @keyframes drift {
