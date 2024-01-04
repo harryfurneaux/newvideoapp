@@ -1,39 +1,44 @@
 // payment.controller.ts
-import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, NotFoundException, Param, Get } from '@nestjs/common';
 import { PaymentService } from '../services/payment.service';
-import { CreateSubscriptionDto } from '../dtos/subscription.dto';
-import { CreateCustomerDto } from '../dtos/create-customer.dto';
 
 @Controller('stripe')
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
-  @Post('create-customer')
-  async createCustomer(
-    @Body(ValidationPipe) createCustomerDto: CreateCustomerDto,
-  ): Promise<{ customerId: string }> {
-    const customerId = await this.paymentService.createCustomer(
-      createCustomerDto,
-    );
-    return { customerId };
+
+  @Get('/create-checkout-session')
+  async createCheckoutSession(): Promise<{ sessionId: string }> {
+    const priceId = process.env.STRIPE_PLAN_ID
+    const mode = 'subscription'; 
+
+    const sessionId = await this.paymentService.createCheckoutSession(priceId,mode);
+    return { sessionId };
   }
 
-  @Post('subscribe')
-  async createSubscription(
-    @Body(ValidationPipe) subscriptionDto: CreateSubscriptionDto,
-  ) {
-    try {
-      const { user_id, paymentMethod, priceId } = subscriptionDto;
+  @Get(':sessionId')
+  async getPaymentDetails(@Param('sessionId') sessionId: string): Promise<any> {
+    const sessionData = await this.paymentService.getSessionData(sessionId);
 
-      const subscriptionResponse = await this.paymentService.createSubscription(
-        user_id,
-        paymentMethod,
-        priceId,
-      );
-
-      return subscriptionResponse;
-    } catch (error) {
-      return { error: error.message };
+    if (!sessionData) {
+      throw new NotFoundException('Session not found');
     }
+
+    const customerId = await this.paymentService.getCustomerBySessionId(sessionId);
+
+    if (!customerId) {
+      throw new NotFoundException('Customer not found');
+    }
+
+    const paymentMethods = await this.paymentService.getPaymentMethodsByCustomerId(customerId);
+
+    return {
+      sessionId,
+      sessionData,
+      customerId,
+      paymentMethods: paymentMethods.data,
+    };
   }
 }
+
+

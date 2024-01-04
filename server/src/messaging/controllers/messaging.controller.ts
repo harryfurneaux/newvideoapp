@@ -81,3 +81,24 @@ export class MessagingController {
   }
 
 }
+
+
+// import { Controller, Get, Post, Body, Query  } from '@nestjs/common';
+// import { MessagingService } from '../services/messaging.service';
+// import { SendMessageDto } from '../dtos/send-message.dto';
+
+// @Controller('message')
+// export class MessagingController {
+//   constructor(private readonly chatService: MessagingService) {}
+
+//   @Get()
+//   async getAllMessages(@Query('interviewId') interviewId: number) {
+//     return this.chatService.getAllMessagesWithInterviewId(interviewId);
+//   }
+
+//   @Post('create')
+//   async createChat(@Body() sendMessageDto: SendMessageDto) {
+//     const savedChat = await this.chatService.createMessage(sendMessageDto);
+//     return savedChat;
+//   }
+// }

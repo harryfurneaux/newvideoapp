@@ -129,3 +129,62 @@ export class MessagingService {
   }
 
 }
+
+
+// import {  BadRequestException } from '@nestjs/common';
+// import { InjectModel } from '@nestjs/mongoose';
+// import { Model } from 'mongoose';
+// import { SendMessageDto } from "../dtos/send-message.dto";
+// import { Message } from "../entities/message.entity";
+
+// export class MessagingService {
+//   constructor(@InjectModel(Message.name) private messageModel: Model<Message>) {}
+
+//   async createMessage(sendMessageDto: SendMessageDto): Promise<Message> {
+//     const { message, sent_to, sent_from, interview_id } = sendMessageDto;
+
+//     if (sent_to === sent_from) {
+//       throw new BadRequestException('Sent_to and sent_from users cannot be the same.');
+//     }
+
+//     if (!sent_to || !sent_from) {
+//       throw new BadRequestException('Invalid user ID');
+//     }
+
+//     const newMessage = new this.messageModel({
+//       message,
+//       sent_to,
+//       sent_from,
+//       interview_id,
+//     });
+
+//     const savedMessage  = await newMessage.save();
+//     return savedMessage ;
+//   }
+
+//   async getAllMessagesWithInterviewId(interviewId: number): Promise<{ message: Message; interview_id: string }[]> {
+//     if (interviewId === undefined || interviewId === null) {
+//       throw new BadRequestException('Interview ID is required');
+//     }
+//     const messages = await this.messageModel
+//       .find({ interview_id: interviewId })
+//       .populate({
+//         path: 'sent_from',
+//         select: '-password',
+//       })
+//       .populate({
+//         path: 'sent_to',
+//         select: '-password',
+//       })
+//       .populate({
+//         path: 'interview_id',
+//         select: '-password',
+//       })
+
+      
+//       .exec();
+  
+//       return messages.map((message) => ({ message, interview_id: message.interview_id._id as string }));
+//     }
+  
+// }
