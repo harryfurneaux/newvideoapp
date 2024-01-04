@@ -9,6 +9,7 @@ import ShareForm from "../components/Questions/ShareForm";
 import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
+import LinearBackground from "../components/LinearBackground";
 
 function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any }) {
   const [showScreen, setShowScreen] = useState(0);
@@ -28,6 +29,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   return (
     <div className="pageContainer">
       <div className="rightSideDiv rightSideBg1">
+        <LinearBackground />
         {
           showScreen <= 5 ?
             <div className="leftSideMain">
@@ -50,9 +52,8 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             </div> :
             <></>
         }
-        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen > 5 ? (
-          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
             {showScreen == 6 ? (
               <>
                 <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
@@ -66,6 +67,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             )}
           </div>
         ) : <></>}
+        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
         ) : (

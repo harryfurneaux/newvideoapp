@@ -14,6 +14,7 @@ import EnterCodeForm from "../components/Auth/entercodeform";
 import NewPwdForm from "../components/Auth/newpwdform";
 import Notify from "../components/Notify";
 import { useAuth } from "../hooks/useAuth";
+import LinearBackground from "../components/LinearBackground";
 
 function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) {
   const { isLoggedIn } = useAuth();
@@ -75,7 +76,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
             document.querySelector(`.flip-child-${showScreen}`)?.classList.remove('d-none');
             setTimeout(() => {
               document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.add('d-none');
-              if(document.querySelector(`.flip-child-${showScreen}`)?.classList.contains('t-180')) {
+              if (document.querySelector(`.flip-child-${showScreen}`)?.classList.contains('t-180')) {
                 document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim-180');
               } else {
                 document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim');
@@ -90,7 +91,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   const renderScreen = () => {
     if (showScreen <= 7 && showScreen !== 3) {
       return (
-        <div style={{ perspective: 1000 }}>
+        <div style={{ perspective: 1000, position: 'absolute' }}>
           <div className={`flip-element`} style={{ height: 472 }}>
             <SignInForm className={` m-0 flip-child flip-child-0 hover-anim`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
             <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} />
@@ -134,6 +135,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
       <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
 
       <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
+        <LinearBackground style={{ width: '100%' }} />
         <div className="leftSideHeader kjsf-ajmwe">
           {showScreen > 0 ? (
             <BackButton showScreen={showScreen} setshowScreen={setshowScreen} />

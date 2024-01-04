@@ -15,7 +15,7 @@ const BackMenu = ({
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1013px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' })
   return (
-    <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`}>
+    <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`} style={{ position: 'absolute', top: 0, width: '100%' }}>
       <div
         onClick={() => {
           if (showScreen == 1) {

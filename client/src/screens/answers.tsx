@@ -8,6 +8,7 @@ import TopSec from "../components/Answers/TopSection";
 import Back from "../components/Answers/Back";
 import TestiMonials from "../components/Auth/Carousel";
 import VideoForm from "../components/Home/Video";
+import LinearBackground from "../components/LinearBackground";
 
 export enum AnswerFilter {
   LastHour = 'Last hour',
@@ -60,7 +61,10 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
   return (
     <div className="pageContainer kladsfhjn-ajwe">
       <div className={showScreen == 1 ? "jkadshfkjf rightSideDiv rightSideBg pos-rel sjfdak-ajwe over-hdn" : "jkadshfkjf rightSideDiv rightSideBg1 pos-rel sjfdak-ajwe"}>
-        <div className="leftSideHeader kjsf-ajmwe">
+        {showScreen != 1 ? (
+          <LinearBackground />
+        ) : null}
+        <div className="leftSideHeader kjsf-ajmwe" style={{ position: 'absolute', top: 0, width: '100%' }}>
           {showScreen == 1 ? (
             <Back setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
           ) : (
