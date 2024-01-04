@@ -9,6 +9,7 @@ const VideoForm = ({ selectedInterview, favourite }: { selectedInterview?: any, 
   const [playPromise, setPlayPromise] = useState<any>(undefined);
   const videoRef = useRef<any>(null);
 
+
   useEffect(() => {
     if (selectedInterview?.id) {
       setPlaying(false);

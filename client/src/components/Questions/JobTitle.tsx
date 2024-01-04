@@ -18,12 +18,26 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
     const months = Math.floor(days / 30);
 
     if (months > 0) {
-      return `posted ${months} ${months === 1 ? 'month' : 'months'} ago`;
-    } else if (days < 1) {
-      return "posted today"
+      const remainingDays = days % 30;
+      return `posted ${months} ${months === 1 ? 'month' : 'months'} & ${remainingDays} ${remainingDays === 1 ? 'day' : 'days'} ago`;
+    } else if (days > 0) {
+      const remainingHours = hours % 24;
+      return `posted ${days} ${days === 1 ? 'day' : 'days'} & ${remainingHours} ${remainingHours === 1 ? 'hour' : 'hours'} ago`;
+    } else if (hours > 0) {
+      const remainingMinutes = minutes % 60;
+      return `posted ${hours} ${hours === 1 ? 'hour' : 'hours'} & ${remainingMinutes} ${remainingMinutes === 1 ? 'minute' : 'minutes'} ago`;
     } else {
-      return `posted ${days} ${days === 1 ? 'day' : 'days'} ago`;
+      return "posted less than an hour ago";
     }
+    // if (months > 0) {
+    //   return `posted ${months} ${months === 1 ? 'month' : 'months'} & ${days} ago`;
+    // }
+
+    // else if (days < 1) {
+    //   return "posted today"
+    // } else {
+    //   return `posted ${days} ${days === 1 ? 'day' : 'days'} & ${hours} ago`;
+    // }
   };
 
   return (

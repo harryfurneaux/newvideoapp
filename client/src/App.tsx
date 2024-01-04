@@ -7,12 +7,13 @@ import Question from "./screens/questions";
 import Answers from "./screens/answers";
 import Start from './screens/start';
 import Messages from './screens/messages'
+import DemoScreen from "./screens/demo";
 import { AuthProvider } from "./context/Auth";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { FullscreenProvider } from "./context/Fullscreen";
 
 function App() {
-  const [mainScreen, setMainScreen] = useState(0);
+  const [mainScreen, setMainScreen] = useState(7);
   const [jobViewContext, setJobViewContext] = useState()
   const [watchAns, setWatchAns] = useState(false)
   const [chatUser, setChatUser] = useState()
@@ -27,6 +28,7 @@ function App() {
                 : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} jobViewContext={jobViewContext} watchAns={watchAns} />
                   : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} />
                     : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
+                      : mainScreen == 7 ? <DemoScreen setMainScreen={setMainScreen} />
                       : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
           }
         </AuthProvider>

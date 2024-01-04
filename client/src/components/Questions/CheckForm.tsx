@@ -6,37 +6,50 @@ import no_pic from "../../images/no-pic.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import authConfig from '../../configs/auth'
+import { useAuth } from "../../hooks/useAuth";
 
 const CheckForm = ({
   setShowScreen,
   showScreen,
   questionIds,
   questions,
-  newJob
+  newJob,
+  setJobView
 }: {
   setShowScreen: any;
   showScreen: number;
   questionIds: any;
   questions: any;
   newJob: any;
+  setJobView: any
 }) => {
   const [interviewer, setInterviewer] = useState<any>(null);
-  
-  useEffect(() => {
-    if(newJob?._id) {
-      getInterviewerDetails();
-    }
-  }, [newJob]);
+  const { user } = useAuth()
+  // useEffect(() => {
+  //   console.log("check form", newJob)
+  //   if (newJob?.interviewer) {
+  //     getInterviewerDetails();
+  //   }
+  // }, [newJob]);
 
-  const getInterviewerDetails = () => {
+  // const getInterviewerDetails = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getInterviewer(newJob?.interviewer)}`)
+  //     .then(async response => {
+  //       setInterviewer(response.data)
+  //     })
+  //     .catch(console.error)
+  // }
+  const addJob = (params: any) => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getInterviewer(newJob._id)}`)
+      .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
       .then(async response => {
-        setInterviewer(response.data)
+        setJobView(response.data)
+        setShowScreen(6);
       })
-      .catch(console.error)
+      .catch(err => {
+      })
   }
-  
   return (
     <Fade>
       <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd white-form height-none">
@@ -45,8 +58,10 @@ const CheckForm = ({
             <img src={no_pic} />
             <div className="kjdflkads-mdskf check-form-heading">
               <h3>{newJob?.job_title || 'Job Title'}</h3>
-              <h5><Icons iconNumber={16} /> {interviewer?.job_recruiter || interviewer?.interviewer?.company_name || 'Company Name'}</h5>
-              <h6><Icons iconNumber={17} /> {interviewer?.interviewer?.location || 'Location'}</h6>
+              {/* <h5><Icons iconNumber={16} /> {interviewer?.job_recruiter || interviewer?.interviewer?.company_name || 'Company Name'}</h5>
+                <h6><Icons iconNumber={17} /> {interviewer?.interviewer?.location || 'Location'}</h6> */}
+              <h5><Icons iconNumber={16} /> {user?.company_name || 'Company Name'}</h5>
+              <h6><Icons iconNumber={17} /> {user?.location || 'Location'}</h6>
             </div>
           </div>
           <div className="check-form-body">
@@ -62,7 +77,8 @@ const CheckForm = ({
             <button
               className="btn lkdafhkls0d"
               onClick={() => {
-                setShowScreen(6);
+                addJob(newJob)
+
               }}
             >
               PUBLISH & SHARE

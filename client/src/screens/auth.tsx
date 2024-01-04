@@ -150,7 +150,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           ) : null}
         </div>
       </div>
-      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} showScreen={showScreen} />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} showScreen={showScreen} mainScreen={mainScreen} />
     </div>
   );
 }

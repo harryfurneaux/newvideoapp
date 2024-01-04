@@ -4,7 +4,7 @@ import SimpleCheckBox from './simpleCheck';
 import SettingMenuIcon from './SettingMenuIcon';
 import { useAuth } from '../hooks/useAuth';
 
-const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = {} }: { setMainScreen: any, setShowScreen: any, showScreen?: any, style?: any }) => {
+const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = {}, mainScreen = null }: { setMainScreen: any, setShowScreen: any, showScreen?: any, style?: any, mainScreen?: any }) => {
   const { isLoggedIn } = useAuth();
   const [isLoginChecked, setIsLoginChecked] = useState(true);
 
@@ -25,7 +25,7 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
     <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>
-    {!isLoggedIn() ? (
+    {!isLoggedIn() && mainScreen == 1 ? (
       <div className="tabs-container">
         <div className="tabs">
           <input type="radio" id="radio-1" name="tabs" onChange={() => {

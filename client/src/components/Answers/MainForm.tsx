@@ -29,12 +29,15 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
   const { user } = useAuth()
 
   const handleFilteration = (array: any) => {
+
     const questionsArray: Array<Interview> = array?.map((obj: any) => ({
       videoLink: obj.questions[0].video_url,
       interviewee: obj.interviewee,
       favourite: obj.favourite,
+      interviewer: obj.interviewer,
       id: obj._id
     }));
+    console.log("handle filte", questionsArray)
     setAllInterviews(questionsArray)
   }
 
@@ -58,6 +61,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
 
   useEffect(() => {
     if (selectedFilter && allInterviews?.length) {
+      console.log("selct filters", allInterviews, selectedFilter)
       const now = new Date();
       let filteredInterviews: Array<Interview> = [];
 
@@ -100,6 +104,8 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           filteredInterviews = allInterviews.filter((interview: any) => {
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
+
+              { console.log("this mont", interviewDate.getMonth(), now.getMonth(), interviewDate.getFullYear(), now.getFullYear()) }
               return (
                 interviewDate.getMonth() === now.getMonth() &&
                 interviewDate.getFullYear() === now.getFullYear()
@@ -109,8 +115,10 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           break;
         case AnswerFilter.ThisYear:
           filteredInterviews = allInterviews.filter((interview: any) => {
+
             if (interview?.interviewee?.createdAt) {
               const interviewDate = new Date(interview.interviewee.createdAt);
+              { console.log("this year", interviewDate.getFullYear(), now.getFullYear()) }
               return interviewDate.getFullYear() === now.getFullYear();
             }
           }).filter((i: any) => i);
@@ -150,7 +158,6 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
             <Col className="p-0 mb-2 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer' }} key={index}>
               <Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} setSelectedInterview={setSelectedInterview} />
-
             </Col>
           )) : (
             <Col className="p-0 w-100 text-center text-white small">

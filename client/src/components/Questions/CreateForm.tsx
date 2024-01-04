@@ -33,14 +33,15 @@ const CreateForm = ({
     interviewer: user?.id,
     job_recruiter: "",
   })
-  const [newJob, setNewJob] = useState<any>();
+  const [newJob, setNewJob] = useState<any>(null);
 
   useEffect(() => {
     getQuestions()
   }, [])
 
   useEffect(() => {
-    if (newJob?._id) {
+
+    if (newJob) {
       setShowScreen(5)
     }
   }, [newJob])
@@ -54,16 +55,16 @@ const CreateForm = ({
       .catch(console.error)
   }
 
-  const addJob = (params: any) => {
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
-      .then(async response => {
-        setJobView(response.data);
-        setNewJob(response.data);
-      })
-      .catch(err => {
-      })
-  }
+  // const addJob = (params: any) => {
+  //   axios
+  //     .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
+  //     .then(async response => {
+  //       setJobView(response.data);
+  //       setNewJob(response.data);
+  //     })
+  //     .catch(err => {
+  //     })
+  // }
 
   useEffect(() => {
     if (showScreen == 3) {
@@ -204,7 +205,9 @@ const CreateForm = ({
               {selected >= 3 ? <button onClick={() => {
                 const jobFinalData = { ...job }
                 jobFinalData.questions = questionIds;
-                addJob(jobFinalData)
+                // setJobView(jobFinalData);
+                setNewJob(jobFinalData);
+                // addJob(jobFinalData)
               }} className="kjdflj0-jsads">
                 CONTINUE
                 <Icons iconNumber={85} />
@@ -215,7 +218,7 @@ const CreateForm = ({
           </Zoom>
         ) : showScreen == 5 ? (
           <>
-            <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} questionIds={questionIds} questions={questions} newJob={newJob} />
+            <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} questionIds={questionIds} questions={questions} newJob={newJob} setJobView={setJobView} />
           </>
         ) : (
           <div className="sfjkdfjsd-dsnaf">

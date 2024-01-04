@@ -3,14 +3,30 @@ import { Modal } from "react-bootstrap";
 import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
 import visa_img from "../../images/visa 1.svg";
+import { useAuth } from "../../hooks/useAuth";
 
+import { Elements, useStripe } from '@stripe/react-stripe-js';
+
+import { loadStripe } from '@stripe/stripe-js';
+
+import axios from "axios";
+import StripeModal from "./stripe_modal";
+const stripeApi: any = process.env.STRIPE_API
+const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
+// const options = {
+//   clientSecret: 'sk_test_51OPPTIKkpvXbNi5Lgh0kPJ8X4qC9yv1dFtewlO1JzvAMdex4r1ecBeV03djNr1HWvwGSRAszsOo6zZOACTHuV1BT00geP6ZmbQ',
+// };
 const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any }) => {
   const [show_change, setChangeModal] = useState(false);
   const [change_item, setChangeItem] = useState("");
 
   const [show_tiny, setTinyModal] = useState(false);
   const [tiny_type, setTinyType] = useState("");
-
+  const [stripeModal, setStripeModal] = useState(false)
+  const [stripeCustomerId, setStripeCustomerId] = useState()
+  const { user } = useAuth()
+  const stripe = useStripe()
+  console.log("user", user?.id, user?.email, user?.name)
   const handleChangeClose = () => setChangeModal(false);
   const handleChangeShow = (item: string) => {
     setChangeModal(true);
@@ -22,6 +38,22 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
     setTinyModal(true);
     setTinyType(type);
   };
+  const handleStripeClose = () => setStripeModal(false)
+  const handlePayment = () => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/create-checkout-session`,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((res) => {
+        const { sessionId } = res.data
+        console.log("stripe res", res.data.sessionId)
+        stripe?.redirectToCheckout({ sessionId: sessionId })
+      })
+
+
+  }
+
 
   return (
     <Modal className={`modal-primary payment-modal ${show_change || show_tiny ? "z-0" : ""}`} show={show} onHide={handleClose} centered>
@@ -38,7 +70,9 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
             <p>Add, update, or remove your billing methods</p>
           </div>
           <div className="justify-content-end">
-            <button>Add New Billing Method</button>
+
+            <button onClick={handlePayment} >Add New Billing Method</button>
+
           </div>
         </div>
         <div className="modal-part modal-part-1">
@@ -78,6 +112,9 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
       </Modal.Body>
       <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={''} />
       <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={''} jobView={''} />
+      {/* <Elements stripe={stripePromise} options={options}>
+        <StripeModal show={stripeModal} handleClose={handleStripeClose} userId={stripeCustomerId} />
+      </Elements> */}
     </Modal>
   )
 }

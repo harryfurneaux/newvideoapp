@@ -12,7 +12,8 @@ import { useAuth } from '../../hooks/useAuth';
 const RightButtons = ({ hideMenu, setChatUser, selectedInterview, setAllInterviews, favourite = false, setFavourite, setMainScreen, setshowScreen }: { hideMenu: boolean, selectedInterview?: any, setAllInterviews?: any, setFavourite?: any, favourite?: boolean, setMainScreen?: any, setshowScreen?: any, setChatUser?: any }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1180px)' });
   const [showDelInterview, setShowDelInterview] = useState(false);
-  const { setJobViewContext } = useAuth();
+  const { setJobViewContext, user } = useAuth();
+
 
   return <div className={`kljadjfkl-jaem kjdlamkdl-asdj ${isTab ? "adaslkhdfjksj-ajenw" : ""}`}>
     <button className='no-shadow circleButtons' onClick={() => {
@@ -45,10 +46,10 @@ const RightButtons = ({ hideMenu, setChatUser, selectedInterview, setAllIntervie
       <Icons iconNumber={isTab ? 72 : 48} />
       Messages
     </button>
-    <button className='no-shadow circleButtons' onClick={() => setShowDelInterview(true)}>
+    {(user?.id == selectedInterview?.interviewer._id || user?.id == selectedInterview?.interviewee._id) ? <button className='no-shadow circleButtons' onClick={() => setShowDelInterview(true)}>
       <Icons iconNumber={isTab ? 73 : 49} />
       Delete
-    </button>
+    </button> : null}
     <TinyModal show={showDelInterview} setshowScreen={setshowScreen} handleClose={() => setShowDelInterview(false)} type="delete_interview_video" setMainScreen={setMainScreen} jobView={selectedInterview} />
   </div>
 }
