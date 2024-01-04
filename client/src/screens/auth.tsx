@@ -76,11 +76,15 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
             document.querySelector(`.flip-child-${showScreen}`)?.classList.remove('d-none');
             setTimeout(() => {
               document.querySelector(`.flip-child-${parseInt(previousScreen)}`)?.classList.add('d-none');
-              if (document.querySelector(`.flip-child-${showScreen}`)?.classList.contains('t-180')) {
-                document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim-180');
-              } else {
-                document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim');
-              }
+              setTimeout(() => {
+                if (document.querySelector(`.flip-child-${showScreen}`)?.classList.contains('t-180')) {
+                  document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim');
+                } else {
+                  document.querySelector(`.flip-child-${showScreen}`)?.classList.add('hover-anim');
+                }
+                document.querySelector(`.flip-element`)?.classList.add('notransition');
+                document.querySelector(`.flip-element`)?.classList.remove('flipped');
+              }, 1000);
             }, 500);
           }, 100);
         }, 100);
