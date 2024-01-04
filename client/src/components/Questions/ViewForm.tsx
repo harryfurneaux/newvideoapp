@@ -28,7 +28,7 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
   return (
     <Flip direction="horizontal">
       <div className="jkljfkld-jdskfe">
-        <div className="kjjfds-janwkea1 white-form">
+        <div className="kjjfds-janwkea1 white-form hover-anim">
           <div className="kafms-kfsamfer">
             <div className="skfalk-smdsefds">
               <div className="kdjnfakdsfm-jsamre">

@@ -27,7 +27,10 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { set
   }
 
   return (
-    <div className="kjjfds-janwkea1 kjjfds-janwkea2 white-form height-none">
+    <div className="kjjfds-janwkea1 kjjfds-janwkea2 white-form height-none hover-anim">
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className="kafms-kfsamfer">
         <div className="skfalk-smdsefds">
           <div className="kdjnfakdsfm-jsamre">
@@ -68,7 +71,7 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { set
                     headers: {
                       'Content-Type': 'multipart/form-data',
                     },
-                  }).then((res) => {}).finally(() => { submitted = submitted + 1 })
+                  }).then((res) => { }).finally(() => { submitted = submitted + 1 })
                 });
 
                 const _timer = setInterval(() => {

@@ -4031,3 +4031,96 @@ video.bg-video {
     --rotate: 360;
   }
 }
+
+
+/* Progress Animation */
+.ProgressBar,
+.ProgressBar-contentCircle {
+  display: table;
+  height: 175px;
+  position: absolute;
+  width: 175px;
+}
+
+.ProgressBar-circle,
+.ProgressBar-background {
+  fill: none;
+  stroke: #00D9CD;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.ProgressBar-background {
+  stroke: #E8EEF44D;
+  stroke-width: 14;
+  z-index: 0;
+}
+
+.ProgressBar-percentage {
+  color: #ffffff;
+  font-size: 36px;
+  text-align: center;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+/* Loading Bar */
+.loading-bar {
+  position: relative;
+  display: flex;
+  height: 74px;
+  width: 304px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(57, 60, 80, 0.1);
+  backdrop-filter: blur(60px);
+  font-family: 'Roboto';
+  font-weight: 400;
+  z-index: 1;
+}
+
+.loading-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 45px;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+@keyframes progress-animation {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.lb-progress-bar {
+  display: flex;
+  height: 100%;
+  width: 0; /* Initial width set to 0 */
+  background-image: linear-gradient(0deg, rgba(173, 184, 250, 0.06), rgba(173, 184, 250, 0.4));
+  backdrop-filter: blur(10px);
+   z-index: 1;
+}
+
+.lb-timer {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  color: #ADB8FA;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.0);
+  z-index: 2;
+}

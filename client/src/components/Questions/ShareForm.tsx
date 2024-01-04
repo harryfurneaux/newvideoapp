@@ -30,7 +30,7 @@ const ShareForm = ({
   const [linkToCopy, setLinkToCopy] = useState<any>(process.env.REACT_APP_FRONTEND_URL);
 
   useEffect(() => {
-    if(jobView?._id) {
+    if (jobView?._id) {
       setLinkToCopy(`${process.env.REACT_APP_FRONTEND_URL}/${jobView._id}`);
     }
   }, []);
@@ -40,8 +40,11 @@ const ShareForm = ({
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
       <Flip direction="horizontal">
         <div className="jkljfkld-jdskfe">
-          <div className="kjjfds-janwkea">
+          <div className="kjjfds-janwkea hover-anim">
             {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
+            <div className='wave-box'>
+              <div className='wave'></div>
+            </div>
             <div className="jhjij-sanwe kjljdfn-jadmw" style={{
               paddingLeft: '33px',
               paddingRight: '33px',

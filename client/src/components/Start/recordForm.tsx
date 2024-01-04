@@ -111,16 +111,47 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
     setTimeDurationBGWidth(Math.max(minWidth, width));
   }
 
+  const loadingBar = () => {
+    const progressBar = document.getElementById('progress-bar');
+    const timerElement = document.getElementById('timer');
+    const totalDuration = 30; // Set the total animation duration in seconds
+    const animationFrames = 60; // Number of frames per second for smoother animation
+    const frameDuration = 1000 / animationFrames;
+    let seconds = totalDuration; // Set the desired countdown duration in seconds
+
+    function updateTimer() {
+      if (timerElement && progressBar) {
+        timerElement.textContent = `${Math.floor(seconds)}s`; // Format seconds without decimal places
+        const progress = ((totalDuration - seconds) / totalDuration) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        seconds -= 1 / animationFrames;
+
+        if (seconds < 0) {
+          clearInterval(timerInterval);
+          timerElement.textContent = '0s';
+
+          setStatus('waiting');
+          handleStopCaptureClick();
+        }
+      }
+    }
+
+    updateTimer(); // Initial update
+    const timerInterval = setInterval(updateTimer, frameDuration);
+  }
+
   useEffect(() => {
     if (status === 'recording') {
-      if (timeDuration <= 0) {
-        setStatus('waiting');
-        handleStopCaptureClick();
-      }
-      setTimeout(() => {
-        calculateWidth();
-        setTimeDuration(timeDuration - 1);
-      }, 1000);
+      loadingBar();
+      // if (timeDuration <= 0) {
+      //   setStatus('waiting');
+      //   handleStopCaptureClick();
+      // }
+      // setTimeout(() => {
+      //   calculateWidth();
+      //   setTimeDuration(timeDuration - 1);
+      // }, 1000);
     }
   }, [status, timeDuration]);
 
@@ -159,20 +190,24 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
 
           </div>
           <div className='kjfds-jandsa' >
-            <div className='kjjsad-awek' style={{
+            {/* <div className='kjjsad-awek' style={{
               transition: 'all 500ms',
               left: 0,
               bottom: 0,
               width: timeDurationBGWidth
-            }}></div>
+            }}></div> */}
+            <div className="loading-bar" id="loading-bar">
+              <div className="lb-progress-bar" id="progress-bar"></div>
+              <div className="lb-timer" id="timer"></div>
+            </div>
           </div>
-          <div className='kjdsia-ajdwnkd'>
+          <div className='kjdsia-ajdwnkd' style={{ justifyContent: 'flex-start' }}>
             <Icons iconNumber={25} />
-            <h5>{question?.question || 'What are your strengths and weaknesses?'}</h5>
-            <div className='kjda-ejmnwae'>
+            <h5 style={{ marginLeft: 10 }}>{question?.question || 'What are your strengths and weaknesses?'}</h5>
+            {/* <div className='kjda-ejmnwae'>
               <Icons iconNumber={26} />
               <h6>{timeDuration >= 0 ? timeDuration : 0}s</h6>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="ldkjfal0-fdsnfe1">
