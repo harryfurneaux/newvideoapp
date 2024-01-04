@@ -4,7 +4,7 @@ import SimpleCheckBox from './simpleCheck';
 import SettingMenuIcon from './SettingMenuIcon';
 import { useAuth } from '../hooks/useAuth';
 
-const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null }: { setMainScreen: any, setShowScreen: any, showScreen?: any }) => {
+const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = {} }: { setMainScreen: any, setShowScreen: any, showScreen?: any, style?: any }) => {
   const { isLoggedIn } = useAuth();
   const [isLoginChecked, setIsLoginChecked] = useState(true);
 
@@ -21,7 +21,7 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null }: { setM
     }
   }, [showScreen]);
 
-  return <div className="rightSideDiv kjdsfkn-ajdnkw">
+  return <div className="rightSideDiv kjdsfkn-ajdnkw" style={style}>
     <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>

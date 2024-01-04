@@ -10,6 +10,7 @@ import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 import LinearBackground from "../components/LinearBackground";
+import { useFullscreen } from "../hooks/useFullscreen";
 
 function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any }) {
   const [showScreen, setShowScreen] = useState(0);
@@ -19,6 +20,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [jobView, setJobView] = useState(null)
   const [myQuestions, setMyQuestions] = useState(false)
+  const { fullscreen } = useFullscreen();
 
   useEffect(() => {
     if (jobView) {
@@ -28,7 +30,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
 
   return (
     <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg1">
+      <div className="rightSideDiv rightSideBg1" style={fullscreen ? { width: '100%' } : {}}>
         <LinearBackground />
         {
           showScreen <= 5 ?
@@ -77,7 +79,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none' } : {}} />
     </div>
   );
 }

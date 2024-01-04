@@ -3,10 +3,12 @@ import JobTitle from "./JobTitle";
 import axios from "axios";
 import authConfig from '../../configs/auth'
 import { useAuth } from "../../hooks/useAuth";
+import { useFullscreen } from "../../hooks/useFullscreen";
 
 const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }: { setMainScreen: any, setShowScreen: any, setJobView: any, myQuestions: any }) => {
   const [jobs, setJobs] = useState([])
   const { user, setJobViewContext } = useAuth()
+  const { fullscreen } = useFullscreen();
 
   useEffect(() => {
     getJobs()
@@ -46,7 +48,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
   }
 
   return (
-    <div className="leftSideContent">
+    <div className="leftSideContent" style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
       {jobs?.map((data, index) =>
         <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
       )}

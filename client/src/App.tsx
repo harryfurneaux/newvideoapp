@@ -9,6 +9,7 @@ import Start from './screens/start';
 import Messages from './screens/messages'
 import { AuthProvider } from "./context/Auth";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { FullscreenProvider } from "./context/Fullscreen";
 
 function App() {
   const [mainScreen, setMainScreen] = useState(0);
@@ -18,16 +19,18 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
-      <AuthProvider setMainScreen={setMainScreen}>
-        {
-          mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-            : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} setJobViewContext={setJobViewContext} setChatUser={setChatUser} setWatchAns={setWatchAns} />
-              : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} jobViewContext={jobViewContext} watchAns={watchAns} />
-                : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} />
-                  : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
-                    : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
-        }
-      </AuthProvider>
+      <FullscreenProvider>
+        <AuthProvider setMainScreen={setMainScreen}>
+          {
+            mainScreen == 0 ? <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+              : mainScreen == 1 ? <Question mainScreen={mainScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} setJobViewContext={setJobViewContext} setChatUser={setChatUser} setWatchAns={setWatchAns} />
+                : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} jobViewContext={jobViewContext} watchAns={watchAns} />
+                  : mainScreen == 3 ? <Start setMainScreen={setMainScreen} jobViewContext={jobViewContext} />
+                    : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
+                      : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          }
+        </AuthProvider>
+      </FullscreenProvider>
     </GoogleOAuthProvider>
   );
 }

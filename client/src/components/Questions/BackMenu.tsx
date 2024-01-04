@@ -1,3 +1,4 @@
+import { useFullscreen } from "../../hooks/useFullscreen";
 import Icons from "../icons";
 import { useMediaQuery } from 'react-responsive'
 
@@ -14,6 +15,8 @@ const BackMenu = ({
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1013px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' })
+  const { fullscreen, setFullscreen } = useFullscreen();
+  
   return (
     <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`} style={{ position: 'absolute', top: 0, width: '100%' }}>
       <div
@@ -42,11 +45,11 @@ const BackMenu = ({
         <h5 className="mksaldkamaw-jdwa">Back</h5>
       </div>
       <div className="d-flex">
-        {showScreen <= 5 ? (
+        {true ? (
           <button className="njkljmdasp-dawm" onClick={() => {
-            setShowScreen(1);
+            setFullscreen(!fullscreen);
           }}>
-            <Icons iconNumber={30} />
+            <span style={{ fontSize: fullscreen ? 30 : 20, fontWeight: 400, marginRight: 5 }}>{fullscreen ? '-' : '+'}</span>
             Full Screen
           </button>
         ) : (

@@ -1,7 +1,7 @@
 const LinearBackground = ({ style = {} }) => {
   return (
     <div className="hero" style={style}>
-      <div
+      {/* <div
         className="shape"
         style={{
           '--color': '#B0FFB3',
@@ -28,7 +28,7 @@ const LinearBackground = ({ style = {} }) => {
           '--color': '#BAC2F1',
           '--translateY-direction': 'alternate-reverse'
         } as React.CSSProperties}
-      />
+      /> */}
     </div>
   );
 };
