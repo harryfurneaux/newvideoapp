@@ -136,7 +136,7 @@ const DemoScreen = ({ setMainScreen }: { setMainScreen: any }) => {
             </div>
             <div className="leftSideHeader">
 
-                <div className='wh-100 kjsdfl-asjdm'>
+                <div className='wh-100 kjsdfl-asjdm' style={{ height: 523 }}>
                     <VideoForm selectedInterview={selectedInterview} favourite={''} />
                 </div>
             </div>
