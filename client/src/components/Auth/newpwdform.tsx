@@ -7,6 +7,9 @@ const NewPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, cla
 
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`}>
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Create New Password</h3>
         <h4>Password must be at least 8 characters</h4>

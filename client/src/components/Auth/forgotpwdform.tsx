@@ -8,6 +8,9 @@ const ForgotPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, 
 
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`}>
         <img src={icon} className="mb-4" />
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Forgot Password?</h3>

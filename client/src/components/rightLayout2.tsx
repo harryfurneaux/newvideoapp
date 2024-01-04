@@ -1,16 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icons from './icons';
 import SimpleCheckBox from './simpleCheck';
 import SettingMenuIcon from './SettingMenuIcon';
 import { useAuth } from '../hooks/useAuth';
 
-const RightLayout = ({ setMainScreen, setShowScreen }: { setMainScreen: any, setShowScreen: any }) => {
+const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null }: { setMainScreen: any, setShowScreen: any, showScreen?: any }) => {
   const { isLoggedIn } = useAuth();
-  
+  const [isLoginChecked, setIsLoginChecked] = useState(true);
+
+  useEffect(() => {
+    switch (showScreen) {
+      case 0:
+        setIsLoginChecked(true);
+        break;
+      case 1:
+        setIsLoginChecked(false);
+        break;
+      default:
+        break;
+    }
+  }, [showScreen]);
+
   return <div className="rightSideDiv kjdsfkn-ajdnkw">
     <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>
+    {!isLoggedIn() ? (
+      <div className="tabs-container">
+        <div className="tabs">
+          <input type="radio" id="radio-1" name="tabs" onChange={() => {
+            setIsLoginChecked(false);
+            setShowScreen(1);
+          }} checked={!isLoginChecked} />
+          <label className="tab" htmlFor="radio-1">SIGN UP</label>
+          <input type="radio" id="radio-2" name="tabs" onChange={() => {
+            setIsLoginChecked(true);
+            setShowScreen(0);
+          }} checked={isLoginChecked} />
+          <label className="tab" htmlFor="radio-2">LOGIN</label>
+          <span className="glider"></span>
+        </div>
+      </div>
+    ) : null}
     <div className="nakds-ajews">
       <div className="topSectionDiv d-flex">
         <h1>“</h1>

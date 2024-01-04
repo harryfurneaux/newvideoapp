@@ -10,7 +10,10 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
 
   return (
     <div className={`kjjfds-janwkea ${className}`}>
-      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
+      {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className="jhjij-sanwe">
         <h3>Some final details...</h3>
         <h4 className="ksajdsd-sjad">

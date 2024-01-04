@@ -3695,3 +3695,145 @@ video.bg-video {
 .one-line:before, .one-line:after {
   background: rgba(33, 37, 41, 0.5);
 }
+
+/* Auth Tabs */
+.tabs-container {
+  position: absolute;
+  /* left: 0; */
+  top: 10px;
+  right: 10px;
+  /* bottom: 0; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.tabs-container .tabs {
+  display: flex;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px 0 rgba(114, 109, 131, 0.01), 0 6px 12px 0 rgba(114, 109, 131, 0.01);
+  padding: 0.6rem;
+  border-radius: 20px;
+}
+.tabs-container .tabs * {
+  z-index: 2;
+}
+
+.tabs-container input[type=radio] {
+  display: none;
+}
+
+.tabs-container .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  width: 110px;
+  font-size: 1rem;
+  font-weight: 550;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+}
+
+.tabs-container input[type=radio]:checked + label {
+  color: #FFF;
+}
+.tabs-container input[id=radio-1]:checked ~ .glider {
+  transform: translateX(0);
+}
+
+.tabs-container input[id=radio-2]:checked ~ .glider {
+  transform: translateX(100%);
+}
+
+.tabs-container .glider {
+  position: absolute;
+  display: flex;
+  height: 54px;
+  width: 110px;
+  background-color: #0F0222;
+  z-index: 1;
+  border-radius: 12px;
+  transition: 0.25s ease-out;
+}
+
+@media (max-width: 700px) {
+  .tabs-container .tabs {
+    transform: scale(0.9);
+  }
+}
+
+
+/* Hover Animation */
+.hover-anim {
+  animation: hover 5s ease-in-out infinite;
+}
+
+@keyframes hover{
+  0%{
+    transform: rotateZ(0deg) rotateY(0deg) translateY(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+  }
+  50%{
+    transform: rotateZ(-1deg) rotateY(-1deg) translateY(7px);
+    box-shadow: 3px 5px 20px 7px rgba(84, 104, 255, 0.4);
+  }
+  100%{
+    transform: rotateZ(0deg) rotateY(0deg) translateY(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+  }
+}
+
+.hover-anim-180 {
+  animation: hover-180 5s ease-in-out infinite;
+}
+
+@keyframes hover-180{
+  0%{
+    transform: rotateZ(0deg) rotateY(180deg) translateY(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+  }
+  50%{
+    transform: rotateZ(1deg) rotateY(181deg) translateY(7px);
+    box-shadow: 3px 5px 20px 7px rgba(84, 104, 255, 0.4);
+  }
+  100%{
+    transform: rotateZ(0deg) rotateY(180deg) translateY(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+  }
+}
+
+
+/* Wave Animation */
+.wave-box {
+  width: 338px;
+  height: 472px;
+  border-radius: 25px;
+  background: ffffff;
+  position: absolute;
+  overflow: hidden;
+  z-index: -1;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave-box .wave {
+  opacity: 0.05;
+  position: absolute;
+  top: -65%;
+  left: 95%;
+  background: #ADB8FA;
+  width: 1000px;
+  height: 1000px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 49% 50%;
+  border-radius: 45%;
+  animation: drift 50000ms infinite linear;
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}
