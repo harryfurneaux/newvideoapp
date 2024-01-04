@@ -19,8 +19,9 @@ interface Interview {
     updatedAt?: string;
     __v?: number;
   };
-  favourite?: any,
-  id?: any
+  favourite?: any;
+  id?: any;
+  createdAt?: string;
 }
 
 const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, setSelectedInterview, allInterviews, setAllInterviews, jobViewContext, watchAns }: { setMainScreen: any, showScreen: number, setshowScreen: any, selectedFilter: AnswerFilter, setSelectedInterview: any, allInterviews: any, setAllInterviews: any, jobViewContext: any, watchAns: any }) => {
@@ -29,15 +30,14 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
   const { user } = useAuth()
 
   const handleFilteration = (array: any) => {
-
     const questionsArray: Array<Interview> = array?.map((obj: any) => ({
       videoLink: obj.questions[0].video_url,
       interviewee: obj.interviewee,
       favourite: obj.favourite,
       interviewer: obj.interviewer,
-      id: obj._id
+      id: obj._id,
+      createdAt: obj.createdAt
     }));
-    console.log("handle filte", questionsArray)
     setAllInterviews(questionsArray)
   }
 
@@ -61,15 +61,14 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
 
   useEffect(() => {
     if (selectedFilter && allInterviews?.length) {
-      console.log("selct filters", allInterviews, selectedFilter)
       const now = new Date();
       let filteredInterviews: Array<Interview> = [];
 
       switch (selectedFilter) {
         case AnswerFilter.LastHour:
           filteredInterviews = allInterviews.filter((interview: Interview) => {
-            if (interview?.interviewee?.createdAt) {
-              const interviewDate = new Date(interview.interviewee.createdAt);
+            if (interview?.createdAt) {
+              const interviewDate = new Date(interview.createdAt);
               const timeDifference = now.getTime() - interviewDate.getTime();
               const hoursDifference = timeDifference / (1000 * 3600);
               return hoursDifference <= 1;
@@ -78,8 +77,8 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           break;
         case AnswerFilter.Today:
           filteredInterviews = allInterviews.filter((interview: any) => {
-            if (interview?.interviewee?.createdAt) {
-              const interviewDate = new Date(interview.interviewee.createdAt);
+            if (interview?.createdAt) {
+              const interviewDate = new Date(interview.createdAt);
               return (
                 interviewDate.getDate() === now.getDate() &&
                 interviewDate.getMonth() === now.getMonth() &&
@@ -90,8 +89,8 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           break;
         case AnswerFilter.ThisWeek:
           filteredInterviews = allInterviews.filter((interview: any) => {
-            if (interview?.interviewee?.createdAt) {
-              const interviewDate = new Date(interview.interviewee.createdAt);
+            if (interview?.createdAt) {
+              const interviewDate = new Date(interview.createdAt);
               const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
               const endOfWeek = new Date(startOfWeek);
               endOfWeek.setDate(endOfWeek.getDate() + 6);
@@ -102,10 +101,8 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           break;
         case AnswerFilter.ThisMonth:
           filteredInterviews = allInterviews.filter((interview: any) => {
-            if (interview?.interviewee?.createdAt) {
-              const interviewDate = new Date(interview.interviewee.createdAt);
-
-              { console.log("this mont", interviewDate.getMonth(), now.getMonth(), interviewDate.getFullYear(), now.getFullYear()) }
+            if (interview?.createdAt) {
+              const interviewDate = new Date(interview.createdAt);
               return (
                 interviewDate.getMonth() === now.getMonth() &&
                 interviewDate.getFullYear() === now.getFullYear()
@@ -115,10 +112,8 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           break;
         case AnswerFilter.ThisYear:
           filteredInterviews = allInterviews.filter((interview: any) => {
-
-            if (interview?.interviewee?.createdAt) {
-              const interviewDate = new Date(interview.interviewee.createdAt);
-              { console.log("this year", interviewDate.getFullYear(), now.getFullYear()) }
+            if (interview?.createdAt) {
+              const interviewDate = new Date(interview.createdAt);
               return interviewDate.getFullYear() === now.getFullYear();
             }
           }).filter((i: any) => i);
@@ -127,16 +122,15 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           filteredInterviews = [...allInterviews];
           break;
       }
-      console.log("fileterintevow", filteredInterviews)
+      
       setFilteredInterviews(filteredInterviews);
     }
   }, [selectedFilter, allInterviews]);
-  { console.log("retunr filterd", filteredInterviews) }
+
   return (
     <div className="leftSideMain">
       <div className="option-btn">
         <button className="lamdl-anwid radiusLeft" onClick={() => {
-
           setFilteredInterviews([])
           setMyAnswers(true)
         }}>
