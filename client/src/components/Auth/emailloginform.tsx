@@ -26,6 +26,9 @@ const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen, setError
 
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form ${className}`}>
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""} email-login-form`}>
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Enter Login Details</h3>
         <h4>Enter your email and password for this account.</h4>

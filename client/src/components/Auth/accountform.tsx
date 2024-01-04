@@ -6,14 +6,17 @@ import { errorByKey } from "../../helper";
 const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFormErrors }: { setshowScreen: any, className?: string, handleFormChange: any, signUpFormErrors: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
-  
+
   const hasAnyError = () => {
-    return errorByKey(signUpFormErrors, 'name') || errorByKey(signUpFormErrors, 'email') || errorByKey(signUpFormErrors, 'password') || 
-    errorByKey(signUpFormErrors, 'confirm_password')
+    return errorByKey(signUpFormErrors, 'name') || errorByKey(signUpFormErrors, 'email') || errorByKey(signUpFormErrors, 'password') ||
+      errorByKey(signUpFormErrors, 'confirm_password')
   };
-  
+
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} ${className}`}>
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
       <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ marginTop: hasAnyError() ? 10 : 50 }}>
         <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Create Account</h3>
         <h4>Password must be at least 8 characters</h4>

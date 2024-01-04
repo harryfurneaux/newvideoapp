@@ -9,6 +9,8 @@ import ShareForm from "../components/Questions/ShareForm";
 import ViewForm from "../components/Questions/ViewForm";
 import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
+import LinearBackground from "../components/LinearBackground";
+import { useFullscreen } from "../hooks/useFullscreen";
 
 function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any }) {
   const [showScreen, setShowScreen] = useState(0);
@@ -18,6 +20,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [jobView, setJobView] = useState(null)
   const [myQuestions, setMyQuestions] = useState(false)
+  const { fullscreen } = useFullscreen();
 
   useEffect(() => {
     if (jobView) {
@@ -27,7 +30,8 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
 
   return (
     <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg1">
+      <div className="rightSideDiv rightSideBg1" style={fullscreen ? { width: '100%' } : {}}>
+        <LinearBackground />
         {
           showScreen <= 5 ?
             <div className="leftSideMain">
@@ -50,9 +54,8 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             </div> :
             <></>
         }
-        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen > 5 ? (
-          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
             {showScreen == 6 ? (
               <>
                 <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
@@ -66,6 +69,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             )}
           </div>
         ) : <></>}
+        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
         {showScreen >= 1 && showScreen <= 5 ? (
           <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
         ) : (
@@ -75,7 +79,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
           <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
       </div>
-      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} />
+      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none' } : {}} />
     </div>
   );
 }
