@@ -3,7 +3,6 @@ import Stripe from 'stripe';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Payment } from '../entities/payment.entity';
-import { CreateCustomerDto } from '../dtos/create-customer.dto';
 
 @Injectable()
 export class PaymentService {
@@ -17,58 +16,58 @@ export class PaymentService {
     });
   }
 
-  async createCustomer(createCustomerDto: CreateCustomerDto): Promise<string> {
-    try {
-      const { userId, email, name } = createCustomerDto;
 
-      const customer = await this.stripeClient.customers.create({
-        metadata: {
-          userId,
-          email,
-          name,
+  async createCheckoutSession(priceId: string, mode: 'payment' | 'subscription'): Promise<string> {
+    const YOUR_DOMAIN = process.env.FRONT_END_URL;
+
+    const session = await this.stripeClient.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
         },
-      });
+      ],
+      mode:'subscription',
+      success_url: `${YOUR_DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${YOUR_DOMAIN}/cancel`,
+    });
 
-      const payment = new this.paymentModel({
-        email,
-        name,
-        user_id: userId,
-        customer_id: customer.id, 
-
-      });
-
-      await payment.save();
-
-      console.log('Customer created:', customer.id);
-      return customer.id;
-    } catch (error) {
-      console.error('Error creating customer:', error.message);
-      throw error;
-    }
+    return session.id;
   }
 
-  async createSubscription(
-    userId: string,
-    paymentMethod: string,
-    priceId: string,
-  ) {
+  async getSessionData(sessionId: string): Promise<Stripe.Checkout.Session | null> {
     try {
-      const subscription = await this.stripeClient.subscriptions.create({
-        customer: userId,
-        items: [
-          {
-            price: priceId,
-          },
-        ],
-        default_payment_method: paymentMethod,
-      });
-
-      // Save 
-
-      return { subscriptionId: subscription.id };
+      const session = await this.stripeClient.checkout.sessions.retrieve(sessionId);
+      return session;
     } catch (error) {
-      console.log('Error in createSubscription', error.message);
-      return { error: error.message };
+      return null;
     }
   }
+
+  async getCustomerBySessionId(sessionId: string): Promise<string | null> {
+    const session = await this.getSessionData(sessionId);
+    if (session && session.customer) {
+      return session.customer as string;
+    }
+    return null;
+  }
+
+  async getPaymentMethodsByCustomerId(customerId: string): Promise<Stripe.ApiList<Stripe.PaymentMethod>> {
+    return this.stripeClient.paymentMethods.list({
+      customer: customerId,
+      type: 'card',
+    });
+  }
+
+  async getPaymentMethodById(paymentMethodId: string): Promise<Stripe.PaymentMethod | null> {
+    try {
+      const paymentMethod = await this.stripeClient.paymentMethods.retrieve(paymentMethodId);
+      return paymentMethod;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  
 }

@@ -1,6 +1,16 @@
-import { IsString } from 'class-validator';
+import { IsOptional } from 'class-validator';
 
 export class SendMessageDto {
 
-  readonly message: string;
+  @IsOptional()
+  message: string;
+
+  @IsOptional()
+  sent_to: number;
+
+  @IsOptional()
+  sent_from: number;
+  
+  @IsOptional()
+  interview_id: number;
 }
