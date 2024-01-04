@@ -25,7 +25,7 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
     <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>
-    {!isLoggedIn() && mainScreen == 1 ? (
+    {!isLoggedIn() && mainScreen == 0 ? (
       <div className="tabs-container">
         <div className="tabs">
           <input type="radio" id="radio-1" name="tabs" onChange={() => {
