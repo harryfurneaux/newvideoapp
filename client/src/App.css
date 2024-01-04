@@ -3777,8 +3777,8 @@ video.bg-video {
       box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
   50%{
-    transform: rotate(-2deg) translatey(7px);
-    box-shadow: 0px 5px 25px 7px rgba(84, 104, 255, 0.2);
+    transform: rotate(0deg) translatey(4px);
+    box-shadow: 4px 5px 25px 7px rgba(84, 104, 255, 0.2);
   }
   100%{
     transform: rotate(0deg) translatey(0px);
@@ -3796,8 +3796,8 @@ video.bg-video {
       box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
   50%{
-    transform: rotate(-2deg) translatey(7px);
-    box-shadow: 0px 5px 25px 7px rgba(84, 104, 255, 0.2);
+    transform: rotate(0deg) translatey(4px);
+    box-shadow: 4px 5px 25px 7px rgba(84, 104, 255, 0.2);
   }
   100%{
     transform: rotate(0deg) translatey(0px);
