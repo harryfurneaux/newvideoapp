@@ -3773,16 +3773,16 @@ video.bg-video {
 
 @keyframes hover{
   0%{
-    transform: rotateZ(0deg) rotateY(0deg) translateY(0px);
-    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+    transform: rotate(0deg) translatey(0px);
+      box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
   50%{
-    transform: rotateZ(-1deg) rotateY(-1deg) translateY(7px);
-    box-shadow: 3px 5px 20px 7px rgba(84, 104, 255, 0.4);
+    transform: rotate(-2deg) translatey(7px);
+    box-shadow: 0px 5px 25px 7px rgba(84, 104, 255, 0.2);
   }
   100%{
-    transform: rotateZ(0deg) rotateY(0deg) translateY(0px);
-    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+    transform: rotate(0deg) translatey(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
 }
 
@@ -3792,16 +3792,16 @@ video.bg-video {
 
 @keyframes hover-180{
   0%{
-    transform: rotateZ(0deg) rotateY(180deg) translateY(0px);
-    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+    transform: rotate(0deg) translatey(0px);
+      box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
   50%{
-    transform: rotateZ(1deg) rotateY(181deg) translateY(7px);
-    box-shadow: 3px 5px 20px 7px rgba(84, 104, 255, 0.4);
+    transform: rotate(-2deg) translatey(7px);
+    box-shadow: 0px 5px 25px 7px rgba(84, 104, 255, 0.2);
   }
   100%{
-    transform: rotateZ(0deg) rotateY(180deg) translateY(0px);
-    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.7);
+    transform: rotate(0deg) translatey(0px);
+    box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.1);
   }
 }
 
