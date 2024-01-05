@@ -50,23 +50,32 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
   }
 
   return (
-    <div className={`leftSideContent ${jobs ? '' : 'no-question-prompt-div'}`} style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
-      {jobs ?
+    <div className={`leftSideContent ${myQuestions ? jobs?.length ? '' : 'no-question-prompt-div' : ''}`} style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
+      {myQuestions ? (
+        <>
+          {jobs?.length ?
+            <>
+              {jobs?.map((data: any, index: any) =>
+                <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
+              )
+              }
+            </>
+            : <div className=" d-flex p-10 align-items-center  justify-content-around text-white small no-question-prompt">
+              <Icons iconNumber={109} />
+              <p>You haven't created any interviews yet!</p>
+              {/* <Icons iconNumber={110} /> */}
+              <span>&nbsp;</span>
+            </div>
+          }
+        </>
+      ) : (
         <>
           {jobs?.map((data: any, index: any) =>
             <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
-          )
-          }
+          )}
         </>
-        : <div className=" d-flex p-10 align-items-center  justify-content-around text-white small no-question-prompt">
-          <Icons iconNumber={109} />
-          <p>You haven't created any interviews yet!</p>
-          <Icons iconNumber={110} />
-        </div>
-
-      }
-
-    </div>
+      )}
+    </div >
   );
 };
 export default QuestionForm
