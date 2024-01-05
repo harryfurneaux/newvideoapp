@@ -7,15 +7,14 @@ import { Fade } from "react-awesome-reveal";
 
 import Webcam from "react-webcam";
 
-const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setScreen: any, jobViewContext: any, recorded: any, setRecorded: any }) => {
+const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded, className = '', fromParent = false }: { setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, className?: any, fromParent?: boolean }) => {
   const [question, setQuestion] = useState<any>(null);
   const [status, setStatus] = useState("waiting");
   const [count, setCount] = useState(3);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [capturing, setCapturing] = useState(false);
   const [hasCaptured, setHasCaptured] = useState(false);
-  const [timeDuration, setTimeDuration] = useState(30);
-  const [timeDurationBGWidth, setTimeDurationBGWidth] = useState(0);
+  const [timerInterval, setTimerInterval] = useState<any>(null);
 
   const webcamRef = useRef<any>(null);
   const mediaRecorderRef = useRef<any>(null);
@@ -25,10 +24,9 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
       const _question = jobViewContext.questions.find((q: any) => !recorded.find((r: any) => r._id === q._id));
       if (_question) {
         setQuestion(_question);
-        setTimeDuration(_question.time_duration);
       }
     }
-  }, []);
+  }, [jobViewContext]);
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
@@ -54,6 +52,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
       setCapturing(false);
       setStatus('waiting');
       setHasCaptured(true);
+      clearLoader();
     }
   };
 
@@ -103,13 +102,16 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
     }
   }, [status, count]);
 
-  const calculateWidth = () => {
-    const duration = Math.max(0, Math.min(timeDuration, 30));
-    const maxWidth = 304;
-    const minWidth = 0;
-    const width = maxWidth - (maxWidth / 30) * duration;
-    setTimeDurationBGWidth(Math.max(minWidth, width));
-  }
+  const clearLoader = () => {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      setTimerInterval(null);
+    }
+    // const timerElement = document.getElementById('timer');
+    // if (timerElement) {
+    //   timerElement.textContent = '';
+    // }
+  };
 
   const loadingBar = () => {
     const progressBar = document.getElementById('progress-bar');
@@ -128,17 +130,15 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
         seconds -= 1 / animationFrames;
 
         if (seconds < 0) {
-          clearInterval(timerInterval);
-          timerElement.textContent = '0s';
-
-          setStatus('waiting');
+          // clearLoader();
+          // setStatus('waiting');
           handleStopCaptureClick();
         }
       }
     }
 
     updateTimer(); // Initial update
-    const timerInterval = setInterval(updateTimer, frameDuration);
+    setTimerInterval(setInterval(updateTimer, frameDuration));
   }
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
       //   setTimeDuration(timeDuration - 1);
       // }, 1000);
     }
-  }, [status, timeDuration]);
+  }, [status]);
 
   const videoConstraints = {
     width: 320,
@@ -161,60 +161,59 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded }: { setS
     facingMode: "user",
   };
 
-  return (
-    <Fade>
-      <div className="kjjfds-janwkea4">
+  const render = () => {
+    return (
+      <>
+        <div>
+          <Webcam mirrored={true} audio={true} style={{ borderRadius: '20px', position: 'relative' }} videoConstraints={videoConstraints} ref={webcamRef} />
+        </div>
         <div
-          style={{ width: 320, height: 520 }}
-          className="kjdflmas-sdmfe kamnask-asnw kljdnas-jdnwd"
-        >
-          <div> <Webcam mirrored={true} audio={true} style={{ borderRadius: '20px', position: 'relative' }} videoConstraints={videoConstraints} ref={webcamRef} /></div>
+          className='btn khjn-jnkawed' onClick={() => {
 
-          <div
-            className='btn khjn-jnkawed' onClick={() => {
-
-              if (status == 'recording') {
-                handleStopCaptureClick()
-              } else if (status == "waiting") {
-                setStatus("countdown")
-              };
-            }}>
-            {
-              status == "waiting" ? <Icons iconNumber={101} /> :
-                status == "recoding" ? null :
-                  <Icons iconNumber={106 + count - 3} />
-            }
-          </div>
-          <div className='kdjasldk-ajsdmkd'>
-            {/* <img src={require('../../images/i8.png')} /> */}
-
-          </div>
-          <div className='kjfds-jandsa' >
-            {/* <div className='kjjsad-awek' style={{
-              transition: 'all 500ms',
-              left: 0,
-              bottom: 0,
-              width: timeDurationBGWidth
-            }}></div> */}
-            <div className="loading-bar" id="loading-bar">
-              <div className="lb-progress-bar" id="progress-bar"></div>
-              <div className="lb-timer" id="timer"></div>
-            </div>
-          </div>
-          <div className='kjdsia-ajdwnkd' style={{ justifyContent: 'flex-start' }}>
-            <Icons iconNumber={25} />
-            <h5 style={{ marginLeft: 10 }}>{question?.question || 'What are your strengths and weaknesses?'}</h5>
-            {/* <div className='kjda-ejmnwae'>
-              <Icons iconNumber={26} />
-              <h6>{timeDuration >= 0 ? timeDuration : 0}s</h6>
-            </div> */}
+            if (status == 'recording') {
+              handleStopCaptureClick()
+            } else if (status == "waiting") {
+              setStatus("countdown")
+            };
+          }}>
+          {
+            status == "waiting" ? <Icons iconNumber={101} /> :
+              status == "recoding" ? null :
+                <Icons iconNumber={106 + count - 3} />
+          }
+        </div>
+        <div className='kdjasldk-ajsdmkd'>
+        </div>
+        <div className='kjfds-jandsa'>
+          <div className="loading-bar" id="loading-bar">
+            <div className="lb-progress-bar" id="progress-bar"></div>
+            <div className="lb-timer" id="timer"></div>
           </div>
         </div>
-        <div className="ldkjfal0-fdsnfe1">
-          <Icons iconNumber={63} />
+        <div className='kjdsia-ajdwnkd' style={{ justifyContent: 'flex-start' }}>
+          <Icons iconNumber={25} />
+          <h5 style={{ marginLeft: 10 }}>{question?.question || 'What are your strengths and weaknesses?'}</h5>
         </div>
+      </>
+    );
+  };
+
+  return fromParent ? (
+    <>
+      {render()}
+    </>
+  ) : (
+    <div className={`kjjfds-janwkea4 ${className}`}>
+      <div
+        style={{ width: 320, height: 520 }}
+        className="kjdflmas-sdmfe kamnask-asnw kljdnas-jdnwd"
+      >
+        {render()}
       </div>
-    </Fade>
+      <div className="ldkjfal0-fdsnfe1">
+        <Icons iconNumber={63} />
+      </div>
+    </div>
   );
 };
 

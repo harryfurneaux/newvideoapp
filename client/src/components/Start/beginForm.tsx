@@ -4,7 +4,7 @@ import Icons from "../icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { setScreen: any, jobViewContext: any, recorded: any, setMainScreen: any }) => {
+const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen, className = '' }: { setScreen: any, jobViewContext: any, recorded: any, setMainScreen: any, className?: any }) => {
 
   const { user } = useAuth();
 
@@ -27,7 +27,7 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen }: { set
   }
 
   return (
-    <div className="kjjfds-janwkea1 kjjfds-janwkea2 white-form height-none hover-anim">
+    <div className={`kjjfds-janwkea1 kjjfds-janwkea2 white-form height-none ${className}`}>
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
