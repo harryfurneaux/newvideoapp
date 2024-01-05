@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useEffect, useState, ReactNode, useMemo } from 'react'
 import axios from 'axios'
 import authConfig from '../configs/auth'
 import { AuthValuesType, LoginParams, ErrCallbackType, UserDataType, SignUpParams } from './types'
+import { useLocation } from 'react-router-dom'
 
 const defaultProvider: AuthValuesType = {
   user: null,
@@ -24,11 +25,16 @@ type Props = {
   children: ReactNode,
   setMainScreen: any
 }
+function useQuery() {
+  const { search } = useLocation();
 
+  return useMemo(() => new URLSearchParams(search), [search]);
+}
 const AuthProvider = ({ children, setMainScreen }: Props) => {
   const [user, setUser] = useState<UserDataType | null>(defaultProvider.user)
   const [loading, setLoading] = useState<boolean>(defaultProvider.loading)
   const [jobView, setJobView] = useState<any>(defaultProvider.jobViewContext)
+  const query = useQuery()
 
   const initAuth = async (): Promise<void> => {
     const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
@@ -43,6 +49,18 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
         .then(async response => {
           setLoading(false)
           setUser(response.data)
+          const sessionId = query.get('session_id')
+          if (sessionId) {
+            const { id } = response.data
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/stripe/${sessionId}`, { userId: id }).then((res) => {
+
+            }).catch((err) => err)
+
+          }
+
+
+
+
           if (response?.data?.token) {
             window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.token);
           }
@@ -61,10 +79,10 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
   useEffect(() => {
     initAuth()
   }, [])
-  
+
   const isLoggedIn = () => {
     const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
-    if(storedToken) {
+    if (storedToken) {
       return true;
     }
     return false;

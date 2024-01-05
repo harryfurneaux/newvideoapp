@@ -1,4 +1,5 @@
 import { useFullscreen } from "../../hooks/useFullscreen";
+import SearchFilter from "../Modals/SearchFilter";
 import Icons from "../icons";
 import { useMediaQuery } from 'react-responsive'
 
@@ -16,7 +17,7 @@ const BackMenu = ({
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1013px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' })
   const { fullscreen, setFullscreen } = useFullscreen();
-  
+
   return (
     <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`} style={{ position: 'absolute', top: 0, width: '100%' }}>
       <div
@@ -44,8 +45,8 @@ const BackMenu = ({
         </button>
         <h5 className="mksaldkamaw-jdwa">Back</h5>
       </div>
-      <div className="d-flex">
-        {true ? (
+      <div className="d-flex justify-content-between" style={{ width: '33%' }}>
+        {/* {true ? (
           <button className="njkljmdasp-dawm" onClick={() => {
             setFullscreen(!fullscreen);
           }}>
@@ -54,7 +55,14 @@ const BackMenu = ({
           </button>
         ) : (
           <></>
-        )}
+        )} */}
+        <div className="sortButtonDiv" onClick={() => { }}>
+          <h5 className="mksaldkamaw-jdwa">Filter</h5>
+          <h5 className="mksaldkamaw-jdwa sortButtonIcon">
+            <Icons iconNumber={91} />
+          </h5>
+        </div>
+
         {
           isTabletOrMobile && showScreen == 6 ?
             <button
@@ -73,10 +81,11 @@ const BackMenu = ({
               className="kjlma0o-dwa jksdalfj-jasidm"
             >
               <Icons iconNumber={30} />
-              Create{" "}
+              Create Interview
             </button>
         }
       </div>
+      <SearchFilter show={false} handleClose={''} selectedFilter={''} setSelectedFilter={''} />
     </div>
   );
 };

@@ -8,8 +8,8 @@ const OptionButtons = ({ setMyQuestions }: { setMyQuestions: any }) => {
         Your Questions
       </button>
       <button className="lamdl-anwid radiusRight" onClick={() => setMyQuestions(false)}>
-        <Icons iconNumber={32} />
-        Nearby
+        <Icons iconNumber={107} />
+        All Questions
       </button>
     </div>
   );

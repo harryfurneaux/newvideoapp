@@ -46,10 +46,11 @@ const Question = ({ setselected, selected, questions, questionIds, setQuestionId
         <h5>{questions.question}</h5>
       </div>
       <div>
-        <div className=" ">
+        {isHoverOrActive ? <Icons iconNumber={111} /> : <div className=" ">
           <Icons iconNumber={26} />
           <h6>{`${questions.time_duration}s`}</h6>
         </div>
+        }
       </div>
     </div>
   );

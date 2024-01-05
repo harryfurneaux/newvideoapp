@@ -65,14 +65,14 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
           </div>
         </div>
       </div>
-      <div>
+      <div style={{ width: '17%' }}>
         {selected > 0 ? (
           <button onMouseLeave={() => setselected(0)} className={`jklsjdnsa-jdw ${selected == 1 ? "a82" : selected == 2 ? "a83" : "a84"}`}>
             <Icons iconNumber={selected == 1 ? 82 : selected == 2 ? 83 : 84} />
             {selected == 1 ? "Messages" : selected == 2 ? "Answers" : "Questions"}
           </button>
         ) : (
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             {/* <button onMouseEnter={() => {
               setselected(3)
             }} className="njkajd-jendw no-shadow sjiadljsa-asdj">
@@ -91,6 +91,11 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
               <Icons iconNumber={81} />
 
             </button> */}
+            <button className="pill-13 rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => {
+              setMainScreen(2);
+            }}>
+              <Icons iconNumber={108} />12
+            </button>
             <button className="pill-12 rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => {
               setMainScreen(2);
             }}>
