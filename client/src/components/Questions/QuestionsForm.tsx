@@ -4,9 +4,11 @@ import axios from "axios";
 import authConfig from '../../configs/auth'
 import { useAuth } from "../../hooks/useAuth";
 import { useFullscreen } from "../../hooks/useFullscreen";
+import { Col } from "react-bootstrap";
+import Icons from "../icons";
 
 const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }: { setMainScreen: any, setShowScreen: any, setJobView: any, myQuestions: any }) => {
-  const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState<any>(null)
   const { user, setJobViewContext } = useAuth()
   const { fullscreen } = useFullscreen();
 
@@ -48,10 +50,22 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
   }
 
   return (
-    <div className="leftSideContent" style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
-      {jobs?.map((data, index) =>
-        <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
-      )}
+    <div className={`leftSideContent ${jobs ? '' : 'no-question-prompt-div'}`} style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
+      {jobs ?
+        <>
+          {jobs?.map((data: any, index: any) =>
+            <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
+          )
+          }
+        </>
+        : <div className=" d-flex p-10 align-items-center  justify-content-around text-white small no-question-prompt">
+          <Icons iconNumber={109} />
+          <p>You haven't created any interviews yet!</p>
+          <Icons iconNumber={110} />
+        </div>
+
+      }
+
     </div>
   );
 };

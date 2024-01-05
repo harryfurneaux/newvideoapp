@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
@@ -24,9 +24,20 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
   const [tiny_type, setTinyType] = useState("");
   const [stripeModal, setStripeModal] = useState(false)
   const [stripeCustomerId, setStripeCustomerId] = useState()
-  const { user } = useAuth()
+  const [paymentData, setPaymentData] = useState<any>()
   const stripe = useStripe()
-  console.log("user", user?.id, user?.email, user?.name)
+  const { user } = useAuth()
+
+
+
+  useEffect(() => {
+    if (user) {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/${user?.id}`).then((res) => {
+        setPaymentData(res.data.stripeData[0])
+      }).catch((err) => err)
+    }
+  }, [user])
+
   const handleChangeClose = () => setChangeModal(false);
   const handleChangeShow = (item: string) => {
     setChangeModal(true);
@@ -47,7 +58,6 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
         }
       }).then((res) => {
         const { sessionId } = res.data
-        console.log("stripe res", res.data.sessionId)
         stripe?.redirectToCheckout({ sessionId: sessionId })
       })
 
@@ -84,14 +94,15 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
             <div className="d-flex align-items-start">
               <img src={visa_img} />
               <div className="modal-part-main">
-                <p className="fw-bold">Visa ending in 7883&ensp;|&emsp;GBP</p>
+                <p className="fw-bold">{`${paymentData?.cardBrand} ending in ${paymentData?.last4}`}&ensp;|&emsp;{paymentData?.country}</p>
                 <p>You need a primary biulling method when you have active questions or a balance due. To remove this one, set a new primary billing method first.</p>
               </div>
             </div>
-            <button>Edit</button>
+            <button>Remove</button>
+            {/* <button>Edit</button> */}
           </div>
         </div>
-        <div className="modal-part modal-part-2">
+        {/* <div className="modal-part modal-part-2">
           <div className="modal-part-header">
             <h6>ADDITIONAL</h6>
             <p>Your primary billing method is used for all recurring payments.</p>
@@ -108,13 +119,10 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
             <button>Set as Primary</button>
             <button>Remove</button>
           </div>
-        </div>
+        </div> */}
       </Modal.Body>
       <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={''} />
       <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={''} jobView={''} />
-      {/* <Elements stripe={stripePromise} options={options}>
-        <StripeModal show={stripeModal} handleClose={handleStripeClose} userId={stripeCustomerId} />
-      </Elements> */}
     </Modal>
   )
 }

@@ -11,6 +11,7 @@ import linkedinAuth from './pages/linkedinAuth';
 import LinkedinAuth from './pages/linkedinAuth';
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 
+
 const router = createBrowserRouter([
   {
     path: "/linkedIn-Auth",
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
     path: "/:id",
     element: <App />,
   },
+  {
+    path: '/session_id',
+    element: <App />
+
+  }
 ]);
 
 const root = ReactDOM.createRoot(
