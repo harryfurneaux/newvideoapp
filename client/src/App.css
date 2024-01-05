@@ -4167,6 +4167,7 @@ video.bg-video {
   align-items: center;
 }
 
+
 .welcome-parent {
   width: 564px;
   height: 602px;
@@ -4197,4 +4198,10 @@ video.bg-video {
   border-radius: 12px;
   border: 1px solid rgba(173, 184, 250, 0.30);
   background: #FFF;
+}
+
+/* Custom Style */
+.border-radius-23 {
+  border-radius: 23px !important;
+
 }

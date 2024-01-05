@@ -45,7 +45,7 @@ const BackMenu = ({
         </button>
         <h5 className="mksaldkamaw-jdwa">Back</h5>
       </div>
-      <div className="d-flex justify-content-between" style={{ width: '33%' }}>
+      <div className="d-flex justify-content-between">
         {/* {true ? (
           <button className="njkljmdasp-dawm" onClick={() => {
             setFullscreen(!fullscreen);
@@ -78,7 +78,7 @@ const BackMenu = ({
               onClick={() => {
                 setShowScreen(1);
               }}
-              className="kjlma0o-dwa jksdalfj-jasidm"
+              className="kjlma0o-dwa jksdalfj-jasidm" style={{ width: 150, marginLeft: 10 }}
             >
               <Icons iconNumber={30} />
               Create Interview
