@@ -1,25 +1,30 @@
+// payment.entity.ts
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { User } from '../../users/entities/user.entity';
-import * as mongoose from 'mongoose';
+
 
 @Schema({ timestamps: true })
 export class Payment extends Document {
 
+  @Prop()
+  country: string;
 
   @Prop()
-  email: string;
+  expMonth: number;
 
   @Prop()
-  name: string;
+  expYear: number;
+
+  @Prop()
+  last4: string;
+
+  @Prop()
+  cardBrand: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   user_id: User;
-
-  @Prop()
-  customer_id: string;
-
-
 
 }
 

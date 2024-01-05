@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import Stripe from 'stripe';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -8,9 +8,7 @@ import { Payment } from '../entities/payment.entity';
 export class PaymentService {
   private readonly stripeClient: Stripe;
 
-  constructor(
-    @InjectModel(Payment.name) private readonly paymentModel: Model<Payment>,
-  ) {
+  constructor(@InjectModel(Payment.name) private readonly paymentModel: Model<Payment>) {
     this.stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2023-10-16',
     });
@@ -68,6 +66,42 @@ export class PaymentService {
       return null;
     }
   }
-
   
+  async savePaymentDetails(paymentDetails: Stripe.PaymentMethod, userId: string): Promise<void> {
+    const { country, exp_month, exp_year, last4, brand } = paymentDetails.card;
+
+    const payment = new this.paymentModel({
+      country,
+      expMonth: exp_month,
+      expYear: exp_year,
+      last4,
+      cardBrand: brand,
+      user_id: userId, 
+
+    });
+
+    await payment.save();
+  }
+
+  async getStripeDataByUserId(userId: string): Promise<any> {
+    try {
+      const payments = await this.paymentModel
+        .find({ user_id: userId })
+        .populate({
+          path: 'user_id',
+          select: '-password',
+        })
+        .exec();
+
+      if (!payments || payments.length === 0) {
+        throw new NotFoundException('No payments found for the user');
+      }
+
+      return payments;
+    } catch (error) {
+      throw new NotFoundException('Error retrieving payment data for the user');
+    }
+  }
+
+
 }
