@@ -2,10 +2,20 @@
 import { useEffect, useState } from "react";
 import Icons from "../icons";
 import RecordForm from "./recordForm";
+import { useFullscreen } from "../../hooks/useFullscreen";
 
-const RecordFormParent = ({ setScreen, jobViewContext, recorded, setRecorded, className = '' }: { setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, className?: any }) => {
+const RecordFormParent = ({ setScreen, jobViewContext, recorded, setRecorded, className = '', fromShareScreen }: { setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, className?: any, fromShareScreen: any }) => {
   const [shouldDisplay, setShouldDisplay] = useState(false);
+  const { setFullscreen } = useFullscreen()
+  useEffect(() => {
 
+    if (fromShareScreen) {
+      setFullscreen(true)
+
+    }
+
+
+  }, [fromShareScreen])
   useEffect(() => {
     const targetElement = document.getElementById('targetElement');
 

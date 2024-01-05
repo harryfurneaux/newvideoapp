@@ -16,21 +16,21 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
     getJobs()
   }, [myQuestions]);
 
-  const redirectToSharedJob = (_jobs: any) => {
-    if (_jobs?.length && window?.location?.pathname?.length > 1) {
-      const jobId = window.location.pathname.split('/')[1];
-      const job = _jobs.find((j: any) => j._id === jobId);
-      if (job) {
-        setJobViewContext(job);
-        setJobView(job);
-        setShowScreen(7);
-        setTimeout(() => {
-          setMainScreen(3);
-        }, 1000);
-      }
-    }
-    window.history.pushState(null, '', '/');
-  };
+  // const redirectToSharedJob = (_jobs: any) => {
+  //   if (_jobs?.length && window?.location?.pathname?.length > 1) {
+  //     const jobId = window.location.pathname.split('/')[1];
+  //     const job = _jobs.find((j: any) => j._id === jobId);
+  //     if (job) {
+  //       setJobViewContext(job);
+  //       setJobView(job);
+  //       setShowScreen(7);
+  //       setTimeout(() => {
+  //         setMainScreen(3);
+  //       }, 1000);
+  //     }
+  //   }
+  //   window.history.pushState(null, '', '/');
+  // };
 
   const getJobs = () => {
     axios
@@ -39,10 +39,10 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
         if (myQuestions) {
           const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
           setJobs(filtered);
-          redirectToSharedJob(filtered);
+          // redirectToSharedJob(filtered);
         } else {
           setJobs(response.data)
-          redirectToSharedJob(response.data);
+          // redirectToSharedJob(response.data);
         }
       })
       .catch(err => {

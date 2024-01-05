@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, ReactNode, useMemo } from 'react'
 import axios from 'axios'
 import authConfig from '../configs/auth'
 import { AuthValuesType, LoginParams, ErrCallbackType, UserDataType, SignUpParams } from './types'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const defaultProvider: AuthValuesType = {
   user: null,
@@ -20,7 +20,6 @@ const defaultProvider: AuthValuesType = {
 }
 
 const AuthContext = createContext(defaultProvider)
-
 type Props = {
   children: ReactNode,
   setMainScreen: any
@@ -35,6 +34,16 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
   const [loading, setLoading] = useState<boolean>(defaultProvider.loading)
   const [jobView, setJobView] = useState<any>(defaultProvider.jobViewContext)
   const query = useQuery()
+  const navigate = useNavigate()
+
+  const PaymentSuccess = (sessionId: any, userId: any) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/stripe/${sessionId}`, { userId: userId }).then((res) => {
+      navigate('/')
+
+    }).catch((err) => err)
+
+
+  }
 
   const initAuth = async (): Promise<void> => {
     const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
@@ -52,15 +61,8 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
           const sessionId = query.get('session_id')
           if (sessionId) {
             const { id } = response.data
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/stripe/${sessionId}`, { userId: id }).then((res) => {
-
-            }).catch((err) => err)
-
+            PaymentSuccess(sessionId, id)
           }
-
-
-
-
           if (response?.data?.token) {
             window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.token);
           }

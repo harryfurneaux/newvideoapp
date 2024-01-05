@@ -4166,3 +4166,35 @@ video.bg-video {
   justify-content: center;
   align-items: center;
 }
+
+.welcome-parent {
+  width: 564px;
+  height: 602px;
+  flex-shrink: 0;
+  border-radius: 33px;
+  background: rgba(255, 255, 255, 0.80);
+  box-shadow: 0px 37px 50px 0px rgba(84, 104, 255, 0.10);
+}
+
+.welcome-container {
+  padding: 71px 52px 0 90px;
+}
+
+.welcome-title {
+  width: 422px;
+  height: 124px;
+  flex-shrink: 0;
+  color: #0F0222;
+
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 55px;
+  /* 110% */
+}
+
+.welcome-checks {
+  border-radius: 12px;
+  border: 1px solid rgba(173, 184, 250, 0.30);
+  background: #FFF;
+}
