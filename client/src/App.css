@@ -4166,3 +4166,9 @@ video.bg-video {
   justify-content: center;
   align-items: center;
 }
+
+
+/* Custom Style */
+.border-radius-23 {
+  border-radius: 23px !important;
+}
