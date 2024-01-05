@@ -2,9 +2,10 @@ import CheckFormBox from "../CheckBoxForm";
 import Icons from "../icons";
 //@ts-ignore
 import { Flip } from "react-awesome-reveal"
-const NextForm = ({ setScreen }: { setScreen: any }) => {
+
+const NextForm = ({ setScreen, className = '' }: { setScreen: any, className?: any }) => {
   return (
-    <Flip direction="horizontal">  <div className="kjjfds-janwkea1 kjjfds-janwkea2 height-none">
+    <div className={`kjjfds-janwkea1 kjjfds-janwkea2 height-none ${className}`}>
       <div className="kafms-kfsamfer">
         <div className="skfalk-smdsefds">
           <div className="kdjnfakdsfm-jsamre">
@@ -39,8 +40,7 @@ const NextForm = ({ setScreen }: { setScreen: any }) => {
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={62} />
       </div>
-    </div></Flip>
-
+    </div>
   );
 };
 
