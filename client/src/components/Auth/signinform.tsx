@@ -52,8 +52,8 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className="jhjij-sanwe">
-        <h3>Sign in</h3>
+      <div className="jhjij-sanwe" style={{ marginTop: 65 }}>
+        <h3 style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Sign in</h3>
         <div className="socialButtonsDiv">
           <FacebookLogin
             appId="873599547503766"
@@ -67,21 +67,20 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
               console.log('Get Profile Success!', response);
             }}
             render={({ onClick, logout }) => (
-              <button className="btn" onClick={onClick}>
+              <button className="btn" onClick={onClick} style={{ borderRadius: 10 }}>
                 <Icons iconNumber={3} />
-                Log in with Facebook
+                <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with Facebook</span>
               </button>
 
             )}
           />
-
-          <button className="btn" onClick={() => login()}>
+          <button className="btn" onClick={() => login()} style={{ borderRadius: 10 }}>
             <Icons iconNumber={4} />
-            Log in with Google
+            <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with Google</span>
           </button>
-          <button className="btn" onClick={() => linkedInLogin()}>
+          <button className="btn" onClick={() => linkedInLogin()} style={{ borderRadius: 10 }}>
             <Icons iconNumber={5} />
-            Log in with LinkedIn
+            <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with LinkedIn</span>
           </button>
         </div>
         <div className="jkdslafj-asdemk mt-1">
@@ -93,9 +92,9 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
         <div className="socialButtonsDiv mt-2">
           <button className="btn" onClick={() => {
             setshowScreen(4)
-          }}>
-            <Icons iconNumber={90} />
-            Login in with Email
+          }} style={{ borderRadius: 15, maxWidth: 284, height: 54, paddingLeft: 70, backgroundColor: '#324add', color: '#ffffff' }}>
+            <Icons iconNumber={90} color="#ffffff" />
+            <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with Email</span>
           </button>
         </div>
         <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">

@@ -288,10 +288,10 @@ body {
   max-height: 58px;
   width: 100%;
   height: 100%;
-  background-color: #fff !important;
+  background-color: #fff;
   margin-bottom: 6px;
 
-  color: #556375 !important;
+  color: #556375;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -2499,7 +2499,7 @@ body .no-background {
 
 .jksd-kosaeknae:focus-within,
 .jksd-kosaeknae:focus-visible {
-  background-color: rgba(0, 0, 0, 0.20)
+  /* background-color: rgba(0, 0, 0, 0.20) */
     /* Replace this with the desired background color */
 }
 
@@ -3728,12 +3728,16 @@ video.bg-video {
 .tabs-container {
   position: absolute;
   /* left: 0; */
+  /* top: 14px;
+  right: 14px; */
+  transform: scale(70%);
+  right: -17px;
   top: 10px;
-  right: 10px;
   /* bottom: 0; */
   display: flex;
   /* align-items: center; */
   justify-content: center;
+  z-index: 1;
 }
 
 .tabs-container .tabs {
@@ -3888,7 +3892,7 @@ video.bg-video {
   overflow: hidden;
   place-items: center;
   position: relative;
-  border-radius: 14px;
+  /* border-radius: 14px; */
 }
 
 .hero::after {
@@ -3901,6 +3905,7 @@ video.bg-video {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: -1;
 }
 
 @property --translateX {
@@ -4203,5 +4208,23 @@ video.bg-video {
 /* Custom Style */
 .border-radius-23 {
   border-radius: 23px !important;
+}
 
+.bg-transparent {
+  background: transparent !important;
+}
+
+.top--80 {
+  top: -80px !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus {
+  background-color: transparent;
 }

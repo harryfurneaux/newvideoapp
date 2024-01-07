@@ -7,7 +7,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, j
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [showDelInterview, setShowDelInterview] = useState(false);
 
-  return <div className={`kljadjfkl-jaem ${hideMenu ? "jkdslfsae" : isTab ? "lkhdfjksj-ajenw" : ""}`} style={style}>
+  return <div className={`kljadjfkl-jaem ${hideMenu ? "jkdslfsae" : isTab ? "lkhdfjksj-ajenw" : ""}`} style={{ right: '-75px' }}>
     <button className="no-shadow circleButtons" onClick={() => setMainScreen(3)}>
       <Icons iconNumber={45} />
       Preview

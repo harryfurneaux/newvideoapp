@@ -1,4 +1,4 @@
-const Icons = ({ iconNumber }: { iconNumber: number }) => {
+const Icons = ({ iconNumber, color = '' }: { iconNumber: number, color?: string }) => {
   switch (iconNumber) {
     case 1: {
       return (
@@ -1992,7 +1992,7 @@ const Icons = ({ iconNumber }: { iconNumber: number }) => {
         <g clipPath="url(#clip0_2883_2208)">
           <path
             d="M2.43096 0L9.20536 4.82625L14.8956 0H2.43096ZM0.427734 9.69065L6.28051 4.6789L0.427734 0.456905V9.69166V9.69065ZM7.57741 5.84276L2.38132 10.2H15.7822L10.7776 5.84276L9.40493 7.00973C9.35129 7.05444 9.2838 7.07935 9.21386 7.08027C9.14391 7.08119 9.07579 7.05806 9.02099 7.01477L7.57741 5.84276ZM12.0664 4.67083L16.9839 8.94032V0.419586L12.0664 4.67083Z"
-            fill="#324ADD"
+            fill={color || "#324ADD"}
             className="kdjfls-em-1"
           />
         </g>

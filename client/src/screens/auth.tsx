@@ -37,14 +37,66 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
 
     setSignUpFormData({
       ...signUpFormData,
-      [name]: value,
+      [name]: name === 'birth_date' ? formatDOB(value, e) : value,
     });
   };
 
+  const formatDOB = (value: string, e: any) => {
+    let formattedDate = '';
+    let cursorPosition = 0;
 
+    if (value?.length) {
+      const digitsOnly = value.replace(/\D/g, '');
+      switch (digitsOnly.length) {
+        case 0:
+          formattedDate = ``;
+          cursorPosition = 0;
+          break;
+        case 1:
+          formattedDate = `${digitsOnly}D   |    MM    |   YYYY`;
+          cursorPosition = 1;
+          break;
+        case 2:
+          formattedDate = `${digitsOnly}   |    MM    |   YYYY`;
+          cursorPosition = 2;
+          break;
+        case 3:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 3)}M    |   YYYY`;
+          cursorPosition = 11;
+          break;
+        case 4:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 4)}    |   YYYY`;
+          cursorPosition = 12;
+          break;
+        case 5:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 4)}    |   ${digitsOnly.slice(4, 5)}YYY`;
+          cursorPosition = 21;
+          break;
+        case 6:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 4)}    |   ${digitsOnly.slice(4, 6)}YY`;
+          cursorPosition = 22;
+          break;
+        case 7:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 4)}    |   ${digitsOnly.slice(4, 7)}Y`;
+          cursorPosition = 23;
+          break;
+        case 8:
+          formattedDate = `${digitsOnly.slice(0, 2)}   |    ${digitsOnly.slice(2, 4)}    |   ${digitsOnly.slice(4, 8)}`;
+          cursorPosition = 24;
+          break;
+      }
+    }
+
+    setTimeout(() => {
+      const inputField = e.target;
+      inputField.setSelectionRange(cursorPosition, cursorPosition);
+    });
+
+    return formattedDate;
+  };
 
   useEffect(() => {
-    if (showScreen <= 7 && showScreen !== 3) {
+    if (showScreen <= 7) {// && showScreen !== 3
       const previousNode = document.querySelector('.flip-element .flip-child:is(:not(.d-none))');
       const previousScreenClass = previousNode?.classList.toString().split(' ').find(c => c.includes('flip-child-'));
       const previousScreen: any = previousScreenClass?.split('-')[previousScreenClass?.split('-')?.length - 1];
@@ -93,17 +145,18 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   }, [showScreen]);
 
   const renderScreen = () => {
-    if (showScreen <= 7 && showScreen !== 3) {
+    if (showScreen <= 7) {//&& showScreen !== 3
       return (
         <div style={{ perspective: 1000, position: 'absolute' }}>
+          <Notify classes='top--80' type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
           <div className={`flip-element`} style={{ height: 472 }}>
             <SignInForm className={` m-0 flip-child flip-child-0 hover-anim`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
-            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} />
-            <SignupForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} signUpFormData={signUpFormData} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} setSignUpFormErrors={setSignUpFormErrors} setErrorMessage={setErrorMessage} />
+            <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} signUpFormData={signUpFormData} setErrorMessage={setErrorMessage} />
+            <NewPwdForm className={`d-none m-0 flip-child flip-child-2`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} signUpFormData={signUpFormData} setErrorMessage={setErrorMessage} />
+            <SignupForm className={`d-none m-0 flip-child flip-child-3`} setshowScreen={setshowScreen} signUpFormData={signUpFormData} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} setSignUpFormErrors={setSignUpFormErrors} setErrorMessage={setErrorMessage} />
             <EmailLoginForm className={`d-none m-0 flip-child flip-child-4`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} setErrorMessage={setErrorMessage} />
             <ForgotPwdForm className={`d-none m-0 flip-child flip-child-5`} setshowScreen={setshowScreen} />
             <EnterCodeForm className={`d-none m-0 flip-child flip-child-6`} setshowScreen={setshowScreen} />
-            <NewPwdForm className={`d-none m-0 flip-child flip-child-7`} setshowScreen={setshowScreen} />
           </div>
         </div>
       );
@@ -135,27 +188,27 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
   };
 
   return (
-    <div className="pageContainer">
-      <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
+    <LinearBackground style={{ width: '100%' }}>
+      <div className="pageContainer" style={{ padding: 25 }}>
 
-      <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
-        <LinearBackground style={{ width: '100%' }} />
-        <div className="leftSideHeader kjsf-ajmwe">
-          {showScreen > 0 ? (
-            <BackButton showScreen={showScreen} setshowScreen={setshowScreen} />
-          ) : (
-            <></>
-          )}
+        <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent">
+          <div className="leftSideHeader kjsf-ajmwe">
+            {showScreen > 0 ? (
+              <BackButton showScreen={showScreen} setshowScreen={setshowScreen} />
+            ) : (
+              <></>
+            )}
+          </div>
+          {renderScreen()}
+          <div className="d-flex justify-content-center kdnklms-awendwd-11">
+            {isLoggedIn() ? (
+              <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+            ) : null}
+          </div>
         </div>
-        {renderScreen()}
-        <div className="d-flex justify-content-center kdnklms-awendwd-11">
-          {isLoggedIn() ? (
-            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
-          ) : null}
-        </div>
+        <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} showScreen={showScreen} mainScreen={mainScreen} style={{ borderRadius: 33 }} />
       </div>
-      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} showScreen={showScreen} mainScreen={mainScreen} />
-    </div>
+    </LinearBackground>
   );
 }
 

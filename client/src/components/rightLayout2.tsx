@@ -11,6 +11,7 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
   useEffect(() => {
     switch (showScreen) {
       case 0:
+      case 4:
         setIsLoginChecked(true);
         break;
       case 1:
@@ -25,17 +26,25 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
     <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end`}>
       <SettingMenuIcon setMainScreen={setMainScreen} />
     </div>
-    {!isLoggedIn() && mainScreen == 0 ? (
+    {!isLoggedIn() && (mainScreen == 0 || mainScreen == 7) ? (
       <div className="tabs-container">
         <div className="tabs">
           <input type="radio" id="radio-1" name="tabs" onChange={() => {
-            setIsLoginChecked(false);
-            setShowScreen(1);
+            if (typeof setShowScreen === 'function') {
+              setIsLoginChecked(false);
+              setShowScreen(1);
+            } else if (typeof setMainScreen === 'function') {
+              setMainScreen(0);
+            }
           }} checked={!isLoginChecked} />
           <label className="tab" htmlFor="radio-1">SIGN UP</label>
           <input type="radio" id="radio-2" name="tabs" onChange={() => {
-            setIsLoginChecked(true);
-            setShowScreen(0);
+            if (typeof setShowScreen === 'function') {
+              setIsLoginChecked(true);
+              setShowScreen(0);
+            } else if (typeof setMainScreen === 'function') {
+              setMainScreen(0);
+            }
           }} checked={isLoginChecked} />
           <label className="tab" htmlFor="radio-2">LOGIN</label>
           <span className="glider"></span>

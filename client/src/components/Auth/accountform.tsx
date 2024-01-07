@@ -1,15 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icons from "../../components/icons";
 import { useMediaQuery } from 'react-responsive'
 import { errorByKey } from "../../helper";
+import { validateEmail } from "../../utils/validate-email";
 
-const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFormErrors }: { setshowScreen: any, className?: string, handleFormChange: any, signUpFormErrors: any }) => {
+const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFormErrors, setErrorMessage = null, signUpFormData = {} }: { setshowScreen: any, className?: string, handleFormChange: any, signUpFormErrors: any, setErrorMessage?: any, signUpFormData?: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
+  const [hasError, setHasError] = useState('');
 
-  const hasAnyError = () => {
-    return errorByKey(signUpFormErrors, 'name') || errorByKey(signUpFormErrors, 'email') || errorByKey(signUpFormErrors, 'password') ||
-      errorByKey(signUpFormErrors, 'confirm_password')
+  const showError = (key: any) => {
+    return hasError === key;
+  };
+
+  useEffect(() => {
+    if (errorByKey(signUpFormErrors, 'name')) {
+      setHasError('name');
+      setErrorMessage(errorByKey(signUpFormErrors, 'name'));
+    } else if (errorByKey(signUpFormErrors, 'email')) {
+      setHasError('email');
+      setErrorMessage(errorByKey(signUpFormErrors, 'email'));
+    } else {
+      setHasError('');
+      setErrorMessage('');
+    }
+  }, [signUpFormErrors]);
+
+  const handleContinue = () => {
+    if (typeof setErrorMessage === 'function') {
+      if (!signUpFormData?.name?.length) {
+        setHasError('name');
+        setErrorMessage('You must enter your Full Name!');
+      } else if (!signUpFormData?.email?.length) {
+        setHasError('email');
+        setErrorMessage('You must enter your Email!');
+      } else if (signUpFormData?.email?.length && !validateEmail(signUpFormData?.email)) {
+        setHasError('email');
+        setErrorMessage('Invalid email address!');
+      } else if (!isAgree) {
+        setHasError('terms');
+        setErrorMessage('You must agree to the Terms & Conditions');
+      } else {
+        setHasError('');
+        setErrorMessage('');
+        setshowScreen(2);
+      }
+    } else {
+      setshowScreen(2);
+    }
   };
 
   return (
@@ -17,64 +55,54 @@ const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ marginTop: hasAnyError() ? 10 : 50 }}>
-        <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`}>Create Account</h3>
-        <h4>Password must be at least 8 characters</h4>
+      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+        <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`} style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Create Account</h3>
+          <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center' }}>Password must be at least 8 characters</h4>
 
-        <div className={`${isTabletOrMobile ? "w-100" : "kdjsa-ajwnkelds"}`}>
-          <div className={`${isTabletOrMobile ? "hjk-ajwednw" : ""} emailRowDiv sadhasdn-we`}>
-            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'name') ? 'error-border' : ''}`}>
-              <Icons iconNumber={10} />
-              <input placeholder="Full Name" name="name" onChange={handleFormChange} />
-            </div>
-            {errorByKey(signUpFormErrors, 'name') ? (
-              <p className="error-message">{errorByKey(signUpFormErrors, 'name')}</p>
-            ) : ''}
-            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'email') ? 'error-border' : ''}`}>
-              <Icons iconNumber={10} />
-              <input placeholder="Email" name="email" onChange={handleFormChange} />
-            </div>
-            {errorByKey(signUpFormErrors, 'email') ? (
-              <p className="error-message">{errorByKey(signUpFormErrors, 'email')}</p>
-            ) : ''}
-            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'password') ? 'error-border' : ''}`}>
-              <Icons iconNumber={9} />
-              <input type="password" name="password" placeholder="Password" onChange={handleFormChange} />
-            </div>
-            {errorByKey(signUpFormErrors, 'password') ? (
-              <p className="error-message">{errorByKey(signUpFormErrors, 'password')}</p>
-            ) : ''}
-            <div className={`jksd-kosaeknae ${errorByKey(signUpFormErrors, 'confirm_password') ? 'error-border' : ''}`}>
-              <Icons iconNumber={9} />
-              <input type="password" name="confirm_password" placeholder="Confirm Password" onChange={handleFormChange} />
-            </div>
-            {errorByKey(signUpFormErrors, 'confirm_password') ? (
-              <p className="error-message">{errorByKey(signUpFormErrors, 'confirm_password')}</p>
-            ) : ''}
-          </div>
-          <div className="jdaskfjnas-ajaied">
-            <div onClick={() => {
-              setisAgree(!isAgree)
-            }} className="sandka-jwe">
-              <Icons iconNumber={isTabletOrMobile ? 57 : isAgree ? 11 : 74} />
-              <h5 className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>I agree to the terms & conditions</h5>
-            </div>
-            <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
-              <button onClick={() => {
-                setshowScreen(0)
-              }} className="no-shadow no-background">Log in</button>
-            </div>
-          </div>
-          <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`}>
-            <button onClick={() => {
-              setshowScreen(2)
-            }} className={`btn`}>
-              CONTINUE
-              <div className="kdksa-ajwmd">
-                <Icons iconNumber={7} />
+          <div className={`${isTabletOrMobile ? "w-100" : "kdjsa-ajwnkelds"}`}>
+            <div className={`${isTabletOrMobile ? "hjk-ajwednw" : ""} emailRowDiv sadhasdn-we`}>
+              <div className={`jksd-kosaeknae ${showError('name') ? 'error-border' : ''}`} style={{ cursor: 'text' }} onClick={(e) => {
+                const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="name"]');
+                if (_node) {
+                  _node.focus();
+                }
+              }}>
+                <Icons iconNumber={10} />
+                <input placeholder="Full Name" name="name" onChange={handleFormChange} autoComplete="off" style={{ flex: 1 }} />
               </div>
-            </button>
+              <div className={`jksd-kosaeknae ${showError('email') ? 'error-border' : ''}`} style={{ cursor: 'text' }} onClick={(e) => {
+                const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="email"]');
+                if (_node) {
+                  _node.focus();
+                }
+              }}>
+                <Icons iconNumber={10} />
+                <input placeholder="Email" name="email" onChange={handleFormChange} autoComplete="off" style={{ flex: 1 }} />
+              </div>
+            </div>
+            <div className="jdaskfjnas-ajaied">
+              <div onClick={() => {
+                setisAgree(!isAgree)
+              }} className="sandka-jwe">
+                <Icons iconNumber={isTabletOrMobile ? 57 : isAgree ? 11 : 74} />
+                <h5 className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>I agree to the terms & conditions</h5>
+              </div>
+              <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
+                <button onClick={() => {
+                  setshowScreen(0)
+                }} className="no-shadow no-background">Log in</button>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
+          <button onClick={handleContinue} className={`btn mb-0`}>
+            CONTINUE
+            <div className="kdksa-ajwmd">
+              <Icons iconNumber={7} />
+            </div>
+          </button>
         </div>
       </div>
       <div className="ldkjfal0-fdsnfe">

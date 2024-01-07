@@ -6,31 +6,33 @@ import { useAuth } from "../../hooks/useAuth";
 import { useFullscreen } from "../../hooks/useFullscreen";
 import { Col } from "react-bootstrap";
 import Icons from "../icons";
+import { useParams } from "react-router";
 
 const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }: { setMainScreen: any, setShowScreen: any, setJobView: any, myQuestions: any }) => {
   const [jobs, setJobs] = useState<any>(null)
   const { user, setJobViewContext } = useAuth()
   const { fullscreen } = useFullscreen();
+  const params = useParams()
 
   useEffect(() => {
     getJobs()
   }, [myQuestions]);
 
-  // const redirectToSharedJob = (_jobs: any) => {
-  //   if (_jobs?.length && window?.location?.pathname?.length > 1) {
-  //     const jobId = window.location.pathname.split('/')[1];
-  //     const job = _jobs.find((j: any) => j._id === jobId);
-  //     if (job) {
-  //       setJobViewContext(job);
-  //       setJobView(job);
-  //       setShowScreen(7);
-  //       setTimeout(() => {
-  //         setMainScreen(3);
-  //       }, 1000);
-  //     }
-  //   }
-  //   window.history.pushState(null, '', '/');
-  // };
+  const redirectToSharedJob = (_jobs: any) => {
+    const { job_id } = params
+    if (_jobs?.length && job_id?.length) {
+      const job = _jobs.find((j: any) => j._id === job_id);
+      if (job) {
+        setJobViewContext(job);
+        setJobView(job);
+        setShowScreen(7);
+        setTimeout(() => {
+          setMainScreen(3);
+        }, 1000);
+      }
+    }
+    window.history.pushState(null, '', '/');
+  };
 
   const getJobs = () => {
     axios
@@ -39,10 +41,10 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
         if (myQuestions) {
           const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
           setJobs(filtered);
-          // redirectToSharedJob(filtered);
+          redirectToSharedJob(filtered);
         } else {
           setJobs(response.data)
-          // redirectToSharedJob(response.data);
+          redirectToSharedJob(response.data);
         }
       })
       .catch(err => {

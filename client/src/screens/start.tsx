@@ -101,21 +101,22 @@ function Next({ jobViewContext, setMainScreen, fromShareScreen }: { jobViewConte
   }, [screen]);
 
   return (
-    <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg pos-rel" style={fullscreen ? { width: '100%' } : {}}>
-        <LinearBackground style={{ width: '100%' }} />
-        <TopMenu fromShareScreen={fromShareScreen} />
-        {/* <div style={{ position: 'absolute' }}>
+    <LinearBackground style={{ width: '100%' }}>
+      <div className="pageContainer" style={{ padding: 25 }}>
+        <div className="rightSideDiv rightSideBg pos-rel bg-transparent" style={fullscreen ? { width: '100%' } : {}}>
+          <TopMenu fromShareScreen={fromShareScreen} />
+          {/* <div style={{ position: 'absolute' }}>
           {GetScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen)}
         </div> */}
-        <div style={{ perspective: 1000, position: 'absolute' }}>
-          <div className={`flip-element`} style={{ height: 520, width: 320 }}>
-            {renderScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen, fromShareScreen)}
+          <div style={{ perspective: 1000, position: 'absolute' }}>
+            <div className={`flip-element`} style={{ height: 520, width: 320 }}>
+              {renderScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen, fromShareScreen)}
+            </div>
           </div>
         </div>
+        <RightLayout screen={screen} style={fullscreen ? { display: 'none', borderRadius: 33 } : { borderRadius: 33 }} />
       </div>
-      <RightLayout screen={screen} style={fullscreen ? { display: 'none' } : {}} />
-    </div>
+    </LinearBackground>
   );
 }
 

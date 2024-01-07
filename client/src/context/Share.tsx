@@ -30,15 +30,15 @@ const SharedProvider = ({ children }: Props) => {
 
     useEffect(() => {
         const { job_id } = params
-        console.log("shared job id", job_id)
+        // console.log("shared job id", job_id)
         if (job_id) {
-            axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
-                setSharedJobData(res.data)
-                setShared(true)
-                console.log("shared job data", res.data)
-            })
+            // axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
+            //     setSharedJobData(res.data)
+            //     setShared(true)
+            //     console.log("shared job data", res.data)
+            // })
 
-            console.log("shared job id", job_id)
+            // console.log("shared job id", job_id)
         }
     }, [params])
 

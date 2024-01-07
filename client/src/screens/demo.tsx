@@ -25,7 +25,7 @@ interface Interview {
   id?: any
 }
 
-const DemoScreen = ({ setMainScreen }: { setMainScreen: any }) => {
+const DemoScreen = ({ setMainScreen, mainScreen = '' }: { setMainScreen: any, mainScreen?: any }) => {
   const [mainAllInterviews, setMainAllInterviews] = useState<Array<any>>([]);
   const [selectedInterview, setSelectedInterview] = useState<any>()
 
@@ -73,68 +73,40 @@ const DemoScreen = ({ setMainScreen }: { setMainScreen: any }) => {
   };
 
   return (
-    <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page">
-        <LinearBackground style={{ width: '100%' }} />
-        <div className="leftSideHeader kjsf-ajmwe w-100">
-          <BackButton setMainScreen={setMainScreen} />
+    <LinearBackground style={{ width: '100%' }}>
+      <div className="pageContainer" style={{ padding: 0, gap: 0 }}>
+
+        <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent" style={{ borderRadius: 0 }}>
+          <div className="leftSideHeader kjsf-ajmwe w-100">
+            <BackButton setMainScreen={setMainScreen} />
+          </div>
+
+          <div className="lkljdfsl-sifkmd" style={{ width: 'auto', left: 10 }} onClick={prevInterview}>
+            <Icons iconNumber={66} />
+          </div>
+          <Carousel selectedInterview={selectedInterview} setMainScreen={setMainScreen} />
+          <div className="lkljdfsl-sifkmd" style={{ width: 'auto', right: 10 }} onClick={nextInterview}>
+            <Icons iconNumber={67} />
+          </div>
+          <div className="dkfnmsd-awde">
+            <div className="wh-100 l1">
+              <VideoForm />
+            </div>
+            <div className="wh-100 l2">
+              <VideoForm />
+            </div>
+          </div>
+          <div className="ldkf-kasmdaw"></div>
+
+          <div className="d-flex justify-content-center kdnklms-awendwd-11">
+            <BottomMenu setMainScreen={setMainScreen} />
+          </div>
         </div>
 
-        <div className="lkljdfsl-sifkmd" style={{ width: 'auto', left: 0 }} onClick={prevInterview}>
-          <Icons iconNumber={66} />
-        </div>
-        <Carousel selectedInterview={selectedInterview} setMainScreen={setMainScreen} />
-        <div className="lkljdfsl-sifkmd" style={{ width: 'auto', right: 0 }} onClick={nextInterview}>
-          <Icons iconNumber={67} />
-        </div>
-        <div className="dkfnmsd-awde">
-          <div className="wh-100 l1">
-            <VideoForm />
-          </div>
-          <div className="wh-100 l2">
-            <VideoForm />
-          </div>
-        </div>
-        <div className="ldkf-kasmdaw"></div>
+        <RightLayout mainScreen={mainScreen} setMainScreen={setMainScreen} setShowScreen={''} style={{ borderRadius: 33, top: 0, height: 'calc(100% - 50px)', marginRight: 25 }} />
 
-        <div className="d-flex justify-content-center kdnklms-awendwd-11">
-          <BottomMenu setMainScreen={setMainScreen} />
-        </div>
       </div>
-      <RightLayout setMainScreen={''} setShowScreen={''} />
-    </div>
-    
-    // <div className="pageContainer" onClick={(e: any) => {
-    //   const { id } = e.target
-    //   if (id === 'parentDiv') {
-    //     setMainScreen(0)
-    //   }
-    //   else {
-    //     e.stopPropagation()
-    //   }
-    // }}
-    // >
-    //   <>
-
-    //   </>
-    //   {/* <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page" id="parentDiv"  >
-    //     <div className="lkljdfsl-sifkmd" style={{ width: 'auto', left: 0 }} onClick={prevInterview}>
-    //       <Icons iconNumber={66} />
-    //     </div>
-    //     <div className="leftSideHeader">
-
-    //       <div className='wh-100 kjsdfl-asjdm' style={{ height: 523, width: 326 }}>
-    //         <VideoForm selectedInterview={selectedInterview} favourite={''} />
-    //       </div>
-    //     </div>
-    //     <div className="lkljdfsl-sifkmd" style={{ width: 'auto', right: 0 }} onClick={nextInterview}>
-    //       <Icons iconNumber={67} />
-    //     </div>
-
-    //   </div> */}
-
-    //   <RightLayout setMainScreen={''} setShowScreen={''} />
-    // </div>
+    </LinearBackground>
   )
 }
 

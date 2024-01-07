@@ -1,6 +1,6 @@
-const LinearBackground = ({ style = {} }) => {
+const LinearBackground = ({ classes = '', style = {}, children = null } : { classes?: string, style?: object, children?: any }) => {
   return (
-    <div className="hero" style={style}>
+    <div className={`hero ${classes}`} style={style}>
       {/* <div
         className="shape"
         style={{
@@ -29,6 +29,7 @@ const LinearBackground = ({ style = {} }) => {
           '--translateY-direction': 'alternate-reverse'
         } as React.CSSProperties}
       /> */}
+      {children}
     </div>
   );
 };

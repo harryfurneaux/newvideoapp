@@ -21,7 +21,7 @@ import SharedJobScreen from "./screens/sharedJobScreen";
 
 
 function App() {
-  const [mainScreen, setMainScreen] = useState(0);
+  const [mainScreen, setMainScreen] = useState(7);
   const [jobViewContext, setJobViewContext] = useState()
   const [watchAns, setWatchAns] = useState(false)
   const [chatUser, setChatUser] = useState()
@@ -29,19 +29,18 @@ function App() {
   const [fromShareScreen, setFromShareScreen] = useState(false)
   const params = useParams()
   const { setShared, setSharedJobData } = useShared()
+
   useEffect(() => {
     const { job_id } = params
-
     if (job_id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
-        setSharedJobData(res.data)
-        setShared(true)
-        setMainScreen(8)
-      })
-
+      // axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
+      //   setSharedJobData(res.data)
+      //   setShared(true)
+      //   setMainScreen(8)
+      // })
     }
-
   }, [params])
+
   return (
     <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}>
       <FullscreenProvider>
@@ -53,8 +52,9 @@ function App() {
                   : mainScreen == 2 ? <Answers mainScreen={mainScreen} setMainScreen={setMainScreen} setChatUser={setChatUser} jobViewContext={jobViewContext} watchAns={watchAns} />
                     : mainScreen == 3 ? <Start fromShareScreen={fromShareScreen} setMainScreen={setMainScreen} jobViewContext={jobViewContext} />
                       : mainScreen == 4 ? <Messages mainScreen={mainScreen} setMainScreen={setMainScreen} chatUser={chatUser} />
-                        : mainScreen == 7 ? <DemoScreen setMainScreen={setMainScreen} />
-                          : mainScreen == 8 ? <SharedJobScreen setFromShareScreen={setFromShareScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} /> : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
+                        : mainScreen == 7 ? <DemoScreen mainScreen={mainScreen} setMainScreen={setMainScreen} />
+                          : null
+              // : mainScreen == 8 ? <SharedJobScreen setFromShareScreen={setFromShareScreen} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} /> : <Auth mainScreen={mainScreen} setMainScreen={setMainScreen} />
             }
           </AuthProvider>
         </SharedProvider>

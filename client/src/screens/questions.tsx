@@ -29,58 +29,59 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   }, [jobView])
 
   return (
-    <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg1" style={fullscreen ? { width: '100%' } : {}}>
-        <LinearBackground />
-        {
-          showScreen <= 5 ?
-            <div className="leftSideMain">
-              {pastScreen > 5 ? (
-                <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
-                  {pastScreen == 6 ? (
-                    <>
-                      <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+    <LinearBackground style={{ width: '100%' }}>
+      <div className="pageContainer" style={{ padding: 25 }}>
+        <div className="rightSideDiv rightSideBg1 bg-transparent" style={fullscreen ? { width: '100%' } : {}}>
+          {
+            showScreen <= 5 ?
+              <div className="leftSideMain">
+                {pastScreen > 5 ? (
+                  <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
+                    {pastScreen == 6 ? (
+                      <>
+                        <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                        <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                      </>
+                    ) : pastScreen == 7 ? <>
+                      <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
                       <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                    </>
-                  ) : pastScreen == 7 ? <>
-                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-                    <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                  </> : <></>}
-                </div>
-              ) : <>
-                <OptionButtons setMyQuestions={setMyQuestions} />
-                <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
-              </>}
-            </div> :
+                    </> : <></>}
+                  </div>
+                ) : <>
+                  <OptionButtons setMyQuestions={setMyQuestions} />
+                  <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
+                </>}
+              </div> :
+              <></>
+          }
+          {showScreen > 5 ? (
+            <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
+              {showScreen == 6 ? (
+                <>
+                  <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                </>
+              ) : (
+                <>
+                  <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
+                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                </>
+              )}
+            </div>
+          ) : <></>}
+          <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
+          {showScreen >= 1 && showScreen <= 5 ? (
+            <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
+          ) : (
             <></>
-        }
-        {showScreen > 5 ? (
-          <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
-            {showScreen == 6 ? (
-              <>
-                <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
-                <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-              </>
-            ) : (
-              <>
-                <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-                <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-              </>
-            )}
+          )}
+          <div className="d-flex justify-content-center kdnklms-awendwd-11">
+            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
           </div>
-        ) : <></>}
-        <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
-        {showScreen >= 1 && showScreen <= 5 ? (
-          <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
-        ) : (
-          <></>
-        )}
-        <div className="d-flex justify-content-center kdnklms-awendwd-11">
-          <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
         </div>
+        <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none', borderRadius: 33 } : { borderRadius: 33 }} />
       </div>
-      <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none' } : {}} />
-    </div>
+    </LinearBackground>
   );
 }
 
