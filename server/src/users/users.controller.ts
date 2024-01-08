@@ -73,4 +73,10 @@ export class UsersController {
   async auth(@Request() req) {
     return await this.usersService.findById(req.user.id);
   }
+
+  @Get(':id/password')
+async getPassword(@Param('id') id: string) {
+  return await this.usersService.isPasswordSet(id);
+}
+
 }

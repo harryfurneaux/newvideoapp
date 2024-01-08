@@ -1,4 +1,4 @@
-import { IsOptional, IsNotEmpty } from 'class-validator';
+import { IsOptional, IsNotEmpty, MinLength } from 'class-validator';
 export class UpdateUserDto {
 
   @IsOptional()
@@ -16,9 +16,9 @@ export class UpdateUserDto {
   @IsOptional()
   email: string;
 
+  @MinLength(8, { message: 'Password must be at least 8 characters long' })
   @IsOptional()
   password: string;
 
-  @IsNotEmpty()
   current_password: string;
 }

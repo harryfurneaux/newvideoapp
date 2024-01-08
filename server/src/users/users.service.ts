@@ -75,7 +75,8 @@ export class UsersService {
       if (!user) {
         throw new NotFoundException('User not found');
       }
-  
+      const isPasswordSet = await this.isPasswordSet(user.id);
+
       if (Object.keys(updateUserDto).some(field => field !== 'password')) {
         if (!(await comparePassword(updateUserDto.current_password, user.password))) {
           throw new BadRequestException('Current password is incorrect');
@@ -111,6 +112,8 @@ export class UsersService {
       throw error;
     }
   }
+
+
   
   async remove(id: string): Promise<User | null> {
     return await this.UserModel.findByIdAndRemove(id);
@@ -129,6 +132,8 @@ export class UsersService {
       // role: user.role,
     });
     const chatUser = await this.messagingService.initializeUser(user.id);
+    const isPassword = await this.isPasswordSet(user.id);
+
     return {
       id: user.id,
       name: user.name,
@@ -136,7 +141,7 @@ export class UsersService {
       location: user.location,
       company_name: user.company_name,
       profile_image: user.profile_image || null,
-
+      isPassword,
       // role: user.role,
       token: jwtToken,
       chat: {
@@ -162,22 +167,28 @@ export class UsersService {
   async socialLogin(socialUserData: any): Promise<any> {
     const { name, email } = socialUserData;
     let user = await this.UserModel.findOne({ email });
+
+
     if (!user) {
       user = await this.UserModel.create({
         name,
         email,
       });
+
     }
     const jwtToken = await this.authService.generateToken({
       id: user.id,
     });
     const chatUser = await this.messagingService.initializeUser(user.id);
+    const isPassword = await this.isPasswordSet(user.id);
+
     return {
       id: user.id,
       name: user.name,
       email: user.email,
       profile_image: user.profile_image || null,
       token: jwtToken,
+      isPassword,
       chat: {
         user: chatUser.user,
         token: chatUser.token,
@@ -185,7 +196,45 @@ export class UsersService {
     };
   }
 
-  async me(authorization: string): Promise<any> {
+  // async me(authorization: string, isSocialLogin: boolean = false): Promise<any> {
+  //   if (!authorization || !authorization.startsWith('Bearer ')) {
+  //     throw new UnauthorizedException('Invalid token format');
+  //   }
+  //   const token = authorization.split(' ')[1];
+  //   try {
+  //     const decodedToken = await this.authService.verifyToken(token);
+  //     if (this.authService.isTokenExpired(decodedToken)) {
+  //       throw new UnauthorizedException('Token has expired');
+  //     }
+
+  //     let user = await this.UserModel.findById(decodedToken.id).select(
+  //       '-v -password',
+  //     );
+  //     if (!user) throw new NotFoundException('user not found');
+  //     const jwtToken = await this.authService.generateToken({
+  //       id: user.id,
+  //     });
+
+  //     const chatUser = await this.messagingService.initializeUser(user.id);
+
+  //     return {
+  //       id: user.id,
+  //       name: user.name,
+  //       email: user.email,
+  //       location: user.location,
+  //       company_name: user.company_name,
+  //       profile_image: user.profile_image || null,
+  //       token: jwtToken,
+  //       chat: {
+  //         user: chatUser.user,
+  //         token: chatUser.token,
+  //       },
+  //     };
+  //   } catch (error) {
+  //     throw new UnauthorizedException('Invalid token');
+  //   }
+  // }
+  async me(authorization: string, isSocialLogin: boolean = false): Promise<any> {
     if (!authorization || !authorization.startsWith('Bearer ')) {
       throw new UnauthorizedException('Invalid token format');
     }
@@ -195,18 +244,20 @@ export class UsersService {
       if (this.authService.isTokenExpired(decodedToken)) {
         throw new UnauthorizedException('Token has expired');
       }
-
+  
       let user = await this.UserModel.findById(decodedToken.id).select(
         '-v -password',
       );
-      if (!user) throw new NotFoundException('user not found');
+      if (!user) throw new NotFoundException('User not found');
+  
       const jwtToken = await this.authService.generateToken({
         id: user.id,
       });
-
+  
       const chatUser = await this.messagingService.initializeUser(user.id);
+      const isPassword = await this.isPasswordSet(user.id);
 
-      return {
+      const response: any = {
         id: user.id,
         name: user.name,
         email: user.email,
@@ -214,13 +265,39 @@ export class UsersService {
         company_name: user.company_name,
         profile_image: user.profile_image || null,
         token: jwtToken,
+        isPassword,
         chat: {
           user: chatUser.user,
           token: chatUser.token,
         },
       };
+  
+      if (isSocialLogin) {
+        response.social = true;
+
+      } else {
+        response.social = false;
+
+      }
+    
+      return response;
     } catch (error) {
       throw new UnauthorizedException('Invalid token');
     }
   }
+  
+  async isPasswordSet(userId: string): Promise<{ isPassword: boolean }> {
+    try {
+      const user = await this.UserModel.findById(userId).select('password');
+  
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+  
+      return { isPassword: user.password === null || user.password === undefined };
+    } catch (error) {
+      throw error;
+    }
+  }
+      
 }
