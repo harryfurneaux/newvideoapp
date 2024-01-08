@@ -18,7 +18,6 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
 
-
 const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
     $(".overlay.btn-close").hide();
@@ -42,8 +41,12 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-  const [notifyShow, setNotifyShow] = useState(false)
+  const [notifyTitle, setNotifyTitle] = useState("Settings Changed");
+  const [notifyShow, setNotifyShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const { user } = useAuth()
+
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
     $(".overlay").hide();
@@ -74,7 +77,16 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
       <OverlayTrigger trigger="click" placement="left" overlay={
         <div className="overlay text-white">
           <div className="header text-center">
-            <img src={profile_img} className="profile" />
+            {/* <img src={profile_img} className="profile" /> */}
+            <img
+              className="profile"
+              src={user?.profile_image || profile_img}
+              onError={(e: any) => {
+                e.target.src = profile_img;
+              }}
+              alt="Profile Picture"
+              style={{ width: 100, height: 100 }}
+            />
             <h5>{user?.name}</h5>
             <div className="desc"><img src={company_img} /> {user?.company_name}</div>
             <div className="desc"><img src={location_img} /> {user?.location}</div>
@@ -105,17 +117,30 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
           </div>
         </div>
       } rootClose>
-        <button className="btn btn-show no-shadow">
-          <Icons iconNumber={1} />
+        <button className="btn btn-show no-shadow border-0 outline-0">
+          {/* <Icons iconNumber={1} /> */}
+          <img
+            className="profile-img p-0"
+            src={user?.profile_image || profile_img}
+            onError={(e: any) => {
+              e.target.src = profile_img;
+            }}
+            alt="Profile Picture"
+            style={{ width: '45px', height: '45px' }}
+          />
         </button>
       </OverlayTrigger>
-      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} />
+      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
       <Elements stripe={stripePromise} >
         <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       </Elements>
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
       <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} jobView={''} />
-      <Notify show={notifyShow} title="Settings Changed" handleClose={() => setNotifyShow(false)} />
+      <Notify show={notifyShow} title={notifyTitle} handleClose={() => {
+        setNotifyShow(false)
+        setNotifyTitle("Settings Changed")
+      }} />
+      <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
     </>
   )
 }

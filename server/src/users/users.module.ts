@@ -11,6 +11,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from '../auth/auth.service'
 import { JwtStrategy } from '../auth/strategies/jwt.strategy'
 import { MessagingModule } from 'src/messaging/messaging.module';
+import { MediaModule } from 'media/media.module';
 @Module({
   imports: [ConfigModule.forRoot(),
   JwtModule.register({
@@ -18,7 +19,7 @@ import { MessagingModule } from 'src/messaging/messaging.module';
     signOptions: { expiresIn: '1d' }, // Replace with your desired token expiration time
   }),
   MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-  MessagingModule
+  MessagingModule, MediaModule
 ],
   controllers: [UsersController],
   providers: [UsersService, AuthService, JwtStrategy],

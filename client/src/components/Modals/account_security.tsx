@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import profile_pic from "../../images/Profile Pic 2.png";
+import profile_img from "../../images/Profile Pic.svg";
 import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
 import { useAuth } from "../../hooks/useAuth";
-const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any }) => {
+
+const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setNotifyTitle, setErrorMessage = null }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any, setNotifyTitle: any, setErrorMessage?: any }) => {
   const [show_change, setChangeModal] = useState(false);
   const [change_item, setChangeItem] = useState("");
 
@@ -12,9 +13,12 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
   const [tiny_type, setTinyType] = useState("");
   const { user } = useAuth()
 
-  const handleChangeClose = () => setChangeModal(false);
-  const handleChangeShow = (item: string) => {
+  const handleChangeClose = () => {
+    setChangeModal(false)
+    setChangeItem('');
+  };
 
+  const handleChangeShow = (item: string) => {
     setChangeModal(true);
     setChangeItem(item);
   };
@@ -34,11 +38,21 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
         </svg>
       </Modal.Header>
       <Modal.Body>
-        <div className="modal-part p-0 row align-items-center">
-          <img className="profile-img p-0" src={profile_pic} />
+        <div className="modal-part row align-items-center">
           <div className="col">
-            <button className="pic-btn">Change Profile Picture</button>
-            <p className="pic-desc">Must be JPEG, PNG, or GIF and cannot exceed 10MB.</p>
+            <img
+              className="profile-img p-0"
+              src={user?.profile_image || profile_img}
+              onError={(e: any) => {
+                e.target.src = profile_img;
+              }}
+              alt="Profile Picture"
+              style={{ width: '45px', height: '45px' }}
+            />
+          </div>
+          <div className="col d-flex justify-content-center flex-column align-items-end">
+            <button onClick={() => handleChangeShow("ProfilePicture")}>Change Profile Picture</button>
+            <p className="pic-desc mt-1">Must be JPEG, JPG, or PNG and cannot exceed 5MB.</p>
           </div>
         </div>
         <div className="modal-part row align-items-center">
@@ -93,7 +107,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen }: { 
           }}>Delete Account</button>
         </div>
       </Modal.Body>
-      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} />
+      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
       <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={setMainScreen} jobView={''} />
     </Modal>
   )

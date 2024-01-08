@@ -22,6 +22,11 @@ export class User extends Document {
   @Prop()
   company_name: String;
 
+  @Prop()
+  profile_image: string;
+
+
+
   // @Prop({ enum: ROLE })
   // role: ROLE;
 }

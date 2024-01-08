@@ -20,3 +20,20 @@ export class NodemailerService {
     await this.transport.sendMail(options);
   }
 }
+
+// import { Injectable } from '@nestjs/common';
+// import * as sgMail from '@sendgrid/mail';
+// import { config } from 'dotenv';
+
+// config();
+
+// @Injectable()
+// export class SendGridService {
+//   constructor() {
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//   }
+
+//   async sendMail(options: sgMail.MailDataRequired): Promise<void> {
+//     await sgMail.send(options);
+//   }
+// }
