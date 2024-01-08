@@ -18,13 +18,13 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
     const weeks = Math.floor(days / 7);
 
     if (minutes < 60) {
-      return `posted ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+      return `Posted ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
     } else if (hours < 24) {
-      return `posted ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+      return `Posted ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
     } else if (days < 7) {
-      return `posted ${days} ${days === 1 ? 'day' : 'days'} ago`;
+      return `Posted ${days} ${days === 1 ? 'day' : 'days'} ago`;
     } else {
-      return `posted ${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+      return `Posted ${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
     }
   };
 

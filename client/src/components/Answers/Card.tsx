@@ -4,15 +4,16 @@ const Card = ({ showFav, setMainScreen, showScreen, setshowScreen, interview, ha
 
   return <div onClick={() => {
     setSelectedInterview(interview);
-  }} className="candidateCard" style={{ height: '100%' }}>
-    <video style={{ position: 'relative', height: '100%', borderRadius: 10, width: '99%' }} width={123} height={225}
+  }} className="candidateCard" style={{ height: 226, width: 120 }}>
+    <video style={{ position: 'relative', borderRadius: 10, background: 'rgba(0,0,0,0.6)' }} width={116} height={211}
       src={interview.videoLink}
     />
-    <div className="cardInfoDiv">
+    <div className="cardInfoDiv" style={{ padding: '0px 5px 0px 7px' }}>
       <h4>{interview?.interviewee?.name}</h4>
       <h5>
         <Icons iconNumber={32} />
-        {interview?.interviewee?.location}</h5>
+        {interview?.interviewee?.location}
+      </h5>
     </div>
     {interview?.favourite ? (
       <div className='odjfks-amds'>

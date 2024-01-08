@@ -147,10 +147,10 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
         <h5 className="mksaldkamaw-jdwa">London, UK</h5>
       </div>
       <div className="leftSideContent">
-        <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+        <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start" style={{ gap: 10, padding: '4px 14px' }}>
 
           {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
-            <Col className="p-0 mb-2 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer' }} key={index}>
+            <Col className="p-0 mb-0 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer', maxWidth: '120px', maxHeight: '226px' }} key={index}>
               <Card setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} interview={interview} handleFilteration={handleFilteration} setSelectedInterview={setSelectedInterview} />
             </Col>
           )) : (
