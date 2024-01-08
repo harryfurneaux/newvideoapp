@@ -85,6 +85,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
                 e.target.src = profile_img;
               }}
               alt="Profile Picture"
+              style={{ width: 100, height: 100 }}
             />
             <h5>{user?.name}</h5>
             <div className="desc"><img src={company_img} /> {user?.company_name}</div>
