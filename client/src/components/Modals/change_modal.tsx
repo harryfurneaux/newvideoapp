@@ -13,7 +13,7 @@ interface FormProps {
   successMessage: string,
 }
 
-const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = null }: { show: boolean, handleClose: any, item: string, setNotifyShow: any, setNotifyTitle?: any }) => {
+const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = null, setErrorMessage = null }: { show: boolean, handleClose: any, item: string, setNotifyShow: any, setNotifyTitle?: any, setErrorMessage?: any }) => {
   const [password, setPassword] = useState('')
   const [data, setData] = useState('')
   const [file, setFile] = useState<any>(null)
@@ -59,13 +59,10 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = 
     setFile(null);
     setPassword('');
     handleClose();
+    setErrorMessage('');
   };
 
   const handleSave = () => {
-    submit();
-  }
-
-  const submit = () => {
     const formData = new FormData();
     formData.append('current_password', password);
     switch (item) {
@@ -106,6 +103,23 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = 
         }
         setNotifyShow(true);
         handleClose('');
+        setErrorMessage('');
+      })
+      .catch((err) => {
+        if (err?.response?.data?.message?.length) {
+          let errorMessage = ''
+          if (Array.isArray(err.response.data.message)) {
+            const keys = Object.keys(err.response.data.message[0]);
+            if (err?.response?.data?.message?.[0]?.[keys[0]]) {
+              errorMessage = err.response.data.message[0][keys[0]];
+            }
+          } else {
+            errorMessage = err.response.data.message;
+          }
+          if (typeof setErrorMessage === 'function' && errorMessage?.length) {
+            setErrorMessage(errorMessage);
+          }
+        }
       })
   };
 

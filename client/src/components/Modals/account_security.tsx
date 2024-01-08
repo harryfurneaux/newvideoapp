@@ -5,7 +5,7 @@ import ChangeModal from "./change_modal";
 import TinyModal from "./tiny_modal";
 import { useAuth } from "../../hooks/useAuth";
 
-const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setNotifyTitle }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any, setNotifyTitle: any }) => {
+const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setNotifyTitle, setErrorMessage = null }: { show: boolean, handleClose: any, setNotifyShow: any, setMainScreen: any, setNotifyTitle: any, setErrorMessage?: any }) => {
   const [show_change, setChangeModal] = useState(false);
   const [change_item, setChangeItem] = useState("");
 
@@ -17,7 +17,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setN
     setChangeModal(false)
     setChangeItem('');
   };
-  
+
   const handleChangeShow = (item: string) => {
     setChangeModal(true);
     setChangeItem(item);
@@ -40,7 +40,15 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setN
       <Modal.Body>
         <div className="modal-part row align-items-center">
           <div className="col">
-            <img className="profile-img p-0" src={profile_img} style={{ width: '45px', height: '45px' }} />
+            <img
+              className="profile-img p-0"
+              src={user?.profile_image || profile_img}
+              onError={(e: any) => {
+                e.target.src = profile_img;
+              }}
+              alt="Profile Picture"
+              style={{ width: '45px', height: '45px' }}
+            />
           </div>
           <div className="col d-flex justify-content-center flex-column align-items-end">
             <button onClick={() => handleChangeShow("ProfilePicture")}>Change Profile Picture</button>
@@ -99,7 +107,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setN
           }}>Delete Account</button>
         </div>
       </Modal.Body>
-      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} setNotifyTitle={setNotifyTitle} />
+      <ChangeModal show={show_change} handleClose={handleChangeClose} item={change_item} setNotifyShow={setNotifyShow} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
       <TinyModal show={show_tiny} handleClose={handleTinyClose} type={tiny_type} setMainScreen={setMainScreen} jobView={''} />
     </Modal>
   )
