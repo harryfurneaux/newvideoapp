@@ -1,4 +1,10 @@
-import { Injectable, ConflictException, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  BadRequestException,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserLoginDto } from './dto/login-user.dto';
@@ -9,7 +15,7 @@ import { Model } from 'mongoose';
 import { comparePassword, hashPassword } from '../utils/bcrypt';
 import { AuthService } from '../auth/auth.service';
 import { MessagingService } from 'src/messaging/services/messaging.service';
-
+import { MediaService } from 'media/services/media.service';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +23,8 @@ export class UsersService {
     @InjectModel('User') private UserModel: Model<User>,
     private readonly authService: AuthService,
     private readonly messagingService: MessagingService,
-  ) { }
+    private readonly mediaService: MediaService,
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User | null> {
     if (await this.findOne(createUserDto.email)) {
@@ -30,10 +37,12 @@ export class UsersService {
     const createdUser = await this.UserModel.create(createUserDto);
     // Exclude the password field from the returned user object
     return createdUser.toObject({
-      virtuals: true, versionKey: false, transform: (_doc, ret) => {
+      virtuals: true,
+      versionKey: false,
+      transform: (_doc, ret) => {
         delete ret.password;
         return ret;
-      }
+      },
     }) as User;
   }
 
@@ -53,21 +62,40 @@ export class UsersService {
     return await this.UserModel.findOne({ email });
   }
 
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+    file: Express.Multer.File,
+  ) {
+    let user;
 
-
-  async update(id: string, updateUserDto: UpdateUserDto) {
-
-    if (!(await this.UserModel.findById(id)))
+    if (!(await this.UserModel.findById(id))) {
       throw new NotFoundException('user not found');
+    }
+
     if (updateUserDto.password) {
       const hashedPassword = await hashPassword(updateUserDto.password);
       updateUserDto.password = hashedPassword;
     }
-    const updatedData = await this.UserModel.findByIdAndUpdate(id, updateUserDto, {
-      new: true,
-    }).select('-password');
-    updatedData['id'] = updatedData._id
-    return updatedData
+
+    if (file) {
+      const profileImageUrl = this.mediaService.saveProfileImage(file);
+      user = await this.UserModel.findById(id);
+
+      user.profile_image = profileImageUrl;
+      await user.save();
+    }
+
+    const updatedData = await this.UserModel.findByIdAndUpdate(
+      id,
+      updateUserDto,
+      {
+        new: true,
+      },
+    ).select('-password');
+
+    updatedData['id'] = updatedData._id;
+    return updatedData;
   }
 
   async remove(id: string): Promise<User | null> {
@@ -93,12 +121,14 @@ export class UsersService {
       email: user.email,
       location: user.location,
       company_name: user.company_name,
+      profile_image: user.profile_image || null,
+
       // role: user.role,
       token: jwtToken,
       chat: {
         user: chatUser.user,
-        token: chatUser.token
-      }
+        token: chatUser.token,
+      },
     };
   }
 
@@ -132,11 +162,12 @@ export class UsersService {
       id: user.id,
       name: user.name,
       email: user.email,
+      profile_image: user.profile_image || null,
       token: jwtToken,
       chat: {
         user: chatUser.user,
-        token: chatUser.token
-      }
+        token: chatUser.token,
+      },
     };
   }
 
@@ -167,11 +198,12 @@ export class UsersService {
         email: user.email,
         location: user.location,
         company_name: user.company_name,
+        profile_image: user.profile_image || null,
         token: jwtToken,
         chat: {
           user: chatUser.user,
-          token: chatUser.token
-        }
+          token: chatUser.token,
+        },
       };
     } catch (error) {
       throw new UnauthorizedException('Invalid token');

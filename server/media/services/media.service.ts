@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 export class MediaService {
   private readonly assetsFolder = 'assets';
   private readonly interviewsVideosFolder = 'interviews_videos';
+  private readonly profileImagesFolder = 'profile_images';
+
   private readonly baseURL = 'https://api.videointerviews.io/';
 
 
@@ -44,5 +46,21 @@ export class MediaService {
       throw new Error('Error saving video');
     }
   }
-  
+
+
+    saveProfileImage(file: Express.Multer.File): string {
+    try {
+      const uniqueID = uuidv4();
+      const ProfileFileName = `${uniqueID}_${file.originalname}`;
+      const ProfilePath = path.join(this.assetsFolder, this.profileImagesFolder, ProfileFileName);
+      fs.writeFileSync(ProfilePath, file.buffer);
+      
+      const ProfileUrl = `${this.baseURL}${this.assetsFolder}/${this.profileImagesFolder}/${ProfileFileName}`;
+      return ProfileUrl;
+    } catch (error) {
+      console.error('Error saving profile image:', error.message);
+      throw new Error('Error saving profile image');
+    }
+  }
+
 }

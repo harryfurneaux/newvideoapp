@@ -2,6 +2,9 @@
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaService } from '../services/media.service';
+import { FileSizeValidationPipe } from '../decorators/file-size.decorator';
+import { MediaTypeValidationPipe } from '../decorators/media-type.decorator';
+
 
 @Controller('media')
 export class MediaController {
@@ -18,4 +21,7 @@ export class MediaController {
 //   uploadVideo(@UploadedFile() video: Express.Multer.File): string {
 //     return this.mediaService.saveVideo(video);
 //   }
+
+
+
 }
