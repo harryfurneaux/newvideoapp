@@ -1,13 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request, Headers } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Request,
+  Headers,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserLoginDto } from './dto/login-user.dto'
+import { UserLoginDto } from './dto/login-user.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FileSizeValidationPipe } from 'media/decorators/file-size.decorator';
+import { MediaTypeValidationPipe } from 'media/decorators/media-type.decorator';
+
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Post('sign-up')
   async create(@Body() createUserDto: CreateUserDto) {
@@ -30,8 +47,15 @@ export class UsersController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersService.update(id, updateUserDto);
+  @UseInterceptors(FileInterceptor('file'))
+  async update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+    // @UploadedFile() file: Express.Multer.File,
+    @UploadedFile(FileSizeValidationPipe, MediaTypeValidationPipe) file: Express.Multer.File,
+
+  ) {
+    return await this.usersService.update(id, updateUserDto, file);
   }
 
   @Delete(':id')
