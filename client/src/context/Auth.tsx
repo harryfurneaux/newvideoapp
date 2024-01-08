@@ -47,6 +47,9 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
 
   const initAuth = async (): Promise<void> => {
     const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
+    const shared = window.localStorage.getItem('shared')
+    console.log("shared localstrg", shared)
+
     if (storedToken) {
       setLoading(true)
       await axios
@@ -66,7 +69,14 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
           if (response?.data?.token) {
             window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.token);
           }
-          setMainScreen(1);
+          if (!!shared) {
+            console.log("share if", shared)
+            setMainScreen(8)
+          }
+          else {
+
+            setMainScreen(1);
+          }
         })
         .catch(() => {
           localStorage.removeItem(authConfig.storageTokenKeyName)

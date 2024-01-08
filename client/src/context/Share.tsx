@@ -42,6 +42,13 @@ const SharedProvider = ({ children }: Props) => {
         }
     }, [params])
 
+    useEffect(() => {
+
+
+        console.log('shared useeffect', sharedJobData)
+
+    }, [sharedJobData])
+
 
     const values = {
         shared,

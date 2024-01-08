@@ -20,13 +20,13 @@ const Back = () => {
 }
 
 
-const SharedJobScreen = ({ setMainScreen, setJobViewContext, setFromShareScreen }: { setMainScreen: any, setJobViewContext: any, setFromShareScreen: any }) => {
+const SharedJobScreen = ({ setMainScreen, setJobViewContext, setFromShareScreen, jobViewContext }: { setMainScreen: any, setJobViewContext: any, setFromShareScreen: any, jobViewContext: any }) => {
     const [shareScreen, setShareScreen] = useState(0)
     const { sharedJobData } = useShared()
-
-    useEffect(() => {
-        setJobViewContext(sharedJobData)
-    }, [sharedJobData])
+    console.log("shared scren", jobViewContext)
+    // useEffect(() => {
+    //     setJobViewContext(sharedJobData)
+    // }, [sharedJobData])
 
     const Back = () => {
         return <div onClick={() => { }} className="d-flex w-100 ms-4">
@@ -56,7 +56,7 @@ const SharedJobScreen = ({ setMainScreen, setJobViewContext, setFromShareScreen 
                 <Welcome setShareScreen={setShareScreen} /> : shareScreen == 1 ?
                     <>
                         <Back />
-                        <JobCard setShareScreen={setShareScreen} setMainScreen={setMainScreen} setFromShareScreen={setFromShareScreen} />
+                        <JobCard sharedJobData={jobViewContext} setShareScreen={setShareScreen} setMainScreen={setMainScreen} setFromShareScreen={setFromShareScreen} />
                     </>
                     : shareScreen == 2 ?
                         <>

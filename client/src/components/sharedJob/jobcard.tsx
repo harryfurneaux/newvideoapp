@@ -5,9 +5,9 @@ import Icons from "../icons"
 
 
 
-const JobCard = ({ setShareScreen, setMainScreen, setFromShareScreen }: { setShareScreen: any, setMainScreen: any, setFromShareScreen: any }) => {
+const JobCard = ({ setShareScreen, setMainScreen, setFromShareScreen, sharedJobData }: { setShareScreen: any, setMainScreen: any, setFromShareScreen: any, sharedJobData: any }) => {
 
-    const { sharedJobData }: { sharedJobData: any } = useShared()
+    // const { sharedJobData }: { sharedJobData: any } = useShared()
     const { isLoggedIn } = useAuth()
 
     console.log("shared job data card", sharedJobData)
@@ -40,12 +40,15 @@ const JobCard = ({ setShareScreen, setMainScreen, setFromShareScreen }: { setSha
                 <div className="kdjsa-ajwnkelds afkfjnkas-edsm">
                     <div className="continueBtnDiv snasdj-sawdne">
                         <button className="btn" onClick={() => {
+                            console.log('isloggedin', isLoggedIn())
                             if (isLoggedIn()) {
+                                console.log('inside isloggedin')
                                 setMainScreen(3)
                                 setFromShareScreen(true)
 
                             }
                             else {
+                                console.log("not loggedin case")
                                 setShareScreen(2)
                             }
                         }}>

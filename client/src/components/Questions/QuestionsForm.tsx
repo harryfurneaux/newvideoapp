@@ -7,11 +7,14 @@ import { useFullscreen } from "../../hooks/useFullscreen";
 import { Col } from "react-bootstrap";
 import Icons from "../icons";
 import { useParams } from "react-router";
+import Notify from "../Notify";
 
 const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }: { setMainScreen: any, setShowScreen: any, setJobView: any, myQuestions: any }) => {
   const [jobs, setJobs] = useState<any>(null)
+
   const { user, setJobViewContext } = useAuth()
   const { fullscreen } = useFullscreen();
+
   const params = useParams()
 
   useEffect(() => {
@@ -41,10 +44,10 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
         if (myQuestions) {
           const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
           setJobs(filtered);
-          redirectToSharedJob(filtered);
+          // redirectToSharedJob(filtered);
         } else {
           setJobs(response.data)
-          redirectToSharedJob(response.data);
+          // redirectToSharedJob(response.data);
         }
       })
       .catch(err => {
@@ -77,6 +80,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
           )}
         </>
       )}
+      
     </div >
   );
 };
