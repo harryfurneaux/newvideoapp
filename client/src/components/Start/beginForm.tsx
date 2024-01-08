@@ -1,13 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { useFullscreen } from "../../hooks/useFullscreen";
 import CheckFormBox from "../CheckBoxForm";
 import Icons from "../icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen, className = '' }: { setScreen: any, jobViewContext: any, recorded: any, setMainScreen: any, className?: any }) => {
+const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen, className = '', setJobViewContext, setFromShareScreen }: { setScreen: any, jobViewContext: any, recorded: any, setMainScreen: any, className?: any, setJobViewContext: any, setFromShareScreen: any }) => {
 
   const { user } = useAuth();
-
+  const { setFullscreen }
+    = useFullscreen()
+  const navigate = useNavigate()
   function createFormData(object: any, form?: FormData, namespace?: string): FormData {
     const formData = form || new FormData();
     for (let property in object) {
@@ -76,11 +80,18 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen, classNa
 
                 const _timer = setInterval(() => {
                   if (submitted === recorded.length) {
+                    console.log("sumited case")
                     clearInterval(_timer);
+                    setJobViewContext(null)
+                    localStorage.removeItem('shared')
+                    setFromShareScreen(false)
+                    setFullscreen(false)
                     setMainScreen(1);
+                    navigate('/')
                   }
                 }, 100);
               } else {
+                console.log("not submitted case")
                 setScreen(1);
               }
             }}>

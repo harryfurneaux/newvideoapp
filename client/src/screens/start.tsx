@@ -11,21 +11,22 @@ import TopMenu from "../components/Start/TopMenu";
 import { useFullscreen } from "../hooks/useFullscreen";
 import RecordFormParent from "../components/Start/recordFormParent";
 import SharedJobScreen from "./sharedJobScreen";
+import { useNavigate, useRoutes } from "react-router-dom";
 
-function GetScreen(screen: number, setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, setMainScreen: any) {
-  switch (screen) {
-    case 0: return <BeginForm className={`d-none m-0 flip-child flip-child-0`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setMainScreen={setMainScreen} />
-    case 1: return <RecordForm className={`d-none m-0 flip-child flip-child-1`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
-    case 2: return <FinishForm className={`d-none m-0 flip-child flip-child-2`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
-    case 3: return <ProgressForm className={`d-none m-0 flip-child flip-child-3`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
-    case 4: return <NextForm className={`d-none m-0 flip-child flip-child-4`} setScreen={setScreen} />
-  }
-}
+// function GetScreen(screen: number, setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, setMainScreen: any) {
+//   switch (screen) {
+//     case 0: return <BeginForm className={`d-none m-0 flip-child flip-child-0`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setMainScreen={setMainScreen} />
+//     case 1: return <RecordForm className={`d-none m-0 flip-child flip-child-1`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
+//     case 2: return <FinishForm className={`d-none m-0 flip-child flip-child-2`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
+//     case 3: return <ProgressForm className={`d-none m-0 flip-child flip-child-3`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
+//     case 4: return <NextForm className={`d-none m-0 flip-child flip-child-4`} setScreen={setScreen} />
+//   }
+// }
 
-function renderScreen(screen: number, setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, setMainScreen: any, fromShareScreen: any) {
+function renderScreen(screen: number, setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, setMainScreen: any, fromShareScreen: any, setJobViewContext: any, setFromShareScreen: any) {
   return (
     <>
-      <BeginForm className={`m-0 flip-child flip-child-0 hover-anim`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setMainScreen={setMainScreen} />
+      <BeginForm className={`m-0 flip-child flip-child-0 hover-anim`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setMainScreen={setMainScreen} setJobViewContext={setJobViewContext} setFromShareScreen={setFromShareScreen} />
       <RecordFormParent className={`d-none m-0 flip-child flip-child-1`} fromShareScreen={fromShareScreen} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
       <FinishForm className={`d-none m-0 flip-child flip-child-2`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
       <ProgressForm className={`d-none m-0 flip-child flip-child-3`} setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
@@ -34,19 +35,19 @@ function renderScreen(screen: number, setScreen: any, jobViewContext: any, recor
   )
 }
 
-function Next({ jobViewContext, setMainScreen, fromShareScreen }: { jobViewContext: any, setMainScreen: any, fromShareScreen: any }) {
+function Next({ jobViewContext, setMainScreen, fromShareScreen, setJobViewContext, setFromShareScreen }: { jobViewContext: any, setMainScreen: any, fromShareScreen: any, setJobViewContext: any, setFromShareScreen: any }) {
   const [screen, setScreen] = useState(0);
   const [firstRender, setFirstRender] = useState(false);
   const [recorded, setRecorded] = useState([]);
   const { fullscreen } = useFullscreen();
 
 
-  useEffect(() => {
 
+  useEffect(() => {
     if (fromShareScreen) {
+      console.log("fromShareScreen", fromShareScreen)
       setScreen(1)
     }
-
   }, [fromShareScreen])
 
 
@@ -110,7 +111,7 @@ function Next({ jobViewContext, setMainScreen, fromShareScreen }: { jobViewConte
         </div> */}
           <div style={{ perspective: 1000, position: 'absolute' }}>
             <div className={`flip-element`} style={{ height: 520, width: 320 }}>
-              {renderScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen, fromShareScreen)}
+              {renderScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen, fromShareScreen, setJobViewContext, setFromShareScreen)}
             </div>
           </div>
         </div>

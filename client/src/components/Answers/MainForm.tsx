@@ -130,14 +130,14 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
   return (
     <div className="leftSideMain">
       <div className="option-btn">
-        <button className="lamdl-anwid radiusLeft" onClick={() => {
+        <button className={`lamdl-anwid radiusLeft ${myAnswers ? 'active' : ''}`} onClick={() => {
           setFilteredInterviews([])
           setMyAnswers(true)
         }}>
           <Icons iconNumber={50} />
           Your Answers
         </button>
-        <button className="lamdl-anwid radiusRight" onClick={() => setMyAnswers(false)}>
+        <button className={`lamdl-anwid radiusRight ${myAnswers ? '' : 'active'}`} onClick={() => setMyAnswers(false)}>
           <Icons iconNumber={32} />
           Nearby
         </button>

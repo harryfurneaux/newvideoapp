@@ -9,35 +9,23 @@ const JobTitle = ({ setMainScreen, setShowScreen, showMessage, jobData, setJobVi
   const getTimeDifference = (created_at: any) => {
     const currentDate: any = new Date();
     const postedDate: any = new Date(created_at);
-    const timeDifference = currentDate - postedDate
+    const timeDifference = currentDate - postedDate;
 
     const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
+    const weeks = Math.floor(days / 7);
 
-    if (months > 0) {
-      const remainingDays = days % 30;
-      return `posted ${months} ${months === 1 ? 'month' : 'months'} & ${remainingDays} ${remainingDays === 1 ? 'day' : 'days'} ago`;
-    } else if (days > 0) {
-      const remainingHours = hours % 24;
-      return `posted ${days} ${days === 1 ? 'day' : 'days'} & ${remainingHours} ${remainingHours === 1 ? 'hour' : 'hours'} ago`;
-    } else if (hours > 0) {
-      const remainingMinutes = minutes % 60;
-      return `posted ${hours} ${hours === 1 ? 'hour' : 'hours'} & ${remainingMinutes} ${remainingMinutes === 1 ? 'minute' : 'minutes'} ago`;
+    if (minutes < 60) {
+      return `posted ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+    } else if (hours < 24) {
+      return `posted ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+    } else if (days < 7) {
+      return `posted ${days} ${days === 1 ? 'day' : 'days'} ago`;
     } else {
-      return "posted less than an hour ago";
+      return `posted ${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
     }
-    // if (months > 0) {
-    //   return `posted ${months} ${months === 1 ? 'month' : 'months'} & ${days} ago`;
-    // }
-
-    // else if (days < 1) {
-    //   return "posted today"
-    // } else {
-    //   return `posted ${days} ${days === 1 ? 'day' : 'days'} & ${hours} ago`;
-    // }
   };
 
   return (

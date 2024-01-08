@@ -11,14 +11,16 @@ import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 import LinearBackground from "../components/LinearBackground";
 import { useFullscreen } from "../hooks/useFullscreen";
+import Notify from "../components/Notify";
 
-function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any }) {
+function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns, showSharedNotify, setShowNotify }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any, showSharedNotify: any, setShowNotify: any }) {
   const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
   const [jobView, setJobView] = useState(null)
+
   const [myQuestions, setMyQuestions] = useState(false)
   const { fullscreen } = useFullscreen();
 
@@ -48,7 +50,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
                     </> : <></>}
                   </div>
                 ) : <>
-                  <OptionButtons setMyQuestions={setMyQuestions} />
+                  <OptionButtons myQuestions={myQuestions} setMyQuestions={setMyQuestions} showSharedNotify={showSharedNotify} setShowNotify={setShowNotify}/>
                   <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
                 </>}
               </div> :
