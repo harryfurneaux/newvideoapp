@@ -4228,3 +4228,42 @@ input:-webkit-autofill:active {
 input:focus {
   background-color: transparent;
 }
+
+.settingsInput:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Custom File Input */
+.file-upload .file-upload-select {
+  display: block;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  /* background: #1a242f; */
+  overflow: hidden;
+  position: relative;
+  border-radius: 6px;
+}
+.file-upload .file-upload-select .file-select-button {
+  /* background: #161f27; */
+  padding: 1px 2px;
+  display: inline-block;
+  font-size: 16px;
+}
+.file-upload .file-upload-select .file-select-name {
+  display: inline-block;
+  padding: 1px 2px;
+  font-size: 16px;
+}
+.file-upload .file-upload-select:hover .file-select-button {
+  /* background: #324759; */
+  /* color: #ffffff; */
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+.file-upload .file-upload-select input[type="file"] {
+  display: none;
+}

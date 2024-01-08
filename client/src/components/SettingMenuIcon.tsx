@@ -18,7 +18,6 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
 
-
 const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
     $(".overlay.btn-close").hide();
@@ -42,8 +41,11 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-  const [notifyShow, setNotifyShow] = useState(false)
+  const [notifyTitle, setNotifyTitle] = useState("Settings Changed");
+  const [notifyShow, setNotifyShow] = useState(false);
+
   const { user } = useAuth()
+
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
     $(".overlay").hide();
@@ -109,13 +111,16 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
           <Icons iconNumber={1} />
         </button>
       </OverlayTrigger>
-      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} />
+      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} setNotifyTitle={setNotifyTitle} />
       <Elements stripe={stripePromise} >
         <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
       </Elements>
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
       <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} jobView={''} />
-      <Notify show={notifyShow} title="Settings Changed" handleClose={() => setNotifyShow(false)} />
+      <Notify show={notifyShow} title={notifyTitle} handleClose={() => {
+        setNotifyShow(false)
+        setNotifyTitle("Settings Changed")
+      }} />
     </>
   )
 }
