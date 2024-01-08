@@ -65,39 +65,53 @@ export class UsersService {
   async update(
     id: string,
     updateUserDto: UpdateUserDto,
-    file: Express.Multer.File,
+    file?: Express.Multer.File,
   ) {
     let user;
-
-    if (!(await this.UserModel.findById(id))) {
-      throw new NotFoundException('user not found');
-    }
-
-    if (updateUserDto.password) {
-      const hashedPassword = await hashPassword(updateUserDto.password);
-      updateUserDto.password = hashedPassword;
-    }
-
-    if (file) {
-      const profileImageUrl = this.mediaService.saveProfileImage(file);
+  
+    try {
       user = await this.UserModel.findById(id);
-
-      user.profile_image = profileImageUrl;
-      await user.save();
+  
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+  
+      if (Object.keys(updateUserDto).some(field => field !== 'password')) {
+        if (!(await comparePassword(updateUserDto.current_password, user.password))) {
+          throw new BadRequestException('Current password is incorrect');
+        }
+      }
+  
+      if (updateUserDto.password) {
+        if (!(await comparePassword(updateUserDto.current_password, user.password))) {
+          throw new BadRequestException('Current password is incorrect');
+        }
+  
+        const hashedPassword = await hashPassword(updateUserDto.password);
+        updateUserDto.password = hashedPassword;
+      }
+  
+      if (file) {
+        const profileImageUrl = this.mediaService.saveProfileImage(file);
+        user.profile_image = profileImageUrl;
+        await user.save();
+      }
+  
+      const updatedData = await this.UserModel.findByIdAndUpdate(
+        id,
+        updateUserDto,
+        {
+          new: true,
+        },
+      ).select('-password');
+  
+      updatedData['id'] = updatedData._id;
+      return updatedData;
+    } catch (error) {
+      throw error;
     }
-
-    const updatedData = await this.UserModel.findByIdAndUpdate(
-      id,
-      updateUserDto,
-      {
-        new: true,
-      },
-    ).select('-password');
-
-    updatedData['id'] = updatedData._id;
-    return updatedData;
   }
-
+  
   async remove(id: string): Promise<User | null> {
     return await this.UserModel.findByIdAndRemove(id);
   }

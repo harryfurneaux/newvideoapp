@@ -51,7 +51,9 @@ export class UsersController {
   async update(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
+    // @UploadedFile() file: Express.Multer.File,
     @UploadedFile(FileSizeValidationPipe, MediaTypeValidationPipe) file: Express.Multer.File,
+
   ) {
     return await this.usersService.update(id, updateUserDto, file);
   }

@@ -1,4 +1,4 @@
-import { IsOptional } from 'class-validator';
+import { IsOptional, IsNotEmpty } from 'class-validator';
 export class UpdateUserDto {
 
   @IsOptional()
@@ -19,6 +19,6 @@ export class UpdateUserDto {
   @IsOptional()
   password: string;
 
-  @IsOptional()
-  profile_image: Express.Multer.File;
+  @IsNotEmpty()
+  current_password: string;
 }
