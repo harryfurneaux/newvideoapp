@@ -23,7 +23,7 @@ const Notify = ({ type = "info", title = "notification", show = true, handleClos
 }
 
 
-const OptionButtons = ({ setMyQuestions, showSharedNotify, setShowNotify }: { setMyQuestions: any, showSharedNotify: any, setShowNotify: any }) => {
+const OptionButtons = ({ myQuestions = false, setMyQuestions, showSharedNotify, setShowNotify }: { myQuestions?: any, setMyQuestions: any, showSharedNotify: any, setShowNotify: any }) => {
 
 
   return (
@@ -31,11 +31,11 @@ const OptionButtons = ({ setMyQuestions, showSharedNotify, setShowNotify }: { se
       {showSharedNotify ?
         <div className="toast-shared-container"><Notify show={showSharedNotify} handleClose={() => setShowNotify(false)} title={'Here’s some other jobs you might be interested in...'} />
         </div> : <div className="option-btn">
-          <button className="lamdl-anwid radiusLeft" onClick={() => setMyQuestions(true)}>
+          <button className={`lamdl-anwid radiusLeft ${myQuestions ? 'active' : ''}`} onClick={() => setMyQuestions(true)}>
             <Icons iconNumber={31} />
             Your Questions
           </button>
-          <button className="lamdl-anwid radiusRight" onClick={() => setMyQuestions(false)}>
+          <button className={`lamdl-anwid radiusRight ${myQuestions ? '' : 'active'}`} onClick={() => setMyQuestions(false)}>
             <Icons iconNumber={107} />
             All Questions
           </button>

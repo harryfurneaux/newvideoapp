@@ -50,7 +50,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
                     </> : <></>}
                   </div>
                 ) : <>
-                  <OptionButtons setMyQuestions={setMyQuestions} showSharedNotify={showSharedNotify} setShowNotify={setShowNotify}/>
+                  <OptionButtons myQuestions={myQuestions} setMyQuestions={setMyQuestions} showSharedNotify={showSharedNotify} setShowNotify={setShowNotify}/>
                   <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
                 </>}
               </div> :
