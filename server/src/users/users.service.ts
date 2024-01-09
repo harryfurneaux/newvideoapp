@@ -65,55 +65,52 @@ export class UsersService {
   async update(
     id: string,
     updateUserDto: UpdateUserDto,
-    file?: Express.Multer.File,
+    file: Express.Multer.File,
   ) {
     let user;
   
-    try {
-      user = await this.UserModel.findById(id);
-  
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-      const isPasswordSet = await this.isPasswordSet(user.id);
-
-      if (Object.keys(updateUserDto).some(field => field !== 'password')) {
-        if (!(await comparePassword(updateUserDto.current_password, user.password))) {
-          throw new BadRequestException('Current password is incorrect');
-        }
-      }
-  
-      if (updateUserDto.password) {
-        if (!(await comparePassword(updateUserDto.current_password, user.password))) {
-          throw new BadRequestException('Current password is incorrect');
-        }
-  
-        const hashedPassword = await hashPassword(updateUserDto.password);
-        updateUserDto.password = hashedPassword;
-      }
-  
-      if (file) {
-        const profileImageUrl = this.mediaService.saveProfileImage(file);
-        user.profile_image = profileImageUrl;
-        await user.save();
-      }
-  
-      const updatedData = await this.UserModel.findByIdAndUpdate(
-        id,
-        updateUserDto,
-        {
-          new: true,
-        },
-      ).select('-password');
-  
-      updatedData['id'] = updatedData._id;
-      return updatedData;
-    } catch (error) {
-      throw error;
+    if (!(await this.UserModel.findById(id))) {
+      throw new NotFoundException('User not found');
     }
+  
+    const isPasswordSet = await this.isPasswordSet(id);
+  
+    if (!isPasswordSet.isPassword && !updateUserDto.current_password) {
+      throw new BadRequestException('Current password is required');
+    }
+  
+    if (updateUserDto.current_password) {
+      const existingUser = await this.UserModel.findById(id).select('password');
+  
+      if (!existingUser || !(await comparePassword(updateUserDto.current_password, existingUser.password))) {
+        throw new BadRequestException('Invalid current password');
+      }
+    }
+  
+    if (updateUserDto.password) {
+      const hashedPassword = await hashPassword(updateUserDto.password);
+      updateUserDto.password = hashedPassword;
+    }
+  
+    if (file) {
+      const profileImageUrl = this.mediaService.saveProfileImage(file);
+      user = await this.UserModel.findById(id);
+      user.profile_image = profileImageUrl;
+      await user.save();
+    }
+  
+    const updatedData = await this.UserModel.findByIdAndUpdate(
+      id,
+      updateUserDto,
+      {
+        new: true,
+      },
+    ).select('-password');
+  
+    updatedData['id'] = updatedData._id;
+    return updatedData;
   }
-
-
+  
   
   async remove(id: string): Promise<User | null> {
     return await this.UserModel.findByIdAndRemove(id);
