@@ -51,7 +51,7 @@ const CheckForm = ({
       })
   }
   return (
-    <Fade>
+    <div className="d-flex justify-content-center">
       <div className="kjjfds-janwkea1 kjjfds-janwkea2 kjasdkamsl-wjmd white-form height-none">
         <div className="check-form">
           <div className="d-flex">
@@ -60,15 +60,15 @@ const CheckForm = ({
               <h3>{newJob?.job_title || 'Job Title'}</h3>
               {/* <h5><Icons iconNumber={16} /> {interviewer?.job_recruiter || interviewer?.interviewer?.company_name || 'Company Name'}</h5>
                 <h6><Icons iconNumber={17} /> {interviewer?.interviewer?.location || 'Location'}</h6> */}
-              <h5><Icons iconNumber={16} /> {user?.company_name || 'Company Name'}</h5>
-              <h6><Icons iconNumber={17} /> {user?.location || 'Location'}</h6>
+              <h5 className="d-flex align-items-center"><Icons iconNumber={16} /> {user?.company_name || 'Company Name'}</h5>
+              <h6 className="d-flex align-items-center"><Icons iconNumber={17} /> {user?.location || 'Location'}</h6>
             </div>
           </div>
           <div className="check-form-body">
             {questions?.length ? (
               questions.filter((q: any) => questionIds.find((qi: any) => qi === q._id)).map((q: any, idx: number) => {
                 return (
-                  <CheckFormBox key={idx} questions={q} forcedActive={true} />
+                  <CheckFormBox key={idx} questions={q} forcedActive={false} />
                 );
               })
             ) : null}
@@ -92,7 +92,7 @@ const CheckForm = ({
           <Icons iconNumber={62} />
         </div>
       </div>
-    </Fade>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const Card = ({ showFav, setMainScreen, showScreen, setshowScreen, interview, ha
       </h5>
     </div>
     {interview?.favourite ? (
-      <div className='odjfks-amds'>
+      <div className='odjfks-amds' style={{ top: '2.5px', right: '2.5px' }}>
         <Icons iconNumber={65.5} />
       </div>
     ) : null}

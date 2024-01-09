@@ -40,6 +40,7 @@ const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction
         }
       }}
       className="kadfmsod-wem sadamodajm-e dsjskd-kads no-shadow check-item"
+      style={{ width: 303 }}
     >
       <div>
         <Icons iconNumber={isActive > 0 || _isActive(question?._id) ? 15 : 24} />
@@ -48,7 +49,7 @@ const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction
       <div className="timing" style={{ marginLeft: 10 }}>
         {" "}
         <Icons iconNumber={18} />
-        <h6>{question?.time_duration}</h6>
+        <h6>{question?.time_duration}s</h6>
       </div>
     </button>
   )

@@ -25,6 +25,14 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   const { fullscreen } = useFullscreen();
 
   useEffect(() => {
+    const _window: any = window;
+    if(_window?.setShowScreen > -1) {
+      setShowScreen(_window?.setShowScreen);
+      delete _window?.setShowScreen;
+    }
+  }, []);
+  
+  useEffect(() => {
     if (jobView) {
       setJobViewContext(jobView)
     }

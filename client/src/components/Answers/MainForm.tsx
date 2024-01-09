@@ -51,7 +51,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
       // }
       // else 
       if (myAnswers) {
-        const filtered = response?.data?.filter((obj: any) => obj.interviewee._id == user?.id)
+        const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
         handleFilteration(filtered)
       } else {
         handleFilteration(response.data)

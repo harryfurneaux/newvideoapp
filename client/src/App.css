@@ -1052,6 +1052,10 @@ body {
   z-index: 0;
 }
 
+.backButtonDivOnModal {
+  background: rgba(84, 104, 255, 0.1);
+}
+
 .backButtonDiv:hover {
   background-color: rgba(84, 104, 255, 0.3);
 }
@@ -1828,7 +1832,7 @@ body {
   max-width: 287px;
   height: 69px;
   position: fixed;
-  bottom: 8px;
+  bottom: 0px;
   background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
@@ -2789,9 +2793,9 @@ body .kdjflkas-sad {
 /* Primary modal */
 
 .modal-primary .modal-content {
-  background-color: #5468FF !important;
+  background-color: #5468FF;
   border: none !important;
-  border-radius: 23px !important;
+  border-radius: 23px;
 }
 
 .modal-primary .modal-header {
@@ -4345,4 +4349,21 @@ input:focus {
 }
 .file-upload .file-upload-select input[type="file"] {
   display: none;
+}
+
+
+.filters-modal-css {
+  padding: 26px !important;
+  padding-bottom: 16px !important;
+  height: auto !important;
+  background-color: rgba(99, 117, 255, 0.7) !important;
+}
+
+
+.z-index-1060 {
+  z-index: 1060 !important;
+}
+
+.question-delete-hover:hover path {
+  fill-opacity: 0.8;
 }

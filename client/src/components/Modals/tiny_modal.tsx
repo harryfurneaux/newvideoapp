@@ -8,7 +8,8 @@ import Notify from "../Notify";
 
 const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScreen }: { show: boolean, handleClose: any, type: string, setMainScreen: any, jobView?: any, setshowScreen?: any }) => {
   const { user, logout } = useAuth();
-  const [deleteNotify, setDeleteNotify] = useState(false)
+  const [notifyMessage, setNotifyMessage] = useState('')
+  const [deleteNotify, setDeleteNotify] = useState(false);
 
   useEffect(() => {
     if (show && type == "delete_interview") {
@@ -74,9 +75,24 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
               handleClose()
               setMainScreen(2)
               if (typeof setshowScreen === 'function') {
+                setNotifyMessage('Interview Deleted!')
                 setDeleteNotify(true)
                 setMainScreen(0);
               }
+            })
+          },
+          classes: 'w-50'
+        }
+      case "delete_question":
+        return {
+          title: 'Delete Question',
+          message: 'Are you sure want to delete this Question?',
+          confirmText: 'Delete',
+          onConfirm: () => {
+            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/questions/${jobView?._id}`).then((res) => {
+              handleClose()
+              setNotifyMessage('Question deleted')
+              setDeleteNotify(true)
             })
           },
           classes: 'w-50'
@@ -112,7 +128,7 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           {getByType()?.confirmText}
         </Button>
       </Modal.Footer>
-      <Notify show={deleteNotify} title="Interview Deleted!" handleClose={() => setDeleteNotify(false)} />
+      <Notify show={deleteNotify} title={notifyMessage} handleClose={() => setDeleteNotify(false)} />
     </Modal >
   )
 }

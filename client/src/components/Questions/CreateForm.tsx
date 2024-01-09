@@ -7,6 +7,7 @@ import { Zoom } from "react-awesome-reveal";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import authConfig from '../../configs/auth'
+import TinyModal from "../Modals/tiny_modal";
 
 const CreateForm = ({
   setShowScreen,
@@ -34,6 +35,7 @@ const CreateForm = ({
     job_recruiter: "",
   })
   const [newJob, setNewJob] = useState<any>(null);
+  const [toBeDeleteQuestion, setToBeDeleteQuestion] = useState<any>(null);
 
   useEffect(() => {
     getQuestions()
@@ -55,6 +57,18 @@ const CreateForm = ({
       .catch(console.error)
   }
 
+  const handleDeleteClose = () => {
+    const questionData: any = [...questionIds]
+    const index = questionData.indexOf(toBeDeleteQuestion._id)
+    questionData.splice(index, 1)
+    setQuestionsIds(questionData)
+    setselected(selected - 1)
+
+    setToBeDeleteQuestion(null);
+    getQuestions()
+    setShowScreen(3)
+  };
+
   // const addJob = (params: any) => {
   //   axios
   //     .post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addJobEndPoint}`, params)
@@ -67,11 +81,11 @@ const CreateForm = ({
   // }
 
   useEffect(() => {
-    if (showScreen == 3) {
-      $(".kdnklms-awendwd").css("z-index", -1);
-    } else {
-      $(".kdnklms-awendwd").css("z-index", 1000);
-    }
+    // if (showScreen == 3) {
+    //   $(".kdnklms-awendwd").css("z-index", -1);
+    // } else {
+    //   $(".kdnklms-awendwd").css("z-index", 1000);
+    // }
 
     try {
       // Check if the input field is in focus and set the arrowBtn fill - opacity to 1 if it is
@@ -115,10 +129,11 @@ const CreateForm = ({
 
   return (
     // <Fade direction="left" big>
-    <div className="kjkndask-ankdnwd">
+    <div className="kjkndask-ankdnwd" style={{ position: 'fixed', borderRadius: 0, left: 0, top: 0 }}>
       <div
-        className={`leftSideHeader kjsfdkl-adsj ${showScreen >= 3 ? "w-100" : ""
+        className={`leftSideHeader kjsfdkl-adsj ${showScreen >= 3 ? "w-50" : ""
           }`}
+        style={{ padding: 15 }}
       >
         <div
           onClick={() => {
@@ -159,131 +174,157 @@ const CreateForm = ({
           <></>
         )}
       </div>
-      <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd ${showScreen == 3 ? "kdjsf-awejdn" : showScreen == 5 ? "screen-5" : ""}`} >
-        <div className="kjdsfms-awddw2">
-          <Icons iconNumber={36} />
-          <Icons iconNumber={showScreen >= 2 ? 36 : 37} />
-          <Icons iconNumber={showScreen >= 3 ? 36 : 37} />
-          <Icons iconNumber={showScreen == 5 ? 36 : showScreen == 3 || 4 ? 37 : 36} />
-        </div>
-        <div className="kjdfsajs0edjawe-232">
-          <h4>
-            {showScreen == 1
-              ? "What's the Position?"
-              : showScreen == 2
-                ? "Who's Asking?"
-                : showScreen == 3
-                  ? "Which Questions?"
-                  : showScreen == 4
-                    ? "What’s the Question?"
-                    : showScreen == 5
-                      ? "All Good?"
-                      : "What’s it About?"}
-          </h4>
-          <h5>
-            {showScreen == 1
-              ? "ENTER JOB TITLE"
-              : showScreen == 2
-                ? "ENTER RECRUITER NAME"
-                : showScreen == 3
-                  ? "SELECT 3 QUESTIONS YOU’D LIKE TO ASK"
-                  : showScreen == 4
-                    ? "ENTER QUESTION"
-                    : showScreen == 5
-                      ? "CHECK BEFORE PUBLISHING"
-                      : "ENTER ASKER SUBJECT"}
-          </h5>
-        </div>
-        {showScreen == 3 ? (
-          <Zoom>
-            <div className="kjdaflj-adjkwmd">
-              {questions?.map((data: any, index: number,) => (
-                <Question key={index} setselected={setselected} selected={selected} questions={data} questionIds={questionIds} setQuestionIds={setQuestionsIds} />
-              ))}
-            </div>
-            <div className="pos-rel">
-              {selected >= 3 ? <button onClick={() => {
-                const jobFinalData = { ...job }
-                jobFinalData.questions = questionIds;
-                // setJobView(jobFinalData);
-                setNewJob(jobFinalData);
-                // addJob(jobFinalData)
-              }} className="kjdflj0-jsads">
-                CONTINUE
-                <Icons iconNumber={85} />
-              </button> : <button className="hkjdsf-dsjfin fw-light">
-                <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
-              </button>}
-            </div>
-          </Zoom>
-        ) : showScreen == 5 ? (
-          <>
-            <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} questionIds={questionIds} questions={questions} newJob={newJob} setJobView={setJobView} />
-          </>
-        ) : (
-          <div className="sfjkdfjsd-dsnaf">
-            <div className={`djsfisdmo-sfmef ${valuec.length > 5 ? "ijfako-asdm" : ""}`}>
-              {
-
-                showScreen == 1 ? <>
-
-                  <input id="questionInput" placeholder="e.g Bar Staff Position Available" name='job_title' className="ojdfkak-ksmd" type="text" onChange={(e) => {
-                    handleJobData(e)
-                  }} />
-                  <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
-                    // if (showScreen == 1) 
-                    setShowScreen(2);
-                    // if (showScreen == 2) setShowScreen(3);
-                    // if (showScreen == 4) setShowScreen(3);
-                  }}
-                  >
-                    <Icons iconNumber={38} />
-
+      <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd align-items-start ${showScreen == 3 ? "kdjsf-awejdn" : showScreen == 5 ? "screen-5" : ""}`}>
+        <div className="absolute top-0 left-0 w-50">
+          <div className="kjdsfms-awddw2 d-flex align-items-center justify-content-center">
+            <Icons iconNumber={36} />
+            <Icons iconNumber={showScreen >= 2 ? 36 : 37} />
+            <Icons iconNumber={showScreen >= 3 ? 36 : 37} />
+            <Icons iconNumber={showScreen == 5 ? 36 : showScreen == 3 || 4 ? 37 : 36} />
+          </div>
+          <div className="kjdfsajs0edjawe-232">
+            <h4>
+              {showScreen == 1
+                ? "What's the Position?"
+                : showScreen == 2
+                  ? "Who's Asking?"
+                  : showScreen == 3
+                    ? "Which Questions?"
+                    : showScreen == 4
+                      ? "What’s the Question?"
+                      : showScreen == 5
+                        ? "All Good?"
+                        : "What’s it About?"}
+            </h4>
+            <h5>
+              {showScreen == 1
+                ? "ENTER JOB TITLE"
+                : showScreen == 2
+                  ? "ENTER RECRUITER NAME"
+                  : showScreen == 3
+                    ? "SELECT 3 QUESTIONS YOU’D LIKE TO ASK"
+                    : showScreen == 4
+                      ? "ENTER QUESTION"
+                      : showScreen == 5
+                        ? "CHECK BEFORE PUBLISHING"
+                        : "ENTER ASKER SUBJECT"}
+            </h5>
+          </div>
+          {showScreen == 3 ? (
+            <div className="d-flex justify-content-center flex-column">
+              <div className="kjdaflj-adjkwmd align-self-center">
+                {questions?.map((data: any, index: number,) => (
+                  <Question key={index}
+                    setselected={setselected}
+                    selected={selected}
+                    questions={data}
+                    questionIds={questionIds}
+                    setQuestionIds={setQuestionsIds}
+                    mainStyle={data?.user_id?._id === user?.id ? {
+                      background: 'linear-gradient(180deg, rgba(84, 104, 255, 0.59) 0%, rgba(84, 104, 255, 0.34) 100%)',
+                      position: 'relative',
+                      height: 74,
+                      paddingRight: 46
+                    } : {
+                      position: 'relative',
+                      height: 74,
+                      paddingRight: 46
+                    }}
+                    timerStyle={{
+                      position: 'absolute',
+                      top: 0,
+                      right: 0,
+                      height: '100%',
+                      paddingRight: 12,
+                      paddingLeft: 12,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      background: questionIds.find((qId: any) => qId === data._id) ? '' : 'rgba(0, 0, 0, 0.05)'
+                    }}
+                    showDelete={questionIds.find((qId: any) => qId === data._id) && data?.user_id?._id === user?.id}
+                    onDeleteClick={(e: any) => {
+                      e.stopPropagation();
+                      setToBeDeleteQuestion(data);
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="d-flex justify-content-center">
+                {selected >= 3 ? (
+                  <button onClick={() => {
+                    const jobFinalData = { ...job }
+                    jobFinalData.questions = questionIds;
+                    // setJobView(jobFinalData);
+                    setNewJob(jobFinalData);
+                    // addJob(jobFinalData)
+                  }} className="kjdflj0-jsads pos-rel" style={{ boxShadow: '0px 10px 25px 0px rgba(84, 104, 255, 0.3)' }}>
+                    CONTINUE
+                    <Icons iconNumber={85} />
                   </button>
-                </>
-                  : showScreen == 2 ?
+                ) : (
+                  <button className="hkjdsf-dsjfin fw-light">
+                    <span className="fs-6">{selected}</span> OF <span className="fs-6">3</span> QUESTIONS SELECTED
+                  </button>
+                )}
+              </div>
+            </div>
+          ) : showScreen == 5 ? (
+            <>
+              <CheckForm showScreen={showScreen} setShowScreen={setShowScreen} questionIds={questionIds} questions={questions} newJob={newJob} setJobView={setJobView} />
+            </>
+          ) : (
+            <div className="sfjkdfjsd-dsnaf">
+              <div className={`djsfisdmo-sfmef mt-0 ${(showScreen == 1 && job?.job_title?.length >= 3) ||
+                (showScreen == 2 && job?.job_recruiter?.length >= 3) ||
+                (showScreen == 4 && newQuestion?.question?.length >= 3)
+                ? "ijfako-asdm" : ""}`}>
+                {
+                  showScreen == 1 ? (
+                    <>
+                      <input id="questionInput" placeholder="e.g Bar Staff Position Available" name='job_title' className="ojdfkak-ksmd" type="text" onChange={(e) => {
+                        handleJobData(e)
+                      }} autoComplete="off" value={job?.job_title || ''} autoFocus />
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_title?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
+                        if (job?.job_title?.length >= 3) {
+                          setShowScreen(2);
+                        }
+                      }}>
+                        <Icons iconNumber={38} />
+                      </button>
+                    </>
+                  ) : showScreen == 2 ? (
                     <>
                       <input id="questionInput" placeholder="e.g Recruitment Agency" name="job_recruiter" className="ojdfkak-ksmd" type="text" onChange={(e) => {
                         handleJobData(e)
-                      }} />
-                      <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
-                        // if (showScreen == 1) 
-                        setShowScreen(3);
-                        // if (showScreen == 2) setShowScreen(3);
-                        // if (showScreen == 4) setShowScreen(3);
-                      }}
-                      >
+                      }} autoComplete="off" value={job?.job_recruiter || ''} autoFocus />
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_recruiter?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
+                        if (job?.job_recruiter?.length >= 3) {
+                          setShowScreen(3);
+                        }
+                      }}>
                         <Icons iconNumber={38} />
-
                       </button>
-
                     </>
-
-                    :
+                  ) : (
                     <>
                       <input id="questionInput" placeholder="e.g What’s your 5 year plan?" name="question" className="ojdfkak-ksmd" type="text" onChange={(e) => {
                         handleQuestionChange(e)
-                      }} />
-                      <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
-                        // if (showScreen == 1) 
-
-                        addQuestion(newQuestion).then((res) => {
-
-                          getQuestions()
-                          setShowScreen(3)
-                        })
-
-
-                        // if (showScreen == 2) setShowScreen(3);
-                        // if (showScreen == 4) setShowScreen(3);
-                      }}
-                      >
+                      }} autoComplete="off" value={newQuestion?.question || ''} autoFocus />
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${newQuestion?.question?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
+                        if (newQuestion?.question?.length >= 3) {
+                          addQuestion(newQuestion).then((res) => {
+                            getQuestions()
+                            setShowScreen(3)
+                          })
+                        }
+                      }} >
                         <Icons iconNumber={38} />
-
                       </button>
                     </>
-              }
-              {/* <input
+                  )
+                }
+                {/* <input
                 placeholder={showScreen == 1
                   ? "e.g Bar Staff Position Available "
                   : showScreen == 2
@@ -298,16 +339,21 @@ const CreateForm = ({
                 type="text"
                 id="questionInput"
               /> */}
-              {/* <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
+                {/* <button id="arrowBtn" className={`no-sh arrowBtn ${valuec.length > 5 ? "ijfako-asdm" : ""}`} onClick={() => {
                 if (showScreen == 1) setShowScreen(2);
                 if (showScreen == 2) setShowScreen(3);
                 if (showScreen == 4) setShowScreen(3);
               }}>
                 <Icons iconNumber={38} />
               </button> */}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        {toBeDeleteQuestion?._id ? (
+          <TinyModal show={toBeDeleteQuestion} handleClose={handleDeleteClose} type="delete_question" setMainScreen={''} jobView={toBeDeleteQuestion} />
+        ) : null}
       </div>
     </div >
     // </Fade>
