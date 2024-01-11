@@ -2,15 +2,15 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 //@ts-ignore
 import Icons from '../icons';
-import VideoForm from '../Home/Video';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
+import VideoForm from './Video';
 
 const RightButtons = ({ setMainScreen }: { setMainScreen?: any }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1180px)' });
 
 
-  return <div className={`kljadjfkl-jaem kjdlamkdl-asdj ${isTab ? "adaslkhdfjksj-ajenw" : ""}`}>
+  return <div className={`kljadjfkl-jaem ${isTab ? "adaslkhdfjksj-ajenw" : ""}`} style={{ left: '20px', position: 'relative' }}>
     <button className='no-shadow circleButtons' onClick={() => {
       setMainScreen(0)
     }}>
@@ -21,13 +21,13 @@ const RightButtons = ({ setMainScreen }: { setMainScreen?: any }) => {
       setMainScreen(0)
     }}>
       <Icons iconNumber={isTab ? 71 : 69} />
-      Edit
+      Forward
     </button>
     <button className='no-shadow circleButtons' onClick={() => {
       setMainScreen(0)
     }}>
       <Icons iconNumber={isTab ? 72 : 48} />
-      Messages
+      Message
     </button>
     <button className='no-shadow circleButtons' onClick={() => {
       setMainScreen(0)
@@ -38,12 +38,12 @@ const RightButtons = ({ setMainScreen }: { setMainScreen?: any }) => {
   </div>
 }
 
-const Carousel = ({ selectedInterview, setMainScreen }: { selectedInterview?: any, setMainScreen?: any }) => {
+const Carousel = ({ selectedInterview, setMainScreen, paginate = 1 }: { selectedInterview?: any, setMainScreen?: any, paginate?: any }) => {
   const [favourite, setFavourite] = useState(selectedInterview?.favourite || false);
 
   return (
     <div className='wh-100 kjsdfl-asjdm' style={{ position: 'absolute' }}>
-      <VideoForm selectedInterview={selectedInterview} favourite={favourite} />
+      <VideoForm selectedInterview={selectedInterview} favourite={favourite} paginate={paginate} />
       <RightButtons setMainScreen={setMainScreen} />
     </div>
   )

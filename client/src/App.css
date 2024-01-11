@@ -775,9 +775,9 @@ body {
   top: 3px;
   border-radius: 21px;
 
-  /* background:
-    radial-gradient(circle, transparent 70%, black 150%),
-    url('./images/i6.png'); */
+  background:
+    radial-gradient(circle, transparent 70%, black 150%);
+    /* url('./images/i6.png'); */
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -4366,4 +4366,20 @@ input:focus {
 
 .question-delete-hover:hover path {
   fill-opacity: 0.8;
+}
+
+/* Carousal Nav Buttons */
+.carousal-btn:hover svg rect {
+  fill: #D4D9FF;
+}
+
+/* Muted Icon */
+.ic-muted {
+  position: absolute;
+  bottom: 95px;
+  left: 20px
+}
+
+.ic-muted:hover svg g {
+  opacity: 1;
 }
