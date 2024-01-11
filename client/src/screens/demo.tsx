@@ -57,15 +57,15 @@ const DemoScreen = ({ setMainScreen, mainScreen = '' }: { setMainScreen: any, ma
       } else {
         setSelectedInterview(mainAllInterviews[prevIndex]);
       }
-      if(paginate == 1) {
-        setPaginate(3);
-      } else if(paginate == 2) {
-        setPaginate(1);
-      } else if(paginate == 3) {
-        setPaginate(2);
-      } else {
-        setPaginate(1);
-      }
+    }
+    if(paginate == 1) {
+      setPaginate(2);
+    } else if(paginate == 2) {
+      setPaginate(3);
+    } else if(paginate == 3) {
+      setPaginate(1);
+    } else {
+      setPaginate(1);
     }
   };
 
@@ -79,11 +79,11 @@ const DemoScreen = ({ setMainScreen, mainScreen = '' }: { setMainScreen: any, ma
         setSelectedInterview(mainAllInterviews[nextIndex]);
       }
       if(paginate == 1) {
-        setPaginate(2);
-      } else if(paginate == 2) {
         setPaginate(3);
-      } else if(paginate == 3) {
+      } else if(paginate == 2) {
         setPaginate(1);
+      } else if(paginate == 3) {
+        setPaginate(2);
       } else {
         setPaginate(1);
       }
