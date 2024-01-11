@@ -43,8 +43,10 @@ const VideoForm = ({ selectedInterview, favourite, paginate = 1 }: { selectedInt
 
   useEffect(() => {
     if (videoRef?.current) {
+      clearLoader();
       if (playing) {
         setPlayPromise(videoRef.current.play());
+        loadingBar(counterSeconds);
       } else {
         if (playPromise != undefined) {
           playPromise.then((_: any) => {
@@ -76,13 +78,13 @@ const VideoForm = ({ selectedInterview, favourite, paginate = 1 }: { selectedInt
     }
   };
 
-  const loadingBar = () => {
+  const loadingBar = (s = 30) => {
     const progressBar = document.getElementById('progress-bar');
     const timerElement = document.getElementById('timer');
     const totalDuration = 30; // Set the total animation duration in seconds
     const animationFrames = 60; // Number of frames per second for smoother animation
     const frameDuration = 1000 / animationFrames;
-    let seconds = totalDuration; // Set the desired countdown duration in seconds
+    let seconds = s; // Set the desired countdown duration in seconds
 
     function updateTimer() {
       if (timerElement && progressBar) {
@@ -104,7 +106,7 @@ const VideoForm = ({ selectedInterview, favourite, paginate = 1 }: { selectedInt
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', marginLeft: 60 }}>
       <div className="kjjfds-janwkea4" style={{ overflow: 'hidden', borderRadius: 23, height: 585 }}>
         {/* <img src={require("../../images/i6.png")} /> */}
         <div className={`jljdskaflsd d-flex`} style={{ background: 'linear-gradient(182.61deg, rgba(0, 0, 0, 0.2) -0.73%, rgba(0, 0, 0, 0) 93.15%)' }}>
@@ -194,6 +196,13 @@ const VideoForm = ({ selectedInterview, favourite, paginate = 1 }: { selectedInt
           <div className='kjfds-jandsa'>
             <div className="loading-bar" id="loading-bar">
               <div className="lb-progress-bar" id="progress-bar"></div>
+              <div style={{ position: 'absolute', right: '12px', top: '15px' }}>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.49998 0.980469C12.6423 0.980469 16 4.33825 16 8.48047C16 12.6227 12.6423 15.9805 8.49998 15.9805C4.35791 15.9805 1 12.6227 1 8.48047C1 4.33825 4.35791 0.980469 8.49998 0.980469Z" fill="black" fill-opacity="0.01" stroke="#ADB8FA" stroke-width="1.25" />
+                  <line x1="8.375" y1="8.35547" x2="8.375" y2="4.60547" stroke="#ADB8FA" stroke-width="1.25" stroke-linecap="round" />
+                  <line x1="8.72064" y1="8.58968" x2="11.7303" y2="10.1387" stroke="#ADB8FA" stroke-width="1.25" stroke-linecap="round" />
+                </svg>
+              </div>
               <div className="lb-timer" id="timer"></div>
             </div>
           </div>
