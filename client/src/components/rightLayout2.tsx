@@ -74,7 +74,7 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
         <img src={require("../images/i2.png")} />
       </div>
       <div className="homescreenFloater2 c-pr">
-        <img src={require("../images/i3.png")} />
+        {/* <img src={require("../images/i3.png")} /> */}
       </div>
     </div>
     <div className='kjladsm-sajdw'>

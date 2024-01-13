@@ -7,12 +7,13 @@ import { useAuth } from "../../hooks/useAuth";
 
 import { Elements, useStripe } from '@stripe/react-stripe-js';
 
-import { loadStripe } from '@stripe/stripe-js';
+//import { loadStripe } from '@stripe/stripe-js';
 
 import axios from "axios";
 import StripeModal from "./stripe_modal";
 const stripeApi: any = process.env.STRIPE_API
-const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
+//const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
+
 // const options = {
 //   clientSecret: 'sk_test_51OPPTIKkpvXbNi5Lgh0kPJ8X4qC9yv1dFtewlO1JzvAMdex4r1ecBeV03djNr1HWvwGSRAszsOo6zZOACTHuV1BT00geP6ZmbQ',
 // };

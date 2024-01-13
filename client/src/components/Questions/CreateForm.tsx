@@ -174,7 +174,7 @@ const CreateForm = ({
           <></>
         )}
       </div>
-      <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd align-items-start ${showScreen == 3 ? "kdjsf-awejdn" : showScreen == 5 ? "screen-5" : ""}`}>
+      <div className={`kjdfkksd-aweinmd hkasjfdlmf-dsfsd align-items-start ${showScreen == 3 ? "kdjsf-awejdn" : showScreen == 5 ? "kdjsf-awejdn" : ""}`}>
         <div className="absolute top-0 left-0 w-50">
           <div className="kjdsfms-awddw2 d-flex align-items-center justify-content-center">
             <Icons iconNumber={36} />

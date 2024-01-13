@@ -55,11 +55,11 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
     setHasError('');
     setSignUpFormErrors([]);
     setErrorMessage('');
-    
-    const data = {...signUpFormData};
+
+    const data = { ...signUpFormData };
     const parts = data.birth_date.split('|').map((d: any) => d.trim());
     data.birth_date = `${parts[1]}-${parts[0]}-${parts[2]}`
-    
+
     signup(data)
       .then((res) => {
         setshowScreen(4)
@@ -78,11 +78,11 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
 
   return (
     <div className={`kjjfds-janwkea ${className}`}>
-      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted style={{ height: 472 }}></video>
+      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted style={{ height: 'auto' }}></video>
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+      <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 45 }}>
         <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h3 style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Some final details...</h3>
           <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center', color: '#fff' }}>If you don’t have a company, just leave it blank</h4>
@@ -138,15 +138,17 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
                 }} className="no-shadow">Log in</button>
               </div>
             </div>
+
+            <div className="continueBtnDiv snasdj-sawdne" style={{ marginBottom: 20 }}>
+              <button onClick={handleContinue} className="btn kjlsjadm-kdmsd-2">
+                COMPLETE SIGNUP
+                <Icons iconNumber={94} />
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="continueBtnDiv snasdj-sawdne" style={{ marginBottom: 20 }}>
-          <button onClick={handleContinue} className="btn kjlsjadm-kdmsd-2">
-            COMPLETE SIGNUP
-            <Icons iconNumber={94} />
-          </button>
-        </div>
+
       </div>
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={64} />

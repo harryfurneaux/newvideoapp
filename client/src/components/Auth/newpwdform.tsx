@@ -50,7 +50,7 @@ const NewPwdForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 55 }}>
         <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`} style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Create Password</h3>
           <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center' }}>Password must be at least 8 characters</h4>
@@ -76,18 +76,20 @@ const NewPwdForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
                 <Icons iconNumber={9} />
                 <input type="password" name="confirm_password" placeholder="Confirm Password" onChange={handleFormChange} autoComplete="off" style={{ flex: 1 }} />
               </div>
+
+              <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
+                <button onClick={handleContinue} className={`btn`}>
+                  CONFIRM CHANGES
+                  <div className="kdksa-ajwmd">
+                    <Icons iconNumber={7} />
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
-          <button onClick={handleContinue} className={`btn`}>
-            CONFIRM CHANGES
-            <div className="kdksa-ajwmd">
-              <Icons iconNumber={7} />
-            </div>
-          </button>
-        </div>
+
       </div>
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={isTabletOrMobile ? 64 : 62} />

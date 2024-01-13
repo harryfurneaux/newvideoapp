@@ -40,16 +40,18 @@ const ShareForm = ({
       <Notify title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
       <Flip direction="horizontal">
         <div className="jkljfkld-jdskfe">
-          <div className="kjjfds-janwkea hover-anim">
+          <div className="kjjfds-janwkea hover-anim sharebox-kdj-w">
             {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
+            <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted style={{ height: 'auto', width:'338px !important' }}></video>
             <div className='wave-box'>
               <div className='wave'></div>
             </div>
             <div className="jhjij-sanwe kjljdfn-jadmw" style={{
-              paddingLeft: '33px',
-              paddingRight: '33px',
-              paddingTop: '32px'
+              height:'100%',
+              
+              
             }}>
+
               <h3>Share Questions</h3>
               <h4 className="ksajdsd-sjad">
                 Invite people to Answer
@@ -84,15 +86,16 @@ const ShareForm = ({
                   </button>
                 } />
               </div>
-              <div className="continueBtnDiv">
+              <div className="continueBtnDiv snasdj-sawdne">
                 <button onClick={() => {
                   setShowScreen(7);
-                }} className="btn jhdfksjan-a0jwe">
+                }} className="btn kjlsjadm-kdmsd-2">
                   CLOSE
                   <Icons iconNumber={43} />
                 </button>
               </div>
             </div>
+            
             <div className="ldkjfal0-fdsnfe">
               <Icons iconNumber={64} />
             </div>

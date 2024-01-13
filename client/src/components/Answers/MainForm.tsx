@@ -129,6 +129,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
 
   return (
     <div className="leftSideMain">
+      
       <div className="option-btn">
         <button className={`lamdl-anwid radiusLeft ${myAnswers ? 'active' : ''}`} onClick={() => {
           setFilteredInterviews([])
@@ -142,12 +143,14 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           Nearby
         </button>
       </div>
+
       <div className="kdhfkjjdsfo">
         <Icons iconNumber={32} />
         <h5 className="mksaldkamaw-jdwa">London, UK</h5>
       </div>
+      
       <div className="leftSideContent">
-        <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start" style={{ gap: 10, padding: '4px 14px' }}>
+        <Row className="row-cols-3 row-cols-sm-4 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start mxrow-answers" style={{gap:10, padding: '4px 14px'}} >
 
           {filteredInterviews?.length ? filteredInterviews.map((interview, index) => (
             <Col className="p-0 mb-0 d-inline-flex justify-content-center align-items-center" style={{ cursor: 'pointer', maxWidth: '120px', maxHeight: '226px' }} key={index}>
@@ -160,6 +163,7 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
           )}
         </Row>
       </div>
+      
     </div>
   );
 }

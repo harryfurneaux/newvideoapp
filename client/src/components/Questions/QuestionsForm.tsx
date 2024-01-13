@@ -37,6 +37,8 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
     window.history.pushState(null, '', '/');
   };
 
+  
+
   const getJobs = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.getJobsEndpPoint}`)
@@ -46,6 +48,11 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
           setJobs(filtered);
           // redirectToSharedJob(filtered);
         } else {
+          
+
+         response.data.reverse();
+
+        
           setJobs(response.data)
           // redirectToSharedJob(response.data);
         }
@@ -56,6 +63,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
 
   return (
     <div className={`leftSideContent ${myQuestions ? jobs?.length ? '' : 'no-question-prompt-div' : ''}`} style={fullscreen ? { maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' } : {}}>
+       
       {myQuestions ? (
         <>
           {jobs?.length ?
@@ -81,7 +89,7 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
         </>
       )}
       
-    </div >
+     </div >
   );
 };
 export default QuestionForm

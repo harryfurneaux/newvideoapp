@@ -52,7 +52,7 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className="jhjij-sanwe" style={{ marginTop: 65 }}>
+      <div className="jhjij-sanwe" style={{ marginTop: 125 }}>
         <h3 style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Sign in</h3>
         <div className="socialButtonsDiv">
           <FacebookLogin
@@ -97,7 +97,7 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
             <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with Email</span>
           </button>
         </div>
-        <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">
+        {/* <div className="jdaskfjnas-ajaied njskakd-kawmed px-1">
           <div className="ansks-adn">
             <button
               onClick={() => {
@@ -110,8 +110,8 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
                 setshowScreen(5);
               }} className="no-shadow fw-light">Forgot Password?</button>
           </div>
-        </div>
-        <div className="continueBtnDiv">
+        </div> */}
+        {/* <div className="continueBtnDiv">
           <button
             onClick={() => {
               setshowScreen(1);
@@ -119,7 +119,7 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
             CONTINUE
             <Icons iconNumber={77} />
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={64} />

@@ -813,7 +813,7 @@ body {
 .kjjfds-janwkea4,
 .rightSideBg,
 .rightSideBg img {
-  border-radius: 14px;
+  border-radius: 19px;
 }
 
 .hasfkja0ew-sd h6 {
@@ -1741,8 +1741,10 @@ body {
 .kdhfkjjdsfo {
   position: relative;
   z-index: 1;
-  top: 10px;
-  left: 35px;
+ /* top: 10px;
+  left: 35px;*/
+  top: 25px;
+  left: 68px;
   display: flex;
   align-items: center;
   margin-bottom: -10px;
@@ -1948,6 +1950,9 @@ body .jjlkajsd-awje-msakm3e .btn {
   padding: 14px;
   display: grid;
   gap: 6px;
+  max-width: 672px;
+  min-height:100vh;
+  margin-bottom: 60px;
 }
 
 @media (max-width: 512px) {
@@ -2614,6 +2619,7 @@ body .kdjflkas-sad {
   line-height: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
+  filter: drop-shadow(0px 0px 9px #ADB8FA);
 }
 
 .klajdfkls-ds svg {
@@ -4383,3 +4389,43 @@ input:focus {
 .ic-muted:hover svg g {
   opacity: 1;
 }
+.jksd-kosaeknae:focus-within {
+  border-color:#aeb8ff; 
+  outline: none;
+}
+
+.jksd-kosaeknae input:focus:not(:-webkit-autofill) {
+  background-color: transparent !important; 
+  
+}
+
+
+.jksd-kosaeknae:focus-within:not(:-webkit-autofill) {
+  background-color: transparent !important; 
+}
+
+
+.jksd-kosaeknae input:-webkit-autofill {
+  background-color: transparent !important; 
+}
+.jksd-kosaeknae input:-webkit-autofill:hover {
+  background-color: transparent !important; 
+}
+/* .mxrow-answers{
+  gap: 10!important;
+  padding: '4px 14px'!important
+}
+
+@media screen and (min-width: 1525px) {
+  
+  .mxrow-answers{
+    gap: 20!important;
+    padding: '4px 14px'!important
+  }
+} */
+
+.sharebox-kdj-w{
+
+  width:338px !important;
+}
+

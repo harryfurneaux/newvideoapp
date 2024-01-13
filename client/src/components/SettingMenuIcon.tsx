@@ -12,11 +12,11 @@ import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 import TinyModal from "./Modals/tiny_modal";
 import Notify from "./Notify";
-import { loadStripe } from '@stripe/stripe-js';
+//import { loadStripe } from '@stripe/stripe-js';
 import { useAuth } from "../hooks/useAuth";
-import { Elements } from "@stripe/react-stripe-js";
+//import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
+//const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
 
 const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
@@ -131,9 +131,11 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
         </button>
       </OverlayTrigger>
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
-      <Elements stripe={stripePromise} >
+      
+      {/*<Elements stripe={stripePromise} >
         <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
-      </Elements>
+          </Elements>*/}
+
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
       <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} jobView={''} />
       <Notify show={notifyShow} title={notifyTitle} handleClose={() => {

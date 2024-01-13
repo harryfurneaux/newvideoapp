@@ -3,11 +3,20 @@ import Icons from "../../components/icons";
 import { useMediaQuery } from 'react-responsive'
 import { errorByKey } from "../../helper";
 import { validateEmail } from "../../utils/validate-email";
+import PrivacyTerms from "../Modals/privacy_terms";
 
 const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFormErrors, setErrorMessage = null, signUpFormData = {} }: { setshowScreen: any, className?: string, handleFormChange: any, signUpFormErrors: any, setErrorMessage?: any, signUpFormData?: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
   const [hasError, setHasError] = useState('');
+  const [showPrivacyTerms, setShowPrivacyTerms] = useState(false);
+
+  const handlePrivacyTermsModalClose = () => {
+    setShowPrivacyTerms(false)
+  };
+  const handlePrivacyTermsModalShow = () => {
+    setShowPrivacyTerms(true);
+  };
 
   const showError = (key: any) => {
     return hasError === key;
@@ -55,7 +64,7 @@ const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 45 }}>
         <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`} style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Create Account</h3>
           <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center' }}>Password must be at least 8 characters</h4>
@@ -82,11 +91,13 @@ const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
               </div>
             </div>
             <div className="jdaskfjnas-ajaied">
-              <div onClick={() => {
-                setisAgree(!isAgree)
-              }} className="sandka-jwe">
+              <div className="sandka-jwe">
                 <Icons iconNumber={isTabletOrMobile ? 57 : isAgree ? 11 : 74} />
-                <h5 className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}>I agree to the terms & conditions</h5>
+                <h5 className={`${isTabletOrMobile ? "jjlkajsd-awje" : ""}`}> 
+                <span onClick={() => {
+                setisAgree(!isAgree)
+              }} > I agree to the </span>
+                <a href="javascript:void(0);" onClick={() => handlePrivacyTermsModalShow()}>terms & conditions</a> </h5>
               </div>
               <div className={`${isTabletOrMobile ? "jdsfknla-wnejnw" : ""}`}>
                 <button onClick={() => {
@@ -95,8 +106,7 @@ const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
               </div>
             </div>
           </div>
-        </div>
-        <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
+          <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
           <button onClick={handleContinue} className={`btn mb-0`}>
             CONTINUE
             <div className="kdksa-ajwmd">
@@ -104,10 +114,13 @@ const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFor
             </div>
           </button>
         </div>
+        </div>
+       
       </div>
       <div className="ldkjfal0-fdsnfe">
         <Icons iconNumber={isTabletOrMobile ? 64 : 62} />
       </div>
+              <PrivacyTerms  handleClose={handlePrivacyTermsModalClose} show={showPrivacyTerms}></PrivacyTerms>
     </div>
   );
 };
