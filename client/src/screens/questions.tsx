@@ -84,7 +84,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
               
               
-              {showScreen == 6 ? (
+              {showScreen == 6 || showScreen == 7 ? (
                 <>
                   
                   <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />

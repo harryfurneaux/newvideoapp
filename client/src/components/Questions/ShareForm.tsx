@@ -38,7 +38,8 @@ const ShareForm = ({
   return (
     <>
       
-      <Notify classes="notifi-sharelink" title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />
+      {notify_show && (<Notify classes="notifi-sharelink" title="Direct link copied!" show={notify_show} handleClose={() => setNotifyShow(false)} />)}
+      
       
       <Flip direction="horizontal">
         <div className="jkljfkld-jdskfe">
@@ -48,7 +49,7 @@ const ShareForm = ({
             <div className='wave-box'>
               <div className='wave'></div>
             </div>
-            <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 0, paddingTop: 56 }}>
+            <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 71, paddingTop: 56 }}>
 
               <h3>Share Questions</h3>
               <h4 className="ksajdsd-sjad">

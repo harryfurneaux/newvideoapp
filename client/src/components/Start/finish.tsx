@@ -29,7 +29,14 @@ const FinishForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
       });
       //alert("sdffs")
     }
+   
   }, [videoRef, canvasRef]);
+  useEffect(() => {
+    console.log("sdfdfsdfsdfsdf");
+    // setTimeout(() => {
+      setScreen(3);
+      //}, 3000);
+  }, []);
 
   const _showHover = () => {
     setHoverShow(true);
@@ -69,12 +76,12 @@ const FinishForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
               <Icons iconNumber={playing ? 20.1 : 20} />
               <h5>{playing ? 'Stop' : 'Watch'}</h5>
             </div>
-            <div className="circleButtons" onClick={() => {
+            {/* <div className="circleButtons" onClick={() => {
               setScreen(3)
             }}>
               <Icons iconNumber={21} />
               <h5>Next</h5>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={`klasdjf-jdsifm d-${playing ? 'none' : 'flex'}`}></div>

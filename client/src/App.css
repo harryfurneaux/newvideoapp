@@ -2371,10 +2371,12 @@ body .jjlkajsd-awje-msakm3e .btn {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
 }
 
 .kldfjads svg path {
   fill: white;
+  fill: linear-gradient(183deg, rgba(0, 0, 0, 0.10) -0.73%, rgba(0, 0, 0, 0.00) 93.15%);
 }
 
 .kldfjads svg {
@@ -2388,7 +2390,8 @@ body .jjlkajsd-awje-msakm3e .btn {
   font-weight: 500;
   line-height: 18px;
   position: relative;
-  left: 6px;
+  left: 7px;
+  top:-4px;
 }
 
 .kldfjads h5 {
@@ -2398,7 +2401,7 @@ body .jjlkajsd-awje-msakm3e .btn {
   font-weight: 700;
   line-height: 29.856px;
   position: relative;
-  top: 10px;
+  top: 4px;
   left: 8px;
 }
 
@@ -2413,7 +2416,8 @@ body .jjlkajsd-awje-msakm3e .btn {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 13px;
+  padding-top: 9px;
+  padding-left: 13px;
 }
 
 .odjfks-amds svg {
@@ -2637,14 +2641,19 @@ body .kdjflkas-sad {
   fill: #00D9CD;
 }
 
-.ijfako-asdm input:focus{
-  filter: drop-shadow(0px 0px 19.078947067260742px #ADB8FA);
-  
+.ijfako-asdm{
+
 }
 
-.ijfako-asdm button {
+.ijfako-asdm input:focus{
+   filter: drop-shadow(0px 0px 19.078947067260742px #ADB8FA);
+   
+}
+
+
+.ijfako-asdm-btn {
   
-  background-color: #00D9CD !important;
+  background-color: #00D9CD!important;
 } 
 
 .hasdkjashd-d:hover {

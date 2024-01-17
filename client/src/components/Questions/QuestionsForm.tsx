@@ -69,7 +69,9 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
           {jobs?.length ?
             <div className="h-auto" style={{display: 'grid',gap: '6px'}}>
               {jobs?.map((data: any, index: any) =>
-                <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
+              
+              <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
+              
               )
               }
             </div>

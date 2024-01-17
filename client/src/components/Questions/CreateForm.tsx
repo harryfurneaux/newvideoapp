@@ -285,18 +285,18 @@ const CreateForm = ({
           ) : (
             <div className="sfjkdfjsd-dsnaf">
 
-              <div className={`djsfisdmo-sfmef mt-0 ${(showScreen == 1 && job?.job_title?.length >= 3) ||
-                (showScreen == 2 && job?.job_recruiter?.length >= 3) ||
-                (showScreen == 4 && newQuestion?.question?.length >= 3)
+              <div className={`djsfisdmo-sfmef mt-0 ${(showScreen == 1 && job?.job_title?.length >= 6) ||
+                (showScreen == 2 && job?.job_recruiter?.length >= 6) ||
+                (showScreen == 4 && newQuestion?.question?.length >= 6)
                 ? "ijfako-asdm" : ""}`}>
                 {
                   showScreen == 1 ? (
                     <>
-                      <input id="questionInput" placeholder="e.g Bar Staff Position Available" name='job_title' className="ojdfkak-ksmd" type="text" onChange={(e) => {
+                      <input id="questionInput" placeholder="e.g Bar Staff Position Available" name='job_title' className="ojdfkak-ksmd"  type="text" onChange={(e) => {
                         handleJobData(e)
                       }} autoComplete="off" value={job?.job_title || ''} autoFocus />
-                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_title?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
-                        if (job?.job_title?.length >= 3) {
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_title?.length >= 6 ? "ijfako-asdm-btn" : ""}`} onClick={() => {
+                        if (job?.job_title?.length >= 6) {
                           setShowScreen(2);
                         }
                       }}>
@@ -308,8 +308,8 @@ const CreateForm = ({
                       <input id="questionInput" placeholder="e.g Recruitment Agency" name="job_recruiter" className="ojdfkak-ksmd" type="text" onChange={(e) => {
                         handleJobData(e)
                       }} autoComplete="off" value={job?.job_recruiter || ''} autoFocus />
-                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_recruiter?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
-                        if (job?.job_recruiter?.length >= 3) {
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${job?.job_recruiter?.length >= 6 ? "ijfako-asdm-btn" : ""}`} onClick={() => {
+                        if (job?.job_recruiter?.length >= 6) {
                           setShowScreen(3);
                         }
                       }}>
@@ -321,8 +321,8 @@ const CreateForm = ({
                       <textarea id="questionInput" placeholder="e.g What’s your 5 year plan?" name="question" className="ojdfkak-ksmd" onChange={(e) => {
                         handleQuestionChange(e)
                       }} autoComplete="off" value={newQuestion?.question || ''} autoFocus />
-                      <button id="arrowBtn" className={`no-sh arrowBtn ${newQuestion?.question?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
-                        if (newQuestion?.question?.length >= 3) {
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${newQuestion?.question?.length >= 6 ? "ijfako-asdm-btn" : ""}`} onClick={() => {
+                        if (newQuestion?.question?.length >= 6) {
                           addQuestion(newQuestion).then((res) => {
                             getQuestions()
                             setShowScreen(3)

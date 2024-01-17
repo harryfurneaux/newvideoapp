@@ -11,6 +11,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
   const [question, setQuestion] = useState<any>(null);
   const [status, setStatus] = useState("waiting");
   const [count, setCount] = useState(3);
+  const [paginate, setPaginate] = useState(1);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [capturing, setCapturing] = useState(false);
   const [hasCaptured, setHasCaptured] = useState(false);
@@ -86,7 +87,12 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
       setRecorded(_recorded);
       setRecordedChunks([]);
       setHasCaptured(false);
-      setScreen(3);
+      setScreen(2);
+      setPaginate(2)
+      setTimeout(() => {
+        setScreen(3);
+        setPaginate(3)
+      }, 3000);
     }
   }
 
@@ -181,6 +187,13 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
               status == "recoding" ? null :
                 <Icons iconNumber={106 + count - 3} />
           }
+        </div>
+        <div style={{ position: 'absolute', bottom: '95px', left: '135px' }}>
+          <svg width="64" height="12" viewBox="0 0 64 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="6" r="6" fill={paginate == 1 ? '#06FBED' : 'white'} fill-opacity={paginate == 1 ? '0.8' : '0.5'} />
+            <circle cx="57.5918" cy="6" r="6" fill={paginate == 2 ? '#06FBED' : 'white'} fill-opacity={paginate == 2 ? '0.8' : '0.5'} />
+            <circle cx="31.7969" cy="6" r="6" fill={paginate == 3 ? '#06FBED' : 'white'} fill-opacity={paginate == 3 ? '0.8' : '0.5'} />
+          </svg>
         </div>
         <div className='kdjasldk-ajsdmkd'>
         </div>
