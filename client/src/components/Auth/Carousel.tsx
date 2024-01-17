@@ -27,8 +27,10 @@ const RightButtons = ({ hideMenu, setChatUser, selectedInterview, setAllIntervie
         }).catch(() => { })
       }
     }}>
-      <Icons iconNumber={isTab ? 70 : 68} />
-      {favourite ? 'Un-Favourite' : 'Favourite'}
+
+      {/* {favourite ? 'Un-Favourite' : 'Favourite'} */}
+      {favourite ? (<><Icons iconNumber={118} />
+        Un-Favourite</>) : (<><Icons iconNumber={isTab ? 70 : 68} /> Favourite</>)}
     </button>
     <button className='no-shadow circleButtons d-none'>
       <Icons iconNumber={isTab ? 71 : 69} />

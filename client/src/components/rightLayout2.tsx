@@ -3,11 +3,40 @@ import Icons from './icons';
 import SimpleCheckBox from './simpleCheck';
 import SettingMenuIcon from './SettingMenuIcon';
 import { useAuth } from '../hooks/useAuth';
-
+import Typed from "typed.js";
 const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = {}, mainScreen = null }: { setMainScreen: any, setShowScreen: any, showScreen?: any, style?: any, mainScreen?: any }) => {
   const { isLoggedIn } = useAuth();
   const [isLoginChecked, setIsLoginChecked] = useState(true);
-
+  useEffect(() => {
+    const typed = new Typed('.headline', {
+    strings: [
+    '"Tell me about <br/> yourself in <br/> <span class="activeTypedblue">30 seconds"</span>',
+    '"Tell me why <br/> you’re <span class="activeTypedgreen">perfect</span> for this role"',
+    '"Tell me about <br/> your relevant <br/><span class="activeTypedblue">experience"</span>',
+    '"Where do you <br/> see yourself in <br/> <span class="activeTypedgreen"> 5 years"</span>',
+    '"What are you <br/> <span class="activeTypedblue">passionate </span><br/> about?"',
+    '"How do you <br/> stay <span class="activeTypedgreen">organised</span><br/> at work?"',
+    '"Tell me about <br"/> a time you face <br/> <span class="activeTypedblue">adversity"</span>',
+    '"What makes you <br/> <span class="activeTypedgreen">unique"</span>',
+    '"Tell me what <br/> you most enjoy about <span class="activeTypedblue">work"</span>',
+    '"Tell me what <br/> makes you a great <br/><span class="activeTypedgreen">candidate"</span>',
+    '"Tell me what <br/> you’d like to <span class="activeTypedblue">ask</span> about the position"'
+    ],
+    startDelay: 1000,
+    typeSpeed: 50,
+    backSpeed: 35,
+    backDelay: 10000,
+    smartBackspace: true,
+    loop: true,
+    showCursor: true,
+    });
+    
+    
+    
+    return () => {
+    typed.destroy();
+    };
+    }, []);
   useEffect(() => {
     switch (showScreen) {
       case 0:
@@ -53,8 +82,8 @@ const RightLayout = ({ setMainScreen, setShowScreen, showScreen = null, style = 
     ) : null}
     <div className="nakds-ajews">
       <div className="topSectionDiv d-flex">
-        <h1>“</h1>
-        <h1 className='kjjsad-wjwdwe'>Tell me why you’re <span>perfect</span> for this role” </h1>
+        {/* <h1>“</h1> */}
+        <h1 className='kjjsad-wjwdwe headline'>Tell me why you’re <span>perfect</span> for this role” </h1>
       </div>
       <div className="middleSectionDiv">
         <SimpleCheckBox span="Choose" title=" 3 Questions" />

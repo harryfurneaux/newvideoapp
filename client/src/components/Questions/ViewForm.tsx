@@ -46,7 +46,7 @@ const ViewForm = ({ setMainScreen, setShowScreen, setPastScreen, jobView, setCha
             </div>
             <div className="njfk-amew">
               {_jobView?.questions?.length ? _jobView?.questions?.map((data: any, index: any) => (
-                <CheckFormBox questions={data} />
+                <CheckFormBox questions={data} forcedActive={false} />
               )) : null}
               {/* <CheckFormBox /> */}
               {/* <CheckFormBox />

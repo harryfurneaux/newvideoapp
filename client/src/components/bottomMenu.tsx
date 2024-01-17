@@ -1,8 +1,10 @@
 import React from 'react';
 import Icons from './icons';
-const BottomMenu = ({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen: any }) => {
+const BottomMenu = ({ mainScreen, setMainScreen, setShowScreen, showScreen }: { mainScreen: number, setMainScreen: any, setShowScreen:any, showScreen:any }) => {
     return <div className='kdnklms-awendwd'>
         <div onClick={() => {
+            
+            setShowScreen(0)      
             setMainScreen(1)
         }} className={`khjn0-jandw ${mainScreen == 1 ? 'active' : ''}`}>
             <Icons iconNumber={53} />

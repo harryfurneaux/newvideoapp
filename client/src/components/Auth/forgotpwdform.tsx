@@ -11,7 +11,7 @@ const ForgotPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, 
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""}`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0, paddingTop:117 }}>
         <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <img src={icon} className="mb-4 mx-auto" style={{ width: 90, height: 90 }} />
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`} style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Forgot Password?</h3>
@@ -32,7 +32,7 @@ const ForgotPwdForm = ({ setshowScreen, className = '' }: { setshowScreen: any, 
           </div>
         </div>
 
-        <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 20 }}>
+        <div className={`${isTabletOrMobile ? "jjlkajsd-awje-msakm3e" : ""} continueBtnDiv snasdj-sawdne`} style={{ marginBottom: 17 }}>
           <button onClick={() => {
             setshowScreen(6)
           }} className={`btn`}>

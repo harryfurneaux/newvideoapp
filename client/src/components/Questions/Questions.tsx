@@ -40,8 +40,8 @@ const Question = ({ setselected, selected, questions, questionIds, setQuestionId
       style={mainStyle}
     >
       <div className="d-flex align-items-center">
-        <Icons iconNumber={isHoverOrActive ? 40 : 39} />
-        <h5>{questions.question}</h5>
+        <div className="questionIcon"><Icons iconNumber={isHoverOrActive ? 40 : 39} /></div>
+        <div className="questionText"><h5>{questions.question}</h5></div>
       </div>
       <div style={timerStyle}>
         {showDelete ? (

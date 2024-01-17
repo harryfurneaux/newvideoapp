@@ -3,10 +3,11 @@ import { useMediaQuery } from "react-responsive";
 import Icons from "../../components/icons";
 import { useAuth } from "../../hooks/useAuth";
 import { errorByKey } from "../../helper";
-
+import { BsEyeSlash,BsEye  } from "react-icons/bs";
 const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen, setErrorMessage }: { setshowScreen: any, className?: string, setMainScreen: any, setErrorMessage: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const [isAgree, setisAgree] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [siginInForm, setSignInForm] = useState({
     email: '',
     password: '',
@@ -75,13 +76,15 @@ const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen, setError
       [name]: value,
     });
   };
-
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form-test ${className}`}>
       <div className='wave-box'>
         <div className='wave'></div>
       </div>
-      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""} email-login-form`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 45 }}>
+      <div className={`jhjij-sanwe ${isTabletOrMobile ? "klhdlfj-ajee2" : ""} email-login-form`} style={{ height: '100%', justifyContent: 'space-between', marginTop: 0, paddingTop: 179 }}>
         <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h3 className={`${isTabletOrMobile ? "" : "hkjsda-jesa"}`} style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Enter Login Details</h3>
           <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center' }}>Enter your email and password for this account</h4>
@@ -104,7 +107,15 @@ const EmailLoginForm = ({ setshowScreen, className = '', setMainScreen, setError
                 }
               }}>
                 <Icons iconNumber={9} />
-                <input type="password" placeholder="Password" name="password" onChange={handleChange} autoComplete="off" style={{ flex: 1 }} />
+                <input type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" onChange={handleChange} autoComplete="off" style={{ flex: 1 }} />
+                <span className="currser-pointer" onClick={togglePasswordVisibility}>
+
+                  {showPassword ? (
+                    <BsEyeSlash />
+                  ) : (
+                    <BsEye />
+                  )}
+                </span>
               </div>
             </div>
             <div className="jdaskfjnas-ajaied">

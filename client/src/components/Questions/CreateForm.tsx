@@ -52,7 +52,7 @@ const CreateForm = ({
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}${user?.id ? `?user_Id=${user?.id}` : ''}`)
       .then(async response => {
-        setQuestions(response.data)
+        setQuestions(response.data.reverse())
       })
       .catch(console.error)
   }
@@ -108,22 +108,31 @@ const CreateForm = ({
 
     }
   }, [showScreen]);
-
+  const MAX_TEXTAREA_LENGTH = 50;
+  const MAX_INPUT_LENGTH_1 = 35;
+  const MAX_INPUT_LENGTH_2 = 15;
   const handleQuestionChange = (e: any) => {
     const { name, value } = e.target;
+    const limitedValue = value.slice(0, MAX_TEXTAREA_LENGTH);
 
     setNewQuestion({
       ...newQuestion,
-      [name]: value,
+      [name]: limitedValue,
     });
   };
 
   const handleJobData = (e: any) => {
     const { name, value } = e.target;
+    let limitedValue = 100;
+    if (showScreen == 1) {
+      limitedValue = value.slice(0, MAX_INPUT_LENGTH_1);
 
+    } else if (showScreen == 2) {
+      limitedValue = value.slice(0, MAX_INPUT_LENGTH_2);
+    }
     setjob({
       ...job,
-      [name]: value,
+      [name]: limitedValue,
     });
   }
 
@@ -224,11 +233,11 @@ const CreateForm = ({
                       background: 'linear-gradient(180deg, rgba(84, 104, 255, 0.59) 0%, rgba(84, 104, 255, 0.34) 100%)',
                       position: 'relative',
                       height: 74,
-                      paddingRight: 46
+                      //paddingRight: 46
                     } : {
                       position: 'relative',
                       height: 74,
-                      paddingRight: 46
+                      //paddingRight: 46
                     }}
                     timerStyle={{
                       position: 'absolute',
@@ -275,6 +284,7 @@ const CreateForm = ({
             </>
           ) : (
             <div className="sfjkdfjsd-dsnaf">
+
               <div className={`djsfisdmo-sfmef mt-0 ${(showScreen == 1 && job?.job_title?.length >= 3) ||
                 (showScreen == 2 && job?.job_recruiter?.length >= 3) ||
                 (showScreen == 4 && newQuestion?.question?.length >= 3)
@@ -303,6 +313,22 @@ const CreateForm = ({
                           setShowScreen(3);
                         }
                       }}>
+                        <Icons iconNumber={38} />
+                      </button>
+                    </>
+                  ) : showScreen == 4 ? (
+                    <>
+                      <textarea id="questionInput" placeholder="e.g What’s your 5 year plan?" name="question" className="ojdfkak-ksmd" onChange={(e) => {
+                        handleQuestionChange(e)
+                      }} autoComplete="off" value={newQuestion?.question || ''} autoFocus />
+                      <button id="arrowBtn" className={`no-sh arrowBtn ${newQuestion?.question?.length >= 3 ? "ijfako-asdm" : ""}`} onClick={() => {
+                        if (newQuestion?.question?.length >= 3) {
+                          addQuestion(newQuestion).then((res) => {
+                            getQuestions()
+                            setShowScreen(3)
+                          })
+                        }
+                      }} >
                         <Icons iconNumber={38} />
                       </button>
                     </>

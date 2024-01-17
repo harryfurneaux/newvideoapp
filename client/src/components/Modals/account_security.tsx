@@ -41,7 +41,7 @@ const AccountSecurity = ({ show, handleClose, setNotifyShow, setMainScreen, setN
         <div className="modal-part row align-items-center">
           <div className="col">
             <img
-              className="profile-img p-0"
+              className="profile-img p-0 rounded-circle border border-2 border-white"
               src={user?.profile_image || profile_img}
               onError={(e: any) => {
                 e.target.src = profile_img;

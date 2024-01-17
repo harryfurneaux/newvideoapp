@@ -23,15 +23,21 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
 
   const [myQuestions, setMyQuestions] = useState(false)
   const { fullscreen } = useFullscreen();
+  const [selectedInterview, setSelectedInterview] = useState<any>(null);
 
   useEffect(() => {
+     
     
+  
     const _window: any = window;
     if(_window?.setShowScreen > -1) {
       setShowScreen(_window?.setShowScreen);
       delete _window?.setShowScreen;
     }
+   
+  
   }, []);
+
   
   useEffect(() => {
     if (jobView) {
@@ -42,24 +48,29 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
   return (
     <LinearBackground style={{ width: '100%' }}>
       <div className="pageContainer" style={{ padding: 25 }}>
-        <div className="rightSideDiv rightSideBg1 bg-transparent" style={fullscreen ? { width: '100%' } : {}}>
+        <div className="leftSideDiv" style={fullscreen ? { width: '100%' } : {}}>
           {
             showScreen <= 5 ?
-              <div className="leftSideMain">
+              <div className="leftSideMain leftsideWhithTransparentBg">
                 {pastScreen > 5 ? (
                   <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
-                    <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-                      <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                    {/* {pastScreen == 6 ? (
+                     
+                     
+                    {pastScreen == 6 ? (
                       <>
-                        <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
-                        <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                      </>
-                    ) : pastScreen == 7 ? <>
+                     
+                      <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                      <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+
+                                             </>
+                    ) : ( <>
+                     
                       <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
                       <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                    </> : <></>
-                    } */}
+                   
+                    
+                    </> )
+                    }
 
                   </div>
                 ) : <>
@@ -72,20 +83,22 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
           {showScreen > 5 ? (
             <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
               
-              <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-              <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
               
-              {/* {showScreen == 6 ? (
+              {showScreen == 6 ? (
                 <>
-                  <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
-                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                </>
-              ) : (
-                <>
+                  
                   <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
                   <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                
                 </>
-              )} */}
+              ) : showScreen == 8 ?  (
+                <>
+                <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
+                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
+                
+                
+                </>
+              ):<></>}
 
             </div>
           ) : <></>}
@@ -96,7 +109,7 @@ function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobVi
             <></>
           )}
           <div className="d-flex justify-content-center kdnklms-awendwd-11">
-            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+            <BottomMenu setShowScreen={setShowScreen} showScreen={showScreen} mainScreen={mainScreen} setMainScreen={setMainScreen} />
           </div>
         </div>
         <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none', borderRadius: 33 } : { borderRadius: 33 }} />

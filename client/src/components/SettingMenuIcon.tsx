@@ -70,22 +70,30 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
     $(".overlay").hide();
     setShowLogout(true);
   }
+  const [showOverlay, setShowOverlay] = useState(false);
 
+  const handleOverlayShow = () => {
+    setShowOverlay(true);
+  };
+
+  const handleOverlayHide = () => {
+    setShowOverlay(false);
+  };
   return (
     <>
-      <CloseButton className="overlay" variant="white" />
-      <OverlayTrigger trigger="click" placement="left" overlay={
-        <div className="overlay text-white">
+      {/* <CloseButton className="overlay" variant="white" /> */}
+      {/* <OverlayTrigger trigger="click" placement="left" overlay={ */}
+      {showOverlay && (<div className="postion_relative"><div className="overlay text-white" onMouseLeave={handleOverlayHide}>
           <div className="header text-center">
             {/* <img src={profile_img} className="profile" /> */}
             <img
-              className="profile"
+              className="profile rounded-circle border border-2 border-white"
               src={user?.profile_image || profile_img}
               onError={(e: any) => {
                 e.target.src = profile_img;
               }}
               alt="Profile Picture"
-              style={{ width: 100, height: 100 }}
+              style={{ width: 95, height: 95 }}
             />
             <h5>{user?.name}</h5>
             <div className="desc"><img src={company_img} /> {user?.company_name}</div>
@@ -115,12 +123,12 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
           <div onClick={handleLogoutShow} className='text-center logout'>
             <span>LOG OUT</span>
           </div>
-        </div>
-      } rootClose>
-        <button className="btn btn-show no-shadow border-0 outline-0">
+        </div></div>)}
+      {/* } rootClose> */}
+        <button  onMouseOver={handleOverlayShow} className="profile-img-btn btn btn-show no-shadow border-0 outline-0">
           {/* <Icons iconNumber={1} /> */}
           <img
-            className="profile-img p-0"
+            className="profile-img p-0 rounded-circle border border-2 border-white"
             src={user?.profile_image || profile_img}
             onError={(e: any) => {
               e.target.src = profile_img;
@@ -129,7 +137,7 @@ const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
             style={{ width: '45px', height: '45px' }}
           />
         </button>
-      </OverlayTrigger>
+      {/* </OverlayTrigger> */}
       <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
       
       {/*<Elements stripe={stripePromise} >

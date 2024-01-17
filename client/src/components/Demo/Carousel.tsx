@@ -10,7 +10,7 @@ const RightButtons = ({ setMainScreen }: { setMainScreen?: any }) => {
   const isTab = useMediaQuery({ query: '(max-width: 1180px)' });
 
 
-  return <div className={`kljadjfkl-jaem ${isTab ? "adaslkhdfjksj-ajenw" : ""}`} style={{ left: '20px', position: 'relative' }}>
+  return <div className={`kljadjfkl-jaem ${isTab ? "adaslkhdfjksj-ajenw" : ""}`} style={{ left: '15px', position: 'relative' }}>
     <button className='no-shadow circleButtons' onClick={() => {
       setMainScreen(0)
     }}>

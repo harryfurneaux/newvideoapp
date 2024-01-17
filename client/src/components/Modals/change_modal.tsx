@@ -219,12 +219,12 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = 
               value={data}
               onChange={(e) => setData(e.target.value)}
               name={item}
-              className="settingsInput w-100 text-white"
+              className="settingsInput w-100 text-white inputClss"
               type={getProp()?.inputType}
               autoComplete="off"
               placeholder={getProp()?.placeholder}
               autoFocus={true}
-              style={{ backgroundColor: '#4A60FF', border: "none", outline: "none", color: "#fff" }}
+            //  style={{ backgroundColor: '#4A60FF', border: "none", outline: "none", color: "#fff" }}
             />
           )}
         </div>
@@ -239,11 +239,11 @@ const ChangeModal = ({ show, handleClose, item, setNotifyShow, setNotifyTitle = 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             name="current_password"
-            className="settingsInput w-100"
+            className="settingsInput w-100 inputClss"
             type='password'
             autoComplete="off"
             placeholder="**********"
-            style={{ backgroundColor: '#4A60FF', border: "none", outline: "none", color: "#fff" }}
+            //style={{ backgroundColor: '#4A60FF', border: "none", outline: "none", color: "#fff" }}
           />
         </div>
       </Modal.Body>

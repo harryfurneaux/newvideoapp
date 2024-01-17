@@ -27,6 +27,7 @@ const FinishForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
         setPreviewUrl(imageDataUrl);
         video.currentTime = 0;
       });
+      //alert("sdffs")
     }
   }, [videoRef, canvasRef]);
 

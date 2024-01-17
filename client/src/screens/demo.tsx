@@ -94,7 +94,7 @@ const DemoScreen = ({ setMainScreen, mainScreen = '' }: { setMainScreen: any, ma
     <LinearBackground style={{ width: '100%' }}>
       <div className="pageContainer" style={{ padding: 0, gap: 0 }}>
 
-        <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent" style={{ borderRadius: 0 }}>
+        <div className="leftSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent" style={{ borderRadius: 0 }}>
           <div className="leftSideHeader kjsf-ajmwe w-100">
             <BackButton setMainScreen={setMainScreen} />
           </div>

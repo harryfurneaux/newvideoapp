@@ -58,10 +58,14 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           message: 'Are you sure want to delete this interview?',
           confirmText: 'Delete',
           onConfirm: () => {
-            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${jobView?._id}`).then((res) => {
-              setMainScreen(1)
-              handleClose()
-            })
+              axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${jobView?._id}`).then((res) => {
+                setshowScreen(0)
+                setMainScreen(1)
+               
+               handleClose()
+             })
+            
+            
           },
           classes: 'del-interview-modal'
         }

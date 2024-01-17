@@ -19,7 +19,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, j
       <Icons iconNumber={46} />
       Edit
     </button>
-    <button className="no-shadow circleButtons" onClick={() => setShowScreen(6)}>
+    <button className="no-shadow circleButtons" onClick={() => setShowScreen(8)}>
       <Icons iconNumber={47} />
       Share
     </button>
@@ -34,7 +34,7 @@ const RightButtons = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu, j
       <Icons iconNumber={49} />
       Delete
     </button>
-    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} jobView={jobView} />
+    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} setshowScreen={setShowScreen} jobView={jobView} />
   </div>
 }
 

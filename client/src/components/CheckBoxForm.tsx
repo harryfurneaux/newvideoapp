@@ -23,22 +23,22 @@ const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction
 
   return (
     <button
-      onMouseEnter={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
-        if (isActive == 0) {
-          setIsactive(1)
-        }
-      }}
-      onMouseLeave={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
-        if (isActive != 2)
-          setIsactive(0)
-      }}
-      onClick={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
-        if (isActive != 2) {
-          setIsactive(2)
-        } else {
-          setIsactive(0)
-        }
-      }}
+      // onMouseEnter={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
+      //   if (isActive == 0) {
+      //     setIsactive(1)
+      //   }
+      // }}
+      // onMouseLeave={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
+      //   if (isActive != 2)
+      //     setIsactive(0)
+      // }}
+      // onClick={noAction || forcedActive || _isActive(question?._id) ? () => { } : () => {
+      //   if (isActive != 2) {
+      //     setIsactive(2)
+      //   } else {
+      //     setIsactive(0)
+      //   }
+      // }}
       className="kadfmsod-wem sadamodajm-e dsjskd-kads no-shadow check-item"
       style={{ width: 303 }}
     >

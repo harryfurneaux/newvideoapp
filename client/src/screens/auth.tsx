@@ -148,7 +148,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
     if (showScreen <= 7) {//&& showScreen !== 3
       return (
         <div style={{ perspective: 1000, position: 'absolute' }}>
-          <Notify classes='top--80' type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
+          <Notify classes='top--85' type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
           <div className={`flip-element`} style={{ height: 472 }}>
             <SignInForm className={` m-0 flip-child flip-child-0 hover-anim`} setshowScreen={setshowScreen} setMainScreen={setMainScreen} />
             <AccountForm className={`d-none m-0 flip-child flip-child-1`} setshowScreen={setshowScreen} handleFormChange={handleChange} signUpFormErrors={signUpFormErrors} signUpFormData={signUpFormData} setErrorMessage={setErrorMessage} />
@@ -191,7 +191,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
     <LinearBackground style={{ width: '100%' }}>
       <div className="pageContainer" style={{ padding: 25 }}>
 
-        <div className="rightSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent">
+        <div className="leftSideDiv rightSideBg pos-rel over-hdn auth-page bg-transparent">
           <div className="leftSideHeader kjsf-ajmwe">
             {showScreen > 0 ? (
               <BackButton showScreen={showScreen} setshowScreen={setshowScreen} />
@@ -202,7 +202,7 @@ function Auth({ mainScreen, setMainScreen }: { mainScreen: number, setMainScreen
           {renderScreen()}
           <div className="d-flex justify-content-center kdnklms-awendwd-11">
             {isLoggedIn() ? (
-              <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+              <BottomMenu setShowScreen={setshowScreen} showScreen={setshowScreen} mainScreen={mainScreen} setMainScreen={setMainScreen} />
             ) : null}
           </div>
         </div>

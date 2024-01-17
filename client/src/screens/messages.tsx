@@ -185,7 +185,7 @@ function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, set
 
   return (
     <div className="pageContainer">
-      <div className="rightSideDiv rightSideBg1">
+      <div className="leftSideDiv">
         <LinearBackground />
         <div style={{ position: 'absolute', top: 0, width: '100%' }}>
           <div className="leftSideHeader" style={{ justifyContent: 'flex-start', marginBottom: 10 }}>
@@ -288,7 +288,7 @@ function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, set
             </Card>
           </div>
           <div className="d-flex justify-content-center kdnklms-awendwd-11">
-            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+            <BottomMenu setShowScreen={0} showScreen={0} mainScreen={mainScreen} setMainScreen={setMainScreen} />
           </div>
         </div>
       </div>

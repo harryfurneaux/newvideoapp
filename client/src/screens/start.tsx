@@ -104,7 +104,7 @@ function Next({ jobViewContext, setMainScreen, fromShareScreen, setJobViewContex
   return (
     <LinearBackground style={{ width: '100%' }}>
       <div className="pageContainer" style={{ padding: 25 }}>
-        <div className="rightSideDiv rightSideBg pos-rel bg-transparent" style={fullscreen ? { width: '100%' } : {}}>
+        <div className="leftSideDiv rightSideBg pos-rel bg-transparent" style={fullscreen ? { width: '100%' } : {}}>
           <TopMenu fromShareScreen={fromShareScreen} />
           {/* <div style={{ position: 'absolute' }}>
           {GetScreen(screen, setScreen, jobViewContext, recorded, setRecorded, setMainScreen)}

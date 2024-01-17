@@ -67,12 +67,12 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
       {myQuestions ? (
         <>
           {jobs?.length ?
-            <>
+            <div className="h-auto" style={{display: 'grid',gap: '6px'}}>
               {jobs?.map((data: any, index: any) =>
                 <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
               )
               }
-            </>
+            </div>
             : <div className=" d-flex p-10 align-items-center  justify-content-around text-white small no-question-prompt">
               <Icons iconNumber={109} />
               <p>You haven't created any interviews yet!</p>
@@ -82,11 +82,11 @@ const QuestionForm = ({ setMainScreen, setShowScreen, setJobView, myQuestions }:
           }
         </>
       ) : (
-        <>
+        <div className="h-auto" style={{display: 'grid',gap: '6px'}}>
           {jobs?.map((data: any, index: any) =>
             <JobTitle key={index} setMainScreen={setMainScreen} setShowScreen={setShowScreen} showMessage={false} jobData={data} setJobView={setJobView} />
           )}
-        </>
+        </div>
       )}
       
      </div >

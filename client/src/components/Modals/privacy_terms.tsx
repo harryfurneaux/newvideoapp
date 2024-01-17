@@ -1,7 +1,28 @@
 import { Button, Modal } from "react-bootstrap";
 
-const PrivacyTerms = ({ show, handleClose }: { show: boolean, handleClose: any }) => {
+interface Props {
+  show:boolean;
+  handleClose:any;
+  handleStatus?: (value: boolean) => void;
+}
+
+const PrivacyTerms = ({ show, handleClose, handleStatus }:Props ) => {
   // style={{ borderRadius: 23, minWidth: 520, height: 490 }}
+
+  const onHandleClose = () =>{
+
+    handleClose();
+    if (handleStatus)
+    handleStatus(false)
+  }
+
+  const onHandleAccept = () =>{
+
+    handleClose();
+    if (handleStatus)
+    handleStatus(true)
+  }
+
   return (
     <Modal
       show={show}
@@ -199,8 +220,8 @@ const PrivacyTerms = ({ show, handleClose }: { show: boolean, handleClose: any }
         Last Updated: 31 Dec, 2023
       </Modal.Body>
       <Modal.Footer className="border-0">
-        <Button variant="outline-dark" className="rounded-0" onClick={handleClose}>Cancel</Button>
-        <Button variant="dark" className="ms-2 rounded-0" onClick={handleClose}>Accept Terms & Conditions</Button>
+        <Button variant="outline-dark" className="rounded-0" onClick={onHandleClose}>Cancel</Button>
+        <Button variant="dark" className="ms-2 rounded-0" onClick={onHandleAccept}>Accept Terms & Conditions</Button>
       </Modal.Footer>
     </Modal>
   )

@@ -30,6 +30,7 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
 
   useEffect(() => {
     if (selectedInterview) {
+      
       setshowScreen(1);
     }
   }, [selectedInterview]);
@@ -61,7 +62,7 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
   return (
     <LinearBackground style={{ width: '100%' }}>
       <div className="pageContainer kladsfhjn-ajwe" style={{ padding: 25 }}>
-        <div className={showScreen == 1 ? "jkadshfkjf rightSideDiv rightSideBg pos-rel sjfdak-ajwe over-hdn bg-transparent" : "jkadshfkjf rightSideDiv rightSideBg1 pos-rel sjfdak-ajwe bg-transparent"}>
+        <div className={showScreen == 1 ? "jkadshfkjf leftSideDiv rightSideBg pos-rel sjfdak-ajwe over-hdn bg-transparent" : "jkadshfkjf leftSideDiv rightSideBg1 pos-rel sjfdak-ajwe bg-transparent"}>
           <div className="leftSideHeader kjsf-ajmwe" style={{ position: 'absolute', top: 0, width: '100%' }}>
             {showScreen == 1 ? (
               <Back setMainScreen={setMainScreen} setShowScreen={setshowScreen} />
@@ -70,7 +71,7 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
             )}
           </div>
           {showScreen != 1 ? (
-            <div className="leftsidediv">
+            <div className="leftsidediv leftsideWhithTransparentBg" style={{ height: 800 }}>
               {
                 showScreen == 0 ? <MainForm setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} selectedFilter={selectedFilter} setSelectedInterview={setSelectedInterview} allInterviews={mainAllInterviews} setAllInterviews={setMainAllInterviews} jobViewContext={jobViewContext} watchAns={watchAns} />
                   : <><FormMessage showScreen={showScreen} setshowScreen={setshowScreen} /></>
@@ -79,6 +80,7 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
                 showScreen == 0 ? <TopSec setMainScreen={setMainScreen} showScreen={showScreen} setshowScreen={setshowScreen} showFilter={showFilter} handleFilterShow={handleFilterShow} handleFilterClose={handleFilterClose} selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} /> : <div className="sjaklsa-wmjes"><Back setMainScreen={setMainScreen} setShowScreen={setshowScreen} /></div>
               }
             </div>
+            
           ) : (
             <></>
           )}
@@ -102,7 +104,9 @@ function View({ mainScreen, setMainScreen, setChatUser, jobViewContext, watchAns
           </>
             : null}
           <div className="d-flex justify-content-center kdnklms-awendwd-11">
-            <BottomMenu mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          
+            <BottomMenu setShowScreen={setshowScreen} showScreen={setshowScreen} mainScreen={mainScreen} setMainScreen={setMainScreen} />
+          
           </div>
         </div>
         <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setshowScreen} style={{ borderRadius: 33 }} />

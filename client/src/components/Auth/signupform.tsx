@@ -29,6 +29,14 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
     }
   }, [signUpFormErrors]);
 
+  // const handleBirthayClcik = (e:HTMLDivElement) => {
+
+  //   const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="birth_date"]');
+  //   if (_node) {
+  //     _node.focus();
+  //   }
+
+  // }
   const handleContinue = () => {
     if (typeof setErrorMessage === 'function') {
       if (!signUpFormData?.birth_date?.length) {
@@ -76,25 +84,29 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
       })
   };
 
+
   return (
     <div className={`kjjfds-janwkea ${className}`}>
-      <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted style={{ height: 'auto' }}></video>
       <div className='wave-box'>
-        <div className='wave'></div>
+        {/* <div className='wave'></div> */}
+        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted style={{ height: 'auto' }}></video>
+
       </div>
-      <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 45 }}>
-        <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="jhjij-sanwe" style={{ height: '100%', justifyContent: 'space-between', marginTop: 0 }}>
+        <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: 0, paddingTop: 100 }}>
           <h3 style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Some final details...</h3>
           <h4 style={{ fontFamily: 'HK Grotesk', fontSize: 12, fontWeight: 500, lineHeight: '28px', letterSpacing: 0, textAlign: 'center', color: '#fff' }}>If you don’t have a company, just leave it blank</h4>
 
           <div className="njskakd-kawmed">
-            <div className="emailRowDiv sadhasdn-we">
-              <div className={`jksd-kosaeknae ${showError('birth_date') ? 'error-border' : ''}`} style={{ cursor: 'text' }} onClick={(e) => {
-                const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="birth_date"]');
-                if (_node) {
-                  _node.focus();
-                }
-              }}>
+            <div className="emailRowDiv sadhasdn-we signupFinelDetail">
+              <div className={`jksd-kosaeknae ${showError('birth_date') ? 'error-border' : ''}`}
+                style={{ cursor: 'text' }} onClick={(e) => {
+                  const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="birth_date"]');
+                  if (_node) {
+                    _node.focus();
+                  }
+                  setBirthClicked(true)
+                }}>
                 <Icons iconNumber={58} />
                 <input
                   placeholder={birthClicked ? "DD   |    MM    |   YYYY" : "Birth Date"}
@@ -139,7 +151,7 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
               </div>
             </div>
 
-            <div className="continueBtnDiv snasdj-sawdne" style={{ marginBottom: 20 }}>
+            <div className="continueBtnDiv snasdj-sawdne" style={{}}>
               <button onClick={handleContinue} className="btn kjlsjadm-kdmsd-2">
                 COMPLETE SIGNUP
                 <Icons iconNumber={94} />

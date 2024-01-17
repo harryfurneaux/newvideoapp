@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useMediaQuery } from "react-responsive";
 import { errorByKey } from "../../helper";
 import Icons from "../icons";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 
 const SignIn = ({ setShareScreen, setMainScreen, setFromShareScreen }: { setShareScreen: any, setMainScreen: any, setFromShareScreen: any }) => {
@@ -24,7 +25,10 @@ const SignIn = ({ setShareScreen, setMainScreen, setFromShareScreen }: { setShar
             [name]: value,
         });
     };
-
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
     return (
         <div className={`${isTabletOrMobile ? "kjjfds-janwkea" : "kjjfds-janwkea1 kjjfds-janwkea2"} white-form `} style={{ marginTop: "100px", marginBottom: "140px" }}>
             <div className='wave-box'>
@@ -42,7 +46,15 @@ const SignIn = ({ setShareScreen, setMainScreen, setFromShareScreen }: { setShar
                         </div>
                         <div className={`jksd-kosaeknae ${errorByKey(errors, 'email') || errorByKey(errors, 'password') ? 'error-border' : ''}`}>
                             <Icons iconNumber={9} />
-                            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+                            <input type={showPassword ? 'text' : 'password'} placeholder="Password" name="password" onChange={handleChange} />
+                            <span className="currser-pointer" onClick={togglePasswordVisibility}>
+
+                                {showPassword ? (
+                                    <BsEyeSlash />
+                                ) : (
+                                    <BsEye />
+                                )}
+                            </span>
                         </div>
                         {errorByKey(errors, 'email') || errorByKey(errors, 'password') ? (
                             <p className="error-message">Invalid email or password</p>

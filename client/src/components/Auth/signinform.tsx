@@ -48,11 +48,12 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
   });
   return (
     <div className={`kjjfds-janwkea ${className}`}>
-      {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
-      <div className='wave-box'>
-        <div className='wave'></div>
-      </div>
-      <div className="jhjij-sanwe" style={{ marginTop: 125 }}>
+     
+       <div className='wave-box'>
+         <div className='wave'></div> 
+        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
+      </div> 
+      <div className="jhjij-sanwe" style={{ marginTop: 137 }}>
         <h3 style={{ fontFamily: 'Roboto', fontSize: '16px', fontWeight: 600, lineHeight: '19px', letterSpacing: '0.6000000238418579px', textAlign: 'center' }}>Sign in</h3>
         <div className="socialButtonsDiv">
           <FacebookLogin
@@ -85,14 +86,14 @@ const SignInForm = ({ setshowScreen, className = '', setMainScreen }: { setshowS
         </div>
         <div className="jkdslafj-asdemk mt-1">
           <div className="jkdsfs-dajem"></div>
-          <h5 className="fw-light mt-1 mx-2">or</h5>
+          <h5 className="fw-light mx-2" style={{marginTop:10}}>or</h5>
           <div className="jkdsfs-dajem"></div>
         </div>
 
-        <div className="socialButtonsDiv mt-2">
+        <div className="socialButtonsDiv">
           <button className="btn" onClick={() => {
             setshowScreen(4)
-          }} style={{ borderRadius: 15, maxWidth: 284, height: 54, paddingLeft: 70, backgroundColor: '#324add', color: '#ffffff' }}>
+          }} style={{ borderRadius: 15, maxWidth: 284, height: 58, paddingLeft: 70, backgroundColor: '#324add', color: '#ffffff' }}>
             <Icons iconNumber={90} color="#ffffff" />
             <span style={{ fontSize: 12, lineHeight: '31.61px', fontWeight: 400 }}>Log in with Email</span>
           </button>

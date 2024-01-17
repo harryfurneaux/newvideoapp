@@ -86,7 +86,7 @@ const RecordForm = ({ setScreen, jobViewContext, recorded, setRecorded, classNam
       setRecorded(_recorded);
       setRecordedChunks([]);
       setHasCaptured(false);
-      setScreen(2);
+      setScreen(3);
     }
   }
 
