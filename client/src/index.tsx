@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 import App from './App';
+import Loading from './components/Loading/Loading'
 import reportWebVitals from './reportWebVitals';
 import linkedinAuth from './pages/linkedinAuth';
 import LinkedinAuth from './pages/linkedinAuth';
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <App />,
+    element: <Loading />,
   },
   {
     path: '/:job_id',
