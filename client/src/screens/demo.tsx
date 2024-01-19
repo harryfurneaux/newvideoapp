@@ -42,10 +42,10 @@ const DemoScreen = ({ setMainScreen, mainScreen = '' }: { setMainScreen: any, ma
   }
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/random',
-    ).then((res) => {
-      handleFilteration(res.data)
-    })
+    // axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/random',
+    // ).then((res) => {
+    //   handleFilteration(res.data)
+    // })
   }, [])
 
   const prevInterview = () => {

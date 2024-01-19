@@ -1,7 +1,5 @@
-import {gsap} from "gsap"
-// import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+import { gsap } from "gsap"
 import { MorphSVGPlugin } from "gsap-trial/MorphSVGPlugin";
-// import { MorphSVGPlugin } from "gsap/all";
 
 gsap.registerPlugin(MorphSVGPlugin);
 let duration = 0.44;

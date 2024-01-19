@@ -37,10 +37,10 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
   const navigate = useNavigate()
 
   const PaymentSuccess = (sessionId: any, userId: any) => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/stripe/${sessionId}`, { userId: userId }).then((res) => {
-      navigate('/')
+    // axios.post(`${process.env.REACT_APP_BACKEND_URL}/stripe/${sessionId}`, { userId: userId }).then((res) => {
+    //   navigate('/')
 
-    }).catch((err) => err)
+    // }).catch((err) => err)
 
 
   }
@@ -102,32 +102,32 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
 
   const handleRegister = (params: SignUpParams, errorCallback?: ErrCallbackType) => {
     return new Promise((resolve, rejects) => {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.registerEndpoint}`, params)
-        .then(async response => {
-          resolve(response)
-        })
-        .catch(err => {
-          rejects(err)
-          if (errorCallback) errorCallback(err)
-        })
+      // axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.registerEndpoint}`, params)
+      //   .then(async response => {
+      //     resolve(response)
+      //   })
+      //   .catch(err => {
+      //     rejects(err)
+      //     if (errorCallback) errorCallback(err)
+      //   })
     });
   }
 
   const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {
     return new Promise((resolve, rejects) => {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.loginEndpoint}`, params)
-        .then(async response => {
-          resolve(response)
-          setUser(response.data)
+      // axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.loginEndpoint}`, params)
+      //   .then(async response => {
+      //     resolve(response)
+      //     setUser(response.data)
 
-          if (response?.data?.token) {
-            window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.token);
-          }
-        })
-        .catch(err => {
-          rejects(err)
-          if (errorCallback) errorCallback(err)
-        })
+      //     if (response?.data?.token) {
+      //       window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.token);
+      //     }
+      //   })
+      //   .catch(err => {
+      //     rejects(err)
+      //     if (errorCallback) errorCallback(err)
+      //   })
     })
   }
 
@@ -139,14 +139,14 @@ const AuthProvider = ({ children, setMainScreen }: Props) => {
 
   const createQuestion = (params: any, errorCallback?: ErrCallbackType) => {
     return new Promise((resolve, rejects) => {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`, params)
-        .then(async response => {
-          resolve(response)
-        })
-        .catch(err => {
-          rejects(err)
-          if (errorCallback) errorCallback(err)
-        })
+      // axios.post(`${process.env.REACT_APP_BACKEND_URL}${authConfig.addQuestion}`, params)
+      //   .then(async response => {
+      //     resolve(response)
+      //   })
+      //   .catch(err => {
+      //     rejects(err)
+      //     if (errorCallback) errorCallback(err)
+      //   })
     })
   }
 

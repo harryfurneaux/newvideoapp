@@ -18,34 +18,34 @@ export class FacebookAuthController {
   }
   @Get('callback')
   async facebookAuthRedirect(@Req() req, @Res() res) {
-    try {
-      const AUTHORIZATION_CODE = req.query.code;
-      const response: any = await axios.get(
-        'https://graph.facebook.com/v18.0/oauth/access_token',
-        {
-          params: {
-            client_id: process.env.FACEBOOK_CLIENT_ID,
-            redirect_uri: process.env.FACEBOOK_CALLBACK_URL,
-            client_secret: process.env.FACEBOOK_CLIENT_SECRET,
-            code: AUTHORIZATION_CODE,
-          },
-        },
-      );
-      const userInfo = await axios.get('https://graph.facebook.com/v18.0/me', {
-        params: {
-          access_token: response.data.access_token,
-          fields: 'id,name,email',
-        },
-      });
-      const socialLoginResult = await this.userService.socialLogin(userInfo.data);
-      return res.status(HttpStatus.OK).json({ ...socialLoginResult });
-    } catch (error) {
-      console.error(error);
-      console.error('Error in facebookAuthRedirect:', error.message);
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: 'Internal Server Error',
-      });
-    }
+    // try {
+    //   const AUTHORIZATION_CODE = req.query.code;
+    //   const response: any = await axios.get(
+    //     'https://graph.facebook.com/v18.0/oauth/access_token',
+    //     {
+    //       params: {
+    //         client_id: process.env.FACEBOOK_CLIENT_ID,
+    //         redirect_uri: process.env.FACEBOOK_CALLBACK_URL,
+    //         client_secret: process.env.FACEBOOK_CLIENT_SECRET,
+    //         code: AUTHORIZATION_CODE,
+    //       },
+    //     },
+    //   );
+    //   const userInfo = await axios.get('https://graph.facebook.com/v18.0/me', {
+    //     params: {
+    //       access_token: response.data.access_token,
+    //       fields: 'id,name,email',
+    //     },
+    //   });
+    //   const socialLoginResult = await this.userService.socialLogin(userInfo.data);
+    //   return res.status(HttpStatus.OK).json({ ...socialLoginResult });
+    // } catch (error) {
+    //   console.error(error);
+    //   console.error('Error in facebookAuthRedirect:', error.message);
+    //   return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+    //     statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+    //     message: 'Internal Server Error',
+    //   });
+    // }
   }
 }

@@ -29,30 +29,30 @@ function View({ mainScreen, setMainScreen, chatUser }: { mainScreen: number, set
   useEffect(() => {
     if (chatUser?.interviewer?._id || user?.id) {
       const _id = chatUser?.interviewer?._id || user?.id;
-      axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/all-interviews-by-interviewer/' + _id).then((res: any) => {
-        if (res?.data?.length) {
-          const allInterviewsByInterviewer = res.data;
-          setInterviewsByInterviewer(allInterviewsByInterviewer);
+      // axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/all-interviews-by-interviewer/' + _id).then((res: any) => {
+      //   if (res?.data?.length) {
+      //     const allInterviewsByInterviewer = res.data;
+      //     setInterviewsByInterviewer(allInterviewsByInterviewer);
 
-          let _interviewees = allInterviewsByInterviewer.map((a: any) => a?.interviewee).filter((v: any) => v);
-          _interviewees = Array.from(new Set(_interviewees.map((_interviewee: any) => _interviewee._id))).filter((i: any) => i !== user?.id);
+      //     let _interviewees = allInterviewsByInterviewer.map((a: any) => a?.interviewee).filter((v: any) => v);
+      //     _interviewees = Array.from(new Set(_interviewees.map((_interviewee: any) => _interviewee._id))).filter((i: any) => i !== user?.id);
 
-          if (_interviewees?.length) {
-            setInterviewees(_interviewees);
-            try {
-              const client = StreamChat.getInstance('hz7uw3t9nzga')
-              if (user) {
-                client.devToken(user?.id)
-                client.connectUser(
-                  { id: user?.id }, user?.chat.token
-                );
-                setChatClient(client);
-              }
-            } catch (error) {
-            }
-          }
-        }
-      }).catch(() => { })
+      //     if (_interviewees?.length) {
+      //       setInterviewees(_interviewees);
+      //       try {
+      //         const client = StreamChat.getInstance('hz7uw3t9nzga')
+      //         if (user) {
+      //           client.devToken(user?.id)
+      //           client.connectUser(
+      //             { id: user?.id }, user?.chat.token
+      //           );
+      //           setChatClient(client);
+      //         }
+      //       } catch (error) {
+      //       }
+      //     }
+      //   }
+      // }).catch(() => { })
     }
   }, [chatUser])
 

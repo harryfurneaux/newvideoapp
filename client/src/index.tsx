@@ -12,6 +12,8 @@ import linkedinAuth from './pages/linkedinAuth';
 import LinkedinAuth from './pages/linkedinAuth';
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 
+import SharedJobScreen from "./screens/sharedJobScreen";
+
 
 const router = createBrowserRouter([
   {
@@ -29,8 +31,13 @@ const router = createBrowserRouter([
   {
     path: '/session_id',
     element: <App />
+  },
 
+  {
+    path: "/share",
+    element: <SharedJobScreen setMainScreen={undefined} setJobViewContext={undefined} setFromShareScreen={undefined} jobViewContext={undefined} />
   }
+
 ]);
 
 const root = ReactDOM.createRoot(

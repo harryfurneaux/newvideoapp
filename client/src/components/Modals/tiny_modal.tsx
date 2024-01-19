@@ -25,10 +25,10 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           message: 'We’ll remove your Account and details from our system.',
           confirmText: 'Delete Account',
           onConfirm: () => {
-            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`).then((res) => {
-              setMainScreen(0)
+            // axios.delete(`${process.env.REACT_APP_BACKEND_URL}/users/${user?.id}`).then((res) => {
+            //   setMainScreen(0)
 
-            })
+            // })
           },
           classes: ''
         }
@@ -58,12 +58,12 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           message: 'Are you sure want to delete this interview?',
           confirmText: 'Delete',
           onConfirm: () => {
-              axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${jobView?._id}`).then((res) => {
-                setshowScreen(0)
-                setMainScreen(1)
+            //   axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${jobView?._id}`).then((res) => {
+            //     setshowScreen(0)
+            //     setMainScreen(1)
                
-               handleClose()
-             })
+            //    handleClose()
+            //  })
             
             
           },
@@ -75,15 +75,15 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           message: 'Are you sure want to delete this interview?',
           confirmText: 'Delete',
           onConfirm: () => {
-            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviews/${jobView?.id}`).then((res) => {
-              handleClose()
-              setMainScreen(2)
-              if (typeof setshowScreen === 'function') {
-                setNotifyMessage('Interview Deleted!')
-                setDeleteNotify(true)
-                setMainScreen(0);
-              }
-            })
+            // axios.delete(`${process.env.REACT_APP_BACKEND_URL}/interviews/${jobView?.id}`).then((res) => {
+            //   handleClose()
+            //   setMainScreen(2)
+            //   if (typeof setshowScreen === 'function') {
+            //     setNotifyMessage('Interview Deleted!')
+            //     setDeleteNotify(true)
+            //     setMainScreen(0);
+            //   }
+            // })
           },
           classes: 'w-50'
         }
@@ -93,11 +93,11 @@ const TinyModal = ({ show, handleClose, type, setMainScreen, jobView, setshowScr
           message: 'Are you sure want to delete this Question?',
           confirmText: 'Delete',
           onConfirm: () => {
-            axios.delete(`${process.env.REACT_APP_BACKEND_URL}/questions/${jobView?._id}`).then((res) => {
-              handleClose()
-              setNotifyMessage('Question deleted')
-              setDeleteNotify(true)
-            })
+            // axios.delete(`${process.env.REACT_APP_BACKEND_URL}/questions/${jobView?._id}`).then((res) => {
+            //   handleClose()
+            //   setNotifyMessage('Question deleted')
+            //   setDeleteNotify(true)
+            // })
           },
           classes: 'w-50'
         }

@@ -71,11 +71,11 @@ const BeginForm = ({ setScreen, jobViewContext, recorded, setMainScreen, classNa
                   }
                   formData.append('video', obj.recording);
 
-                  axios.post(process.env.REACT_APP_BACKEND_URL + '/interviews', formData, {
-                    headers: {
-                      'Content-Type': 'multipart/form-data',
-                    },
-                  }).then((res) => { }).finally(() => { submitted = submitted + 1 })
+                  // axios.post(process.env.REACT_APP_BACKEND_URL + '/interviews', formData, {
+                  //   headers: {
+                  //     'Content-Type': 'multipart/form-data',
+                  //   },
+                  // }).then((res) => { }).finally(() => { submitted = submitted + 1 })
                 });
 
                 const _timer = setInterval(() => {

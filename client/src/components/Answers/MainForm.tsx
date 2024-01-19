@@ -41,23 +41,23 @@ const MainForm = ({ setMainScreen, showScreen, setshowScreen, selectedFilter, se
     setAllInterviews(questionsArray)
   }
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
-    ).then(response => {
-      // if (watchAns) {
-      //   const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?._id)
-      //   handleFilteration(filtered)
+  // useEffect(() => {
+  //   axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews',
+  //   ).then(response => {
+  //     // if (watchAns) {
+  //     //   const filtered = response?.data?.filter((obj: any) => obj.job_id == jobViewContext?._id)
+  //     //   handleFilteration(filtered)
 
-      // }
-      // else 
-      if (myAnswers) {
-        const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
-        handleFilteration(filtered)
-      } else {
-        handleFilteration(response.data)
-      }
-    }).catch(console.error)
-  }, [myAnswers]);
+  //     // }
+  //     // else 
+  //     if (myAnswers) {
+  //       const filtered = response?.data?.filter((obj: any) => obj.interviewer._id == user?.id)
+  //       handleFilteration(filtered)
+  //     } else {
+  //       handleFilteration(response.data)
+  //     }
+  //   }).catch(console.error)
+  // }, [myAnswers]);
 
   useEffect(() => {
     if (selectedFilter && allInterviews?.length) {

@@ -45,19 +45,19 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
 
   async fetchUserData(accessToken: string): Promise<any> {
     
-    try {
-      const response = await axios.get('https://graph.facebook.com/v13.0/me', {
-        params: {
-            access_token: accessToken,
-            authorized:'granted',
-            fields: 'id,name,email,picture'
-        }
-    })
+    // try {
+    //   const response = await axios.get('https://graph.facebook.com/v13.0/me', {
+    //     params: {
+    //         access_token: accessToken,
+    //         authorized:'granted',
+    //         fields: 'id,name,email,picture'
+    //     }
+    // })
 
-      return response.data;
-    } catch (error) {
-      throw new Error(`Error fetching user data: ${error.message}`);
-    }
+    //   return response.data;
+    // } catch (error) {
+    //   throw new Error(`Error fetching user data: ${error.message}`);
+    // }
   }
 }
 

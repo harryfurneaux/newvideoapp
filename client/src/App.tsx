@@ -34,15 +34,15 @@ function App() {
   useEffect(() => {
     const { job_id } = params
     if (job_id) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
-        console.log("appts job api", res.data)
-        window.localStorage.setItem('shared', 'true')
-        setJobViewContext(res.data)
-        setShowNotify(true)
-        setShared(true)
-        setMainScreen(8)
+      // axios.get(`${process.env.REACT_APP_BACKEND_URL}/interviewer/${job_id}`).then((res) => {
+      //   console.log("appts job api", res.data)
+      //   window.localStorage.setItem('shared', 'true')
+      //   setJobViewContext(res.data)
+      //   setShowNotify(true)
+      //   setShared(true)
+      //   setMainScreen(8)
 
-      })
+      // })
     }
   }, [params])
 

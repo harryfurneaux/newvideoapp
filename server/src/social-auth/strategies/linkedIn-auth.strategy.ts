@@ -53,60 +53,60 @@ export class LinkedInStrategy extends PassportStrategy(Strategy, 'linkedin') {
   // }
 
   async exchangeAuthorizationCodeForToken(authorizationCode): Promise<any> {
-    try {
+    // try {
 
-      const response = await axios.post(
-        'https://www.linkedin.com/oauth/v2/accessToken',
+    //   const response = await axios.post(
+    //     'https://www.linkedin.com/oauth/v2/accessToken',
 
-        {
+    //     {
 
-          grant_type: 'authorization_code',
-          code: authorizationCode,
-          redirect_uri: process.env.LINKEDIN_CALLBACK_URL,
-          client_id: process.env.LINKEDIN_CLIENT_ID,
-          client_secret: process.env.LINKEDIN_CLIENT_SECRET,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
+    //       grant_type: 'authorization_code',
+    //       code: authorizationCode,
+    //       redirect_uri: process.env.LINKEDIN_CALLBACK_URL,
+    //       client_id: process.env.LINKEDIN_CLIENT_ID,
+    //       client_secret: process.env.LINKEDIN_CLIENT_SECRET,
+    //     },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //       },
+    //     }
 
 
-      );
+    //   );
 
-      return response.data;
-    } catch (error) {
-      console.error('Error exchanging authorization code for access token:', error.message);
-      throw new UnauthorizedException('Failed to exchange authorization code for access token');
-    }
+    //   return response.data;
+    // } catch (error) {
+    //   console.error('Error exchanging authorization code for access token:', error.message);
+    //   throw new UnauthorizedException('Failed to exchange authorization code for access token');
+    // }
   }
 
   async getUserInfo(accessToken: string): Promise<any> {
-    try {
-      const response = await axios.get('https://api.linkedin.com/v2/userinfo', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const { name, email } = response.data;
+    // try {
+    //   const response = await axios.get('https://api.linkedin.com/v2/userinfo', {
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //   });
+    //   const { name, email } = response.data;
 
-      const user = await this.linkedInAuthService.linkedInCreate({
-        name,
-        email,
-        password: '12345',
-        birthdate: null,
-        location: null,
-        companyName: null,
-      });
+    //   const user = await this.linkedInAuthService.linkedInCreate({
+    //     name,
+    //     email,
+    //     password: '12345',
+    //     birthdate: null,
+    //     location: null,
+    //     companyName: null,
+    //   });
 
 
 
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user information from LinkedIn API:', error.message);
-      throw new UnauthorizedException('Failed to fetch user information from LinkedIn API');
-    }
+    //   return response.data;
+    // } catch (error) {
+    //   console.error('Error fetching user information from LinkedIn API:', error.message);
+    //   throw new UnauthorizedException('Failed to fetch user information from LinkedIn API');
+    // }
   }
 
 }

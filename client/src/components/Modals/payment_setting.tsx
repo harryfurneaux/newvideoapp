@@ -33,9 +33,9 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
 
   useEffect(() => {
     if (user) {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/${user?.id}`).then((res) => {
-        setPaymentData(res.data.stripeData[0])
-      }).catch((err) => err)
+      // axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/${user?.id}`).then((res) => {
+      //   setPaymentData(res.data.stripeData[0])
+      // }).catch((err) => err)
     }
   }, [user])
 
@@ -52,15 +52,15 @@ const PaymentSetting = ({ show, handleClose }: { show: boolean, handleClose: any
   };
   const handleStripeClose = () => setStripeModal(false)
   const handlePayment = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/create-checkout-session`,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((res) => {
-        const { sessionId } = res.data
-        stripe?.redirectToCheckout({ sessionId: sessionId })
-      })
+    // axios.get(`${process.env.REACT_APP_BACKEND_URL}/stripe/create-checkout-session`,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   }).then((res) => {
+    //     const { sessionId } = res.data
+    //     stripe?.redirectToCheckout({ sessionId: sessionId })
+    //   })
 
 
   }

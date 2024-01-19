@@ -12,12 +12,12 @@ const LinkedInAuth = () => {
     const query = useQuery()
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
-            params: {
-                code: query.get('code'),
-                state: query.get('state')
-            }
-        }).then((res) => {})
+        // axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
+        //     params: {
+        //         code: query.get('code'),
+        //         state: query.get('state')
+        //     }
+        // }).then((res) => {})
 
     }, [])
 

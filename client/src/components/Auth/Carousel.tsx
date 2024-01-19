@@ -17,15 +17,15 @@ const RightButtons = ({ hideMenu, setChatUser, selectedInterview, setAllIntervie
 
   return <div className={`kljadjfkl-jaem kjdlamkdl-asdj ${isTab ? "adaslkhdfjksj-ajenw" : ""}`}>
     <button className='no-shadow circleButtons' onClick={() => {
-      if (selectedInterview?.id && typeof setAllInterviews === 'function' && typeof setFavourite === 'function') {
-        const update = !favourite;
-        axios.patch(process.env.REACT_APP_BACKEND_URL + '/interviews/' + selectedInterview.id, {
-          favourite: update
-        }).then((res: any) => {
-          setFavourite(update);
-          setAllInterviews(res.data);
-        }).catch(() => { })
-      }
+      // if (selectedInterview?.id && typeof setAllInterviews === 'function' && typeof setFavourite === 'function') {
+      //   const update = !favourite;
+      //   axios.patch(process.env.REACT_APP_BACKEND_URL + '/interviews/' + selectedInterview.id, {
+      //     favourite: update
+      //   }).then((res: any) => {
+      //     setFavourite(update);
+      //     setAllInterviews(res.data);
+      //   }).catch(() => { })
+      // }
     }}>
 
       {/* {favourite ? 'Un-Favourite' : 'Favourite'} */}
@@ -38,12 +38,12 @@ const RightButtons = ({ hideMenu, setChatUser, selectedInterview, setAllIntervie
     </button>
 
     <button className='no-shadow circleButtons' onClick={() => {
-      axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/' + selectedInterview.id).then((res: any) => {
-        if (typeof setChatUser === 'function') {
-          setChatUser(res.data)
-          setMainScreen(4)
-        }
-      }).catch(() => { })
+      // axios.get(process.env.REACT_APP_BACKEND_URL + '/interviews/' + selectedInterview.id).then((res: any) => {
+      //   if (typeof setChatUser === 'function') {
+      //     setChatUser(res.data)
+      //     setMainScreen(4)
+      //   }
+      // }).catch(() => { })
     }}>
       <Icons iconNumber={isTab ? 72 : 48} />
       Messages

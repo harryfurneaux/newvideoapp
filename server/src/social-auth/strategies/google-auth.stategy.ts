@@ -34,13 +34,13 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       Authorization: `Bearer ${accessToken}`,
     };
 
-    try {
-      const response = await axios.get(url, { headers });
+    // try {
+    //   const response = await axios.get(url, { headers });
 
-      return response
-    } catch (error) {
-      throw new Error('Failed to fetch user data from Google.');
-    }
+    //   return response
+    // } catch (error) {
+    //   throw new Error('Failed to fetch user data from Google.');
+    // }
   }
 
 }

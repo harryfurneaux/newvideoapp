@@ -15,15 +15,15 @@ const SharedLogin = ({ setShareScreen, setMainScreen, setFromShareScreen }: { se
 
     const login = useGoogleLogin({
         onSuccess: tokenResponse => {
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/google/callback', { params: { code: tokenResponse.access_token } })
-                .then((res) => {
-                    setUser(res.data)
-                    setMainScreen(3)
-                    setFromShareScreen(true)
-                    if (res?.data?.token) {
-                        window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
-                    }
-                })
+            // axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/google/callback', { params: { code: tokenResponse.access_token } })
+            //     .then((res) => {
+            //         setUser(res.data)
+            //         setMainScreen(3)
+            //         setFromShareScreen(true)
+            //         if (res?.data?.token) {
+            //             window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
+            //         }
+            //     })
         }
     });
 
@@ -32,18 +32,18 @@ const SharedLogin = ({ setShareScreen, setMainScreen, setFromShareScreen }: { se
         redirectUri: process.env.REACT_APP_FRONTEND_URL + '/linkedIn-Auth',
         scope: 'openid,profile,email',
         onSuccess: (code) => {
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
-                params: {
-                    code,
-                }
-            }).then((res) => {
-                setUser(res.data);
-                setMainScreen(3)
-                setFromShareScreen(true)
-                if (res?.data?.token) {
-                    window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
-                }
-            })
+            // axios.get(process.env.REACT_APP_BACKEND_URL + '/auth/linkedin/callback', {
+            //     params: {
+            //         code,
+            //     }
+            // }).then((res) => {
+            //     setUser(res.data);
+            //     setMainScreen(3)
+            //     setFromShareScreen(true)
+            //     if (res?.data?.token) {
+            //         window.localStorage.setItem(authConfig.storageTokenKeyName, res.data.token);
+            //     }
+            // })
         },
         onError: (error) => {
             console.log(error)
