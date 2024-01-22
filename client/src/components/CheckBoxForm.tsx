@@ -1,23 +1,44 @@
 import { useEffect, useState } from "react";
 import Icons from "./icons";
 import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
 
-const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction = false }: { questions: any, forcedActive?: boolean, recorded?: any, noAction?: boolean }) => {
+const CheckFormBox = ({
+  questions,
+  forcedActive = false,
+  recorded = [],
+  noAction = false,
+}: {
+  questions: any;
+  forcedActive?: boolean;
+  recorded?: any;
+  noAction?: boolean;
+}) => {
   const [question, setQuestion] = useState(questions);
+  const { setShowLoading } = useAuth();
 
   const _isActive = (id: string) => {
-    return recorded?.length && !!recorded.find((aid: any) => aid._id === id && aid?.recording);
+    return (
+      recorded?.length &&
+      !!recorded.find((aid: any) => aid._id === id && aid?.recording)
+    );
   };
 
-  const [isActive, setIsactive] = useState(forcedActive || _isActive(question?._id) ? 1 : 0);
+  const [isActive, setIsactive] = useState(
+    forcedActive || _isActive(question?._id) ? 1 : 0
+  );
 
   useEffect(() => {
-    if (!question?._id && typeof question === 'string') {
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/questions/${question}`).then(res => {
-        if (res?.data?._id) {
-          setQuestion(res.data);
-        }
-      })
+    if (!question?._id && typeof question === "string") {
+      setShowLoading(true);
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/questions/${question}`)
+        .then((res) => {
+          setShowLoading(false);
+          if (res?.data?._id) {
+            setQuestion(res.data);
+          }
+        });
     }
   }, []);
 
@@ -43,7 +64,9 @@ const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction
       style={{ width: 303 }}
     >
       <div>
-        <Icons iconNumber={isActive > 0 || _isActive(question?._id) ? 15 : 24} />
+        <Icons
+          iconNumber={isActive > 0 || _isActive(question?._id) ? 15 : 24}
+        />
       </div>
       <h5>{question?.question}</h5>
       <div className="timing" style={{ marginLeft: 10 }}>
@@ -52,7 +75,7 @@ const CheckFormBox = ({ questions, forcedActive = false, recorded = [], noAction
         <h6>{question?.time_duration}s</h6>
       </div>
     </button>
-  )
-}
+  );
+};
 
-export default CheckFormBox
+export default CheckFormBox;
