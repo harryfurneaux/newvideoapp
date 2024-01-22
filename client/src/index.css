@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.pac-container {
+  z-index: 10000; /* Adjust the z-index as needed */
+  margin-top: 18px;
+  min-width: 274px;
+  margin-left: -38px;
+}

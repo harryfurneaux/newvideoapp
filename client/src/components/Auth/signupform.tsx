@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Icons from "../icons";
 import { useAuth } from "../../hooks/useAuth";
 import { errorByKey } from "../../helper";
+import AutoLocation from "../AutoLocation";
 
 const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormChange, signUpFormErrors, setSignUpFormErrors, setErrorMessage }: { setshowScreen: any, className?: string, signUpFormData: any, handleFormChange: any, signUpFormErrors: any, setSignUpFormErrors: any, setErrorMessage: any }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
+  const [location, setLocation] = useState('');
   const { signup } = useAuth()
   const [hasError, setHasError] = useState('');
 
@@ -42,7 +44,7 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
       if (!signUpFormData?.birth_date?.length) {
         setHasError('birth_date');
         setErrorMessage('You must enter a Date of Birth');
-      } else if (!signUpFormData?.location?.length) {
+      } else if (location?.length) {
         setHasError('location');
         setErrorMessage('You must enter a Location');
       } else if (!signUpFormData?.company_name?.length) {
@@ -125,7 +127,7 @@ const SignUpForm = ({ setshowScreen, className = '', signUpFormData, handleFormC
                 }
               }}>
                 <Icons iconNumber={12} />
-                <input placeholder="Location" name='location' onChange={handleFormChange} autoComplete="off" style={{ flex: 1 }} />
+                <AutoLocation currentLocation={location} setLocation={setLocation} />
               </div>
               <div className={`jksd-kosaeknae ${showError('company_name') ? 'error-border' : ''}`} style={{ cursor: 'text' }} onClick={(e) => {
                 const _node: HTMLInputElement | null = e?.currentTarget?.querySelector('input[name="company_name"]');
