@@ -1,3 +1,5 @@
+import { useFullscreen } from "../../hooks/useFullscreen";
+import SearchFilter from "../Modals/SearchFilter";
 import Icons from "../icons";
 import { useMediaQuery } from 'react-responsive'
 
@@ -14,44 +16,21 @@ const BackMenu = ({
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1013px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 425px)' })
+  const { fullscreen, setFullscreen } = useFullscreen();
+
   return (
-    <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`}>
-      <div
-        onClick={() => {
-          if (showScreen == 1) {
-            setShowScreen(0);
-          } else if (showScreen == 2) {
-            setShowScreen(1);
-          } else if (showScreen == 3) {
-            setShowScreen(2);
-          } else if (showScreen == 4) {
-            setShowScreen(3);
-          } else if (showScreen == 5) {
-            setShowScreen(4);
-          } else if (showScreen == 6) {
-            setShowScreen(5);
-          } else if (showScreen == 7) {
-            setShowScreen(6);
-          }
-        }}
-        className="backButtonDiv backdrop-filter"
-      >
-        <button className="hkjndankad-dnsd">
-          <Icons iconNumber={29} />
-        </button>
-        <h5 className="mksaldkamaw-jdwa">Back</h5>
-      </div>
-      <div className="d-flex">
-        {showScreen <= 5 ? (
+    <div className={`leftSideHeader ${showScreen == 5 && isMobile ? "jdafk-aewkmw" : ""}`} style={{ position: 'absolute', top: 0, width: '100%' }}>
+      <div className="d-flex justify-content-between">
+        {/* {true ? (
           <button className="njkljmdasp-dawm" onClick={() => {
-            setShowScreen(1);
+            setFullscreen(!fullscreen);
           }}>
-            <Icons iconNumber={30} />
+            <span style={{ fontSize: fullscreen ? 30 : 20, fontWeight: 400, marginRight: 5 }}>{fullscreen ? '-' : '+'}</span>
             Full Screen
           </button>
         ) : (
           <></>
-        )}
+        )} */}
         {
           isTabletOrMobile && showScreen == 6 ?
             <button
@@ -67,13 +46,14 @@ const BackMenu = ({
               onClick={() => {
                 setShowScreen(1);
               }}
-              className="kjlma0o-dwa jksdalfj-jasidm"
+              className="kjlma0o-dwa jksdalfj-jasidm" style={{ width: 150, marginLeft: 10 }}
             >
               <Icons iconNumber={30} />
-              Create{" "}
+              Create Interview
             </button>
         }
       </div>
+      <SearchFilter show={false} handleClose={''} selectedFilter={''} setSelectedFilter={''} />
     </div>
   );
 };

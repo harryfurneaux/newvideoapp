@@ -5,7 +5,7 @@ const SimpleCheckBox = ({ title, span }: { title: string, span: string }) => {
     const [isAgree, setisAgree] = useState(true);
 
     return <div onClick={() => {
-        setisAgree(!isAgree)
+       // setisAgree(!isAgree)
     }} className="checkboxGreen">
         <Icons iconNumber={isAgree ? 2 : 76} />
         <h5>

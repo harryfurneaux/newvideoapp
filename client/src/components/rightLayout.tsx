@@ -1,11 +1,14 @@
 import React from 'react';
 import Icons from './icons';
 import SettingMenuIcon from './SettingMenuIcon';
+import { useAuth } from '../hooks/useAuth';
 
-const RightLayout = ({ screen }: { screen: number }) => {
-  return <div className="rightSideDiv rightSideDivsadsa kjdsfkn-ajdnkw">
-    <div className="d-flex justify-content-end">
-      <SettingMenuIcon />
+const RightLayout = ({ screen, style = {} }: { screen: number, style?: any }) => {
+  const { isLoggedIn } = useAuth();
+  
+  return <div className="rightSideDiv rightSideDivsadsa kjdsfkn-ajdnkw" style={style}>
+    <div className={`d-${isLoggedIn() ? 'flex' : 'none'} justify-content-end settingmenuicon`}>
+      <SettingMenuIcon setMainScreen={''} />
     </div>
     <div className="mklfasd-dmsaew nakds-ajews p-0">
       <div className={`djfkaspk-nasrm ${screen == 1 ? "" : "border-0 bg-transparent"}`}>
@@ -59,9 +62,6 @@ const RightLayout = ({ screen }: { screen: number }) => {
       </div>
       <div className="homescreenFloater1">
         <img src={require("../images/i2.png")} />
-      </div>
-      <div className="homescreenFloater2">
-        <img src={require("../images/i3.png")} />
       </div>
     </div>
   </div>

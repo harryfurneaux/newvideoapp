@@ -1,48 +1,61 @@
-import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import { useEffect, useState } from "react";
 import Icons from "../icons";
-//@ts-ignore
-import Flip from 'react-reveal/Flip'
+import ProgressCircle from './progressCircle'
 
-const ProgressForm = ({ setScreen }: { setScreen: any }) => {
+const ProgressForm = ({ setScreen, jobViewContext, recorded, setRecorded, className = '' }: { setScreen: any, jobViewContext: any, recorded: any, setRecorded: any, className?: any }) => {
+  const [shouldDisplay, setShouldDisplay] = useState(false);
+
+  useEffect(() => {
+    const targetElement = document.getElementById('targetElementProgress');
+
+    if (targetElement) {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'class') {
+            const isDNone = targetElement.classList.contains('d-none');
+            setShouldDisplay(!isDNone);
+          }
+        });
+      });
+
+      const config = { attributes: true };
+      observer.observe(targetElement, config);
+    }
+  }, []);
+
   return (
-    <Flip right>
-      <div className="kjjfds-janwkea knlsdj0wjew">
-        <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video>
-        <div onClick={() => {
-          setScreen(4)
-        }} className="kjdslfk-sjadnkwe">
-          <CircularProgressbarWithChildren
-            strokeWidth={8}
-            value={33}
-            styles={{
-              path: {
-                stroke: `#00D9CD`,
-              },
-              trail: {
-                stroke: `#E8EEF44D`,
-              },
-            }}
-          >
-            <div className="hasfkja0ew-sd">
-              <h5>33%</h5>
-              <h6>1 OF 3</h6>
-            </div>
-            <div className="knl-masdkw">
-              <Icons iconNumber={23} />
-            </div>
-          </CircularProgressbarWithChildren>
+    <div id="targetElementProgress" className={`kjjfds-janwkea knlsdj0wjew ${className}`} style={{ cursor: 'pointer', height: 520, width: 320 }}>
+      {/* <video className="bg-video" src={"/assets/blue_bg.mp4"} autoPlay loop muted></video> */}
+      <div className='wave-box'>
+        <div className='wave'></div>
+      </div>
+      <div className="kjdslfk-sjadnkwe mb-5">
+        {shouldDisplay ? (
+          <ProgressCircle setScreen={setScreen} jobViewContext={jobViewContext} recorded={recorded} setRecorded={setRecorded} />
+        ) : null}
+      </div>
+      <div className="ldjkfsa-jwme" style={{ width: 280 }}>
+        <div className="d-flex justify-content-center">
+          <Icons iconNumber={22} />
+          <h5>Awesome!</h5>
         </div>
-        <div className="ldjkfsa-jwme">
-          <div className="d-flex">
-            <Icons iconNumber={22} />
-            <h5>Awesome!</h5>
+        <div className="kdjsa-ajwnkelds afkfjnkas-edsm mb-2">
+          <div className="continueBtnDiv snasdj-sawdne">
+            <button className="btn" onClick={() => {
+              setScreen(0)
+            }}>
+              CONTINUE
+              <div className="kdksa-ajwmd ">
+                <Icons iconNumber={7} />
+              </div>
+            </button>
           </div>
         </div>
-        <div className="ldkjfal0-fdsnfe">
-          <Icons iconNumber={64} />
-        </div>
       </div>
-    </Flip>
+      <div className="ldkjfal0-fdsnfe">
+        <Icons iconNumber={64} />
+      </div>
+    </div>
   );
 };
 

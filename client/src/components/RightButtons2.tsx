@@ -31,7 +31,7 @@ const RightButtons2 = ({ setMainScreen, setShowScreen, setPastScreen, hideMenu }
       <Icons iconNumber={49} />
       Delete
     </button>
-    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" />
+    <TinyModal show={showDelInterview} handleClose={() => setShowDelInterview(false)} type="delete_interview" setMainScreen={setMainScreen} jobView={''} />
   </div>
 }
 

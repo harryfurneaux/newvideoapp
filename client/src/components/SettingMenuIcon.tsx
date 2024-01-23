@@ -11,19 +11,25 @@ import PrivacyTermsModal from './Modals/privacy_terms';
 import AccountSecurityModal from "./Modals/account_security";
 import PaymentSettingModal from "./Modals/payment_setting";
 import TinyModal from "./Modals/tiny_modal";
+import Notify from "./Notify";
+//import { loadStripe } from '@stripe/stripe-js';
+import { useAuth } from "../hooks/useAuth";
+//import { Elements } from "@stripe/react-stripe-js";
 
-const SettingMenuIcon = () => {
+//const stripePromise: any = loadStripe('pk_test_51OPPTIKkpvXbNi5LxvHVYnYO4DTMyAPoQ8E1Vy8IJmHpWu7EfXVDSNja46vNEIh15U5uaLMOIybXfQjs3Ft3p5dS00P6OdNmXE');
+
+const SettingMenuIcon = ({ setMainScreen }: { setMainScreen: any }) => {
   useEffect(() => {
     $(".overlay.btn-close").hide();
     $(".overlay.btn-close").click(function () {
       // @ts-ignore
       $(this).hide();
     });
-  
+
     $(".btn-show").click(function () {
       $(".overlay.btn-close").show();
     });
-  
+
     $(window).click(function () {
       if ($(".overlay.show").length == 0) {
         $(".overlay.btn-close").hide();
@@ -35,6 +41,11 @@ const SettingMenuIcon = () => {
   const [showPayment, setShowPayment] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [notifyTitle, setNotifyTitle] = useState("Settings Changed");
+  const [notifyShow, setNotifyShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const { user } = useAuth()
 
   const handleAccountClose = () => setShowAccount(false);
   const handleAccountShow = () => {
@@ -59,17 +70,34 @@ const SettingMenuIcon = () => {
     $(".overlay").hide();
     setShowLogout(true);
   }
+  const [showOverlay, setShowOverlay] = useState(false);
 
+  const handleOverlayShow = () => {
+    setShowOverlay(true);
+  };
+
+  const handleOverlayHide = () => {
+    setShowOverlay(false);
+  };
   return (
     <>
-      <CloseButton className="overlay" variant="white" />
-      <OverlayTrigger trigger="click" placement="left" overlay={
-        <div className="overlay text-white">
+      {/* <CloseButton className="overlay" variant="white" /> */}
+      {/* <OverlayTrigger trigger="click" placement="left" overlay={ */}
+      {showOverlay && (<div className="postion_relative"><div className="overlay text-white" onMouseLeave={handleOverlayHide}>
           <div className="header text-center">
-            <img src={profile_img} className="profile" />
-            <h5>User Name</h5>
-            <div className="desc"><img src={company_img} /> Company</div>
-            <div className="desc"><img src={location_img} /> Location</div>
+            {/* <img src={profile_img} className="profile" /> */}
+            <img
+              className="profile rounded-circle border border-2 border-white"
+              src={user?.profile_image || profile_img}
+              onError={(e: any) => {
+                e.target.src = profile_img;
+              }}
+              alt="Profile Picture"
+              style={{ width: 95, height: 95 }}
+            />
+            <h5>{user?.name}</h5>
+            <div className="desc"><img src={company_img} /> {user?.company_name}</div>
+            <div className="desc"><img src={location_img} /> {user?.location}</div>
           </div>
           <div className="overlay-part">
             <div onClick={handleAccountShow}>
@@ -95,16 +123,34 @@ const SettingMenuIcon = () => {
           <div onClick={handleLogoutShow} className='text-center logout'>
             <span>LOG OUT</span>
           </div>
-        </div>
-      } rootClose>
-        <button className="btn btn-show no-shadow">
-          <Icons iconNumber={1} />
+        </div></div>)}
+      {/* } rootClose> */}
+        <button  onClick={handleOverlayShow} className="profile-img-btn btn btn-show no-shadow border-0 outline-0">
+          {/* <Icons iconNumber={1} /> */}
+          <img
+            className="profile-img p-0 rounded-circle border border-2 border-white"
+            src={user?.profile_image || profile_img}
+            onError={(e: any) => {
+              e.target.src = profile_img;
+            }}
+            alt="Profile Picture"
+            style={{ width: '45px', height: '45px' }}
+          />
         </button>
-      </OverlayTrigger>
-      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} />
-      <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
+      {/* </OverlayTrigger> */}
+      <AccountSecurityModal show={showAccount} handleClose={handleAccountClose} setNotifyShow={setNotifyShow} setMainScreen={setMainScreen} setNotifyTitle={setNotifyTitle} setErrorMessage={setErrorMessage} />
+      
+      {/*<Elements stripe={stripePromise} >
+        <PaymentSettingModal show={showPayment} handleClose={handlePaymentClose} />
+          </Elements>*/}
+
       <PrivacyTermsModal show={showPrivacy} handleClose={handlePrivacyClose} />
-      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" />
+      <TinyModal show={showLogout} handleClose={handleLogoutClose} type="logout" setMainScreen={setMainScreen} jobView={''} />
+      <Notify show={notifyShow} title={notifyTitle} handleClose={() => {
+        setNotifyShow(false)
+        setNotifyTitle("Settings Changed")
+      }} />
+      <Notify type="danger" title={errorMessage} show={!!errorMessage?.length} handleClose={() => setErrorMessage('')} />
     </>
   )
 }
