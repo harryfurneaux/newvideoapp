@@ -20,8 +20,10 @@ import { UsersModule } from '../users/users.module';
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
         ConfigModule, UsersModule
     ],
-    controllers: [GoogleAuthController, FacebookAuthController, LinkedInAuthController],
-    providers: [GoogleAuthService, GoogleStrategy, FacebookAuthService, FacebookStrategy, LinkedInAuthService, LinkedInStrategy],
+    // controllers: [GoogleAuthController, FacebookAuthController, LinkedInAuthController],
+    controllers: [GoogleAuthController, FacebookAuthController],
+    // providers: [GoogleAuthService, GoogleStrategy, FacebookAuthService, FacebookStrategy, LinkedInAuthService, LinkedInStrategy],
+    providers: [GoogleAuthService, GoogleStrategy, FacebookAuthService, FacebookStrategy],
     exports: [GoogleAuthService], 
 })
 export class SocialAuthModule {}
