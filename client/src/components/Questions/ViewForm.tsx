@@ -4,7 +4,7 @@ import Icons from "../icons";
 //@ts-ignore
 import { Flip } from "react-awesome-reveal";
 import CheckFormBox from "../CheckBoxForm";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -16,6 +16,8 @@ const ViewForm = ({
   setChatUser,
   jobViewContext,
   setWatchAns,
+  setInterview,
+  setIsEdit,
 }: {
   setMainScreen: any;
   setShowScreen: any;
@@ -24,6 +26,8 @@ const ViewForm = ({
   setChatUser: any;
   jobViewContext: any;
   setWatchAns: any;
+  setInterview: Dispatch<any>;
+  setIsEdit: Dispatch<boolean>;
 }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 1013px)" });
   const [_jobView, setJobView] = useState(jobView || jobViewContext);
@@ -41,6 +45,7 @@ const ViewForm = ({
       .then((response: any) => {
         setShowLoading(false);
         setJobView(response.data);
+        setInterview(response.data);
       })
       .catch(console.error);
   };
@@ -106,6 +111,7 @@ const ViewForm = ({
           jobView={jobView}
           setChatUser={setChatUser}
           hideMenu={isMobile ? true : false}
+          setIsEdit={setIsEdit}
         />
       </div>
     </Flip>
