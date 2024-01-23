@@ -12,10 +12,14 @@ const CreateForm = ({
   setShowScreen,
   showScreen,
   setJobView,
+  jobView,
+  isEdit,
 }: {
   setShowScreen: any;
   showScreen: number;
   setJobView: any;
+  jobView: any;
+  isEdit: boolean;
 }) => {
   const { addQuestion, user, setShowLoading } = useAuth();
   const [selected, setselected] = useState(0);
@@ -27,6 +31,7 @@ const CreateForm = ({
   });
   const [questions, setQuestions] = useState<any>();
   const [job, setjob] = useState({
+    id: "",
     questions: questionIds,
     job_title: "",
     interviewer: user?.id,
@@ -44,6 +49,22 @@ const CreateForm = ({
       setShowScreen(5);
     }
   }, [newJob]);
+
+  useEffect(() => {
+    if (isEdit && jobView) {
+      const { _id, questions, job_title, interviewer, job_recruiter } = jobView;
+      const questionIds = questions.map((question: any) => question?._id);
+      setQuestionsIds(questionIds);
+      setselected(questionIds?.length);
+      setjob({
+        id: _id,
+        questions: questionIds,
+        job_title,
+        interviewer: interviewer?._id,
+        job_recruiter,
+      });
+    }
+  }, [isEdit, jobView]);
 
   const getQuestions = () => {
     setShowLoading(true);
@@ -329,6 +350,7 @@ const CreateForm = ({
                 questions={questions}
                 newJob={newJob}
                 setJobView={setJobView}
+                isEdit={isEdit}
               />
             </>
           ) : (

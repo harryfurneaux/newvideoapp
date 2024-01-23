@@ -15,6 +15,7 @@ const CheckForm = ({
   questions,
   newJob,
   setJobView,
+  isEdit,
 }: {
   setShowScreen: any;
   showScreen: number;
@@ -22,6 +23,7 @@ const CheckForm = ({
   questions: any;
   newJob: any;
   setJobView: any;
+  isEdit: boolean;
 }) => {
   const [interviewer, setInterviewer] = useState<any>(null);
   const { user, setShowLoading } = useAuth();
@@ -53,6 +55,25 @@ const CheckForm = ({
         setShowScreen(6);
       })
       .catch((err) => {});
+  };
+
+  const updateJob = () => {
+    console.log({ newJob });
+    setShowLoading(true);
+    axios
+      .patch(
+        process.env.REACT_APP_BACKEND_URL + "/interviewer/" + newJob?.id,
+        newJob
+      )
+      .then((res) => {
+        setShowScreen(6);
+      })
+      .catch((err) => {
+        console.error({ err });
+      })
+      .finally(() => {
+        setShowLoading(false);
+      });
   };
   return (
     <div className="d-flex justify-content-center">
@@ -93,10 +114,11 @@ const CheckForm = ({
             <button
               className="btn lkdafhkls0d"
               onClick={() => {
-                addJob(newJob);
+                if (isEdit) updateJob();
+                else addJob(newJob);
               }}
             >
-              PUBLISH & SHARE
+              {isEdit ? "EDIT INTERVIEW" : "PUBLISH & SHARE"}
               <div className="klajdfkls-ds pos-rel">
                 <Icons iconNumber={42} />
               </div>

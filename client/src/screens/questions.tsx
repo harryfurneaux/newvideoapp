@@ -11,108 +11,215 @@ import { useMediaQuery } from "react-responsive";
 import RightButtons from "../components/RightButtons";
 import LinearBackground from "../components/LinearBackground";
 import { useFullscreen } from "../hooks/useFullscreen";
-import Notify from "../components/Notify";
 
-function View({ mainScreen, setMainScreen, setJobViewContext, setChatUser, jobViewContext, setWatchAns, showSharedNotify, setShowNotify }: { mainScreen: number, setMainScreen: any, setJobViewContext: any, setChatUser: any, jobViewContext: any, setWatchAns: any, showSharedNotify: any, setShowNotify: any }) {
+function View({
+  mainScreen,
+  setMainScreen,
+  setJobViewContext,
+  setChatUser,
+  jobViewContext,
+  setWatchAns,
+  showSharedNotify,
+  setShowNotify,
+}: {
+  mainScreen: number;
+  setMainScreen: any;
+  setJobViewContext: any;
+  setChatUser: any;
+  jobViewContext: any;
+  setWatchAns: any;
+  showSharedNotify: any;
+  setShowNotify: any;
+}) {
   const [showScreen, setShowScreen] = useState(0);
   const [pastScreen, setPastScreen] = useState(0);
   const [showRightMenu, setShowRightMenu] = useState(false);
-  const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-  const isTab = useMediaQuery({ query: '(max-width: 1013px)' });
-  const [jobView, setJobView] = useState(null)
+  const isMobile = useMediaQuery({ query: "(max-width: 425px)" });
+  const isTab = useMediaQuery({ query: "(max-width: 1013px)" });
+  const [jobView, setJobView] = useState(null);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
-  const [myQuestions, setMyQuestions] = useState(false)
+  const [myQuestions, setMyQuestions] = useState(false);
   const { fullscreen } = useFullscreen();
-  const [selectedInterview, setSelectedInterview] = useState<any>(null);
 
   useEffect(() => {
-     
-    
-  
     const _window: any = window;
-    if(_window?.setShowScreen > -1) {
+    if (_window?.setShowScreen > -1) {
       setShowScreen(_window?.setShowScreen);
       delete _window?.setShowScreen;
     }
-   
-  
   }, []);
 
-  
   useEffect(() => {
     if (jobView) {
-      setJobViewContext(jobView)
+      setJobViewContext(jobView);
     }
-  }, [jobView])
+  }, [jobView]);
 
   return (
-    <LinearBackground style={{ width: '100%' }}>
+    <LinearBackground style={{ width: "100%" }}>
       <div className="pageContainer" style={{ padding: 25 }}>
-        <div className="leftSideDiv" style={fullscreen ? { width: '100%' } : {}}>
-          {
-            showScreen <= 5 ?
-              <div className="leftSideMain leftsideWhithTransparentBg">
-                {pastScreen > 5 ? (
-                  <div className={`lnjsadnksa-sda ${isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"}`}>
-                     
-                     
-                    {pastScreen == 6 ? (
-                      <>
-                     
-                      <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
-                      <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-
-                                             </>
-                    ) : ( <>
-                     
-                      <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-                      <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                   
-                    
-                    </> )
-                    }
-
-                  </div>
-                ) : <>
-                  <OptionButtons myQuestions={myQuestions} setMyQuestions={setMyQuestions} showSharedNotify={showSharedNotify} setShowNotify={setShowNotify}/>
-                  <QuestionForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setJobView={setJobView} myQuestions={myQuestions} />
-                </>}
-              </div> :
-              <></>
-          }
+        <div
+          className="leftSideDiv"
+          style={fullscreen ? { width: "100%" } : {}}
+        >
+          {showScreen <= 5 ? (
+            <div className="leftSideMain leftsideWhithTransparentBg">
+              {pastScreen > 5 ? (
+                <div
+                  className={`lnjsadnksa-sda ${
+                    isMobile && pastScreen == 7 ? "" : "kjsadl-asdksm"
+                  }`}
+                >
+                  {pastScreen == 6 ? (
+                    <>
+                      <ShareForm
+                        setMainScreen={setMainScreen}
+                        showScreen={showScreen}
+                        setShowScreen={setShowScreen}
+                        setPastScreen={setPastScreen}
+                        jobView={jobView}
+                        setChatUser={setChatUser}
+                      />
+                      <RightButtons
+                        setMainScreen={setMainScreen}
+                        setShowScreen={setShowScreen}
+                        setPastScreen={setPastScreen}
+                        jobView={jobView}
+                        setChatUser={setChatUser}
+                        hideMenu={showRightMenu && isTab ? false : true}
+                        setIsEdit={setIsEdit}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <ViewForm
+                        setMainScreen={setMainScreen}
+                        setShowScreen={setShowScreen}
+                        setPastScreen={setPastScreen}
+                        jobView={jobView}
+                        setChatUser={setChatUser}
+                        jobViewContext={jobViewContext}
+                        setWatchAns={setWatchAns}
+                        setInterview={setJobView}
+                        setIsEdit={setIsEdit}
+                      />
+                      {/* <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} /> */}
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <OptionButtons
+                    myQuestions={myQuestions}
+                    setMyQuestions={setMyQuestions}
+                    showSharedNotify={showSharedNotify}
+                    setShowNotify={setShowNotify}
+                  />
+                  <QuestionForm
+                    setMainScreen={setMainScreen}
+                    setShowScreen={setShowScreen}
+                    setJobView={setJobView}
+                    myQuestions={myQuestions}
+                  />
+                </>
+              )}
+            </div>
+          ) : (
+            <></>
+          )}
           {showScreen > 5 ? (
-            <div className={`lnjsadnksa-sda ${isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"}`} style={{ position: 'absolute', top: 0 }}>
-              
-              
+            <div
+              className={`lnjsadnksa-sda ${
+                isMobile && showScreen == 7 ? "" : "kjsadl-asdksm"
+              }`}
+              style={{ position: "absolute", top: 0 }}
+            >
               {showScreen == 6 || showScreen == 7 ? (
                 <>
-                  
-                  <ViewForm setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} jobViewContext={jobViewContext} setWatchAns={setWatchAns} />
-                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                
+                  <ViewForm
+                    setMainScreen={setMainScreen}
+                    setShowScreen={setShowScreen}
+                    setPastScreen={setPastScreen}
+                    jobView={jobView}
+                    setChatUser={setChatUser}
+                    jobViewContext={jobViewContext}
+                    setWatchAns={setWatchAns}
+                    setInterview={setJobView}
+                    setIsEdit={setIsEdit}
+                  />
+                  <RightButtons
+                    setMainScreen={setMainScreen}
+                    setShowScreen={setShowScreen}
+                    setPastScreen={setPastScreen}
+                    jobView={jobView}
+                    setChatUser={setChatUser}
+                    hideMenu={showRightMenu && isTab ? false : true}
+                    setIsEdit={setIsEdit}
+                  />
                 </>
-              ) : showScreen == 8 ?  (
+              ) : showScreen == 8 ? (
                 <>
-                <ShareForm setMainScreen={setMainScreen} showScreen={showScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} />
-                  <RightButtons setMainScreen={setMainScreen} setShowScreen={setShowScreen} setPastScreen={setPastScreen} jobView={jobView} setChatUser={setChatUser} hideMenu={showRightMenu && isTab ? false : true} />
-                
-                
+                  <ShareForm
+                    setMainScreen={setMainScreen}
+                    showScreen={showScreen}
+                    setShowScreen={setShowScreen}
+                    setPastScreen={setPastScreen}
+                    jobView={jobView}
+                    setChatUser={setChatUser}
+                  />
+                  <RightButtons
+                    setMainScreen={setMainScreen}
+                    setShowScreen={setShowScreen}
+                    setPastScreen={setPastScreen}
+                    jobView={jobView}
+                    setChatUser={setChatUser}
+                    hideMenu={showRightMenu && isTab ? false : true}
+                    setIsEdit={setIsEdit}
+                  />
                 </>
-              ):<></>}
-
+              ) : (
+                <></>
+              )}
             </div>
-          ) : <></>}
-          <BackMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showScreen={showScreen} setShowScreen={setShowScreen} />
+          ) : (
+            <></>
+          )}
+          <BackMenu
+            showRightMenu={showRightMenu}
+            setShowRightMenu={setShowRightMenu}
+            showScreen={showScreen}
+            setShowScreen={setShowScreen}
+          />
           {showScreen >= 1 && showScreen <= 5 ? (
-            <CreateForm showScreen={showScreen} setShowScreen={setShowScreen} setJobView={setJobView} />
+            <CreateForm
+              showScreen={showScreen}
+              setShowScreen={setShowScreen}
+              setJobView={setJobView}
+              jobView={jobView}
+              isEdit={isEdit}
+            />
           ) : (
             <></>
           )}
           <div className="d-flex justify-content-center kdnklms-awendwd-11">
-            <BottomMenu setShowScreen={setShowScreen} showScreen={showScreen} mainScreen={mainScreen} setMainScreen={setMainScreen} />
+            <BottomMenu
+              setShowScreen={setShowScreen}
+              showScreen={showScreen}
+              mainScreen={mainScreen}
+              setMainScreen={setMainScreen}
+            />
           </div>
         </div>
-        <RightLayout2 setMainScreen={setMainScreen} setShowScreen={setShowScreen} style={fullscreen ? { display: 'none', borderRadius: 33 } : { borderRadius: 33 }} />
+        <RightLayout2
+          setMainScreen={setMainScreen}
+          setShowScreen={setShowScreen}
+          style={
+            fullscreen
+              ? { display: "none", borderRadius: 33 }
+              : { borderRadius: 33 }
+          }
+        />
       </div>
     </LinearBackground>
   );
