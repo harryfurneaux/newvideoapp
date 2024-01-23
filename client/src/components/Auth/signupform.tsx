@@ -23,9 +23,9 @@ const SignUpForm = ({
 }) => {
   const [isAgree, setisAgree] = useState(false);
   const [birthClicked, setBirthClicked] = useState(false);
-  const [location, setLocation] = useState("");
-  const { signup } = useAuth();
-  const [hasError, setHasError] = useState("");
+  const [location, setLocation] = useState('');
+  const { signup } = useAuth()
+  const [hasError, setHasError] = useState('');
 
   const showError = (key: any) => {
     return hasError === key;
@@ -58,11 +58,11 @@ const SignUpForm = ({
   const handleContinue = () => {
     if (typeof setErrorMessage === "function") {
       if (!signUpFormData?.birth_date?.length) {
-        setHasError("birth_date");
-        setErrorMessage("You must enter a Date of Birth");
-      } else if (location?.length) {
-        setHasError("location");
-        setErrorMessage("You must enter a Location");
+        setHasError('birth_date');
+        setErrorMessage('You must enter a Date of Birth');
+      } else if (!location?.length) {
+        setHasError('location');
+        setErrorMessage('You must enter a Location');
       } else if (!signUpFormData?.company_name?.length) {
         setHasError("company_name");
         setErrorMessage("You must enter a Company");
@@ -83,8 +83,9 @@ const SignUpForm = ({
     setErrorMessage("");
 
     const data = { ...signUpFormData };
-    const parts = data.birth_date.split("|").map((d: any) => d.trim());
-    data.birth_date = `${parts[1]}-${parts[0]}-${parts[2]}`;
+    const parts = data.birth_date.split('|').map((d: any) => d.trim());
+    data.birth_date = `${parts[1]}-${parts[0]}-${parts[2]}`
+    data.location = location;
 
     signup(data)
       .then((res) => {
@@ -157,7 +158,7 @@ const SignUpForm = ({
               color: "#fff",
             }}
           >
-            If you don't have a company, just leave it blank
+            If you don’t have a company, just leave it blank
           </h4>
 
           <div className="njskakd-kawmed">
@@ -258,8 +259,12 @@ const SignUpForm = ({
               </div>
             </div>
 
-            <div className="continueBtnDiv snasdj-sawdne" style={{}}>
-              <button onClick={handleContinue} className="btn kjlsjadm-kdmsd-2">
+            <div className="continueBtnDiv snasdj-sawdne">
+              <button
+                onClick={handleContinue}
+                className="btn kjlsjadm-kdmsd-2"
+                style={{ maxWidth: "280px" }}
+              >
                 COMPLETE SIGNUP
                 <Icons iconNumber={94} />
               </button>

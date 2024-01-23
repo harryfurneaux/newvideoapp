@@ -7,7 +7,7 @@ import PrivacyTerms from "../Modals/privacy_terms";
 
 const SignInForm = ({ setshowScreen, className = '', handleFormChange, signUpFormErrors, setErrorMessage = null, signUpFormData = {} }: { setshowScreen: any, className?: string, handleFormChange: any, signUpFormErrors: any, setErrorMessage?: any, signUpFormData?: any }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
-  const [isAgree, setisAgree] = useState(false);
+  const [isAgree, setisAgree] = useState(true);
   const [hasError, setHasError] = useState('');
   const [showPrivacyTerms, setShowPrivacyTerms] = useState(false);
 

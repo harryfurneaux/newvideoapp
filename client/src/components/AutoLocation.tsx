@@ -4,11 +4,11 @@ let autoComplete: any;
 
 function AutoLocation(props: any) {
   const [query, setQuery] = useState("");
-  const autoCompleteRef = useRef(null);
+	const autoCompleteRef = useRef(null);
 
   const loadScript = (url: string, callback: any) => {
-    let script: any = document.createElement("script");
-    script.type = "text/javascript";
+		let script: any = document.createElement('script');
+		script.type = "text/javascript";
 
     if (script.readyState) {
       script.onreadystatechange = function () {
@@ -28,10 +28,7 @@ function AutoLocation(props: any) {
     document.getElementsByTagName("head")[0].appendChild(script);
   };
 
-  function handleScriptLoad(
-    updateQuery: any,
-    autoCompleteRef: React.RefObject<HTMLInputElement>
-  ) {
+  function handleScriptLoad(updateQuery: any, autoCompleteRef: React.RefObject<HTMLInputElement>) {
     autoComplete = new (window as any).google.maps.places.Autocomplete(
       autoCompleteRef.current,
       { types: ["(cities)"] }

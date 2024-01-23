@@ -14,7 +14,47 @@ code {
 
 .pac-container {
   z-index: 10000; /* Adjust the z-index as needed */
-  margin-top: 18px;
-  min-width: 274px;
-  margin-left: -38px;
+  margin-top: 4px;
+  color: white;
+  min-width: 280px;
+  margin-left: -41px;
+  flex-direction: column;
+  background-color: #5457be;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.pac-container:after {
+  background-image: none !important;
+  height: 0px;
+}
+
+.pac-item {
+  border: none;
+  color: white;
+  padding: 2px 14px;
+}
+
+.pac-item-query {
+  color: white;
+}
+
+.pac-item:hover {
+  background-color: #5c5fc4 !important;
+}
+
+.pac-icon-marker {
+  margin-right: 14px;
+}
+
+.pac-icon {
+  display: none;
+}
+
+.pac-container .pac-item::before {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M6.99984 0C4.32098 0 2.1416 2.17969 2.1416 4.85862C2.1416 7.43732 6.54956 13.4621 6.73725 13.7172L6.91241 13.9556C6.9329 13.9836 6.96552 14 6.99984 14C7.03468 14 7.06709 13.9836 7.08779 13.9556L7.26285 13.7172C7.45064 13.4621 11.8585 7.43732 11.8585 4.85862C11.8585 2.17969 9.67877 0 6.99984 0ZM6.99984 3.11827C7.95968 3.11827 8.74019 3.89881 8.74019 4.85862C8.74019 5.81794 7.95965 6.59897 6.99984 6.59897C6.04056 6.59897 5.25949 5.81794 5.25949 4.85862C5.25949 3.89881 6.04052 3.11827 6.99984 3.11827Z" fill="white"/></svg>');
+  margin-right: 16px; /* Adjust the spacing between the icon and the text */
+  margin-left: 2px;
 }

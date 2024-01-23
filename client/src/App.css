@@ -400,7 +400,7 @@ body {
 .jksd-kosaeknae {
   width: 100%;
   max-width: 280px;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: #5457be;
   border-radius: 12px;
   height: 51px;
   align-items: center;
@@ -4478,7 +4478,7 @@ input:-webkit-autofill:active {
 }
 
 .signupFinelDetail .jksd-kosaeknae:focus-within:not(:-webkit-autofill) {
-  background-color: rgba(0, 0, 0, 0.15) !important;
+  background-color: #5457be !important;
 }
 
 .signupFinelDetail .jksd-kosaeknae input:focus:not(:-webkit-autofill) {
